@@ -38,18 +38,38 @@ class FrontController extends Controller
             $atl_app = 0;
             $atl_twr = 0;
             $clt_twr = 0;
+	    $bwi_twr = 0;
+
+//$a = ATC::where('position', 'IAD_TWR')->first();
+// dd(substr($a->position,-3));
             foreach($atc as $a) {
                 $field = substr($a->position, 0, 3);
                 $position = substr($a->position, -3);
-                if($field == '[MAJOR FIELD FAA ID]') {
+                if($field == 'DCA') {
                     if($position == 'TWR' || $position == 'GND') {
                         $atl_twr = 1;
-                    } elseif($position == 'APP' || $position == 'DEP') {
+                    }
+                }
+                elseif($field == 'DCA' || $field == 'IAD' || $field == 'BWI') {
+                    if($position == 'APP' || $position == 'DEP') {
                         $atl_app = 1;
-                    } elseif($position == 'CTR') {
+                    } elseif($field == 'IAD') {
+                        if($position == 'TWR' || $position == 'GND') {
+                            $clt_twr = 1;
+               	        }
+                     } elseif($field == 'DCA') {
+                        if($position == 'TWR' || $position == 'GND') {
+                            $atl_twr = 1;
+		    }
+		     } elseif($field == 'BWI') {
+			if($position == 'TWR' || $position == 'GND') {
+			    $bwi_twr = 1;
+			}}
+                } elseif($field == 'DC_') {
+                    if($position == 'CTR') {
                         $atl_ctr = 1;
                     }
-                } elseif($field == '[MINOR FIELD FAA ID]') {
+                } elseif($field == 'IAD') {
                     if($position == 'TWR' || $position == 'GND') {
                         $clt_twr = 1;
                     }
@@ -87,7 +107,7 @@ class FrontController extends Controller
             return strtotime($e->date);
         });
 
-        return view('site.home')->with('clt_twr', $clt_twr)->with('atl_twr', $atl_twr)->with('atl_app', $atl_app)->with('atl_ctr', $atl_ctr)
+        return view('site.home')->with('clt_twr', $clt_twr)->with('atl_twr', $atl_twr)->with('atl_app', $atl_app)->with('atl_ctr', $atl_ctr)->with('bwi_twr', $bwi_twr)
                                 ->with('airports', $airports)->with('metar_last_updated', $metar_last_updated)
                                 ->with('controllers', $controllers)->with('controllers_update', $controllers_update)
                                 ->with('calendar', $calendar)->with('news', $news)->with('events', $events);
@@ -251,11 +271,11 @@ class FrontController extends Controller
         $visit->save();
 
         Mail::send('emails.visit.new', ['visit' => $visit], function($message) use ($visit){
-            $message->from('visitors@[ARTCC EMAIL]', '[ARTCC NAME] Visiting Department')->subject('New Visitor Request Submitted');
-            $message->to($visit->email)->cc('[DATM EMAIL]');
+            $message->from('staff@vzdc.org', 'vZDC Visiting Department')->subject('New Visitor Request Submitted');
+            $message->to($visit->email)->cc('datm@vzdc.org');
         });
 
-        return redirect('/')->with('success', 'Thank you for your interest in the ZTL ARTCC! Your visit request has been submitted.');
+        return redirect('/')->with('success', 'Thank you for your interest in the ZDC ARTCC! Your visit request has been submitted.');
     }
 
     public function newFeedback() {
@@ -324,8 +344,8 @@ class FrontController extends Controller
         $exp = $request->additional_information;
 
         Mail::send('emails.request_staff', ['name' => $name, 'email' => $email, 'org' => $org, 'date' => $date, 'time' => $time, 'exp' => $exp], function($message) use ($email, $name, $date) {
-            $message->from('info@[ARTCC EMAIL]', '[ARTCC NAME] Staffing Requests')->subject('New Staffing Request for '.$date);
-            $message->to('[EC EMAIL]')->replyTo($email, $name);
+            $message->from('notams@vzdc.org', 'vZDC Staffing Requests')->subject('New Staffing Request for '.$date);
+            $message->to('events@vzdc.org')->replyTo($email, $name);
         });
 
         return redirect('/')->with('success', 'The staffing request has been delivered to the appropiate parties successfully. You should expect to hear back soon.');

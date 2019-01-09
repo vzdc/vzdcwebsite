@@ -31,13 +31,13 @@ class OnlineControllerUpdate extends Command
 
     protected $facilities = [
 		/* BRAVO */
-		'ATL','CLT',
+		'DCA','IAD','BWI','PCT','ADW','DC_',
 		/* CHARLIE */
-		'BHM','GSP','AVL','GSO','TYS','CHA','FTY','RYY','AHN',
+		'RIC','ROA','ORF','ACY','NGU','NTU','NHK','RDU',
 		/* DELTA */
-		'AGS','GMU','GYH','TCL','MXF','MGM','LSF','CSG','MCN','WRB','JQF','VUJ','INT','TRI','LZU','ASN','HKY','PDK',
+		'CHO','HGR','LYH','EWN','LWB','ISO','MTN','HEF','MRB','PHF','SBY','NUI','FAY','ILM','NKT','NCA','NYG','DAA','DOV','POB','GSB','WAL','CVN',
 		/* OBSERVER */
-		'ZTL'
+		'ZDC'
 	];
 
     /**

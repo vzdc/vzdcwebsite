@@ -2,7 +2,7 @@
     <div class="nav flex-column nav-pills" role="tablist" aria-orientation="vertical" style="margin-left:20px;">
         <div class="dropdown-divider"></div>
         <p class="collapsible-controllers" style="margin-left:-20px; cursor:pointer">
-            [ARTCC NAME] CONTROLLERS
+            ZDC CONTROLLERS
             <b id="caret-controllers" class="float-right fas fa-caret-left"></b>
         </p>
         <div class="content">
@@ -27,7 +27,7 @@
                 <b id="caret-train" class="float-right fas fa-caret-left"></b>
             </p>
             <div class="content">
-                [UPDATE WITH SETMORE SCRIPT]<script id="setmore_script" type="text/javascript" src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script><a id="Setmore_button_iframe"  class="nav-link" href="https://my.setmore.com">Schedule a Training Session</a>
+                <script id="setmore_script" type="text/javascript" src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script><a id="Setmore_button_iframe"  class="nav-link" href="https://my.setmore.com/bookingpage/acfb9e67-05a7-4f0e-aaee-feb54a13a41e">Schedule a Training Session</a>
                 <a class="nav-link {{ Nav::urlDoesContain('/dashboard/training/atcast') }}" href="/dashboard/training/atcast">ATCast Videos</a>
                 @if(Auth::user()->can('train'))
                     <a class="nav-link {{ Nav::urlDoesContain('dashboard/training/files') }}" href="/dashboard/training/info">Training Information</a>

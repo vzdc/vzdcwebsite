@@ -1,0 +1,1 @@
+1547060176a:1:{i:0;a:7:{s:2:"id";i:12;s:4:"name";s:3:"ins";s:12:"display_name";s:10:"Instructor";s:11:"description";N;s:10:"created_at";N;s:10:"updated_at";N;s:5:"pivot";a:3:{s:7:"user_id";i:1053581;s:7:"role_id";i:12;s:9:"user_type";s:8:"App\User";}}}

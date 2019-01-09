@@ -37,7 +37,7 @@
                     </div>
                 </li>
                 @if(Auth::guest())
-                    <a class="nav-link" href="/visit">Visit ZTL</a>
+                    <a class="nav-link" href="/visit">Visit ZDC</a>
                     <a class="nav-link" href="/feedback/new">Feedback</a>
                 @endif
                 @if(Auth::check())

@@ -31,6 +31,14 @@ Roster
         </div>
     </div>
     <div class="row">
+    <div class="col-sm-2">
+        <p>Solo Cerification:</p>
+    </div>
+    <div class="col-sm-2">
+        <i class="fab fa-stripe-s" style="color:#c1ad13"></i>
+    </div>
+    </div>
+    <div class="row">
         <div class="col-sm-2">
             <p>Full (Minor/Major) Certification:</p>
         </div>
@@ -61,10 +69,12 @@ Roster
                         <th scope="col"><center>Initials</center></th>
                         <th scope="col"><center>Rating</center></th>
                         <th scope="col"><center>Status</center></th>
-                        <th scope="col"><center>Delivery</center></th>
-                        <th scope="col"><center>Ground</center></th>
+                        <th scope="col"><center>DEL/GND</center></th>
                         <th scope="col"><center>Tower</center></th>
-                        <th scope="col"><center>Approach</center></th>
+                        <th scope="col"><center>Minor APP</center></th>
+                        <th scope="col"><center>CHP</center></th>
+            			<th scope="col"><center>SHD</center></th>
+            			<th scope="col"><center>MTV</center></th>
                         <th scope="col"><center>Center</center></th>
                     </tr>
                 </thead>
@@ -131,37 +141,55 @@ Roster
                             <td><center>{{ $c->initials }}</center></td>
                             <td><center>{{ $c->rating_short }}</center></td>
                             <td><center>{{ $c->status_text }}</center></td>
-                            @if($c->del == 0)
+                            @if($c->delgnd == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->del == 1)
+                            @elseif($c->delgnd == 1)
                                 <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
-                            @elseif($c->del == 2)
-                                <td><center><i class="fas fa-check" style="color:green"></i></center></td>
-                            @endif
-                            @if($c->gnd == 0)
-                                <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->gnd == 1)
-                                <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
-                            @elseif($c->gnd == 2)
+                            @elseif($c->delgnd == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->twr == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
                             @elseif($c->twr == 1)
-                                <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
                             @elseif($c->twr == 2)
+                                <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
+                            @elseif($c->twr == 3)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->app == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
                             @elseif($c->app == 1)
-                                <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
                             @elseif($c->app == 2)
+                                <td><center><i class="fas fa-check" style="color:green"></i></center></td>
+                            @endif
+                            @if($c->chp == 0)
+                                <td><center><i class="fas fa-times" style="color:red"></i></center></td>
+                            @elseif($c->chp == 1)
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
+                            @elseif($c->chp == 2)
+                                <td><center><i class="fas fa-check" style="color:green"></i></center></td>
+                            @endif
+                            @if($c->shd == 0)
+                                <td><center><i class="fas fa-times" style="color:red"></i></center></td>
+                            @elseif($c->shd == 1)
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
+                            @elseif($c->shd == 2)
+                                <td><center><i class="fas fa-check" style="color:green"></i></center></td>
+                            @endif
+                            @if($c->mtv == 0)
+                                <td><center><i class="fas fa-times" style="color:red"></i></center></td>
+                            @elseif($c->mtv == 1)
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
+                            @elseif($c->mtv == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->ctr == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
                             @elseif($c->ctr == 1)
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
+                            @elseif($c->ctr == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                         </tr>
@@ -177,10 +205,12 @@ Roster
                         <th scope="col"><center>Initials</center></th>
                         <th scope="col"><center>Rating</center></th>
                         <th scope="col"><center>Status</center></th>
-                        <th scope="col"><center>Delivery</center></th>
-                        <th scope="col"><center>Ground</center></th>
+                        <th scope="col"><center>DEL/GND</center></th>
                         <th scope="col"><center>Tower</center></th>
-                        <th scope="col"><center>Approach</center></th>
+                        <th scope="col"><center>Minor APP</center></th>
+                        <th scope="col"><center>CHP</center></th>
+            			<th scope="col"><center>SHD</center></th>
+            			<th scope="col"><center>MTV</center></th>
                         <th scope="col"><center>Center</center></th>
                     </tr>
                 </thead>
@@ -195,37 +225,55 @@ Roster
                             <td><center>{{ $c->initials }}</center></td>
                             <td><center>{{ $c->rating_short }}</center></td>
                             <td><center>{{ $c->status_text }}</center></td>
-                            @if($c->del == 0)
+                            @if($c->delgnd == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->del == 1)
+                            @elseif($c->delgnd == 1)
                                 <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
-                            @elseif($c->del == 2)
-                                <td><center><i class="fas fa-check" style="color:green"></i></center></td>
-                            @endif
-                            @if($c->gnd == 0)
-                                <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->gnd == 1)
-                                <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
-                            @elseif($c->gnd == 2)
+                            @elseif($c->delgnd == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->twr == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
                             @elseif($c->twr == 1)
-                                <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
                             @elseif($c->twr == 2)
+                                <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
+                            @elseif($c->twr == 3)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->app == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
                             @elseif($c->app == 1)
-                                <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
                             @elseif($c->app == 2)
+                                <td><center><i class="fas fa-check" style="color:green"></i></center></td>
+                            @endif
+                            @if($c->chp == 0)
+                                <td><center><i class="fas fa-times" style="color:red"></i></center></td>
+                            @elseif($c->chp == 1)
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
+                            @elseif($c->chp == 2)
+                                <td><center><i class="fas fa-check" style="color:green"></i></center></td>
+                            @endif
+                            @if($c->shd == 0)
+                                <td><center><i class="fas fa-times" style="color:red"></i></center></td>
+                            @elseif($c->shd == 1)
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
+                            @elseif($c->shd == 2)
+                                <td><center><i class="fas fa-check" style="color:green"></i></center></td>
+                            @endif
+                            @if($c->mtv == 0)
+                                <td><center><i class="fas fa-times" style="color:red"></i></center></td>
+                            @elseif($c->mtv == 1)
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
+                            @elseif($c->mtv == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->ctr == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
                             @elseif($c->ctr == 1)
+                                <td><center><i class="fab fa-stripe-s" style="color:#c1ad13"></i></center></td>
+                            @elseif($c->ctr == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                         </tr>

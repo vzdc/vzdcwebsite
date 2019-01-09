@@ -10,29 +10,34 @@ Home
         <div class="jumbotron">
             <div class="row">
                 <div class="col-sm-8">
-                    <h1><b>[ARTCC NAME]</b></h1>
-                    <h5>Welcome to the [ARTCC NAME] website. This website is for a group of online hobbyists who partake in simulated flying and air traffic control on the VATSIM network. The procedures we use mirror, to an extent, those utilized by real world air traffic control. At no time, however, should a procedure, chart, or other information contained on this website be used for real world navigation.</h5>
+                    <h1><b>vZDC</b></h1>
+                    <h5>Welcome to the Washington Virtual ARTCC website. This website is for a group of online hobbyists who partake in simulated flying and air traffic control on the VATSIM network. The procedures we use mirror, to an extent, those utilized by real world air traffic control. At no time, however, should a procedure, chart, or other information contained on this website be used for real world navigation.</h5>
                 </div>
                 <div class="col-sm-4">
-                    @if($atl_ctr === 1)
-                        <div class="alert alert-success">[MAJOR FIELD/CENTER NAME] Center is ONLINE</div>
+                    @if($atl_ctr == 1)
+                        <div class="alert alert-success">Washington Center is ONLINE</div>
                     @else
-                        <div class="alert alert-danger">[MAJOR FIELD/CENTER NAME] Center is OFFLINE</div>
+                        <div class="alert alert-danger">Washington Center is OFFLINE</div>
                     @endif
-                    @if($atl_app === 1)
-                        <div class="alert alert-success">[MAJOR/LARGE TRACON NAME] TRACON is ONLINE</div>
+                    @if($atl_app == 1)
+                        <div class="alert alert-success">POTOMAC TRACON is ONLINE</div>
                     @else
-                        <div class="alert alert-danger">[MAJOR/LARGE TRACON NAME] TRACON is OFFLINE</div>
+                        <div class="alert alert-danger">POTOMAC TRACON is OFFLINE</div>
                     @endif
-                    @if($atl_twr === 1)
-                        <div class="alert alert-success">[MAJOR FIELD NAME] ATCT is ONLINE</div>
+                    @if($atl_twr == 1)
+                        <div class="alert alert-success">DCA ATCT is ONLINE</div>
                     @else
-                        <div class="alert alert-danger">[MAJOR FIELD NAME] ATCT is OFFLINE</div>
+                        <div class="alert alert-danger">DCA ATCT is OFFLINE</div>
                     @endif
-                    @if($clt_twr === 1)
-                        <div class="alert alert-success">[MINOR FIELD NAME] ATCT is ONLINE</div>
+                    @if($clt_twr == 1)
+                        <div class="alert alert-success">IAD ATCT is ONLINE</div>
                     @else
-                        <div class="alert alert-danger">[MINOR FIELD NAME] ATCT is OFFLINE</div>
+                        <div class="alert alert-danger">IAD ATCT is OFFLINE</div>
+                    @endif
+                    @if($bwi_twr == 1)
+                        <div class="alert alert-success">BWI ATCT is ONLINE</div>
+                    @else
+                        <div class="alert alert-danger">BWI ATCT is OFFLINE</div>
                     @endif
                 </div>
             </div>

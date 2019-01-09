@@ -18,7 +18,7 @@
             <div class="col-sm-4">
                 <div class="form-group">
                     {!! Form::label('from', 'From') !!}
-                    {!! Form::text('from', 'info@notams.ztlartcc.org', ['disabled', 'class' => 'form-control']) !!}
+                    {!! Form::text('from', 'notams@vzdc.org', ['disabled', 'class' => 'form-control']) !!}
                 </div>
             </div>
             <div class="col-sm-4">
@@ -29,7 +29,7 @@
             </div>
             <div class="col-sm-4">
                 {!! Form::label('reply_to', 'Reply to Email') !!}
-                {!! Form::text('reply_to', null, ['placeholder' => 'ex. youremail@ztlartcc.org (Required)', 'class' => 'form-control']) !!}
+                {!! Form::text('reply_to', null, ['placeholder' => 'ex. youremail@vzdc.org (Required)', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="row">

@@ -210,10 +210,12 @@ class AdminDash extends Controller
         $user = User::find($id);
 
         if(Auth::user()->can('roster')) {
-            $user->del = Input::get('del');
-            $user->gnd = Input::get('gnd');
+            $user->delgnd = Input::get('delgnd');
             $user->twr = Input::get('twr');
             $user->app = Input::get('app');
+            $user->chp = Input::get('chp');
+            $user->shd = Input::get('shd');
+            $user->mtv = Input::get('mtv');
             $user->ctr = Input::get('ctr');
             $user->initials = Input::get('initials');
             $user->train_pwr = Input::get('train_pwr');
@@ -313,10 +315,12 @@ class AdminDash extends Controller
                 }
             }
         } else {
-            $user->del = Input::get('del');
-            $user->gnd = Input::get('gnd');
+            $user->delgnd = Input::get('delgnd');
             $user->twr = Input::get('twr');
             $user->app = Input::get('app');
+            $user->chp = Input::get('chp');
+            $user->shd = Input::get('shd');
+            $user->mtv = Input::get('mtv');
             $user->ctr = Input::get('ctr');
             $user->save();
         }
@@ -340,8 +344,8 @@ class AdminDash extends Controller
         $visitor->save();
 
         Mail::send('emails.visit.accept', ['visitor' => $visitor], function($message) use ($visitor){
-            $message->from('visitors@[ARTCC EMAIL]', '[ARTCC NAME] Visiting Department')->subject('Visitor Request Accepted');
-            $message->to($visitor->email)->cc('[DATM EMAIL]');
+            $message->from('staff@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Accepted');
+            $message->to($visitor->email)->cc('datm@vzdc.org');
         });
 
         $parts = explode(" ",$visitor->name);
@@ -646,8 +650,8 @@ class AdminDash extends Controller
         $visitor->save();
 
         Mail::send(['html' => 'emails.visit.reject'], ['visitor' => $visitor], function($message) use ($visitor) {
-            $message->from('visitors@[ARTCC EMAIL]', '[ARTCC NAME] Visiting Department')->subject('Visitor Request Rejected');
-            $message->to($visitor->email)->cc('[DATM EMAIL]');
+            $message->from('staff@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Rejected');
+            $message->to($visitor->email)->cc('datm@vzdc.org');
         });
 
         return redirect('/dashboard/admin/roster/visit/requests')->with('success', 'The visit request has been rejected successfully.');
@@ -833,7 +837,7 @@ class AdminDash extends Controller
         $controller = User::find($feedback->controller_id);
 
         Mail::send(['html' => 'emails.new_feedback'], ['feedback' => $feedback, 'controller' => $controller], function($m) use ($feedback, $controller) {
-            $m->from('feedback@[ARTCC EMAIL]', '[ARTCC NAME] Feedback Department');
+            $m->from('staff@vzdc.org', 'vZDC Feedback Department');
             $m->subject('You Have New Feedback!');
             $m->to($controller->email);
         });
@@ -881,7 +885,7 @@ class AdminDash extends Controller
         $sender = Auth::user();
 
         Mail::send('emails.feedback_email', ['feedback' => $feedback, 'body' => $body, 'sender' => $sender], function($m) use ($feedback, $subject, $replyTo, $replyToName) {
-            $m->from('feedback@[ARTCC EMAIL]', '[ARTCC NAME] Feedback Department')->replyTo($replyTo, $replyToName);
+            $m->from('staff@vzdc.org', 'vZDC Feedback Department')->replyTo($replyTo, $replyToName);
             $m->subject($subject);
             $m->to($feedback->pilot_email);
         });
@@ -959,15 +963,15 @@ class AdminDash extends Controller
         //Sends to all recipients
         foreach($emails as $e){
             Mail::send(['html' => 'emails.send'], ['sender' => $sender, 'body' => $body], function ($m) use ($name, $subject, $e, $reply_to) {
-                $m->from('info@[ARTCC EMAIL]', $name)->replyTo($reply_to, $name);
-                $m->subject('[ARTCC NAME (IN FRONT OF SUBJECT)] '.$subject);
+                $m->from('notams@vzdc.org', $name)->replyTo($reply_to, $name);
+                $m->subject('[vZDC] '.$subject);
                 $m->to($e);
             });
         }
         //Copies to the sender
         Mail::send(['html' => 'emails.send'], ['sender' => $sender, 'body' => $body], function ($m) use ($name, $subject, $sender, $reply_to) {
-            $m->from('info@[ARTCC EMAIL]', $name)->replyTo($reply_to, $name);
-            $m->subject('[ARTCC NAME (IN FRONT OF SUBJECT)] '.$subject);
+            $m->from('notams@vzdc.org', $name)->replyTo($reply_to, $name);
+            $m->subject('[vZDC] '.$subject);
             $m->to($sender->email);
         });
 

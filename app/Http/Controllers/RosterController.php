@@ -70,8 +70,8 @@ class RosterController extends Controller
             if($token['iss'] != 'VATUSA') {
                 return redirect('/')->with('error', "Token not issued from VATUSA.");
             }
-            if($token['aud'] != 'ZTL') {
-                return redirect('/')->with('error', "Token not issued for ZTL.");
+            if($token['aud'] != Config::get('vatusa.facility')) {
+                return redirect('/')->with('error', "Token not issued for ZDC.");
             }
 
             $client = new Client();

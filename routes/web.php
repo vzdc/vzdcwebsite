@@ -234,7 +234,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
 */
 
 //Route::get('/laratrust', function() {
-//	$user = App\User::find(1364926);
+//	$user = App\User::find(1315435);
 //	$user->attachRole('wm');
 //});
 

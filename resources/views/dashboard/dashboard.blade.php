@@ -24,8 +24,8 @@ Dashboard
     <div class="row">
         <div class="col-sm-3">
             <div class="card card-body" style="background-color:lightgrey">
-                <center><h5>Derek Time Now:</h5></center>
-                <center><iframe style="pointer-events: none" src="https://freesecure.timeanddate.com/clock/i6hnccu7/n236/fs16/tct/pct/bas6/bat6/bac777/pa8/tt0/tm2/th1/ta1/tb4" frameborder="0" width="200" height="64" allowTransparency="true"></iframe></center>
+                <center><h5>Denver Time Now:</h5></center>
+                <center><iframe style="pointer-events: none" src="https://freesecure.timeanddate.com/clock/i6kynk0j/n75/fs16/tct/pct/bas6/bat6/bac777/pa8/tt0/tm2/th1/ta1/tb4" frameborder="0" width="200" height="64" allowTransparency="true"></iframe></center>
             </div>
         </div>
         <div class="col-sm-3">
@@ -61,7 +61,7 @@ Dashboard
         <div class="col-sm-3">
             <script id="setmore_script" type="text/javascript" src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script><a id="Setmore_button_iframe"  class="btn btn-secondary btn-block" href="https://my.setmore.com/bookingpage/3598990c-a847-4107-81eb-de1794648684">Schedule a Training Session</a>
             @if(Auth::user()->can('staff'))
-                <a class="btn btn-secondary btn-block" href="http://mail.ztlartcc.org" target="_blank">Email</a>
+                <a class="btn btn-secondary btn-block" href="http://mail.vzdc.org" target="_blank">Email</a>
             @endif
         </div>
         <div class="col-sm-3">

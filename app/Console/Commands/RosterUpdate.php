@@ -66,19 +66,6 @@ class RosterUpdate extends Command
                 $user->lname = $r->lname;
                 $user->email = $r->email;
                 $user->rating_id = $r->rating;
-                if($r->rating == 2) {
-                    $user->del = 1;
-                    $user->gnd = 1;
-                } elseif($r->rating == 3) {
-                    $user->del = 1;
-                    $user->gnd = 1;
-                    $user->twr = 1;
-                } elseif($r->rating == 4 || $r->rating == 5 || $r->rating == 7 || $r->rating == 8 || $r->rating == 10) {
-                    $user->del = 1;
-                    $user->gnd = 1;
-                    $user->twr = 1;
-                    $user->app = 1;
-                }
                 $user->visitor = '0';
                 $user->status = '1';
                 $user->added_to_facility = substr($r->facility_join, 0, 10).' '.substr($r->facility_join, 11, 8);

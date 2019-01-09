@@ -136,9 +136,9 @@ class TrainingDash extends Controller
         }
 
         Mail::send(['html' => 'emails.training_ticket'], ['ticket' => $ticket, 'controller' => $controller, 'trainer' => $trainer], function ($m) use ($controller, $ticket) {
-            $m->from('training@[ARTCC EMAIL]', '[ARTCC NAME] Training Department');
+            $m->from('training@vzdc.org', 'vZDC Training Department');
             $m->subject('New Training Ticket Submitted');
-            $m->to($controller->email)->cc('[TA EMAIL]');
+            $m->to($controller->email)->cc('ta@vzdc.org');
         });
 
         return redirect('/dashboard/training/tickets?id='.$ticket->controller_id)->with('success', 'The training ticket has been submitted successfully'.$extra.'.');
@@ -241,9 +241,9 @@ class TrainingDash extends Controller
             $controller = User::find($ots->controller_id);
 
             Mail::send('emails.ots_assignment', ['ots' => $ots, 'controller' => $controller, 'ins' => $ins], function ($m) use ($ins, $controller) {
-                $m->from('ots-center@[ARTCC EMAIL]', '[ARTCC NAME] OTS Center')->replyTo($controller->email, $controller->full_name);
+                $m->from('notams@vzdc.org', 'vZDC OTS Center')->replyTo($controller->email, $controller->full_name);
                 $m->subject('You Have Been Assigned an OTS for '.$controller->full_name);
-                $m->to($ins->email)->cc('[TA EMAIL]');
+                $m->to($ins->email)->cc('ta@vzdc.org');
             });
 
             return redirect()->back()->with('success', 'The OTS has been assigned successfully and the instructor has been notified.');

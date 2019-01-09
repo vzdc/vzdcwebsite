@@ -33,12 +33,12 @@ Update Controller
                     {!! Form::text('fname', $user->fname, ['class' => 'form-control', 'disabled']) !!}
                 </div>
                 <div class="col-sm-6">
-                    {!! Form::label('del', 'Delivery Certification') !!}
-                    {!! Form::select('del', [
+                    {!! Form::label('delgnd', 'Delivery/Ground Certification') !!}
+                    {!! Form::select('delgnd', [
                         0 => 'None',
                         1 => 'Minor Certified',
                         2 => 'Major Certified'
-                    ], $user->del, ['class' => 'form-control']) !!}
+                    ], $user->delgnd, ['class' => 'form-control']) !!}
                 </div>
             </div>
         </div>
@@ -49,12 +49,13 @@ Update Controller
                     {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
                 </div>
                 <div class="col-sm-6">
-                    {!! Form::label('gnd', 'Ground Certification') !!}
-                    {!! Form::select('gnd', [
+                    {!! Form::label('twr', 'Tower Certification') !!}
+                    {!! Form::select('twr', [
                         0 => 'None',
-                        1 => 'Minor Certified',
-                        2 => 'Major Certified'
-                    ], $user->gnd, ['class' => 'form-control']) !!}
+                        1 => 'Solo Certification',
+                        2 => 'Minor Certified',
+                        3 => 'Major Certified'
+                    ], $user->twr, ['class' => 'form-control']) !!}
                 </div>
             </div>
         </div>
@@ -65,12 +66,24 @@ Update Controller
                     {!! Form::text('email', $user->email, ['class' => 'form-control', 'disabled']) !!}
                 </div>
                 <div class="col-sm-6">
-                    {!! Form::label('twr', 'Tower Certification') !!}
-                    {!! Form::select('twr', [
-                        0 => 'None',
-                        1 => 'Minor Certified',
-                        2 => 'Major Certified'
-                    ], $user->twr, ['class' => 'form-control']) !!}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {!! Form::label('app', 'Minor Approach Certification') !!}
+                            {!! Form::select('app', [
+                                0 => 'None',
+                                1 => 'Solo Certification',
+                                2 => 'Certified'
+                            ], $user->app, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col-sm-6">
+                            {!! Form::label('chp', 'CHP Approach Certification') !!}
+                            {!! Form::select('chp', [
+                                0 => 'None',
+                                1 => 'Solo Certification',
+                                2 => 'Certified'
+                            ], $user->chp, ['class' => 'form-control']) !!}
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -82,12 +95,24 @@ Update Controller
                         {!! Form::text('initials', $user->initials, ['class' => 'form-control']) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! Form::label('app', 'Approach Certification') !!}
-                        {!! Form::select('app', [
-                            0 => 'None',
-                            1 => 'Minor Certified',
-                            2 => 'Major Certified'
-                        ], $user->app, ['class' => 'form-control']) !!}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {!! Form::label('shd', 'SHD Approach Certification') !!}
+                                {!! Form::select('shd', [
+                                    0 => 'None',
+                                    1 => 'Solo Certification',
+                                    2 => 'Certified'
+                                ], $user->shd, ['class' => 'form-control']) !!}
+                            </div>
+                            <div class="col-sm-6">
+                                {!! Form::label('mtv', 'MTV Approach Certification') !!}
+                                {!! Form::select('mtv', [
+                                    0 => 'None',
+                                    1 => 'Solo Certification',
+                                    2 => 'Certified'
+                                ], $user->mtv, ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -99,12 +124,24 @@ Update Controller
                         {!! Form::text('initials', $user->initials, ['class' => 'form-control', 'disabled']) !!}
                     </div>
                     <div class="col-sm-6">
-                        {!! Form::label('app', 'Approach Certification') !!}
-                        {!! Form::select('app', [
-                            0 => 'None',
-                            1 => 'Minor Certified',
-                            2 => 'Major Certified'
-                        ], $user->app, ['class' => 'form-control']) !!}
+                        <div class="row">
+                            <div class="col-sm-6">
+                                {!! Form::label('shd', 'SHD Approach Certification') !!}
+                                {!! Form::select('shd', [
+                                    0 => 'None',
+                                    1 => 'Solo Certification',
+                                    2 => 'Certified'
+                                ], $user->shd, ['class' => 'form-control']) !!}
+                            </div>
+                            <div class="col-sm-6">
+                                {!! Form::label('mtv', 'MTV Approach Certification') !!}
+                                {!! Form::select('mtv', [
+                                    0 => 'None',
+                                    1 => 'Solo Certification',
+                                    2 => 'Certified'
+                                ], $user->mtv, ['class' => 'form-control']) !!}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -128,7 +165,8 @@ Update Controller
                         {!! Form::label('ctr', 'Center Certification') !!}
                         {!! Form::select('ctr', [
                             0 => 'None',
-                            1 => 'Certified'
+                            1 => 'Solo Certification',
+                            2 => 'Certified'
                         ], $user->ctr, ['class' => 'form-control']) !!}
                     </div>
                 </div>
@@ -152,7 +190,8 @@ Update Controller
                         {!! Form::label('ctr', 'Center Certification') !!}
                         {!! Form::select('ctr', [
                             0 => 'None',
-                            1 => 'Certified'
+                            1 => 'Solo Certification',
+                            2 => 'Certified'
                         ], $user->ctr, ['class' => 'form-control']) !!}
                     </div>
                 </div>
