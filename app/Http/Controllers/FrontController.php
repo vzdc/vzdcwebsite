@@ -45,12 +45,7 @@ class FrontController extends Controller
             foreach($atc as $a) {
                 $field = substr($a->position, 0, 3);
                 $position = substr($a->position, -3);
-                if($field == 'DCA') {
-                    if($position == 'TWR' || $position == 'GND') {
-                        $atl_twr = 1;
-                    }
-                }
-                elseif($field == 'DCA' || $field == 'IAD' || $field == 'BWI') {
+                if($field == 'DCA' || $field == 'IAD' || $field == 'BWI' || $field == 'PCT') {
                     if($position == 'APP' || $position == 'DEP') {
                         $atl_app = 1;
                     } elseif($field == 'IAD') {
