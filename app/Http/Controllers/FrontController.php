@@ -104,6 +104,9 @@ class FrontController extends Controller
             return strtotime($e->date);
         });
 
+        $flights = Overflight::where('dep', '!=', '')->where('arr', '!=', '')->take(15)->get();
+        $flights_update = substr(OverflightUpdate::first()->updated_at, -8, 5);
+
         return view('site.home')->with('clt_twr', $clt_twr)->with('atl_twr', $atl_twr)->with('atl_app', $atl_app)->with('atl_ctr', $atl_ctr)->with('bwi_twr', $bwi_twr)
                                 ->with('airports', $airports)->with('metar_last_updated', $metar_last_updated)
                                 ->with('controllers', $controllers)->with('controllers_update', $controllers_update)

@@ -143,6 +143,9 @@ class ControllerDash extends Controller
             return strtotime($e->date);
         });
 
+        $flights = Overflight::where('dep', '!=', '')->where('arr', '!=', '')->take(15)->get();
+        $flights_update = substr(OverflightUpdate::first()->updated_at, -8, 5);
+
         return view('dashboard.dashboard')->with('calendar', $calendar)->with('news', $news)->with('announcement', $announcement)
                                           ->with('winner', $winner)->with('pwinner', $pwinner)->with('month_words', $month_words)->with('pmonth_words', $pmonth_words)
                                           ->with('controllers', $controllers)->with('controllers_update', $controllers_update)
