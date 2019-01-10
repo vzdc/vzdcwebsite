@@ -57,7 +57,7 @@
                     <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/feedback') }}" href="/dashboard/admin/feedback">Feedback Management</a>
                 @endif
                 @if(Auth::user()->can('email'))
-                    <a class="nav-link" href="[LINK TO ARTCC EMAIL]" target="_blank">Email</a>
+                    <a class="nav-link" href="https://mail.vzdc.org" target="_blank">Email</a>
                     <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/email/send') }}" href="/dashboard/admin/email/send">Send New Email</a>
                 @endif
                 @if(Auth::user()->can('staff'))
