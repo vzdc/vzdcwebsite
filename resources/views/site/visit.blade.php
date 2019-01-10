@@ -40,7 +40,8 @@ Visit
                         1 => 'Observer (OBS)', 2 => 'Student 1 (S1)',
                         3 => 'Student 2 (S2)', 4 => 'Senior Student (S3)',
                         5 => 'Controller (C1)', 7 => 'Senior Controller (C3)',
-                        8 => 'Instructor (I1)', 10 => 'Senior Instructor (I3)'
+                        8 => 'Instructor (I1)', 10 => 'Senior Instructor (I3)',
+                        11 => 'Supervisor (SUP)'
                     ], null, ['placeholder' => 'Select Rating', 'class' => 'form-control']) !!}
                 </div>
                 <div class="col-sm-3">
