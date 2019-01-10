@@ -8,7 +8,7 @@ Visit
 <span class="border border-light" style="background-color:#F0F0F0">
     <div class="container">
         &nbsp;
-        <h2>Visit ZTL ARTCC</h2>
+        <h2>Visit ZDC ARTCC</h2>
         &nbsp;
     </div>
 </span>
@@ -50,7 +50,7 @@ Visit
             </div>
         </div>
         <div class="form-group">
-            {!! Form::label('reason', 'Explanation of Why You Want to Visit the ZTL ARTCC') !!}
+            {!! Form::label('reason', 'Explanation of Why You Want to Visit the ZDC ARTCC') !!}
             {!! Form::textArea('reason', null, ['placeholder' => 'Required', 'class' => 'form-control']) !!}
         </div>
         <br>
