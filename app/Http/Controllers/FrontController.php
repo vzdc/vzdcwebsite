@@ -13,6 +13,8 @@ use App\Feedback;
 use App\File;
 use App\Http\Controllers\toArray;
 use App\Metar;
+use App\Overflight;
+use App\OverflightUpdate;
 use App\Permission;
 use App\Role;
 use App\Scenery;
@@ -105,7 +107,8 @@ class FrontController extends Controller
         return view('site.home')->with('clt_twr', $clt_twr)->with('atl_twr', $atl_twr)->with('atl_app', $atl_app)->with('atl_ctr', $atl_ctr)->with('bwi_twr', $bwi_twr)
                                 ->with('airports', $airports)->with('metar_last_updated', $metar_last_updated)
                                 ->with('controllers', $controllers)->with('controllers_update', $controllers_update)
-                                ->with('calendar', $calendar)->with('news', $news)->with('events', $events);
+                                ->with('calendar', $calendar)->with('news', $news)->with('events', $events)
+                                ->with('flights', $flights)->with('flights_update', $flights_update);
     }
 
     public function teamspeak() {

@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         '\App\Console\Commands\OnlineControllerUpdate',
         '\App\Console\Commands\RosterUpdate',
         '\App\Console\Commands\EventEmails',
+        '\App\Console\Commands\ARTCCOverflights',
     ];
 
     /**
@@ -29,6 +30,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('RosterUpdate:UpdateRoster')->hourly();
         $schedule->command('Weather:UpdateWeather')->everyFiveMinutes();
+        $schedule->command('Overflights:GetOverflights')->everyFiveMinutes();
         $schedule->command('OnlineControllers:GetControllers')->everyMinute();
         $schedule->command('Event:SendEventReminder')->dailyAt('00:30');
     }
