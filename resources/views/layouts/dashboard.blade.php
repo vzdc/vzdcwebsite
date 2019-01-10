@@ -40,7 +40,7 @@
 
         {{-- Title --}}
         <title>
-            @yield('title') | ZTL ARTCC
+            @yield('title') | ZDC ARTCC
         </title>
     </head>
     <body>
