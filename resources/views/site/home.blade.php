@@ -7,7 +7,7 @@ Home
 @section('content')
 <div class="jumbotron" style="background-image:url(/photos/ZTL_Banner.jpg); background-size:cover; background-repeat:no-repeat;">
     <div class="container">
-        <div class="jumbotron">
+        <div class="jumbotron" style="opacity:0.5">
             <div class="row">
                 <div class="col-sm-8">
                     <h1><b>vZDC</b></h1>
