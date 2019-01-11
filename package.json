@@ -17,7 +17,8 @@
     "laravel-mix": "^2.1.14",
     "lodash": "^4.17.4",
     "popper.js": "^1.12",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "webpack-cli": "^3.2.1"
   },
   "name": "ztl-v2",
   "description": "## Contributers: - Ian Cowan",
