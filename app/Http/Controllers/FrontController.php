@@ -288,7 +288,10 @@ class FrontController extends Controller
         $validatedData = $request->validate([
             'controller' => 'required',
             'position' => 'required',
-            'callsign' => 'required'
+            'callsign' => 'required',
+	    'pilot_name' => 'required',
+	    'pilot_email' => 'required',
+	    'pilot_cid' => 'required'
         ]);
 
         $feedback = new Feedback;
