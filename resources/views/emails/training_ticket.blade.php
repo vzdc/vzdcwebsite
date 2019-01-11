@@ -15,8 +15,8 @@
     </li>
 </ul>
 
-<p>If you believe there are any errors, please contact the training administrator at <a href="mailto:ta@ztlartcc.org">ta@ztlartcc.org</a>.</p>
+<p>If you believe there are any errors, please contact the training administrator at <a href="mailto:ta@vzdc.org">ta@vzdc.org</a>.</p>
 
 <p>Best regards,</p>
-<p>ZTL Training Staff</p>
+<p>ZDC Training Staff</p>
 @endsection
