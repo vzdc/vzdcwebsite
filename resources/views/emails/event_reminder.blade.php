@@ -32,9 +32,9 @@
 @endif
 
 <br>
-<p>If you have any questions or concerns, please contact the events coordinator at <a href="mailto:ec@ztlartcc.org">ec@ztlartcc.org</a>.</p>
+<p>If you have any questions or concerns, please contact the events coordinator at <a href="mailto:ec@vzdc.org">ec@zdc.org</a>.</p>
 <br>
 
 <p>Sincerely,</p>
-<p>ZTL ARTCC Staff</p>
+<p>ZDC ARTCC Staff</p>
 @endsection
