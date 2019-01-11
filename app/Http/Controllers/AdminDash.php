@@ -344,7 +344,7 @@ class AdminDash extends Controller
         $visitor->save();
 
         Mail::send('emails.visit.accept', ['visitor' => $visitor], function($message) use ($visitor){
-            $message->from('staff@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Accepted');
+            $message->from('notams@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Accepted');
             $message->to($visitor->email)->cc('datm@vzdc.org');
         });
 
@@ -650,7 +650,7 @@ class AdminDash extends Controller
         $visitor->save();
 
         Mail::send(['html' => 'emails.visit.reject'], ['visitor' => $visitor], function($message) use ($visitor) {
-            $message->from('staff@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Rejected');
+            $message->from('notams@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Rejected');
             $message->to($visitor->email)->cc('datm@vzdc.org');
         });
 
@@ -837,7 +837,7 @@ class AdminDash extends Controller
         $controller = User::find($feedback->controller_id);
 
         Mail::send(['html' => 'emails.new_feedback'], ['feedback' => $feedback, 'controller' => $controller], function($m) use ($feedback, $controller) {
-            $m->from('staff@vzdc.org', 'vZDC Feedback Department');
+            $m->from('notams@vzdc.org', 'vZDC Feedback Department');
             $m->subject('You Have New Feedback!');
             $m->to($controller->email);
         });
@@ -885,7 +885,7 @@ class AdminDash extends Controller
         $sender = Auth::user();
 
         Mail::send('emails.feedback_email', ['feedback' => $feedback, 'body' => $body, 'sender' => $sender], function($m) use ($feedback, $subject, $replyTo, $replyToName) {
-            $m->from('staff@vzdc.org', 'vZDC Feedback Department')->replyTo($replyTo, $replyToName);
+            $m->from('notams@vzdc.org', 'vZDC Feedback Department')->replyTo($replyTo, $replyToName);
             $m->subject($subject);
             $m->to($feedback->pilot_email);
         });
