@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         '\App\Console\Commands\RosterUpdate',
         '\App\Console\Commands\EventEmails',
         '\App\Console\Commands\ARTCCOverflights',
+        '\App\Console\Commands\SoloCerts',
     ];
 
     /**
@@ -33,6 +34,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('Overflights:GetOverflights')->everyFiveMinutes();
         $schedule->command('OnlineControllers:GetControllers')->everyMinute();
         $schedule->command('Event:SendEventReminder')->dailyAt('00:30');
+        $schedule->command('SoloCerts:Expiration')->dailyAt('00:30');
     }
 
     /**

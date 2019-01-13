@@ -212,11 +212,53 @@ class AdminDash extends Controller
         if(Auth::user()->can('roster')) {
             $user->delgnd = Input::get('delgnd');
             $user->twr = Input::get('twr');
+            if($request->twr == 1) {
+                $solo = new SoloCert;
+                $solo->controller_id = $id;
+                $solo->position = 'twr';
+                $solo->value = $request->twr;
+                $solo->save();
+            }
             $user->app = Input::get('app');
+            if($request->app == 1) {
+                $solo = new SoloCert;
+                $solo->controller_id = $id;
+                $solo->position = 'app';
+                $solo->value = $request->app;
+                $solo->save();
+            }
             $user->chp = Input::get('chp');
+            if($request->chp == 1) {
+                $solo = new SoloCert;
+                $solo->controller_id = $id;
+                $solo->position = 'chp';
+                $solo->value = $request->chp;
+                $solo->save();
+            }
             $user->shd = Input::get('shd');
+            if($request->shd == 1) {
+                $solo = new SoloCert;
+                $solo->controller_id = $id;
+                $solo->position = 'shd';
+                $solo->value = $request->shd;
+                $solo->save();
+            }
             $user->mtv = Input::get('mtv');
+            if($request->mtv == 1) {
+                $solo = new SoloCert;
+                $solo->controller_id = $id;
+                $solo->position = 'mtv';
+                $solo->value = $request->mtv;
+                $solo->save();
+            }
             $user->ctr = Input::get('ctr');
+            if($request->ctr == 1) {
+                $solo = new SoloCert;
+                $solo->controller_id = $id;
+                $solo->position = 'ctr';
+                $solo->value = $request->ctr;
+                $solo->save();
+            }
             $user->initials = Input::get('initials');
             $user->train_pwr = Input::get('train_pwr');
             $user->monitor_pwr = Input::get('monitor_pwr');
