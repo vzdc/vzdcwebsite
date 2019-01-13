@@ -11,17 +11,21 @@ use SimpleXMLElement;
 class TrainingTicket extends Model
 {
     protected $table = 'training_tickets';
-    protected $fillable = ['id', 'controllers_id', 'trainer_id', 'position', 'type', 'date', 'start_time', 'end_time', 'duration', 'comments', 'ins_comments', 'updated_at', 'created_at'];
+    protected $fillable = ['id', 'controller_id', 'trainer_id', 'position', 'type', 'date', 'start_time', 'end_time', 'duration', 'comments', 'ins_comments', 'updated_at', 'created_at'];
 
     public function getTrainerNameAttribute() {
-        $user = User::find($this->trainer_id);
-        if($user != null) {
-            $name = $user->full_name;
+        if($this->trainer_id == 0) {
+            $name = 'N/A';
         } else {
-            $client = new Client();
-            $response = $client->request('GET', 'https://cert.vatsim.net/vatsimnet/idstatus.php?cid='.$this->trainer_id);
-            $r = new SimpleXMLElement($response->getBody());
-            $name = $r->user->name_first.' '.$r->user->name_last;
+            $user = User::find($this->trainer_id);
+            if($user != null) {
+                $name = $user->full_name;
+            } else {
+                $client = new Client();
+                $response = $client->request('GET', 'https://cert.vatsim.net/vatsimnet/idstatus.php?cid='.$this->trainer_id);
+                $r = new SimpleXMLElement($response->getBody());
+                $name = $r->user->name_first.' '.$r->user->name_last;
+            }
         }
 
         return $name;
@@ -52,9 +56,9 @@ class TrainingTicket extends Model
         } elseif($pos == 7) {
             $position = 'Live OTS (Fail)';
         } elseif($pos == 8) {
-            $position = 'Live OTS';
+            $position = 'OTS';
         } elseif($pos == 9) {
-            $position = 'Sweatbox OTS';
+            $position = 'N/A';
         }
 
         return $position;
