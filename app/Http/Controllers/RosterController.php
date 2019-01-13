@@ -130,10 +130,17 @@ class RosterController extends Controller
                 return redirect('/')->with('error', 'You have not been found on the roster. If you have recently joined, please allow up to an hour for the roster to update.');
             }
 
+            $cid = $res['cid'];
+            $this->smf_login($cid);
             return redirect('/dashboard')->with('success', 'You have been logged in successfully.');
         } else {
             return redirect('/')->with('error', 'Bad Signature.');
         }
+    }
+
+    function smf_login($cid) {
+        require_once(config('sso.forumapi', ''));
+        smfapi_login($cid, 14400);
     }
 
     public function logout() {
