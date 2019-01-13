@@ -70,6 +70,8 @@ class TrainingTicket extends Model
             $position = 'TRACON';
         } elseif($pos == 3) {
             $position = 'Center';
+        } else {
+            $position = null;
         }
 
         return $position;
