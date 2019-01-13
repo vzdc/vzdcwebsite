@@ -28,6 +28,7 @@ View Training Ticket
         <div class="card-body">
             <p><b>Trainer Name:</b> {{ $ticket->trainer_name }}</p>
             <p><b>Session Name/Type:</b> {{ $ticket->type_name }} on {{ $ticket->position_name }}</p>
+            <p><b>Session Facility:</b> {{ $ticket->facility_name }}</p>
             <p><b>Session Date:</b> {{ $ticket->date }}</p>
             <p><b>Start Time:</b> {{ $ticket->start_time }}z</p>
             <p><b>End Time:</b> {{ $ticket->end_time }}z</p>

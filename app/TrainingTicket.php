@@ -63,22 +63,33 @@ class TrainingTicket extends Model
     public function getPositionNameAttribute() {
         $pos = $this->position;
         if($pos == 0) {
-            $position = 'Minor Delivery/Ground';
+            $position = 'Delivery/Ground';
         } elseif($pos == 1) {
-            $position = 'Minor Local';
+            $position = 'Tower';
         } elseif($pos == 2) {
-            $position = 'Major Delivery/Ground';
+            $position = 'TRACON';
         } elseif($pos == 3) {
-            $position = 'Major Local';
-        } elseif($pos == 4) {
-            $position = 'Minor Approach';
-        } elseif($pos == 5) {
-            $position = 'Major Approach';
-        } elseif($pos == 6) {
             $position = 'Center';
         }
 
         return $position;
+    }
+
+    public function getFacilityNameAttribute() {
+        $fac = $this->facility;
+        if($fac == 0) {
+            $facility = 'KIAD';
+        } elseif($fac == 1) {
+            $facility = 'KBWI';
+        } elseif($fac == 2) {
+            $facility = 'KDCA';
+        } elseif($fac == 3) {
+            $facility = 'KORF';
+        } elseif($fac == 4) {
+            $facility = 'ZDC';
+        }
+
+        return $facility;
     }
 
     public function getLastTrainingAttribute() {

@@ -22,18 +22,27 @@ Edit Training Ticket
                     {!! Form::select('controller', $controllers, $ticket->controller_id, ['placeholder' => 'Select Controller', 'class' => 'form-control']) !!}
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-2">
                 <div class="form-group">
                     {!! Form::label('position', 'Position', ['class' => 'form-label']) !!}
                     {!! Form::select('position', [
-                        0 => 'Minor Delivery/Ground',
-                        1 => 'Minor Local',
-                        2 => 'Major Delivery/Ground',
-                        3 => 'Major Local',
-                        4 => 'Minor Approach',
-                        5 => 'Major Approach',
-                        6 => 'Center'
+                        0 => 'Delivery/Ground',
+                        1 => 'Tower',
+                        2 => 'TRACON',
+                        3 => 'Center'
                     ], $ticket->position, ['placeholder' => 'Select Position', 'class' => 'form-control']) !!}
+                </div>
+            </div>
+            <div class="col-sm-2">
+                <div class="form-group">
+                    {!! Form::label('facility', 'Facility', ['class' => 'form-label']) !!}
+                    {!! Form::select('facility', [
+                        0 => 'KIAD',
+                        1 => 'KBWI',
+                        2 => 'KDCA',
+                        3 => 'KORF',
+                        4 => 'ZDC'
+                    ], $ticket->facility, ['placeholder' => 'Select Facility', 'class' => 'form-control']) !!}
                 </div>
             </div>
             <div class="col-sm-4">

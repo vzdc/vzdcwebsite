@@ -8,6 +8,7 @@
 <ul>
     <li><b>Session Type:</b> {{ $ticket->type_name }}</li>
     <li><b>Position:</b> {{ $ticket->position_name }}</li>
+    <li><b>Facility:</b> {{ $ticket->facility_name }}</li>
     <li><b>Date and Time:</b> {{ $ticket->date }} from {{ $ticket->time_start }}z to {{ $ticket->time_end }}z</li>
 	<li><b>Duration:</b> {{ $ticket->duration }}</li>
     <li><b>Comments:</b> <br>
