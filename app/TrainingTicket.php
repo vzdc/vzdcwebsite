@@ -98,11 +98,6 @@ class TrainingTicket extends Model
         return $facility;
     }
 
-    public function getLastTrainingAttribute() {
-        $date = $this->date;
-        return $date;
-    }
-
     public function getDateEditAttribute() {
         $date = new Carbon($this->date);
         $date = $date->format('Y-m-d');

@@ -107,7 +107,7 @@ Profile
                             <h5>Last Training Session Received:</h5>
                             <p><b>
                                 @if($last_training != null)
-                                    {{ $last_training->last_training }}
+                                    {{ $last_training->date }}
                                 @else
                                     <i>No Training Since 12/04/2018</i>
                                 @endif
@@ -118,7 +118,7 @@ Profile
                                 <h5>Last Training Session Given:</h5>
                                 <p><b>
                                     @if(isset($last_training))
-                                        {{ $last_training_given->last_training }}
+                                        {{ $last_training_given->date }}
                                     @else
                                         <i>No Training Given Since 12/04/2018</i>
                                     @endif
