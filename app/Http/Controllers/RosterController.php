@@ -130,8 +130,8 @@ class RosterController extends Controller
                 return redirect('/')->with('error', 'You have not been found on the roster. If you have recently joined, please allow up to an hour for the roster to update.');
             }
 
-            $cid = $res['cid'];
-            $this->smf_login($cid);
+            //$cid = $res['cid'];
+            //$this->smf_login($cid);
             return redirect('/dashboard')->with('success', 'You have been logged in successfully.');
         } else {
             return redirect('/')->with('error', 'Bad Signature.');
