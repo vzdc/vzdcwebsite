@@ -139,4 +139,10 @@ class User extends Authenticatable
             return null;
         }
     }
+    
+    public function getSoloCertExpirationAttribute() {
+        $cert = SoloCert::where('controller_id', $this->id)->first();
+        
+        return $cert->expiration_date;
+    }
 }
