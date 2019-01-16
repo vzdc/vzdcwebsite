@@ -811,6 +811,7 @@ class AdminDash extends Controller
         $calendar->time = Input::get('time');
         $calendar->body = Input::get('body');
         $calendar->type = Input::get('type');
+        $calendar->staff = $request->staff;
         $calendar->created_by = Auth::id();
         $calendar->save();
 

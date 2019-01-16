@@ -41,6 +41,8 @@ New Calendar Event/News
                 2 => 'News'
             ], null, ['class' => 'form-control']) !!}
         </div>
+        {!! Form::label('staff', 'Staff Only?', ['class' => 'form-label']) !!}
+        {!! Form::checkBox('staff', '1') !!}
         <div class="row">
             <div class="col-sm-1">
                 <button class="btn btn-success" type="submit">Submit</button>
