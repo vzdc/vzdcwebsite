@@ -36,29 +36,18 @@ class ControllerDash extends Controller
     public function dash() {
         $now = Carbon::now();
 
-        if(Auth::user()->can('staff')) {
-            $calendar = Calendar::where('type', '1')->get()->filter(function($news) use ($now) {
-                return strtotime($news->date.' '.$news->time) > strtotime($now);
-            })->sortBy(function($news) {
-                return strtotime($news->date.' '.$news->time);
-            });
-            $news = Calendar::where('type', '2')->get()->filter(function($news) use ($now) {
-                return strtotime($news->date.' '.$news->time) < strtotime($now);
-            })->sortByDesc(function($news) {
-                return strtotime($news->date.' '.$news->time);
-            });
-        } else {
-            $calendar = Calendar::where('type', '1')->where('staff', '!=', 1)->get()->filter(function($news) use ($now) {
-                return strtotime($news->date.' '.$news->time) > strtotime($now);
-            })->sortBy(function($news) {
-                return strtotime($news->date.' '.$news->time);
-            });
-            $news = Calendar::where('type', '2')->where('staff', '!=', 1)->get()->filter(function($news) use ($now) {
-                return strtotime($news->date.' '.$news->time) < strtotime($now);
-            })->sortByDesc(function($news) {
-                return strtotime($news->date.' '.$news->time);
-            });
-        }
+
+        $calendar = Calendar::where('type', '1')->get()->filter(function($news) use ($now) {
+            return strtotime($news->date.' '.$news->time) > strtotime($now);
+        })->sortBy(function($news) {
+            return strtotime($news->date.' '.$news->time);
+        });
+        $news = Calendar::where('type', '2')->get()->filter(function($news) use ($now) {
+            return strtotime($news->date.' '.$news->time) < strtotime($now);
+        })->sortByDesc(function($news) {
+            return strtotime($news->date.' '.$news->time);
+        });
+        
         $announcement = Announcement::find(1);
 
         $now = Carbon::now();
