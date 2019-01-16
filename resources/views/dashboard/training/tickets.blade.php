@@ -55,6 +55,7 @@ Training Tickets
                     <th scope="col">Session Type</th>
                     <th scope="col">Start Time</th>
                     <th scope="col">End Time</th>
+                    <th scope="col">No Show</th>
                 </tr>
                 @if($tickets->count() > 0)
                     @foreach($tickets as $t)
@@ -65,6 +66,7 @@ Training Tickets
                             <td>{{ $t->type_name }}</td>
                             <td>{{ $t->start_time }}z</td>
                             <td>{{ $t->end_time }}z</td>
+                            <td>{{ $t->no_show_text}}</td>
                         </tr>
                     @endforeach
                 @else
