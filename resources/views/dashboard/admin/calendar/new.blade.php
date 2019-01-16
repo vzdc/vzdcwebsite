@@ -41,7 +41,7 @@ New Calendar Event/News
                 2 => 'News'
             ], null, ['class' => 'form-control']) !!}
         </div>
-        {!! Form::label('staff', 'Staff Only?', ['class' => 'form-label']) !!}
+        {!! Form::label('staff', 'ZDC Members Only?', ['class' => 'form-label']) !!}
         {!! Form::checkBox('staff', '1') !!}
         <div class="row">
             <div class="col-sm-1">
