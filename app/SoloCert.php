@@ -12,8 +12,7 @@ class SoloCert extends Model
 
     public function getExpirationDateAttribute() {
         $date = $this->created_at->addMonth();
-        $date = $date->toDateTimeString();
-        $display = $date->format('m/d/Y');
+        $display = $date->format('m/d/Y')->toDateTimeString();
 
         return $display;
     }
