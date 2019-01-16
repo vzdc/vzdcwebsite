@@ -502,7 +502,7 @@ class ControllerDash extends Controller
         $user->opt = 1;
         $user->save();
 
-        return redirect()->back()->with('success', 'You have been opted in successfully and will now receive broadcast emails from the vZTL ARTCC.');
+        return redirect()->back()->with('success', 'You have been opted in successfully and will now receive broadcast emails from the vZDC ARTCC.');
     }
 
     public function optOut() {
@@ -517,7 +517,7 @@ class ControllerDash extends Controller
         $user->opt = 0;
         $user->save();
 
-        return redirect()->back()->with('success', 'You have been opted out successfully and will no longer receive broadcast emails from the vZTL ARTCC.');
+        return redirect()->back()->with('success', 'You have been opted out successfully and will no longer receive broadcast emails from the vZDC ARTCC.');
     }
 
     public function incidentReport() {
