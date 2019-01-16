@@ -861,6 +861,7 @@ class AdminDash extends Controller
 
     public function deleteCalendarEvent($id){
         $calendar = Calendar::find($id);
+        $title = $calendar->title;
         $calendar->delete();
 
         $audit = new Audit;
