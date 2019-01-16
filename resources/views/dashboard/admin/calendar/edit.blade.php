@@ -42,7 +42,7 @@ Edit Calendar Event/News
         ], $calendar->type, ['class' => 'form-control']) !!}
     </div>
         {!! Form::label('staff', 'ZDC Members Only?', ['class' => 'form-label']) !!} 
-        @if($calendar->staff=1) 
+        @if($calendar->staff==1) 
             {!! Form::checkBox('staff', '1',true) !!} 
         @else
             {!! Form::checkBox('staff', '1',false) !!} 
