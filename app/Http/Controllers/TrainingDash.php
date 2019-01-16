@@ -122,7 +122,7 @@ class TrainingDash extends Controller
         $ticket->duration = $request->duration;
         $ticket->comments = $request->comments;
         $ticket->ins_comments = $request->trainer_comments;
-        $ticket->no_show = $request->ots;
+        $ticket->no_show = $request->no_show;
         $ticket->save();
         $extra = null;
 
