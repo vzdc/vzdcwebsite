@@ -4,6 +4,7 @@ namespace App;
 
 use Carbon\Carbon;
 use App\CotrollerLog;
+use App\SoloCert;
 use App\TrainingTicket;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
