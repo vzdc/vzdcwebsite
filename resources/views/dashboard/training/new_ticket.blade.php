@@ -128,6 +128,8 @@ New Training Ticket
         </div>
         {!! Form::label('ots', 'Recommend for OTS?', ['class' => 'form-label']) !!}
         {!! Form::checkBox('ots', '1') !!}
+        {!! Form::label('no_show', 'Mark Session as No-Show?', ['class' => 'form-label']) !!}
+        {!! Form::checkBox('no_show', '1') !!}
         <br>
         <button class="btn btn-success" action="submit">Submit Ticket</button>
         <a href="/dashboard/training/tickets" class="btn btn-danger">Cancel</a>

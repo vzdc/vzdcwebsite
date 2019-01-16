@@ -26,6 +26,7 @@ View Training Ticket
             <p><b>Session Date:</b> {{ $ticket->date }}</p>
             <p><b>Start Time:</b> {{ $ticket->start_time }}</p>
             <p><b>End Time:</b> {{ $ticket->end_time }}</p>
+            <p><b>No Show?</b> {{ $ticket->no_show_text }}</p>
             <p><b>Duration:</b> {{ $ticket->duration }}</p>
             <p><b>Comments:</b></p>
             @if($ticket->comments != null)

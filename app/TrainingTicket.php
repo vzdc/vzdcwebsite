@@ -11,7 +11,7 @@ use SimpleXMLElement;
 class TrainingTicket extends Model
 {
     protected $table = 'training_tickets';
-    protected $fillable = ['id', 'controller_id', 'trainer_id', 'position', 'type', 'date', 'start_time', 'end_time', 'duration', 'comments', 'ins_comments', 'updated_at', 'created_at'];
+    protected $fillable = ['id', 'controller_id', 'trainer_id', 'position', 'no_show', 'type', 'date', 'start_time', 'end_time', 'duration', 'comments', 'ins_comments', 'updated_at', 'created_at'];
 
     public function getTrainerNameAttribute() {
         if($this->trainer_id == 0) {
@@ -107,5 +107,13 @@ class TrainingTicket extends Model
     public function getDateSortAttribute() {
         $date = strtodate($this->date.' '.$this->time);
         return $date;
+    }
+
+    public function getNoShowText() {
+        if($this->no_show == 1) {
+            return 'Yes';
+        } else {
+            return 'No';
+        }
     }
 }
