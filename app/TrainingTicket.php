@@ -109,7 +109,7 @@ class TrainingTicket extends Model
         return $date;
     }
 
-    public function getNoShowText() {
+    public function getNoShowTextAttribute() {
         if($this->no_show == 1) {
             return 'Yes';
         } else {
