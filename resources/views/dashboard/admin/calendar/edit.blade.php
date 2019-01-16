@@ -41,6 +41,12 @@ Edit Calendar Event/News
             2 => 'News'
         ], $calendar->type, ['class' => 'form-control']) !!}
     </div>
+        {!! Form::label('staff', 'ZDC Members Only?', ['class' => 'form-label']) !!} 
+        @if($calendar->staff=1) 
+            {!! Form::checkBox('staff', '1',true) !!} 
+        @else
+            {!! Form::checkBox('staff', '1',false) !!} 
+        @endif
     <div class="row">
         <div class="col-sm-1">
             <button class="btn btn-success" type="submit">Submit</button>
