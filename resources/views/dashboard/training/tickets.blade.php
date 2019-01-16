@@ -66,7 +66,7 @@ Training Tickets
                             <td>{{ $t->type_name }}</td>
                             <td>{{ $t->start_time }}z</td>
                             <td>{{ $t->end_time }}z</td>
-                            <td>{{ $t->no_show}}@if($t->no_show == '1') <i class="fas fa-check"></i>@else <i class="fas fa-times"></i>@endif</td>
+                            <td>@if($t->no_show == '1') <i class="fas fa-check" style="color:red"></i>@endif</td>
                         </tr>
                     @endforeach
                 @else
