@@ -24,6 +24,17 @@
             </div>
         </div>
         <div class="col-sm-6">
+                    <div class="card">
+                <div class="card-header">
+                    <b>Current Weather/Forecast ({{ $visual_conditions }} Conditions)</b>
+                </div>
+                <div class="card-body">
+                    METAR {{ $metar }}
+                    <hr>
+                    TAF {{ $taf }}
+                </div>
+            </div>
+            <br>
             <div class="card">
                 <div class="card-header">
                     <b>All Charts</b>
