@@ -42,8 +42,8 @@ View Airport ({{ $airport->ltr_4 }})
                     <b>All Charts</b>
                 </div>
                 <div class="card-body">
-                    @if($airport->charts != null)
-                        @if(isset($airport->charts->General))
+                    @if($charts != null)
+                        @if($apd != '[]' || $min != '[]' || $hot != '[]' || $lah != '[]')
                             <div class="card">
                                 <div class="collapsible">
                                     <div class="card-header">
@@ -152,7 +152,7 @@ View Airport ({{ $airport->ltr_4 }})
                                                     <tr>
                                                         <td>{{ $c->chartname }}</td>
                                                         <td>
-                                                            <a href="{{ $c->url }}" class="btn btn-success btn-sm simple-tooltip" data-toggle="tooltip" title="Download {{ $c->chartname }}" target="_blank"><i class="fas fa-download"></i></a>
+                                                            <a href="{{ $c->pdf_path }}" class="btn btn-success btn-sm simple-tooltip" data-toggle="tooltip" title="Download {{ $c->chart_name }}" target="_blank"><i class="fas fa-download"></i></a>
                                                         </td>
                                                     </tr>
                                                 @endforeach

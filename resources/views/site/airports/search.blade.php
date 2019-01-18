@@ -43,7 +43,7 @@
                 </div>
                 <div class="card-body">
                     @if($charts != null)
-                        @if($charts->General != null)
+                        @if($apd != '[]' || $min != '[]' || $hot != '[]' || $lah != '[]')
                             <div class="card">
                                 <div class="collapsible">
                                     <div class="card-header">

@@ -40,8 +40,8 @@
                     <b>All Charts</b>
                 </div>
                 <div class="card-body">
-                    @if($charts != null)
-                        @if($charts->General != null)
+                     @if($charts != null)
+                        @if($apd != '[]' || $min != '[]' || $hot != '[]' || $lah != '[]')
                             <div class="card">
                                 <div class="collapsible">
                                     <div class="card-header">
@@ -148,7 +148,7 @@
                                                 </tr>
                                                 @foreach($charts->Approach as $c)
                                                     <tr>
-                                                        <td>{{ $c->chartname }}</td>
+                                                        <td>{{ $c->chart_name }}</td>
                                                         <td>
                                                             <a href="{{ $c->url }}" class="btn btn-success btn-sm simple-tooltip" data-toggle="tooltip" title="Download {{ $c->chartname }}" target="_blank"><i class="fas fa-download"></i></a>
                                                         </td>
