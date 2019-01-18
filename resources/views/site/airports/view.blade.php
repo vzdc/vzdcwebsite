@@ -188,10 +188,6 @@ View Airport ({{ $airport->ltr_4 }})
                                                         </td>
                                                     </tr>
                                                 @endforeach
-
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
                                             </thead>
                                         </table>
                                     </div>

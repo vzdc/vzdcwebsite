@@ -202,7 +202,7 @@ class FrontController extends Controller
 
     public function showAirport($id) {
         $airport = Airport::find($id);
-   $client = new Client(['http_errors' => false]);
+        $client = new Client(['http_errors' => false]);
         $res = $client->request('GET', 'https://api.aviationapi.com/v1/charts?apt='.$airport->ltr_4);
         $status = $res->getStatusCode();
         if($status == 404) {

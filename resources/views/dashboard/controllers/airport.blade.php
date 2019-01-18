@@ -181,7 +181,7 @@
                                                 </tr>
                                                 @foreach($iap as $c)
                                                     <tr>
-                                                        <td>{{ $c->chartname }}</td>
+                                                        <td>{{ $c->chart_name }}</td>
                                                         <td>
                                                             <a href="{{ $c->pdf_path }}" class="btn btn-success btn-sm simple-tooltip" data-toggle="tooltip" title="Download {{ $c->chart_name }}" target="_blank"><i class="fas fa-download"></i></a>
                                                         </td>
