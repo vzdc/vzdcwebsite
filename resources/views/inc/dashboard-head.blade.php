@@ -41,8 +41,8 @@
                     <a class="nav-link" style="pointer-events:none">{{ Auth::user()->full_name }} - {{ Auth::user()->rating_short }}</a>
                 </li>
 	    </ul>
-	    <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-        </div>
+	</div>
+	<a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </nav>
 </div>
 
