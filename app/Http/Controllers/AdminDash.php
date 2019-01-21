@@ -413,7 +413,7 @@ class AdminDash extends Controller
 
         Mail::send('emails.visit.accept', ['visitor' => $visitor], function($message) use ($visitor){
             $message->from('notams@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Accepted');
-            $message->to($visitor->email)->cc('datm@vzdc.org');
+            $message->to($visitor->email)->cc('datm@vzdc.org')->cc('atm@vzdc.org');
         });
 
         $parts = explode(" ",$visitor->name);
@@ -719,7 +719,7 @@ class AdminDash extends Controller
 
         Mail::send(['html' => 'emails.visit.reject'], ['visitor' => $visitor], function($message) use ($visitor) {
             $message->from('notams@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Rejected');
-            $message->to($visitor->email)->cc('datm@vzdc.org');
+            $message->to($visitor->email)->cc('datm@vzdc.org')->cc('atm@vzdc.org');
         });
 
         $audit = new Audit;
