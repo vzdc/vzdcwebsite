@@ -42,7 +42,6 @@
                 </li>
 	    </ul>
 	</div>
-	//<a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
     </nav>
 </div>
 
