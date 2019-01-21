@@ -40,11 +40,12 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" style="pointer-events:none">{{ Auth::user()->full_name }} - {{ Auth::user()->rating_short }}</a>
                 </li>
+		<a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
             </ul>
         </div>
     </nav>
 </div>
-<a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
 <div class="modal fade" id="unOpt" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
