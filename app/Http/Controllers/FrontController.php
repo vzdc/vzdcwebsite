@@ -301,7 +301,7 @@ class FrontController extends Controller
 
         Mail::send('emails.visit.new', ['visit' => $visit], function($message) use ($visit){
             $message->from('notams@vzdc.org', 'vZDC Visiting Department')->subject('New Visitor Request Submitted');
-            $message->to($visit->email)->cc('datm@vzdc.org');
+            $message->to($visit->email)->cc('datm@vzdc.org')->cc('atm@vzdc.org');
         });
 
         return redirect('/')->with('success', 'Thank you for your interest in the ZDC ARTCC! Your visit request has been submitted.');
