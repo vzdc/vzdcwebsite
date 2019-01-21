@@ -40,8 +40,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" style="pointer-events:none">{{ Auth::user()->full_name }} - {{ Auth::user()->rating_short }}</a>
                 </li>
-		<a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
-            </ul>
+	    </ul>
+	    <a class="nav-link" href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
     </nav>
 </div>
