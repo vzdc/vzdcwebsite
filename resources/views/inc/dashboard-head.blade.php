@@ -40,8 +40,8 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" style="pointer-events:none">{{ Auth::user()->full_name }} - {{ Auth::user()->rating_short }}</a>
                 </li>
-            </ul>
-        </div>
+	    </ul>
+	</div>
     </nav>
 </div>
 
