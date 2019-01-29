@@ -43,7 +43,7 @@ OTS Center
                                 <td>{{ $o->recommended_on }}</td>
                                 <td>{{ $o->controller_name }}</td>
                                 <td>{{ $o->recommender_name }}</td>
-                                <td>{{ $o->position_name }}</td>
+                                <td>{{ $o->facility_position }}</td>
                                 <td>
                                     <a href="/dashboard/training/ots-center/accept/{{ $o->id }}" class="btn btn-success simple-tooltip" data-toggle="tooltip" title="Accept Recommendation"><i class="fas fa-check"></i></a>
                                     @if(Auth::user()->can('snrStaff'))
@@ -103,7 +103,7 @@ OTS Center
                                 <td>{{ $o->controller_name }}</td>
                                 <td>{{ $o->recommender_name }}</td>
                                 <td>{{ $o->ins_name }}</td>
-                                <td>{{ $o->position_name }}</td>
+                                <td>{{ $o->facility_position }}</td>
                                 <td>
                                     @if($o->ins_id == Auth::id() || Auth::user()->can('snrStaff'))
                                         <span data-toggle="modal" data-target="#completeOTS{{ $o->id }}">
@@ -169,7 +169,7 @@ OTS Center
                                 <td>{{ $o->controller_name }}</td>
                                 <td>{{ $o->recommender_name }}</td>
                                 <td>{{ $o->ins_name }}</td>
-                                <td>{{ $o->position_name }}</td>
+                                <td>{{ $o->facility_position }}</td>
                                 <td>{{ $o->result }}@if($o->result == 'Pass') <i class="fas fa-check"></i>@else <i class="fas fa-times"></i>@endif <a href="{{ $o->report }}" target="_blank">(View Report)</a></td>
                             </tr>
                         @endforeach

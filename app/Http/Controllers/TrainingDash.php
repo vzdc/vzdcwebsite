@@ -134,6 +134,7 @@ class TrainingDash extends Controller
             $ots->controller_id = $ticket->controller_id;
             $ots->recommender_id = $ticket->trainer_id;
             $ots->position = $ticket->position;
+            $ots->facility = $ticket->facility;
             $ots->status = 0;
             $ots->save();
             $extra = ' and the OTS recommendation has been added';

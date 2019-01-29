@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Ots extends Model
 {
     protected $table = 'ots_recommendations';
-    protected $fillable = ['controller_id', 'recommender_id', 'position', 'ins_id', 'status', 'updated_at', 'created_at'];
+    protected $fillable = ['controller_id', 'recommender_id', 'position', 'facility', 'ins_id', 'status', 'updated_at', 'created_at'];
 
     public function getControllerNameAttribute() {
         $name = User::find($this->controller_id)->full_name;
@@ -86,5 +86,35 @@ class Ots extends Model
         }
 
         return $result;
+    }
+
+    public function getFacilityPositionAttribute() {
+        $fac = $this->facility;
+        if($fac == 0) {
+            $facility = 'KIAD';
+        } elseif($fac == 1) {
+            $facility = 'KBWI';
+        } elseif($fac == 2) {
+            $facility = 'KDCA';
+        } elseif($fac == 3) {
+            $facility = 'KORF';
+        } elseif($fac == 4) {
+            $facility = 'ZDC';
+        }
+
+        $pos = $this->position;
+        if($pos == 0) {
+            $position = 'Delivery/Ground';
+        } elseif($pos == 1) {
+            $position = 'Tower';
+        } elseif($pos == 2) {
+            $position = 'TRACON';
+        } elseif($pos == 3) {
+            $position = 'Center';
+        } else {
+            $position = null;
+        }
+
+        return $facility.' '.$position;
     }
 }
