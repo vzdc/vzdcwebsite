@@ -96,7 +96,7 @@
 
 </style>
 <br>
-<iframe src="https://discordapp.com/widget?id=391802941486530561&theme=dark&username=" width="290" height="600" allowtransparency="true" frameborder="0"></iframe>
+<iframe src="https://discordapp.com/widget?id=391802941486530561&theme=dark&username=" width="285" height="600" allowtransparency="true" frameborder="0"></iframe>
 <script>
     var coll = document.getElementsByClassName("collapsible-controllers");
     var i;
