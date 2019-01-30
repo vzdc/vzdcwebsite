@@ -95,6 +95,8 @@
     }
 
 </style>
+<br>
+<iframe src="https://discordapp.com/widget?id=391802941486530561&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
 <script>
     var coll = document.getElementsByClassName("collapsible-controllers");
     var i;
