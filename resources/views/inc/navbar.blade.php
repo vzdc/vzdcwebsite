@@ -24,7 +24,7 @@
                         <a class="dropdown-item" href="/pilots/airports">Airports</a>
                         <a class="dropdown-item" href="/pilots/request-staffing">Request Staffing</a>
                         <a class="dropdown-item" href="http://www.flightaware.com/statistics/ifr-route/" target="_blank">IFR Routes</a>
-                        <a class="dropdown-item" href="/iadgates.php">IAD Active Gates</a>
+                        <a class="dropdown-item" href="/iadgates.php">KIAD Gates In Use</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
