@@ -16,7 +16,7 @@
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pilots" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilots</a>
-                    <div class="dropdown-menu" aria-labelledby="pilots"style="overflow: auto">
+                    <div class="dropdown-menu" aria-labelledby="pilots">
                         <a class="dropdown-item" href="http://www.aircharts.org/" target="_blank">Charts</a>
                         <a class="dropdown-item" href="http://www.vatstar.com/" target="_blank">VATSTAR Training</a>
                         <a class="dropdown-item" href="https://www.aviationweather.gov/" target="_blank">Weather</a>
