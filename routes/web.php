@@ -31,7 +31,7 @@ Route::post('/pilots/request-staffing', 'FrontController@staffRequest');
 Route::get('/feedback/new', 'FrontController@newFeedback');
 Route::post('/feedback/new', 'FrontController@saveNewFeedback');
 Route::get('controllers/files', 'FrontController@showFiles');
-Route::get('/controllers/files/download/{id}', 'FrontController@downloadFile');
+// Route::get('/controllers/files/download/{id}', 'FrontController@downloadFile');
 /*
 *   End Front Page Stuff
 */
@@ -59,7 +59,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::get('/calendar/view/{id}', 'ControllerDash@showCalendarEvent');
         Route::get('/roster', 'ControllerDash@showRoster');
         Route::get('/files', 'ControllerDash@showFiles');
-        Route::get('/files/download/{id}', 'ControllerDash@downloadFile');
+        // Route::get('/files/download/{id}', 'ControllerDash@downloadFile');
         Route::get('/view-my-tickets', 'ControllerDash@showTickets');
         Route::get('/suggestions', 'ControllerDash@showSuggestions');
         Route::get('/atcast', 'ControllerDash@showatcast');
