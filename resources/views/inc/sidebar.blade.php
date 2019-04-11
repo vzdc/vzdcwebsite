@@ -6,7 +6,7 @@
             <b id="caret-controllers" class="float-right fas fa-caret-left"></b>
         </p>
         <div class="content">
-            @if(Auth::user()->rating_id ==< 1)
+            @if(Auth::user()->rating_id < 1)
                 <a class="nav-link {{ Nav::urlDoesContain('dashboard/controllers/teamspeak') }}" href="/dashboard/controllers/teamspeak">Teamspeak Information</a>
             @endif
             <a class="nav-link {{ Nav::urlDoesContain('dashboard/controllers/roster') }} {{ Nav::urlDoesContain('/dashboard/admin/roster') }}" href="/dashboard/controllers/roster">Roster</a>
