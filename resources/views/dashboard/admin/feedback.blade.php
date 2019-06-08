@@ -146,11 +146,11 @@ Feedback Management
                                             <div class="row">
                                                 <div class="col-sm-6">
                                                     {!! Form::label('name', 'Your Name') !!}
-                                                    {!! Form::text('name', 'vZTL ARTCC Staff', ['class' => 'form-control']) !!}
+                                                    {!! Form::text('name', 'vZDC ARTCC Staff', ['class' => 'form-control']) !!}
                                                 </div>
                                                 <div class="col-sm-6">
                                                     {!! Form::label('email', 'Your Email') !!}
-                                                    {!! Form::email('email', 'feedback@notams.ztlartcc.org', ['class' => 'form-control']) !!}
+                                                    {!! Form::email('email', 'notams@vzdc.org', ['class' => 'form-control']) !!}
                                                 </div>
                                             </div>
                                             <br>
