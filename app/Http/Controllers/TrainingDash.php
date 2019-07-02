@@ -60,11 +60,7 @@ class TrainingDash extends Controller
     }
 
     public function ticketsIndex(Request $request) {
-        $controllers = User::where('status', '1')->where('canTrain', '1')->orderBy('lname', 'ASC')->get()->filter(function($user) {
-            if(TrainingTicket::where('controller_id', $user->id)->first() != null || $user->visitor == 0) {
-                return $user;
-            }
-        })->pluck('backwards_name', 'id');
+        $controllers = User::where('status', '1')->where('canTrain', '1')->orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
         if($request->id != null) {
             $search_result = User::find($request->id);
         } else {
@@ -163,7 +159,7 @@ class TrainingDash extends Controller
     public function editTicket($id) {
         $ticket = TrainingTicket::find($id);
         if(Auth::id() == $ticket->trainer_id || Auth::user()->can('snrStaff')) {
-            $controllers = User::where('visitor', '0')->where('status', '1')->where('canTrain', '1')->orderBy('lname', 'ASC')->get()->pluck('full_name', 'id');
+            $controllers = User::where('status', '1')->where('canTrain', '1')->orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
             return view('dashboard.training.edit_ticket')->with('ticket', $ticket)->with('controllers', $controllers);
         } else {
             return redirect()->back()->with('error', 'You can only edit tickets that you have submitted unless you are the TA.');

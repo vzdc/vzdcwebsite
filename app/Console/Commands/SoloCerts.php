@@ -39,11 +39,13 @@ class SoloCerts extends Command
      */
     public function handle()
     {
-        $time_now = Carbon::now()->subMonth();
+        $time_now = Carbon::now()->subMonth()->timestamp;
         $solo_certs = SoloCert::get();
 
         foreach($solo_certs as $s) {
-            if($s->created_at > $time_now) {
+            $created = new Carbon($s->created_at);
+            $created = $created->timestamp;
+            if($created < $time_now) {
                 $controller = User::find($s->controller_id);
                 if($s->position == 'twr'){
                     $rated = $controller->twr;
