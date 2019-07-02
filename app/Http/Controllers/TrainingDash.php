@@ -159,7 +159,7 @@ class TrainingDash extends Controller
     public function editTicket($id) {
         $ticket = TrainingTicket::find($id);
         if(Auth::id() == $ticket->trainer_id || Auth::user()->can('snrStaff')) {
-            $controllers = User::where('status', '1')->where('canTrain', '1')->orderBy('lname', 'ASC')->get()->pluck('full_name', 'id');
+            $controllers = User::where('status', '1')->where('canTrain', '1')->orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
             return view('dashboard.training.edit_ticket')->with('ticket', $ticket)->with('controllers', $controllers);
         } else {
             return redirect()->back()->with('error', 'You can only edit tickets that you have submitted unless you are the TA.');
