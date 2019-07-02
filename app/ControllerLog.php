@@ -100,7 +100,7 @@ class ControllerLog extends Model
 				SUM(IF(position LIKE '%_DEL' OR position LIKE '%_GND' OR position LIKE '%_TWR', duration, 0)) / 3600 `local_hrs`,
 				SUM(IF(position LIKE '%_APP' OR position LIKE '%_DEP', duration, 0)) / 3600 `approach_hrs`,
 				SUM(IF(position LIKE '%_CTR', duration, 0)) / 3600 `enroute_hrs`,
-				SUM(IF(position LIKE '%_CTR' OR position LIKE '%_APP' OR position LIKE '%_DEP' OR position LIKE '%_TWR', duration, 0)) / 3600 `bronze_hrs`,
+				SUM(IF(position LIKE '%_CTR' OR position LIKE '%_APP' OR position LIKE '%_DEP' OR position LIKE '%_TWR' OR position LIKE '%_GND' OR position LIKE '%_DEL', duration, 0)) / 3600 `bronze_hrs`,
 				SUM(duration) / 3600 `total_hrs`
 			")
 			->groupBy('roster.id');
