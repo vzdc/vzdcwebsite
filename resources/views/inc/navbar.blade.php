@@ -34,7 +34,7 @@
                         <a class="dropdown-item" href="/controllers/staff">Staff</a>
                         <a class="dropdown-item" href="/controllers/files">Files</a>
                         <a class="dropdown-item" href="/controllers/stats">Controller Stats</a>
-                        <a class="dropdown-item" href="https://status.vzdc.org" target="_blank"> vZDC Status Page
+                        <a class="dropdown-item" href="https://status.vzdc.org" target="_blank"> vZDC Status Page </a>
                         
                     </div>
                 </li>
