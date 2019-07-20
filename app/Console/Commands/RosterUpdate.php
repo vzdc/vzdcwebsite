@@ -50,6 +50,10 @@ class RosterUpdate extends Command
         $users = User::where('visitor', '0')->where('status', '1')->get()->pluck('id');
 
         foreach($roster as $r) {
+            // VATUSA now includes a `testing: false` field as the last item, we can ignore this and contune
+            // to the next iteration.
+            if(is_bool($r)) continue;
+            
             if(User::find($r->cid) !== null) {
                 $user = User::find($r->cid);
                 $user->fname = $r->fname;
@@ -213,6 +217,10 @@ class RosterUpdate extends Command
         foreach($users as $u) {
             $delete = 0;
             foreach($roster as $r) {
+                // VATUSA now includes a `testing: false` field as the last item, we can ignore this and contune
+                // to the next iteration.
+                if(is_bool($r)) continue;
+                
                 $id = $r->cid;
                 if($u == $id) {
                     $delete = 1;
