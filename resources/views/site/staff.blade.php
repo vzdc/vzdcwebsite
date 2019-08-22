@@ -27,7 +27,7 @@ Staff
             @endif
             &nbsp;<a href="mailto:atm@vzdc.org" style="color:black"><i class="fa fa-envelope" ></i></a>
         </h4>
-        <p>The Air Traffic Manager is responsible to the VATUSA Southern Region Director for the overall administration of the ARTCC. The ATM is responsible for appointing ARTCC staff members and delegation of authorities.</p>
+        <p>The Air Traffic Manager is responsible to the VATUSA Northeastern Regional Air Traffic Director for the overall administration of the ARTCC. The ATM is responsible for appointing ARTCC staff members and delegation of authorities.</p>
     </div>
     <hr>
     <div class="block-heading-two">
