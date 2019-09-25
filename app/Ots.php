@@ -3,7 +3,9 @@
 namespace App;
 
 use App\User;
+use GuzzleHttp\Client;
 use Illuminate\Database\Eloquent\Model;
+use SimpleXMLElement;
 
 class Ots extends Model
 {
