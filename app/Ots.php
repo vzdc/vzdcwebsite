@@ -11,7 +11,15 @@ class Ots extends Model
     protected $fillable = ['controller_id', 'recommender_id', 'position', 'facility', 'ins_id', 'status', 'updated_at', 'created_at'];
 
     public function getControllerNameAttribute() {
-        $name = User::find($this->controller_id)->full_name;
+        $user = User::find($this->controller_id);
+        if($user) {
+            $name = $user->full_name;
+        } else {
+            $client = new Client();
+            $response = $client->request('GET', 'https://cert.vatsim.net/vatsimnet/idstatus.php?cid='.$this->controller_id);
+            $r = new SimpleXMLElement($response->getBody());
+            $name = $r->user->name_first.' '.$r->user->name_last;
+        }
 
         return $name;
     }
