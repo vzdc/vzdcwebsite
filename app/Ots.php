@@ -27,7 +27,7 @@ class Ots extends Model
     }
 
     public function getRecommenderNameAttribute() {
-        $user = User::find($this->recommender_id)->full_name;
+        $user = User::find($this->controller_id);
         if($user) {
             $name = $user->full_name;
         } else {
