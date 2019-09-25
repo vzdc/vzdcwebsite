@@ -9,11 +9,10 @@ New Training Ticket
     &nbsp;
     <h2>Submit New Training Ticket</h2>
     &nbsp;
-                    <right><h5>Zulu/UTC Time Now:</h5></right>
-                <right><iframe style="pointer-events: none" src="https://freesecure.timeanddate.com/clock/i6hnccu7/fs16/tct/pct/bas6/bat6/bac777/pa8/tt0/tm2/th1/ta1/tb4" frameborder="0" width="200" height="64" allowTransparency="true"></iframe></right>
 </div>
 <br>
-
+       <right><h5>Zulu/UTC Time Now:</h5></right>
+                <right><iframe style="pointer-events: none" src="https://freesecure.timeanddate.com/clock/i6hnccu7/fs16/tct/pct/bas6/bat6/bac777/pa8/tt0/tm2/th1/ta1/tb4" frameborder="0" width="200" height="64" allowTransparency="true"></iframe></right>
 <div class="container">
     {!! Form::open(['action' => 'TrainingDash@saveNewTicket']) !!}
         @csrf
