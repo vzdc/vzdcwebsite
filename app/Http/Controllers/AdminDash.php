@@ -1585,12 +1585,16 @@ class AdminDash extends Controller
     }
 
     public function createLog($id) {
-        $log = new MemberLog;
-        $log->user_target = $id;
-        $log->user_submitter = auth()->user()->id;
-        $log->content = request()->get('content');
-        $log->save();
-        return redirect()->back()->with('success', 'The log has been created successfully.');
+        if(auth()->user()->getStaffPositionAttribute() > 0) {
+            $log = new MemberLog;
+            $log->user_target = $id;
+            $log->user_submitter = auth()->user()->id;
+            $log->content = request()->get('content');
+            $log->save();
+            return redirect()->back()->with('success', 'The log has been created successfully.');
+        }else
+            return redirect()->back()->with('error', 'Access Denied.');
+
     }
     public function removeLog($id) {
         $log = MemberLog::find($id);

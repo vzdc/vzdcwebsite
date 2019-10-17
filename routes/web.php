@@ -124,7 +124,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::get('/', 'AdminDash@showAudits');
         });
 
-        Route::prefix('logs')->middleware('permission:staff')->group(function() {
+        Route::prefix('logs')->group(function() {
            Route::post('/create/{id}', 'AdminDash@createLog');
            Route::post('/delete/{id}', 'AdminDash@removeLog')->middleware('permissions:snrStaff');
         });
