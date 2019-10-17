@@ -508,7 +508,7 @@ Update Controller
                 <div class="form-group">
                     <form action="/dashboard/admin/logs/create/{{$user->id}}" method="POST">
                         @csrf
-                        <label>Add Member Log</label>
+                        <label>Member Dossier</label>
                         <textarea class="form-control" required name="content"></textarea>
                         <br>
                         <button class="btn btn-primary" type="submit">Add Member Log</button>
