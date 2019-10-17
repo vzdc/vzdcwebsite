@@ -126,7 +126,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
 
         Route::prefix('logs')->group(function() {
            Route::post('/create/{id}', 'AdminDash@createLog');
-           Route::post('/delete/{id}', 'AdminDash@removeLog')->middleware('permissions:snrStaff');
+           Route::post('/delete/{id}', 'AdminDash@removeLog')->middleware('permission:snrStaff');
         });
 
         Route::prefix('calendar')->middleware('permission:staff')->group(function() {
