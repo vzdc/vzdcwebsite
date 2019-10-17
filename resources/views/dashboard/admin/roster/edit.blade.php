@@ -493,14 +493,69 @@ Update Controller
             </div>
         @endif
         <br>
-        <div class="row">
-            <div class="col-sm-1">
-                <button class="btn btn-success" type="submit">Save</button>
+                <div class="row">
+                <div class="col-sm-1">
+                    <button class="btn btn-success" type="submit">Save</button>
+                </div>
+                {!! Form::close() !!}
+                <div class="col-sm-1">
+                    <a href="/dashboard/controllers/roster" class="btn btn-danger">Cancel</a>
+                </div>
+                </div>
+        <br>
+        <hr>
+                <div>
+                <div class="form-group">
+                    <form action="/dashboard/admin/logs/create/{{$user->id}}" method="POST">
+                        @csrf
+                        <label>Add Member Log</label>
+                        <textarea class="form-control" required name="content"></textarea>
+                        <br>
+                        <button class="btn btn-primary" type="submit">Add Member Log</button>
+                    </form>
+                </div>
+                <div>
+                    @if($user->getLogs() != null)
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Added By</th>
+                                    <th scope="col">Details</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($user->getLogs() as $l)
+                                    <tr>
+                                        <td>
+                                            @if($l->getAuthor() != null)
+                                                {{$l->getAuthor()->first()->getFullNameAttribute()}}
+                                            @else
+                                                {{$l->user_submitter}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            {{$l->content}}
+                                        </td>
+                                        <td>
+                                            {{$l->created_at->toDateString()}}
+                                        </td>
+                                        <td>
+                                            <form action="/dashboard/admin/logs/delete/{{$l->id}}" method="POST">
+                                                @csrf
+                                                <button class="btn btn-danger" type="submit">Remove</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    @endif
+
+                </div>
             </div>
-    {!! Form::close() !!}
-            <div class="col-sm-1">
-                <a href="/dashboard/controllers/roster" class="btn btn-danger">Cancel</a>
-            </div>
-        </div>
+        <br>
+
 </div>
 @endsection
