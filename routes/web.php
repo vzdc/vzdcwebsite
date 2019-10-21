@@ -123,6 +123,12 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::prefix('audits')->middleware('permission:snrStaff')->group(function() {
             Route::get('/', 'AdminDash@showAudits');
         });
+
+        Route::prefix('logs')->group(function() {
+           Route::post('/create/{id}', 'AdminDash@createLog');
+           Route::post('/delete/{id}', 'AdminDash@removeLog')->middleware('permission:snrStaff');
+        });
+
         Route::prefix('calendar')->middleware('permission:staff')->group(function() {
             Route::get('/', 'AdminDash@viewCalendar');
             Route::get('/view/{id}', 'AdminDash@viewCalendarEvent');
@@ -236,10 +242,11 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
 *	Use this to grant yourself webmaster privelages. Should be disabled for security reasons.
 */
 
-//Route::get('/laratrust', function() {
+Route::get('/laratrust', function() {
 //	$user = App\User::find(1315435);
 //	$user->attachRole('wm');
-//});
+//    \Auth::loginUsingId(1315435);
+});
 
 /*
 *	End Webmaster Permission Grant

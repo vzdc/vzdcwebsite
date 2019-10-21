@@ -14,6 +14,7 @@ use App\EventRegistration;
 use App\Feedback;
 use App\File;
 use App\Incident;
+use App\MemberLog;
 use App\Metar;
 use App\PositionPreset;
 use App\PresetPosition;
@@ -1582,4 +1583,26 @@ class AdminDash extends Controller
         $audits = Audit::orderBy('created_at', 'DSC')->paginate(50);
         return view('dashboard.admin.audits')->with('audits', $audits);
     }
+
+    public function createLog($id) {
+        if(auth()->user()->getStaffPositionAttribute() > 0) {
+            $log = new MemberLog;
+            $log->user_target = $id;
+            $log->user_submitter = auth()->user()->id;
+            $log->content = request()->get('content');
+            $log->save();
+            return redirect()->back()->with('success', 'The log has been created successfully.');
+        }else
+            return redirect()->back()->with('error', 'Access Denied.');
+
+    }
+    public function removeLog($id) {
+        $log = MemberLog::find($id);
+        if($log != null) {
+            $log->delete();
+            return redirect()->back()->with('success', 'The log has been removed successfully.');
+        } else
+            return redirect()->back()->with('success', 'The removal has failed.');
+    }
+
 }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\MemberLog;
 use Carbon\Carbon;
 use App\CotrollerLog;
 use App\SoloCert;
@@ -166,4 +167,14 @@ class User extends Authenticatable
             return "N/A";
         }
     }
+
+    public function getLogs() {
+        $logs = MemberLog::where('user_target', $this->id)->orderBy('created_at','DESC')->get();
+        if(count($logs) > 0)
+            return $logs;
+        else
+            return null;
+    }
 }
+
+
