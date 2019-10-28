@@ -26,7 +26,7 @@ Teamspeak Info
             <ul>
                 <li>All users must join the teamspeak using the name associated with their VATSIM account.</li>
                 <li>Anonymous users will be kicked with a warning and banned upon reconnecting anonymously.</li>
-                <li>Teamspeak permissions are required to move within the teamspeak. Please contact a staff member to receive appropiate permissions. (If you are not a member of the VATUSA region, please provide your CID for rating verification).</li>
+                <li>Teamspeak permissions are assigned by VATSYNC - Please signup via VATSYNC to get your assigned permissions.  Staff Members will NOT assign permissions. Please visit https://vatsimsync.com/ and setup your unique ID with this server.</li>
                 <li>Streaming while controlling is allowed and encouraged although the audio from the teamspeak is not allowed for the privacy of other controllers. Streaming teamspeak audio requires the written permission of the ATM (Contact the ATM at <a href="atm@vzdc.org">atm@vzdc.org</a> for permission). Streaming audio without his/her permission may result in loss of teamspeak privileges.</li>
                 <li>Controlling rooms are limited to controlling only. If a controller asks for you to leave, please do so.</li>
                 <li>Use of the teamspeak is a privilage and can be revoked by a staff member at any time and for any reason. To appeal teamspeak bans, please contact the DATM at <a href="datm@vzdc.org">datm@vzdc.org</a>.</li>
