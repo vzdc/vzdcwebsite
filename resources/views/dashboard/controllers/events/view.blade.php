@@ -261,7 +261,7 @@ View Event
                                 <button type="submit" class="btn btn-success">Submit</button>
                             @else
                                 @if(Auth::user()->canEvents != 1)
-                                    You are not permitted to signup for events.
+                                    <b>***You are not authorized to signup for events, please contact the EC for more info***</b>
                                 @else
                                     Event registration is currently closed.
                                 @endif
