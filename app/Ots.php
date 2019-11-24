@@ -41,12 +41,15 @@ class Ots extends Model
     }
 
     public function getInsNameAttribute() {
-        if($this->ins_id != null) {
-            $name = User::find($this->ins_id)->full_name;
+        $user = User::find($this->ins_id);
+        if($user) {
+            $name = $user->full_name;
         } else {
-            $name = 'N/A';
+            $client = new Client();
+            $response = $client->request('GET', 'https://cert.vatsim.net/vatsimnet/idstatus.php?cid='.$this->controller_id);
+            $r = new SimpleXMLElement($response->getBody());
+            $name = $r->user->name_first.' '.$r->user->name_last;
         }
-
         return $name;
     }
 
