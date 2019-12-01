@@ -28,7 +28,7 @@ class Ots extends Model
 
     public function getRecommenderNameAttribute() {
         $user = User::find($this->controller_id);
-        if($user) {
+        if($user != null) {
             $name = $user->full_name;
         } else {
             $client = new Client();
@@ -42,7 +42,7 @@ class Ots extends Model
 
     public function getInsNameAttribute() {
         $user = User::find($this->ins_id);
-        if($user) {
+        if($user != null) {
             $name = $user->full_name;
         } else {
             $client = new Client();
