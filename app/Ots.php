@@ -27,12 +27,12 @@ class Ots extends Model
     }
 
     public function getRecommenderNameAttribute() {
-        $user = User::find($this->controller_id);
+        $user = User::find($this->recommender_id);
         if($user != null) {
             $name = $user->full_name;
         } else {
             $client = new Client();
-            $response = $client->request('GET', 'https://cert.vatsim.net/vatsimnet/idstatus.php?cid='.$this->controller_id);
+            $response = $client->request('GET', 'https://cert.vatsim.net/vatsimnet/idstatus.php?cid='.$this->recommender_id);
             $r = new SimpleXMLElement($response->getBody());
             $name = $r->user->name_first.' '.$r->user->name_last;
         }
