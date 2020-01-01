@@ -54,6 +54,7 @@ Visit
             {!! Form::label('reason', 'Explanation of Why You Want to Visit the ZDC ARTCC') !!}
             {!! Form::textArea('reason', null, ['placeholder' => 'Required', 'class' => 'form-control']) !!}
         </div>
+        <div class="g-recaptcha" data-sitekey="6Lc3XssUAAAAAHHG44IVA5IjjDFdgsjnLwkTBUM9"></div>
         <br>
         <button class="btn btn-success" type="submit">Submit</button>
     {!! Form::close() !!}
