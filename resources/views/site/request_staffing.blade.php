@@ -59,7 +59,7 @@ Staffing Request
             {!! Form::label('additional_information', 'Additional Information:', ['class' => 'control-label']) !!}
             {!! Form::textArea('additional_information', null, ['placeholder' => 'Please include all additional relevant information regarding the need for staffing.', 'class' => 'form-control']) !!}
         </div>
-        <div class="g-recaptcha" data-sitekey="6Lc3XssUAAAAAHHG44IVA5IjjDFdgsjnLwkTBUM9"></div>
+        <div class="g-recaptcha" data-sitekey="6LdaDdISAAAAAJZcukW8xKLSWnw7GWnasU3m2f37"></div>
         <br>
         <button class="btn btn-success" type="submit">Send Request</button>
     {!! Form::close() !!}
