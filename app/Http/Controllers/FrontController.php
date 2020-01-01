@@ -289,7 +289,20 @@ class FrontController extends Controller
             'home' => 'required',
             'reason' => 'required'
         ]);
-       
+	    	    
+        //Google reCAPTCHA Verification
+        $client = new Client;
+        $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
+            'form_params' => [
+                'secret' => Config::get('google.recaptcha'),
+                'response' => $request->input('g-recaptcha-response'),
+            ]
+        ]);
+        $r = json_decode($response->getBody())->success;
+        if($r != true) {
+            return redirect()->back()->with('error', 'You must complete the ReCaptcha to continue.');
+        }	    
+	           
         $visit = new Visitor;
         $visit->cid = $request->cid;
         $visit->name = $request->name;
@@ -322,6 +335,20 @@ class FrontController extends Controller
 	    'pilot_email' => 'required',
 	    'pilot_cid' => 'required'
         ]);
+	    
+	    
+        //Google reCAPTCHA Verification
+        $client = new Client;
+        $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
+            'form_params' => [
+                'secret' => Config::get('google.recaptcha'),
+                'response' => $request->input('g-recaptcha-response'),
+            ]
+        ]);
+        $r = json_decode($response->getBody())->success;
+        if($r != true) {
+            return redirect()->back()->with('error', 'You must complete the ReCaptcha to continue.');
+        }
 
         $feedback = new Feedback;
         $feedback->controller_id = Input::get('controller');
