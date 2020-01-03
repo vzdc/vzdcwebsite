@@ -80,9 +80,68 @@ class UpdateSoloCerts extends Command
                             }
                         }
                     }
+                    } elseif (substr($s->position, -3) == 'CHP') {
+                        $hcontrol = User::where('visitor', 0)->get();
+                        foreach ($hcontrol as $h) {
+                            if ($s->cid == $h->id) {
+                                $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
+                                if (!$current_cert) {
+                                    $cert = new SoloCert;
+                                    $cert->cid = $s->cid;
+                                    $cert->pos = 1;
+                                    $cert->expiration = $s->expires;
+                                    $cert->status = 0;
+                                    $cert->save();
+    
+                                    $user = $h;
+                                    $user->app = 99;
+                                    $user->save();
+                                }
+                            }
+                        }
+                    }elseif (substr($s->position, -3) == 'SHD') {
+                            $hcontrol = User::where('visitor', 0)->get();
+                            foreach ($hcontrol as $h) {
+                                if ($s->cid == $h->id) {
+                                    $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
+                                    if (!$current_cert) {
+                                        $cert = new SoloCert;
+                                        $cert->cid = $s->cid;
+                                        $cert->pos = 1;
+                                        $cert->expiration = $s->expires;
+                                        $cert->status = 0;
+                                        $cert->save();
+        
+                                        $user = $h;
+                                        $user->app = 99;
+                                        $user->save();
+                                    }
+                                }
+                            }
+                        }
+                            elseif (substr($s->position, -3) == 'CHP') {
+                                $hcontrol = User::where('visitor', 0)->get();
+                                foreach ($hcontrol as $h) {
+                                    if ($s->cid == $h->id) {
+                                        $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
+                                        if (!$current_cert) {
+                                            $cert = new SoloCert;
+                                            $cert->cid = $s->cid;
+                                            $cert->pos = 1;
+                                            $cert->expiration = $s->expires;
+                                            $cert->status = 0;
+                                            $cert->save();
+            
+                                            $user = $h;
+                                            $user->app = 99;
+                                            $user->save();
+                                        }
+                                    }
+                                }
+                            }   
                 }
             }
-        }
+        
 
         $today = strval(Carbon::now()->subDay());
         $today = substr($today, 0, 10);
