@@ -395,8 +395,8 @@ class FrontController extends Controller
             'time' => 'required',
             'additional_information' => 'required'
         ]);
-	
-	         //Google reCAPTCHA Verification
+
+        //Google reCAPTCHA Verification
         $client = new Client;
         $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
             'form_params' => [
@@ -408,14 +408,15 @@ class FrontController extends Controller
         if($r != true) {
             return redirect()->back()->with('error', 'You must complete the ReCaptcha to continue.');
         }
+
         //Continue Request
-	    
         $name = $request->name;
         $email = $request->email;
         $org = $request->org;
         $date = $request->date;
         $time = $request->time;
         $exp = $request->additional_information;
+
 
         Mail::send('emails.request_staff', ['name' => $name, 'email' => $email, 'org' => $org, 'date' => $date, 'time' => $time, 'exp' => $exp], function($message) use ($email, $name, $date) {
             $message->from('notams@vzdc.org', 'vZDC Staffing Requests')->subject('New Staffing Request for '.$date);
