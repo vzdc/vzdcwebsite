@@ -231,54 +231,86 @@ class AdminDash extends Controller
         $user = User::find($id);
 
         if(Auth::user()->can('roster')) {
-            $user->delgnd = Input::get('delgnd');
-            $user->twr = Input::get('twr');
-            if($request->twr == 1) {
-                $solo = new SoloCert;
-                $solo->controller_id = $id;
-                $solo->position = 'twr';
-                $solo->value = $request->twr;
-                $solo->save();
+            $user->del = Input::get('del');
+            $user->gnd = Input::get('gnd');
+            if($user->twr == 99) {
+                if(Input::get('twr') != 0) {
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    if($solo) {
+                        $solo->status = 1;
+                        $solo->save();
+                    }
+                    $user->twr = Input::get('twr');
+                } else {
+                    $user->twr = 99;
+                }
+            } elseif(Input::get('twr') == 99) {
+                $expire = Carbon::now()->addMonth()->format('Y-m-d');
+                $user->twr = Input::get('twr');
+                $cert = new SoloCert;
+                $cert->cid = $id;
+                $cert->pos = 0;
+                $cert->expiration = $expire;
+                $cert->status = 0;
+                $cert->save();
+            } else {
+                $user->twr = Input::get('twr');
             }
-            $user->app = Input::get('app');
-            if($request->app == 1) {
-                $solo = new SoloCert;
-                $solo->controller_id = $id;
-                $solo->position = 'app';
-                $solo->value = $request->app;
-                $solo->save();
+            if($user->app == 99) {
+                if(Input::get('shd') != 0) {
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    if($solo) {
+                        $solo->status = 1;
+                        $solo->save();
+                    }
+                    $user->app = Input::get('app');
+                } else {
+                    $user->app = 99;
+                }
+            } else {
+                $user->app = Input::get('shd');
             }
-            $user->chp = Input::get('chp');
-            if($request->chp == 1) {
-                $solo = new SoloCert;
-                $solo->controller_id = $id;
-                $solo->position = 'chp';
-                $solo->value = $request->chp;
-                $solo->save();
+            if($user->app == 99) {
+                if(Input::get('chp') != 0) {
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    if($solo) {
+                        $solo->status = 1;
+                        $solo->save();
+                    }
+                    $user->app = Input::get('app');
+                } else {
+                    $user->app = 99;
+                }
+            } else {
+                $user->app = Input::get('shd');
             }
-            $user->shd = Input::get('shd');
-            if($request->shd == 1) {
-                $solo = new SoloCert;
-                $solo->controller_id = $id;
-                $solo->position = 'shd';
-                $solo->value = $request->shd;
-                $solo->save();
+            if($user->app == 99) {
+                if(Input::get('mtv') != 0) {
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    if($solo) {
+                        $solo->status = 1;
+                        $solo->save();
+                    }
+                    $user->app = Input::get('app');
+                } else {
+                    $user->app = 99;
+                }
+            } else {
+                $user->app = Input::get('shd');
             }
-            $user->mtv = Input::get('mtv');
-            if($request->mtv == 1) {
-                $solo = new SoloCert;
-                $solo->controller_id = $id;
-                $solo->position = 'mtv';
-                $solo->value = $request->mtv;
-                $solo->save();
-            }
-            $user->ctr = Input::get('ctr');
-            if($request->ctr == 1) {
-                $solo = new SoloCert;
-                $solo->controller_id = $id;
-                $solo->position = 'ctr';
-                $solo->value = $request->ctr;
-                $solo->save();
+            if($user->ctr == 99) {
+                if(Input::get('ctr') != 0) {
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    if($solo) {
+                        $solo->status = 1;
+                        $solo->save();
+                    }
+                    $user->ctr = Input::get('ctr');
+                } else {
+                    $user->ctr = 99;
+                }
+            } else {
+                $user->ctr = Input::get('ctr');
             }
             $user->initials = Input::get('initials');
             $user->train_pwr = Input::get('train_pwr');
