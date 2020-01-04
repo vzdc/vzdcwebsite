@@ -355,9 +355,9 @@ class AdminDash extends Controller
                         $solo->status = 1;
                         $solo->save();
                     }
-                    $user->app = Input::get('ctr');
+                    $user->ctr = Input::get('ctr');
                 } else {
-                    $user->app = 99;
+                    $user->ctr = 99;
                 }
             } elseif(Input::get('ctr') == 99) {
                 $expire = Carbon::now()->addMonth()->format('Y-m-d');

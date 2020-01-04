@@ -15,7 +15,7 @@ class SoloCerts extends Command
      *
      * @var string
      */
-   
+    protected $signature = 'SoloCerts:Expiration';
 
     /**
      * The console command description.
@@ -148,8 +148,8 @@ class SoloCerts extends Command
         $certs = SoloCert::get();
 
         foreach($certs as $c) {
-            if($c->expiration <= $today && $c->status == 0) {
-                $c->status = 1;
+            if($c->expiration <= $today && $c->status == 1) {
+                $c->status = 2;
                 $user = User::find($c->cid);
                 if($c->pos == 0) {
                     $user->twr = 0;
