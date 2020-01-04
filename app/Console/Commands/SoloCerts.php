@@ -8,14 +8,14 @@ use Carbon\Carbon;
 use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
-class UpdateSoloCerts extends Command
+class SoloCerts extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'SoloCerts:UpdateSoloCerts';
+    protected $signature = 'SoloCerts:Expiration';
 
     /**
      * The console command description.
