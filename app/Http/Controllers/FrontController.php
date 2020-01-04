@@ -405,7 +405,7 @@ class FrontController extends Controller
             ]
         ]);
         $r = json_decode($response->getBody())->success;
-        if($r != true) {
+        if($r == false) {
             return redirect()->back()->with('error', 'You must complete the ReCaptcha to continue.');
         }
 
