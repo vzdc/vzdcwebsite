@@ -232,7 +232,7 @@ class AdminDash extends Controller
 
         if(Auth::user()->can('roster')) {
             
-            $user->gnd = Input::get('delgnd');
+            $user->delgnd = Input::get('delgnd');
             if($user->twr == 99) {
                 if(Input::get('twr') != 0) {
                     $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
