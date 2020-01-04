@@ -231,8 +231,8 @@ class AdminDash extends Controller
         $user = User::find($id);
 
         if(Auth::user()->can('roster')) {
-            $user->del = Input::get('del');
-            $user->gnd = Input::get('gnd');
+            
+            $user->gnd = Input::get('delgnd');
             if($user->twr == 99) {
                 if(Input::get('twr') != 0) {
                     $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
