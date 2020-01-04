@@ -155,6 +155,8 @@ class SoloCerts extends Command
                     $user->twr = 0;
                 } elseif($c->pos == 1) {
                     $user->shd = 0;
+                }elseif($c->pos == 2) {
+                    $user->chp = 0;
                 } elseif($c->pos == 3) {
                     $user->mtv = 0;
                 } elseif($c->pos == 4) {
