@@ -272,7 +272,7 @@ class AdminDash extends Controller
                 $user->shd = Input::get('shd');
                 $cert = new SoloCert;
                 $cert->cid = $id;
-                $cert->pos = 0;
+                $cert->pos = 1;
                 $cert->expiration = $expire;
                 $cert->status = 0;
                 $cert->save();
@@ -295,7 +295,7 @@ class AdminDash extends Controller
                 $user->chp = Input::get('chp');
                 $cert = new SoloCert;
                 $cert->cid = $id;
-                $cert->pos = 0;
+                $cert->pos = 2;
                 $cert->expiration = $expire;
                 $cert->status = 0;
                 $cert->save();
@@ -318,7 +318,7 @@ class AdminDash extends Controller
                 $user->mtv = Input::get('mtv');
                 $cert = new SoloCert;
                 $cert->cid = $id;
-                $cert->pos = 0;
+                $cert->pos = 3;
                 $cert->expiration = $expire;
                 $cert->status = 0;
                 $cert->save();
@@ -341,7 +341,7 @@ class AdminDash extends Controller
                 $user->app = Input::get('app');
                 $cert = new SoloCert;
                 $cert->cid = $id;
-                $cert->pos = 0;
+                $cert->pos = 4;
                 $cert->expiration = $expire;
                 $cert->status = 0;
                 $cert->save();
@@ -364,7 +364,7 @@ class AdminDash extends Controller
                 $user->ctr = Input::get('ctr');
                 $cert = new SoloCert;
                 $cert->cid = $id;
-                $cert->pos = 0;
+                $cert->pos = 5;
                 $cert->expiration = $expire;
                 $cert->status = 0;
                 $cert->save();

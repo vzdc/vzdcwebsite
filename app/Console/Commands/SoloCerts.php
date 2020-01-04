@@ -15,7 +15,7 @@ class SoloCerts extends Command
      *
      * @var string
      */
-    protected $signature = 'SoloCerts:Expiration';
+   
 
     /**
      * The console command description.
@@ -154,8 +154,12 @@ class SoloCerts extends Command
                 if($c->pos == 0) {
                     $user->twr = 0;
                 } elseif($c->pos == 1) {
+                    $user->shd = 0;
+                } elseif($c->pos == 3) {
+                    $user->mtv = 0;
+                } elseif($c->pos == 4) {
                     $user->app = 0;
-                } elseif($c->pos == 2) {
+                } elseif($c->pos == 5) {
                     $user->ctr = 0;
                 }
                 $user->save();
