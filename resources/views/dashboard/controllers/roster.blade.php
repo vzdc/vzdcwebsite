@@ -150,7 +150,7 @@ Roster
                             @endif
                             @if($c->twr == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->twr == 1)
+                            @elseif($c->twr == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->twr == 2)
                                 <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
@@ -159,35 +159,35 @@ Roster
                             @endif
                             @if($c->app == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->app == 1)
+                            @elseif($c->app == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->app == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->chp == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->chp == 1)
+                            @elseif($c->chp == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->chp == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->shd == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->shd == 1)
+                            @elseif($c->shd == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->shd == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->mtv == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->mtv == 1)
+                            @elseif($c->mtv == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->mtv == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->ctr == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->ctr == 1)
+                            @elseif($c->ctr == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->ctr == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
@@ -234,7 +234,7 @@ Roster
                             @endif
                             @if($c->twr == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->twr == 1)
+                            @elseif($c->twr == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->twr == 2)
                                 <td><center><i class="far fa-check-circle" style="color:green"></i></center></td>
@@ -243,35 +243,35 @@ Roster
                             @endif
                             @if($c->app == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->app == 1)
+                            @elseif($c->app == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->app == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->chp == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->chp == 1)
+                            @elseif($c->chp == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->chp == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->shd == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->shd == 1)
+                            @elseif($c->shd == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->shd == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->mtv == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->mtv == 1)
+                            @elseif($c->mtv == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->mtv == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>
                             @endif
                             @if($c->ctr == 0)
                                 <td><center><i class="fas fa-times" style="color:red"></i></center></td>
-                            @elseif($c->ctr == 1)
+                            @elseif($c->ctr == 99)
                                 <td><center><i class="fab fa-stripe-s" data-toggle="tooltip" title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}" style="color:#c1ad13"></i></center></td>
                             @elseif($c->ctr == 2)
                                 <td><center><i class="fas fa-check" style="color:green"></i></center></td>

@@ -159,13 +159,13 @@ class User extends Authenticatable
         }
     }
 
-    public function getSoloCertExpirationAttribute() {
-        $cert = SoloCert::where('controller_id', $this->id)->first();
-        if(isset($cert)) {
-            return $cert->expiration_date;
-        } else {
-            return "N/A";
-        }
+    public function getSoloAttribute() {
+        $cert = SoloCert::where('cid', $this->id)->where('status', 0)->first();
+        if($cert)
+            $date = Carbon::parse($cert->expiration)->format('m/d/Y');
+        else
+            $date = 'N/A';
+        return $date;
     }
 
     public function getLogs() {

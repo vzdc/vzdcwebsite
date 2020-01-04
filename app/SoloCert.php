@@ -2,18 +2,32 @@
 
 namespace App;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 class SoloCert extends Model
 {
     protected $table = 'solo_certs';
-    protected $fillable = ['id', 'controller_id', 'position', 'value', 'created_at', 'updated_at'];
 
-    public function getExpirationDateAttribute() {
-        $date = $this->created_at->addMonth();
-        $display = $date->format('m/d/Y');
+    public function getPosTxtAttribute() {
+        if($this->pos == 0) {
+            $pos = 'Tower';
+        } elseif($this->pos == 1) {
+            $pos = 'Approach';
+        }elseif($this->pos == 2) {
+            $pos = 'Approach';
+        }elseif($this->pos == 3) {
+            $pos = 'Approach';
+        }elseif($this->pos == 4) {
+            $pos = 'Approach';
+        }elseif($this->pos == 5) {
+            $pos = 'Approach';
+        }
+         elseif($this->pos == 2) {
+            $pos = 'Center';
+        } else {
+            $pos = 'N/A';
+        }
 
-        return $display;
+        return $pos;
     }
 }

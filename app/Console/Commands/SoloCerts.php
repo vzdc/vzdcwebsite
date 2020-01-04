@@ -3,7 +3,9 @@
 namespace App\Console\Commands;
 
 use App\SoloCert;
+use App\User;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Console\Command;
 
 class SoloCerts extends Command
@@ -20,7 +22,7 @@ class SoloCerts extends Command
      *
      * @var string
      */
-    protected $description = 'Checks the expiration of solo certifications and removes them if time has expired.';
+    protected $description = 'Updates solo certs. Runs daily.';
 
     /**
      * Create a new command instance.
@@ -39,52 +41,131 @@ class SoloCerts extends Command
      */
     public function handle()
     {
-        $time_now = Carbon::now()->subMonth()->timestamp;
-        $solo_certs = SoloCert::get();
+        $client = new Client();
+        $res = $client->request('GET', 'https://api.vatusa.net/v2/solo');
+        $solo_certs = json_decode($res->getBody());
 
         foreach($solo_certs as $s) {
-            $created = new Carbon($s->created_at);
-            $created = $created->timestamp;
-            if($created < $time_now) {
-                $controller = User::find($s->controller_id);
-                if($s->position == 'twr'){
-                    $rated = $controller->twr;
-                    if($s->value == $rated) {
-                        $controller->twr = $rated - 1;
-                        $controller->save();
+            if(! ($s === true || $s === false)) {
+                if ($s->position == 'DC_CTR') {
+                    $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
+                    if (!$current_cert) {
+                        $cert = new SoloCert;
+                        $cert->cid = $s->cid;
+                        $cert->pos = 2;
+                        $cert->expiration = $s->expires;
+                        $cert->status = 0;
+                        $cert->save();
+
+                        $user = User::find($s->cid);
+                        $user->ctr = 99;
+                        $user->save();
                     }
-                } elseif($s->position == 'chp'){
-                    $rated = $controller->chp;
-                    if($s->value == $rated) {
-                        $controller->chp = $rated - 1;
-                        $controller->save();
+                } elseif (substr($s->position, -3) == 'BWI') {
+                    $hcontrol = User::where('visitor', 0)->get();
+                    foreach ($hcontrol as $h) {
+                        if ($s->cid == $h->id) {
+                            $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
+                            if (!$current_cert) {
+                                $cert = new SoloCert;
+                                $cert->cid = $s->cid;
+                                $cert->pos = 1;
+                                $cert->expiration = $s->expires;
+                                $cert->status = 0;
+                                $cert->save();
+
+                                $user = $h;
+                                $user->app = 99;
+                                $user->save();
+                            }
+                        }
                     }
-                } elseif($s->position == 'app'){
-                    $rated = $controller->app;
-                    if($s->value == $rated) {
-                        $controller->app = $rated - 1;
-                        $controller->save();
-                    }
-                } elseif($s->position == 'ctr'){
-                    $rated = $controller->ctr;
-                    if($s->value == $rated) {
-                        $controller->ctr = $rated - 1;
-                        $controller->save();
-                    }
-                } elseif($s->position == 'mtv'){
-                    $rated = $controller->mtv;
-                    if($s->value == $rated) {
-                        $controller->mtv = $rated - 1;
-                        $controller->save();
-                    }
-                } elseif($s->position == 'shd'){
-                    $rated = $controller->shd;
-                    if($s->value == $rated) {
-                        $controller->shd = $rated - 1;
-                        $controller->save();
-                    }
+                    } elseif (substr($s->position, -3) == 'IAD') {
+                        $hcontrol = User::where('visitor', 0)->get();
+                        foreach ($hcontrol as $h) {
+                            if ($s->cid == $h->id) {
+                                $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
+                                if (!$current_cert) {
+                                    $cert = new SoloCert;
+                                    $cert->cid = $s->cid;
+                                    $cert->pos = 1;
+                                    $cert->expiration = $s->expires;
+                                    $cert->status = 0;
+                                    $cert->save();
+    
+                                    $user = $h;
+                                    $user->app = 99;
+                                    $user->save();
+                                }
+                            }
+                        }
+                    }elseif (substr($s->position, -3) == 'DCA') {
+                            $hcontrol = User::where('visitor', 0)->get();
+                            foreach ($hcontrol as $h) {
+                                if ($s->cid == $h->id) {
+                                    $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
+                                    if (!$current_cert) {
+                                        $cert = new SoloCert;
+                                        $cert->cid = $s->cid;
+                                        $cert->pos = 1;
+                                        $cert->expiration = $s->expires;
+                                        $cert->status = 0;
+                                        $cert->save();
+        
+                                        $user = $h;
+                                        $user->app = 99;
+                                        $user->save();
+                                    }
+                                }
+                            }
+                        }
+                            elseif (substr($s->position, -3) == 'CHP') {
+                                $hcontrol = User::where('visitor', 0)->get();
+                                foreach ($hcontrol as $h) {
+                                    if ($s->cid == $h->id) {
+                                        $current_cert = SoloCert::where('cid', $s->cid)->where('status', 0)->first();
+                                        if (!$current_cert) {
+                                            $cert = new SoloCert;
+                                            $cert->cid = $s->cid;
+                                            $cert->pos = 1;
+                                            $cert->expiration = $s->expires;
+                                            $cert->status = 0;
+                                            $cert->save();
+            
+                                            $user = $h;
+                                            $user->app = 99;
+                                            $user->save();
+                                        }
+                                    }
+                                }
+                            }   
                 }
-                $s->delete();
+            }
+        
+
+        $today = strval(Carbon::now()->subDay());
+        $today = substr($today, 0, 10);
+        $certs = SoloCert::get();
+
+        foreach($certs as $c) {
+            if($c->expiration <= $today && $c->status == 1) {
+                $c->status = 2;
+                $user = User::find($c->cid);
+                if($c->pos == 0) {
+                    $user->twr = 0;
+                } elseif($c->pos == 1) {
+                    $user->shd = 0;
+                }elseif($c->pos == 2) {
+                    $user->chp = 0;
+                } elseif($c->pos == 3) {
+                    $user->mtv = 0;
+                } elseif($c->pos == 4) {
+                    $user->app = 0;
+                } elseif($c->pos == 5) {
+                    $user->ctr = 0;
+                }
+                $user->save();
+                $c->save();
             }
         }
     }
