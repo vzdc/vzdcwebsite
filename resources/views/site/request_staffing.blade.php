@@ -60,9 +60,10 @@ Staffing Request
             {!! Form::textArea('additional_information', null, ['placeholder' => 'Please include all additional relevant information regarding the need for staffing.', 'class' => 'form-control']) !!}
         </div>
         <div class="g-recaptcha" data-sitekey="6LdZWMwUAAAAAAbX5WVKy9UG3Yf2swXPsqIKO4cf"></div>
-        <br>
+             <br>
         <button class="btn btn-success" type="submit">Send Request</button>
     {!! Form::close() !!}
+</div>
 </div>
 
 <script type="text/javascript">
