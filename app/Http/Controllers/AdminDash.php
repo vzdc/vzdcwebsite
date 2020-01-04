@@ -361,7 +361,7 @@ class AdminDash extends Controller
                 }
             } elseif(Input::get('ctr') == 99) {
                 $expire = Carbon::now()->addMonth()->format('Y-m-d');
-                $user->app = Input::get('ctr');
+                $user->ctr = Input::get('ctr');
                 $cert = new SoloCert;
                 $cert->cid = $id;
                 $cert->pos = 0;
@@ -369,7 +369,7 @@ class AdminDash extends Controller
                 $cert->status = 0;
                 $cert->save();
             } else {
-                $user->app = Input::get('ctr');
+                $user->ctr = Input::get('ctr');
             }
             $user->initials = Input::get('initials');
             $user->train_pwr = Input::get('train_pwr');
