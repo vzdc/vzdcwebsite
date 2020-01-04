@@ -64,7 +64,7 @@ New Feedback
             {!! Form::label('comments', 'Additional Comments:', ['class' => 'control-label']) !!}
             {!! Form::textArea('comments', null, ['placeholder' => 'Additional Comments', 'class' => 'form-control']) !!}
         </div>
-        <div class="g-recaptcha" data-sitekey="6LfgissUAAAAAGTWvTeEICOTABUSqEoPj6pTStkH"></div>
+        <div class="g-recaptcha" data-sitekey="6LdZWMwUAAAAAAbX5WVKy9UG3Yf2swXPsqIKO4cf"></div>
         <br>
         <button class="btn btn-success" type="submit">Send Feedback</button>
     {!! Form::close() !!}
