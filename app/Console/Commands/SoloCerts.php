@@ -61,7 +61,7 @@ class UpdateSoloCerts extends Command
                         $user->ctr = 99;
                         $user->save();
                     }
-                } elseif (substr($s->position, -3) == 'APP') {
+                } elseif (substr($s->position, -3) == 'BWI') {
                     $hcontrol = User::where('visitor', 0)->get();
                     foreach ($hcontrol as $h) {
                         if ($s->cid == $h->id) {
@@ -80,7 +80,7 @@ class UpdateSoloCerts extends Command
                             }
                         }
                     }
-                    } elseif (substr($s->position, -3) == 'CHP') {
+                    } elseif (substr($s->position, -3) == 'IAD') {
                         $hcontrol = User::where('visitor', 0)->get();
                         foreach ($hcontrol as $h) {
                             if ($s->cid == $h->id) {
@@ -99,7 +99,7 @@ class UpdateSoloCerts extends Command
                                 }
                             }
                         }
-                    }elseif (substr($s->position, -3) == 'SHD') {
+                    }elseif (substr($s->position, -3) == 'DCA') {
                             $hcontrol = User::where('visitor', 0)->get();
                             foreach ($hcontrol as $h) {
                                 if ($s->cid == $h->id) {
