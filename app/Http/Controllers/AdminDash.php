@@ -256,36 +256,77 @@ class AdminDash extends Controller
             } else {
                 $user->twr = Input::get('twr');
             }
-            if($user->app == 99) {
+            if($user->shd == 99) {
                 if(Input::get('shd') != 0) {
                     $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
                     if($solo) {
                         $solo->status = 1;
                         $solo->save();
                     }
-                    $user->app = Input::get('app');
+                    $user->shd = Input::get('shd');
                 } else {
-                    $user->app = 99;
+                    $user->shd = 99;
                 }
+            } elseif(Input::get('shd') == 99) {
+                $expire = Carbon::now()->addMonth()->format('Y-m-d');
+                $user->shd = Input::get('shd');
+                $cert = new SoloCert;
+                $cert->cid = $id;
+                $cert->pos = 0;
+                $cert->expiration = $expire;
+                $cert->status = 0;
+                $cert->save();
             } else {
-                $user->app = Input::get('shd');
+                $user->shd = Input::get('shd');
             }
-            if($user->app == 99) {
+            if($user->chp == 99) {
                 if(Input::get('chp') != 0) {
                     $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
                     if($solo) {
                         $solo->status = 1;
                         $solo->save();
                     }
-                    $user->app = Input::get('app');
+                    $user->chp = Input::get('chp');
                 } else {
-                    $user->app = 99;
+                    $user->chp = 99;
                 }
+            } elseif(Input::get('chp') == 99) {
+                $expire = Carbon::now()->addMonth()->format('Y-m-d');
+                $user->chp = Input::get('chp');
+                $cert = new SoloCert;
+                $cert->cid = $id;
+                $cert->pos = 0;
+                $cert->expiration = $expire;
+                $cert->status = 0;
+                $cert->save();
             } else {
-                $user->app = Input::get('shd');
+                $user->chp = Input::get('chp');
+            }
+            if($user->mtv == 99) {
+                if(Input::get('mtv') != 0) {
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    if($solo) {
+                        $solo->status = 1;
+                        $solo->save();
+                    }
+                    $user->chp = Input::get('chp');
+                } else {
+                    $user->chp = 99;
+                }
+            } elseif(Input::get('mtv') == 99) {
+                $expire = Carbon::now()->addMonth()->format('Y-m-d');
+                $user->mtv = Input::get('mtv');
+                $cert = new SoloCert;
+                $cert->cid = $id;
+                $cert->pos = 0;
+                $cert->expiration = $expire;
+                $cert->status = 0;
+                $cert->save();
+            } else {
+                $user->mtv = Input::get('mtv');
             }
             if($user->app == 99) {
-                if(Input::get('mtv') != 0) {
+                if(Input::get('app') != 0) {
                     $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
                     if($solo) {
                         $solo->status = 1;
@@ -295,8 +336,17 @@ class AdminDash extends Controller
                 } else {
                     $user->app = 99;
                 }
+            } elseif(Input::get('app') == 99) {
+                $expire = Carbon::now()->addMonth()->format('Y-m-d');
+                $user->app = Input::get('app');
+                $cert = new SoloCert;
+                $cert->cid = $id;
+                $cert->pos = 0;
+                $cert->expiration = $expire;
+                $cert->status = 0;
+                $cert->save();
             } else {
-                $user->app = Input::get('shd');
+                $user->app = Input::get('app');
             }
             if($user->ctr == 99) {
                 if(Input::get('ctr') != 0) {
