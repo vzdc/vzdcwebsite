@@ -251,7 +251,7 @@ class AdminDash extends Controller
                 $cert->cid = $id;
                 $cert->pos = 0;
                 $cert->expiration = $expire;
-                $cert->status = 0;
+                $cert->status = 1;
                 $cert->save();
             } else {
                 $user->twr = Input::get('twr');
@@ -297,7 +297,7 @@ class AdminDash extends Controller
                 $cert->cid = $id;
                 $cert->pos = 2;
                 $cert->expiration = $expire;
-                $cert->status = 0;
+                $cert->status = 1;
                 $cert->save();
             } else {
                 $user->chp = Input::get('chp');
@@ -320,7 +320,7 @@ class AdminDash extends Controller
                 $cert->cid = $id;
                 $cert->pos = 3;
                 $cert->expiration = $expire;
-                $cert->status = 0;
+                $cert->status = 1;
                 $cert->save();
             } else {
                 $user->mtv = Input::get('mtv');
@@ -343,7 +343,7 @@ class AdminDash extends Controller
                 $cert->cid = $id;
                 $cert->pos = 4;
                 $cert->expiration = $expire;
-                $cert->status = 0;
+                $cert->status = 1;
                 $cert->save();
             } else {
                 $user->app = Input::get('app');
@@ -366,7 +366,7 @@ class AdminDash extends Controller
                 $cert->cid = $id;
                 $cert->pos = 5;
                 $cert->expiration = $expire;
-                $cert->status = 0;
+                $cert->status = 1;
                 $cert->save();
             } else {
                 $user->ctr = Input::get('ctr');
