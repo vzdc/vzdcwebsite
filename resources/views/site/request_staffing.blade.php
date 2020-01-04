@@ -64,7 +64,7 @@ Staffing Request
         <button class="btn btn-success" type="submit">Send Request</button>
     {!! Form::close() !!}
 </div>
-</div>
+
 
 <script type="text/javascript">
 $(function () {
