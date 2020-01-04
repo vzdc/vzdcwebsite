@@ -355,12 +355,21 @@ class AdminDash extends Controller
                         $solo->status = 1;
                         $solo->save();
                     }
-                    $user->ctr = Input::get('ctr');
+                    $user->app = Input::get('ctr');
                 } else {
-                    $user->ctr = 99;
+                    $user->app = 99;
                 }
+            } elseif(Input::get('ctr') == 99) {
+                $expire = Carbon::now()->addMonth()->format('Y-m-d');
+                $user->app = Input::get('ctr');
+                $cert = new SoloCert;
+                $cert->cid = $id;
+                $cert->pos = 0;
+                $cert->expiration = $expire;
+                $cert->status = 0;
+                $cert->save();
             } else {
-                $user->ctr = Input::get('ctr');
+                $user->app = Input::get('ctr');
             }
             $user->initials = Input::get('initials');
             $user->train_pwr = Input::get('train_pwr');
