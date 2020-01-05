@@ -405,7 +405,7 @@ class FrontController extends Controller
             ]
         ]);
 	
-        echo "console.log('" . json_decode($response->getBody()) . "');";
+	dd(json_decode($response->getBody()));
 	    
         $r = json_decode($response->getBody())->success;
 	echo "console.log('" . $r . "');";
