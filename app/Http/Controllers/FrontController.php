@@ -400,7 +400,7 @@ class FrontController extends Controller
         $client = new Client;
         $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
             'form_params' => [
-                'secret' => env("GOOGLE_RECAPTCHA_SECRET"),
+                'secret' => "6LdZWMwUAAAAAJNlEM96jRuZ_19zUKDSL2NBBqA2",
                 'response' => $request->input('g-recaptcha-response'),
             ]
         ]);  
