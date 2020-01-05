@@ -404,7 +404,11 @@ class FrontController extends Controller
                 'response' => $request->input('g-recaptcha-response'),
             ]
         ]);
+	
+        echo "console.log('" . $response . "');";
+	    
         $r = json_decode($response->getBody())->success;
+	echo "console.log('" . $r . "');";
         if($r == false) {
             return redirect()->back()->with('error', 'You must complete the ReCaptcha to continue.');
         }
