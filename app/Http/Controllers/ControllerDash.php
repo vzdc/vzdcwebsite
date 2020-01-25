@@ -317,6 +317,7 @@ class ControllerDash extends Controller
                                                         ->with('your_registration1', $your_registration1)->with('your_registration2', $your_registration2)->with('your_registration3', $your_registration3);
     }
 
+
     public function signupForEvent(Request $request) {
         $id = $request->event_id;
         if($request->num1 != null) {
@@ -341,19 +342,29 @@ class ControllerDash extends Controller
                 $reg->choice_number = 1;
                 $reg->save();
             }
+        } else {
+            $reg = EventRegistration::find($request->yr1);
+            if($reg) {
+                $reg->delete();
+            }
         }
 
         if($request->num2 != null) {
             if($request->yr2 != null) {
                 $reg = EventRegistration::find($request->yr2);
-                $reg->event_id = $id;
-                $reg->controller_id = Auth::id();
-                $reg->position_id = $request->num2;
-                $reg->start_time = $request->start_time2;
-                $reg->end_time = $request->end_time2;
-                $reg->status = 0;
-                $reg->choice_number = 2;
-                $reg->save();
+                if($request->num2 == null) {
+                    $reg->delete();
+                } else {
+                    $reg->event_id = $id;
+
+                    $reg->controller_id = Auth::id();
+                    $reg->position_id = $request->num2;
+                    $reg->start_time = $request->start_time2;
+                    $reg->end_time = $request->end_time2;
+                    $reg->status = 0;
+                    $reg->choice_number = 2;
+                    $reg->save();
+                }
             } else {
                 $reg = new EventRegistration;
                 $reg->event_id = $id;
@@ -364,20 +375,30 @@ class ControllerDash extends Controller
                 $reg->status = 0;
                 $reg->choice_number = 2;
                 $reg->save();
+            }
+        } else {
+            $reg = EventRegistration::find($request->yr2);
+            if($reg) {
+                $reg->delete();
             }
         }
 
         if($request->num3 != null) {
             if($request->yr3 != null) {
                 $reg = EventRegistration::find($request->yr3);
-                $reg->event_id = $id;
-                $reg->controller_id = Auth::id();
-                $reg->position_id = $request->num3;
-                $reg->start_time = $request->start_time3;
-                $reg->end_time = $request->end_time3;
-                $reg->status = 0;
-                $reg->choice_number = 3;
-                $reg->save();
+                if($request->num3 == null) {
+                    $reg->delete();
+                } else {
+                    $reg->event_id = $id;
+
+                    $reg->controller_id = Auth::id();
+                    $reg->position_id = $request->num3;
+                    $reg->start_time = $request->start_time3;
+                    $reg->end_time = $request->end_time3;
+                    $reg->status = 0;
+                    $reg->choice_number = 3;
+                    $reg->save();
+                }
             } else {
                 $reg = new EventRegistration;
                 $reg->event_id = $id;
@@ -389,9 +410,25 @@ class ControllerDash extends Controller
                 $reg->choice_number = 3;
                 $reg->save();
             }
+        } else {
+            $reg = EventRegistration::find($request->yr3);
+            if($reg) {
+                $reg->delete();
+            }
         }
 
         return redirect('/dashboard/controllers/events/view/'.$id)->with('success', 'Your event registration has been saved successfully.');
+    }
+
+    public function unsignupForEvent($id) {
+        // Get the position request to be deleted
+        $request = EventRegistration::find($id);
+
+        // Delete the request
+        $request->delete();
+
+        // Go back
+        return redirect()->back()->with('success', 'Your registration has been removed successfully.');
     }
 
     public function sceneryIndex(Request $request) {
