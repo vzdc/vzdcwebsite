@@ -9,7 +9,7 @@
     </div>
     <div class="container">
         <p class="footer-copyright">
-            © {{ now()->year }} Washington Virtual ARTCC
+            ©{{ now()->year }} Washington Virtual ARTCC
         </p>
     </div>
 </footer>
