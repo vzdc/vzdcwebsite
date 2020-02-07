@@ -9,7 +9,7 @@
     </div>
     <div class="container">
         <p class="footer-copyright">
-            © 2019 Washington Virtual ARTCC
+            © 2020 Washington Virtual ARTCC
         </p>
     </div>
 </footer>
