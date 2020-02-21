@@ -856,7 +856,7 @@ class AdminDash extends Controller
             foreach($event_requests as $e) {
                 $e->delete();
             }
-            $user->delete();
+            $user->status = 2;
 
             $audit = new Audit;
             $audit->cid = Auth::id();
@@ -1695,7 +1695,6 @@ class AdminDash extends Controller
         } else
             return redirect()->back()->with('success', 'The removal has failed.');
     }
-
     public function DossierIndex(Request $request) {
         $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
         if($request->id != null) {
