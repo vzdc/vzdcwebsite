@@ -47,35 +47,33 @@
                 <b id="caret-admin" class="float-right fas fa-caret-left"></b>
             </p>
             <div class="content">
-                @if(Auth::user()->can('staff'))
-                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/calendar') }}" href="/dashboard/admin/calendar">Calendar/News</a>
-                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/airports') }}" href="/dashboard/admin/airports">Airport Management</a>
-                @endif
-                @if(Auth::user()->can('scenery'))
-                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/scenery') }}" href="/dashboard/admin/scenery">Scenery Management</a>
-                @endif
-                @if(Auth::user()->can('snrStaff'))
-                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/feedback') }}" href="/dashboard/admin/feedback">Feedback Management</a>
-                @endif
-                @if(Auth::user()->can('email'))
-                    <a class="nav-link" href="https://mail.vzdc.org" target="_blank">Email</a>
-                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/email/send') }}" href="/dashboard/admin/email/send">Send New Email</a>
-                @endif
-                @if(Auth::user()->can('staff'))
-                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/announcement') }}" href="/dashboard/admin/announcement">Announcement</a>
-                @endif
-                @if(Auth::user()->can('snrStaff'))
-                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/incident') }}" href="/dashboard/admin/incident">Incident Report Management</a>
-                @endif
-                @if(Auth::user()->can('roster'))
-                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/bronze-mic') }}" href="/dashboard/admin/bronze-mic">Bronze Mic Management</a>
-                @endif
-                @if(Auth::user()->can('snrStaff'))
-                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/audits') }}" href="/dashboard/admin/audits">Website Activity</a>
-                @endif
-                @if(Auth::user()->can('staff'))
-                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/dossier') }}" href="/dashboard/admin/dossier">Dossier Entries</a>
-                @endif
+            @if(Auth::user()->can('staff'))
+                <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/airports') }}" href="/dashboard/admin/airports">Airport Management</a>
+                <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/announcement') }}" href="/dashboard/admin/announcement">Announcement</a>
+            @endif
+            @if(Auth::user()->can('roster'))
+                <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/bronze-mic') }}" href="/dashboard/admin/bronze-mic">Bronze Mic Management</a>
+            @endif
+            @if(Auth::user()->can('staff'))
+                <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/calendar') }}" href="/dashboard/admin/calendar">Calendar/News</a>
+                <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/dossier') }}" href="/dashboard/admin/dossier">Dossier Entries</a>
+            @endif
+            @if(Auth::user()->can('email'))
+                <a class="nav-link" href="https://mail.vzdc.org" target="_blank">Email</a>            
+            @endif
+            @if(Auth::user()->can('snrStaff'))
+                <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/feedback') }}" href="/dashboard/admin/feedback">Feedback Management</a>
+                <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/incident') }}" href="/dashboard/admin/incident">Incident Report Management</a>
+            @endif
+            @if(Auth::user()->can('scenery'))
+                <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/scenery') }}" href="/dashboard/admin/scenery">Scenery Management</a>
+            @endif
+            @if(Auth::user()->can('email'))
+                <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/email/send') }}" href="/dashboard/admin/email/send">Send New/Mass Email</a>       
+            @endif
+            @if(Auth::user()->can('snrStaff'))
+                <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/audits') }}" href="/dashboard/admin/audits">Website Activity</a>
+            @endif
             </div>
         @endif
         <div class="dropdown-divider"></div>
