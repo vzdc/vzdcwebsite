@@ -1718,7 +1718,7 @@ class AdminDash extends Controller
         public function DossierSearch(Request $request) {
         $search_result = User::find($request->cid);
         if($search_result != null) {
-            return redirect('/dashboard/training/tickets?id='.$search_result->id);
+            return redirect('/dashboard/admin/dossier?id='.$search_result->id);
         } else {
             return redirect()->back()->with('error', 'There is not controlling that exists with this CID.');
         }
