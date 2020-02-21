@@ -13,11 +13,11 @@ Dossier Entries
 <br>
 
 <div class="container">
-    @if($search_result != null)
-        <a class="btn btn-primary" href="/dashboard/training/tickets/new?id={{ $search_result->id }}">Submit New Training Ticket</a>
-    @else
-        <a class="btn btn-primary" href="/dashboard/training/tickets/new">Submit New Training Ticket</a>
-    @endif
+//    @if($search_result != null)
+//        <a class="btn btn-primary" href="/dashboard/training/tickets/new?id={{ $search_result->id }}">Submit New Training Ticket</a>
+//    @else
+//        <a class="btn btn-primary" href="/dashboard/training/tickets/new">Submit New Training Ticket</a>
+//    @endif
     <br><br>
     <h5>Search Dossier Entries:</h5>
     {!! Form::open(['url' => '/dashboard/admin/dossier/search']) !!}
