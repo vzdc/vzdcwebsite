@@ -59,11 +59,14 @@ Dossier Entries
                         <tr>
                             <td><a href="/dashboard/training/tickets/view/{{ $t->id }}">{{ $t->date }}</a></td>
                             <td>{{ $t->user_submitter }}</td>
-                            <td>{{ $t->facility_name }} {{ $t->position_name }}</td>
-                            <td>{{ $t->type_name }}</td>
-                            <td>{{ $t->start_time }}z</td>
-                            <td>{{ $t->end_time }}z</td>
-                            <td>@if($t->no_show == '1') <i class="fas fa-check" style="color:red"></i>@endif</td>
+                            <td>{{ $t->content }}</td>
+                            <td>{{ $t->created_at }}</td>
+                            <td>
+                                <form action="/dashboard/admin/logs/delete/{{$l->id}}" method="POST">
+                                @csrf
+                                <button class="btn btn-danger" type="submit">Remove</button>
+                            </form>
+                           </td>
                         </tr>
                     @endforeach
                 @else
