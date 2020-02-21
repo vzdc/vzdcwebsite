@@ -20,7 +20,7 @@ Dossier Entries
     @endif
     <br><br>
     <h5>Search Dossier Entries:</h5>
-    {!! Form::open(['url' => '/dashboard/admin/dossier']) !!}
+    {!! Form::open(['url' => '/dashboard/admin/dossier/search']) !!}
         <div class="row">
             <div class="col-sm-3">
                 {!! Form::text('cid', null, ['placeholder' => 'Search by CID', 'class' => 'form-control']) !!}
@@ -31,7 +31,7 @@ Dossier Entries
             <div class="col-sm-1">
     {!! Form::close() !!}
     <center>OR</center>
-    {!! Form::open(['url' => '/dashboard/admin/dossier']) !!}
+    {!! Form::open(['url' => '/dashboard/admin/dossier/search']) !!}
             </div>
             <div class="col-sm-3">
                 {!! Form::select('cid', $controllers, null, ['placeholder' => 'Select Controller', 'class' => 'form-control']) !!}
