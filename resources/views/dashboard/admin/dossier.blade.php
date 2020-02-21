@@ -58,7 +58,13 @@ Dossier Entries
                     @foreach($tickets as $t)
                         <tr>
                             <td><a href="/dashboard/training/tickets/view/{{ $t->id }}">{{ $t->date }}</a></td>
-                            <td>{{ $t->user_submitter }}</td>
+                            <td>
+                                @if($t->getAuthor() != null)
+                                    {{$t->getAuthor()->first()->getFullNameAttribute()}}
+                                @else
+                                    {{$t->user_submitter}}
+                                @endif
+                            </td>
                             <td>{{ $t->content }}</td>
                             <td>{{ $t->created_at }}</td>
                             <td>
