@@ -222,6 +222,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::get('/archive/{id}', 'AdminDash@archiveIncident');
             Route::get('/delete/{id}', 'AdminDash@deleteIncident');
         });
+    	Route::prefix('dossier')->middleware('permission:Staff')->group(function() {
+		Route::get('/', 'AdminDash@DossierSearch');
+	});
     });
 });
 /*
