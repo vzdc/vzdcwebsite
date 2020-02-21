@@ -73,6 +73,8 @@
                 @if(Auth::user()->can('snrStaff'))
                     <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/audits') }}" href="/dashboard/admin/audits">Website Activity</a>
                 @endif
+                @if(Auth::user()->can('staff'))
+                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/dossier') }}" href="/dashboard/admin/dossier">Dossier Entries</a>
             </div>
         @endif
         <div class="dropdown-divider"></div>
