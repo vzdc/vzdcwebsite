@@ -62,7 +62,7 @@ Dossier Entries
                             <td>{{ $t->content }}</td>
                             <td>{{ $t->created_at }}</td>
                             <td>
-                                <form action="/dashboard/admin/logs/delete/{{$l->id}}" method="POST">
+                                <form action="/dashboard/admin/logs/delete/{{$t->id}}" method="POST">
                                 @csrf
                                 <button class="btn btn-danger" type="submit">Remove</button>
                             </form>
