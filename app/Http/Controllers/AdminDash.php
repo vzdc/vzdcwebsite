@@ -857,7 +857,7 @@ class AdminDash extends Controller
                 $e->delete();
             }
             $user->status = 2;
-            $user->save;
+            $user->save();
             $audit = new Audit;
             $audit->cid = Auth::id();
             $audit->ip = $_SERVER['REMOTE_ADDR'];
