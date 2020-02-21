@@ -1713,6 +1713,6 @@ class AdminDash extends Controller
             $tickets = null;
         }
 
-        return view('dashboard.training.tickets')->with('controllers', $controllers)->with('search_result', $search_result)->with('tickets', $tickets);
+        return view('dashboard.admin.dossier')->with('controllers', $controllers)->with('search_result', $search_result)->with('tickets', $tickets);
     }
 }
