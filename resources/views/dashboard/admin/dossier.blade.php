@@ -58,7 +58,7 @@ Dossier Entries
                     @foreach($tickets as $t)
                         <tr>
                             <td><a href="/dashboard/training/tickets/view/{{ $t->id }}">{{ $t->date }}</a></td>
-                            <td>{{ $t->trainer_name }}</td>
+                            <td>{{ $t->user_submitter }}</td>
                             <td>{{ $t->facility_name }} {{ $t->position_name }}</td>
                             <td>{{ $t->type_name }}</td>
                             <td>{{ $t->start_time }}z</td>
