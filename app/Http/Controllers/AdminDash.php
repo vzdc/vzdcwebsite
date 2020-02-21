@@ -1715,4 +1715,13 @@ class AdminDash extends Controller
 
         return view('dashboard.admin.dossier')->with('controllers', $controllers)->with('search_result', $search_result)->with('tickets', $tickets);
     }
+        public function DossierSearch(Request $request) {
+        $search_result = User::find($request->cid);
+        if($search_result != null) {
+            return redirect('/dashboard/training/tickets?id='.$search_result->id);
+        } else {
+            return redirect()->back()->with('error', 'There is not controlling that exists with this CID.');
+        }
+    }
+    
 }
