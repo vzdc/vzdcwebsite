@@ -1696,4 +1696,23 @@ class AdminDash extends Controller
             return redirect()->back()->with('success', 'The removal has failed.');
     }
 
+    public function DossierSearch(Request $request) {
+        $controllers = User::where('status', '1')->where('canTrain', '1')->orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
+        if($request->id != null) {
+            $search_result = User::find($request->id);
+        } else {
+            $search_result = null;
+        }
+        if($search_result != null) {
+            $tickets_sort = TrainingTicket::where('controller_id', $search_result->id)->get()->sortByDesc(function($t) {
+                return strtotime($t->date.' '.$t->start_time);
+            })->pluck('id');
+            $tickets_order = implode(',',array_fill(0, count($tickets_sort), '?'));
+            $tickets = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(25);
+        } else {
+            $tickets = null;
+        }
+
+        return view('dashboard.training.tickets')->with('controllers', $controllers)->with('search_result', $search_result)->with('tickets', $tickets);
+    }
 }
