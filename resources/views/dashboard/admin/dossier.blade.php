@@ -57,9 +57,8 @@ Dossier Entries
                 @if($tickets->count() > 0)
                     @foreach($tickets as $t)
                         <tr>
-                            <td><a href="/dashboard/training/tickets/view/{{ $t->id }}">{{ $t->date }}</a></td>
                             <td>
-                                @if($t->getAuthor() != null)
+                                 @if($t->getAuthor() != null)
                                     {{$t->getAuthor()->first()->getFullNameAttribute()}}
                                 @else
                                     {{$t->user_submitter}}
