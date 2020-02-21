@@ -1696,7 +1696,7 @@ class AdminDash extends Controller
             return redirect()->back()->with('success', 'The removal has failed.');
     }
 
-    public function DossierSearch(Request $request) {
+    public function DossierIndex(Request $request) {
         $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
         if($request->id != null) {
             $search_result = User::find($request->id);
