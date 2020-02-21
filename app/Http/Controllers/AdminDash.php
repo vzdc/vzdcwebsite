@@ -824,24 +824,38 @@ class AdminDash extends Controller
     }
 
     public function storeVisitor(Request $request) {
-        $user = new User;
-        $user->id = Input::get('cid');
-        $user->fname = Input::get('fname');
-        $user->lname = Input::get('lname');
-        $user->email = Input::get('email');
-        $user->initials = Input::get('initials');
-        $user->rating_id = Input::get('rating_id');
-        $user->visitor = '1';
-        $user->visitor_from = Input::get('visitor_from');
-        $user->status = '1';
-        $user->added_to_facility = Carbon::now();
-        $user->save();
-
-        $audit = new Audit;
-        $audit->cid = Auth::id();
-        $audit->ip = $_SERVER['REMOTE_ADDR'];
-        $audit->what = Auth::user()->full_name.' added the visitor '.$user->full_name.'.';
-        $audit->save();
+        $userid = Input::get('cid');
+        if(User::find($userid) !== null) {
+            $user = User::find($userid);
+            $user->status = 1;
+            $user->save();
+            $audit = new Audit;
+            $audit->cid = Auth::id();
+            $audit->ip = $_SERVER['REMOTE_ADDR'];
+            $audit->what = Auth::user()->full_name.' added the visitor '.$user->full_name.'.';
+            $audit->save();
+        }
+        else {
+            $user = new User;
+            $user->id = Input::get('cid');
+            $user->fname = Input::get('fname');
+            $user->lname = Input::get('lname');
+            $user->email = Input::get('email');
+            $user->initials = Input::get('initials');
+            $user->rating_id = Input::get('rating_id');
+            $user->visitor = '1';
+            $user->visitor_from = Input::get('visitor_from');
+            $user->status = '1';
+            $user->added_to_facility = Carbon::now();
+            $user->save();
+    
+            $audit = new Audit;
+            $audit->cid = Auth::id();
+            $audit->ip = $_SERVER['REMOTE_ADDR'];
+            $audit->what = Auth::user()->full_name.' added the visitor '.$user->full_name.'.';
+            $audit->save();
+        }
+      
 
         return redirect('/dashboard/admin/roster/visit/requests')->with('success', 'The visitor has been successfully added to the roster.');
     }
