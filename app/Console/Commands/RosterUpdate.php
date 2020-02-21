@@ -62,6 +62,9 @@ class RosterUpdate extends Command
                 $user->rating_id = $r->rating;
                 $user->visitor = '0';
                 $user->added_to_facility = substr($r->facility_join, 0, 10).' '.substr($r->facility_join, 11, 8);
+                if ($user->status == 2) {
+                    $user->status = 1;
+                }
                 $user->save();
             } else {
                 $user = new User;
@@ -233,7 +236,8 @@ class RosterUpdate extends Command
                     foreach($event_requests as $e) {
                         $e->delete();
                     }
-                    $use->delete();
+                    $use->status = 2;
+                    $use->save();
                 }
             }
         }

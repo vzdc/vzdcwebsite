@@ -824,24 +824,38 @@ class AdminDash extends Controller
     }
 
     public function storeVisitor(Request $request) {
-        $user = new User;
-        $user->id = Input::get('cid');
-        $user->fname = Input::get('fname');
-        $user->lname = Input::get('lname');
-        $user->email = Input::get('email');
-        $user->initials = Input::get('initials');
-        $user->rating_id = Input::get('rating_id');
-        $user->visitor = '1';
-        $user->visitor_from = Input::get('visitor_from');
-        $user->status = '1';
-        $user->added_to_facility = Carbon::now();
-        $user->save();
-
-        $audit = new Audit;
-        $audit->cid = Auth::id();
-        $audit->ip = $_SERVER['REMOTE_ADDR'];
-        $audit->what = Auth::user()->full_name.' added the visitor '.$user->full_name.'.';
-        $audit->save();
+        $userid = Input::get('cid');
+        if(User::find($userid) !== null) {
+            $user = User::find($userid);
+            $user->status = 1;
+            $user->save();
+            $audit = new Audit;
+            $audit->cid = Auth::id();
+            $audit->ip = $_SERVER['REMOTE_ADDR'];
+            $audit->what = Auth::user()->full_name.' added the visitor '.$user->full_name.'.';
+            $audit->save();
+        }
+        else {
+            $user = new User;
+            $user->id = Input::get('cid');
+            $user->fname = Input::get('fname');
+            $user->lname = Input::get('lname');
+            $user->email = Input::get('email');
+            $user->initials = Input::get('initials');
+            $user->rating_id = Input::get('rating_id');
+            $user->visitor = '1';
+            $user->visitor_from = Input::get('visitor_from');
+            $user->status = '1';
+            $user->added_to_facility = Carbon::now();
+            $user->save();
+    
+            $audit = new Audit;
+            $audit->cid = Auth::id();
+            $audit->ip = $_SERVER['REMOTE_ADDR'];
+            $audit->what = Auth::user()->full_name.' added the visitor '.$user->full_name.'.';
+            $audit->save();
+        }
+      
 
         return redirect('/dashboard/admin/roster/visit/requests')->with('success', 'The visitor has been successfully added to the roster.');
     }
@@ -856,8 +870,8 @@ class AdminDash extends Controller
             foreach($event_requests as $e) {
                 $e->delete();
             }
-            $user->delete();
-
+            $user->status = 2;
+            $user->save();
             $audit = new Audit;
             $audit->cid = Auth::id();
             $audit->ip = $_SERVER['REMOTE_ADDR'];
@@ -1695,5 +1709,32 @@ class AdminDash extends Controller
         } else
             return redirect()->back()->with('success', 'The removal has failed.');
     }
+    public function DossierIndex(Request $request) {
+        $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
+        if($request->id != null) {
+            $search_result = User::find($request->id);
+        } else {
+            $search_result = null;
+        }
+        if($search_result != null) {
+            $tickets_sort = MemberLog::where('user_target', $search_result->id)->get()->sortByDesc(function($t) {
+                return strtotime($t->date);
+            })->pluck('id');
+            $tickets_order = implode(',',array_fill(0, count($tickets_sort), '?'));
+            $tickets = MemberLog::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(25);
+        } else {
+            $tickets = null;
+        }
 
+        return view('dashboard.admin.dossier')->with('controllers', $controllers)->with('search_result', $search_result)->with('tickets', $tickets);
+    }
+        public function DossierSearch(Request $request) {
+        $search_result = User::find($request->cid);
+        if($search_result != null) {
+            return redirect('/dashboard/admin/dossier?id='.$search_result->id);
+        } else {
+            return redirect()->back()->with('error', 'There is not controlling that exists with this CID.');
+        }
+    }
+    
 }
