@@ -1733,7 +1733,7 @@ class AdminDash extends Controller
         if($search_result != null) {
             return redirect('/dashboard/admin/dossier?id='.$search_result->id);
         } else {
-            return redirect()->back()->with('error', 'There is not controlling that exists with this CID.');
+            return redirect()->back()->with('error', 'There is not controller in the DB that exists with this CID.');
         }
     }
     
