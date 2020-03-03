@@ -35,6 +35,7 @@
                         <a class="dropdown-item" href="/controllers/files">Files</a>
                         <a class="dropdown-item" href="/controllers/stats">Controller Stats</a>
                         <a class="dropdown-item" href="https://status.vzdc.org" target="_blank">Status Page </a>
+                        <a class="dropdown-item" href="https://network-status.vatsim.net/" target="_blank">VATSIM Status</a>
                         
                     </div>
                 </li>
