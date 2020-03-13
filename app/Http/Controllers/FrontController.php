@@ -365,6 +365,10 @@ class FrontController extends Controller
         return redirect('/')->with('success', 'Thank you for the feedback! It has been recieved successfully.');
     }
 
+    public function showPrivacyPolicy() {
+        return view('site.privacy_policy');
+    }
+	
     public function showFiles() {
         $vrc = File::where('type', 0)->orderBy('name', 'ASC')->get();
         $vstars = File::where('type', 1)->orderBy('name', 'ASC')->get();
