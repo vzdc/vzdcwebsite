@@ -31,6 +31,7 @@ Route::post('/pilots/request-staffing', 'FrontController@staffRequest');
 Route::get('/feedback/new', 'FrontController@newFeedback');
 Route::post('/feedback/new', 'FrontController@saveNewFeedback');
 Route::get('controllers/files', 'FrontController@showFiles');
+Route::get('pilots/privacy-policy',FrontController@showPrivacyPolicy');
 // Route::get('/controllers/files/download/{id}', 'FrontController@downloadFile');
 /*
 *   End Front Page Stuff
