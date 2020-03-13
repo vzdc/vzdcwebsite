@@ -17,26 +17,26 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="pilots" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Pilots</a>
                     <div class="dropdown-menu" aria-labelledby="pilots">
-                        <a class="dropdown-item" href="http://www.aircharts.org/" target="_blank">Charts</a>
-                        <a class="dropdown-item" href="http://www.vatstar.com/" target="_blank">VATSTAR Training</a>
-                        <a class="dropdown-item" href="https://www.aviationweather.gov/" target="_blank">Weather</a>
-                        <a class="dropdown-item" href="/pilots/scenery">Scenery</a>
                         <a class="dropdown-item" href="/pilots/airports">Airports</a>
-                        <a class="dropdown-item" href="/pilots/request-staffing">Request Staffing</a>
+                        <a class="dropdown-item" href="http://www.aircharts.org/" target="_blank">Charts</a>
                         <a class="dropdown-item" href="http://www.flightaware.com/statistics/ifr-route/" target="_blank">IFR Routes</a>
                         <a class="dropdown-item" href="/iadgates.php">KIAD Gates In Use</a>
+                        <a class="dropdown-item" href="/pilots/privacy_policy">Privacy Policy</a>                        
+                        <a class="dropdown-item" href="/pilots/request-staffing">Request Staffing</a>
+                        <a class="dropdown-item" href="/pilots/scenery">Scenery</a>
+                        <a class="dropdown-item" href="http://www.vatstar.com/" target="_blank">VATSTAR Training</a>
+                        <a class="dropdown-item" href="https://www.aviationweather.gov/" target="_blank">Weather</a>
                     </div>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="controllers" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Controllers</a>
                     <div class="dropdown-menu" aria-labelledby="controllers">
+                        <a class="dropdown-item" href="/controllers/stats">Controller Stats</a>
+                        <a class="dropdown-item" href="/controllers/files">Files</a>
                         <a class="dropdown-item" href="/controllers/roster">Roster</a>
                         <a class="dropdown-item" href="/controllers/staff">Staff</a>
-                        <a class="dropdown-item" href="/controllers/files">Files</a>
-                        <a class="dropdown-item" href="/controllers/stats">Controller Stats</a>
-                        <a class="dropdown-item" href="https://status.vzdc.org" target="_blank">Status Page </a>
                         <a class="dropdown-item" href="https://network-status.vatsim.net/" target="_blank">VATSIM Status</a>
-                        
+                        <a class="dropdown-item" href="https://status.vzdc.org" target="_blank">Status Page </a>
                     </div>
                 </li>
                 @if(Auth::guest())
