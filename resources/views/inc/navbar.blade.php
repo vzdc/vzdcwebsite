@@ -36,7 +36,7 @@
                         <a class="dropdown-item" href="/controllers/roster">Roster</a>
                         <a class="dropdown-item" href="/controllers/staff">Staff</a>
                         <a class="dropdown-item" href="https://network-status.vatsim.net/" target="_blank">VATSIM Status</a>
-                        <a class="dropdown-item" href="https://status.vzdc.org" target="_blank">Status Page </a>
+                        <a class="dropdown-item" href="https://status.vzdc.org" target="_blank">ZDC Status</a>
                     </div>
                 </li>
                 @if(Auth::guest())
