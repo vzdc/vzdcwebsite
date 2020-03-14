@@ -8,7 +8,7 @@ vZDC - Currency Hours
 <span class="border border-light" style="background-color:#F0F0F0">
     <div class="container">
         &nbsp;
-        <h2>Currency Hours</h2>
+<h2>Currency Hours</h2>
 	<br>
     </div>
 </span>
