@@ -12,6 +12,11 @@ vZDC - Privacy Policy
         <h2>Privacy Policy</h2>
 	<br>
 	<br>
+    </div>
+</span>
+	<br>
+	<br>
+	<br>
 vZDC ARTCC adheres and refers to <a href="https://www.vatusa.net/info/privacy">VATUSA</a> and <a href="https://www.vatsim.net/documents">VATSIM</a> on privacy policy matters.
         &nbsp;
 	<br>
@@ -25,8 +30,5 @@ vZDC ARTCC adheres and refers to <a href="https://www.vatusa.net/info/privacy">V
 	<br>
 	<br>
 	<br>
-	
-    </div>
-</span>
 <br>
 @endsection
