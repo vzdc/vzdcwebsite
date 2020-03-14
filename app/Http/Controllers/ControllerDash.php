@@ -574,8 +574,7 @@ class ControllerDash extends Controller
     public function showIron_Mic() {
         return view('dashboard.controllers.iron_mic');
     }
-    showIron_Mic
-    
+   
     public function incidentReport() {
         $controllers = User::where('status', 1)->orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
         return view('dashboard.controllers.incident_report')->with('controllers', $controllers);
