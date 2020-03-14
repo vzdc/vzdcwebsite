@@ -12,6 +12,6 @@ vZDC - Currency Hours
 	<br>
     </div>
 </span>
-
+<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTqTREEo7fnMvxhy0IpFwpZg0JVoFNM4hcsv-Th6zL4nr75ucC1mx_L_tm7t2tbBVXQY3g93CQLJ4t2/pubhtml?widget=true&amp;headers=true"></iframe>
 @endsection
-<iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vTqTREEo7fnMvxhy0IpFwpZg0JVoFNM4hcsv-Th6zL4nr75ucC1mx_L_tm7t2tbBVXQY3g93CQLJ4t2/pubhtml?widget=true&amp;headers=false"></iframe>
+
