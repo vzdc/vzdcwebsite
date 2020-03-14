@@ -566,6 +566,10 @@ class ControllerDash extends Controller
         return redirect()->back()->with('success', 'You have been opted out successfully and will no longer receive broadcast emails from the vZDC ARTCC.');
     }
 
+    public function showCurrency_Hours() {
+        return view('site.dashboard.controllers.Currency_Hours');
+    }
+    
     public function incidentReport() {
         $controllers = User::where('status', 1)->orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
         return view('dashboard.controllers.incident_report')->with('controllers', $controllers);
