@@ -9,7 +9,7 @@
             @if(Auth::user()->rating_id >= 1)
                 <a class="nav-link {{ Nav::urlDoesContain('dashboard/controllers/teamspeak') }}" href="/dashboard/controllers/teamspeak">Teamspeak Information</a>
             @endif
-            <a class="nav-link" href="https://discord.gg/me9zury" target="_blank">ZDC Discord<font size="1" color="red"> -New!</font></a>
+            <a class="nav-link" href="https://discord.gg/me9zury" target="_blank">ZDC Discord</a>
             <a class="nav-link {{ Nav::urlDoesContain('dashboard/controllers/roster') }} {{ Nav::urlDoesContain('/dashboard/admin/roster') }}" href="/dashboard/controllers/roster">Roster</a>
             <a class="nav-link {{ Nav::urlDoesContain('dashboard/controllers/events') }} {{ Nav::urlDoesContain('dashboard/admin/events') }}" href="/dashboard/controllers/events">Events</a>
             <a class="nav-link {{ Nav::urlDoesContain('dashboard/controllers/files') }} {{ Nav::urlDoesContain('dashboard/admin/files') }}" href="/dashboard/controllers/files">Files</a>
