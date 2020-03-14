@@ -567,7 +567,7 @@ class ControllerDash extends Controller
     }
 
     public function showCurrency_Hours() {
-        return view('site.dashboard.controllers.Currency_Hours');
+        return view('dashboard.controllers.Currency_Hours');
     }
     
     public function incidentReport() {
