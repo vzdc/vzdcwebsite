@@ -79,6 +79,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::get('/search-airport/search', 'ControllerDash@searchAirportResult');
         Route::post('/report-bug', 'ControllerDash@reportBug');
 	Route::get('/currency_hours', 'ControllerDash@showCurrency_Hours');
+	Route::get('/iron_mic', 'ControllerDash@showIron_Mic');
         Route::prefix('incident')->group(function() {
             Route::get('/report', 'ControllerDash@incidentReport');
             Route::post('/report', 'ControllerDash@submitIncidentReport');
