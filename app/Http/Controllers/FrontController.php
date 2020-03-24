@@ -347,7 +347,7 @@ class FrontController extends Controller
         ]);
         $r = json_decode($response->getBody())->success;
         if($r != true) {
-            return redirect()->back()->withErrors($response);
+            return redirect()->back()->with($response);
         }
 
         $feedback = new Feedback;
