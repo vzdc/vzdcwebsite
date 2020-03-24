@@ -345,8 +345,10 @@ class FrontController extends Controller
                 'response' => $request->input('g-recaptcha-response'),
             ]
         ]);
-        echo(var_dump($response->getBody()));
         $r = json_decode($response->getBody())->success;
+        $responseDump = var_dump($response);
+        $successDump = var_dump($r);
+        echo("<script>console.log('Captcha Debug: respose object: " . $responseDump . " , Success: " . $successDump . "')</script>");
         if($r != true) {
             return redirect()->back()->with('error', 'You must complete the ReCaptcha to continue.');
         }
