@@ -341,14 +341,11 @@ class FrontController extends Controller
         $client = new Client;
         $response = $client->request('POST', 'https://www.google.com/recaptcha/api/siteverify', [
             'form_params' => [
-                'secret' => env('GOOGLE_CAPTCHA_SECRET'),
+                'secret' => Config::get('google.recaptcha'),
                 'response' => $request->input('g-recaptcha-response'),
             ]
         ]);
         $r = json_decode($response->getBody())->success;
-        $responseDump = var_dump($response);
-        $successDump = var_dump($r);
-        echo("<script>console.log('Captcha Debug: respose object: " . $responseDump . " , Success: " . $successDump . "')</script>");
         if($r != true) {
             return redirect()->back()->with('error', 'You must complete the ReCaptcha to continue.');
         }
