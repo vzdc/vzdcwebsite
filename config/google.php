@@ -2,6 +2,6 @@
 
 return [
 
-    'recaptcha' => env('GOOGLE_RECAPTCHA_SECRET'),
+    'recaptcha' => env('GOOGLE_CAPTCHA_SECRET'),
     
 ];
