@@ -1690,7 +1690,7 @@ class AdminDash extends Controller
     }
 
     public function createLog($id) {
-        if(auth()->user()->getStaffPositionAttribute() > 0) {
+        if(auth()->user()->getStaffPositionAttribute() > 0 || if(auth()->user()->getTrainPositionAttribute() > 0) {
             $log = new MemberLog;
             $log->user_target = $id;
             $log->user_submitter = auth()->user()->id;
