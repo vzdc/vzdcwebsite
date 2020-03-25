@@ -1702,12 +1702,15 @@ class AdminDash extends Controller
 
     }
     public function removeLog($id) {
-        $log = MemberLog::find($id);
-        if($log != null) {
-            $log->delete();
-            return redirect()->back()->with('success', 'The log has been removed successfully.');
+        if auth()->user()->getStaffPositionAttribute() < 3) {
+            $log = MemberLog::find($id);
+            if($log != null) {
+                $log->delete();
+                return redirect()->back()->with('success', 'The log has been removed successfully.');
+            } else
+                return redirect()->back()->with('success', 'The removal has failed.');
         } else
-            return redirect()->back()->with('success', 'The removal has failed.');
+            return redirect()->back()->with('error', 'Access Denied.');
     }
     public function DossierIndex(Request $request) {
         $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
