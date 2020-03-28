@@ -1704,7 +1704,7 @@ class AdminDash extends Controller
             Mail::send(['html' => 'emails.member_log'], ['controller' => $controller, 'submitter' => $submitter, 'content' => $content], function ($m) {
                 $m->from('wm@vzdc.org', 'vZDC Website Logging');
                 $m->subject('New Dossier Log Entry');
-                $m->to('srstaff@vzdc.org');
+                $m->to('atm@vzdc.org', 'datm@vzdc.org', 'ta@vzdc.org');
             });
             return redirect()->back()->with('success', 'The log has been created successfully.');
         }else
