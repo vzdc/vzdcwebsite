@@ -1702,7 +1702,7 @@ class AdminDash extends Controller
             $content = request()->get('content');
 
             Mail::send(['html' => 'emails.member_log'], ['controller' => $controller, 'submitter' => $submitter, 'content' => $content], function ($m) {
-                $m->from('webmaster@vzdc.org', 'vZDC Website Logging');
+                $m->from('wm@vzdc.org', 'vZDC Website Logging');
                 $m->subject('New Dossier Log Entry');
                 $m->to('srstaff@vzdc.org');
             });
