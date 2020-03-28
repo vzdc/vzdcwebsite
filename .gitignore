@@ -15,3 +15,6 @@ yarn-error.log
 favicon.ico
 favicon.gif
 /public/favicon.gif
+/public/VATSync.txt
+/public/iadgates.xml
+/storage/framework/cache/data
