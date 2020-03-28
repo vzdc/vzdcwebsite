@@ -1706,7 +1706,7 @@ class AdminDash extends Controller
             //     $m->subject('New Dossier Log Entry');
             //     $m->to('wm@vzdc.org');
             // });
-            Mail::send(['html' => 'emails.training_ticket'], ['ticket' => 'test', 'controller' => $controller, 'trainer' => 'test'], function ($m) {
+            Mail::send(['html' => 'emails.training_ticket'], ['controller' => $controller, 'submitter' => $controller, 'content' => 'test'], function ($m) {
                 $m->from('notams@vzdc.org', 'vZDC Training Department');
                 $m->subject('New Training Ticket Submitted');
                 $m->to('wm@vzdc.org');
