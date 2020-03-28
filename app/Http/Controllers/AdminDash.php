@@ -1698,10 +1698,12 @@ class AdminDash extends Controller
             $log->save();
 
             $controller = User::find($id);
-            $submitter = auth()->user()->$id;
+            $controller_name = $controller->fname . ' ' . $controller->lname;
+            $submitter = User::find(auth()->user()->id);
+            $submitter_name = $submitter->fname . ' ' . $submitter->lname;
             $content = request()->get('content');
 
-            Mail::send(['html' => 'emails.member_log'], ['controller' => $controller, 'submitter' => $submitter, 'content' => $content], function ($m) {
+            Mail::send(['html' => 'emails.member_log'], ['controller' => $controller_name, 'submitter' => $submitter_name, 'content' => $content], function ($m) {
                 $m->from('notams@vzdc.org', 'vZDC Website Logging');
                 $m->subject('New Dossier Log Entry');
                 $m->to('wm@vzdc.org');
