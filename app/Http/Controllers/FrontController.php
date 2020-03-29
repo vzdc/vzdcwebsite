@@ -36,10 +36,10 @@ class FrontController extends Controller
     public function home() {
         $atc = ATC::get();
         if($atc) {
-            $atl_ctr = 0;
-            $atl_app = 0;
-            $atl_twr = 0;
-            $clt_twr = 0;
+            $dc_ctr = 0;
+            $dca_app = 0;
+            $dca_twr = 0;
+            $iad_twr = 0;
 	        $bwi_twr = 0;
 
 //$a = ATC::where('position', 'IAD_TWR')->first();
@@ -49,14 +49,14 @@ class FrontController extends Controller
                 $position = substr($a->position, -3);
                 if($field == 'DCA' || $field == 'IAD' || $field == 'BWI' || $field == 'PCT') {
                     if($position == 'APP' || $position == 'DEP') {
-                        $atl_app = 1;
+                        $dca_app = 1;
                     } elseif($field == 'IAD') {
                         if($position == 'TWR' || $position == 'GND') {
-                            $clt_twr = 1;
+                            $iad_twr = 1;
                	        }
                      } elseif($field == 'DCA') {
                         if($position == 'TWR' || $position == 'GND') {
-                            $atl_twr = 1;
+                            $dca_twr = 1;
 		    }
 		     } elseif($field == 'BWI') {
 			if($position == 'TWR' || $position == 'GND') {
@@ -64,11 +64,11 @@ class FrontController extends Controller
 			}}
                 } elseif($field == 'DC_') {
                     if($position == 'CTR') {
-                        $atl_ctr = 1;
+                        $dc_ctr = 1;
                     }
                 } elseif($field == 'IAD') {
                     if($position == 'TWR' || $position == 'GND') {
-                        $clt_twr = 1;
+                        $iad_twr = 1;
                     }
                 }
             }
@@ -107,7 +107,7 @@ class FrontController extends Controller
         $flights = Overflight::where('dep', '!=', '')->where('arr', '!=', '')->take(15)->get();
         $flights_update = substr(OverflightUpdate::first()->updated_at, -8, 5);
 
-        return view('site.home')->with('clt_twr', $clt_twr)->with('atl_twr', $atl_twr)->with('atl_app', $atl_app)->with('atl_ctr', $atl_ctr)->with('bwi_twr', $bwi_twr)
+        return view('site.home')->with('iad_twr', $iad_twr)->with('dca_twr', $dca_twr)->with('dca_app', $dca_app)->with('dc_ctr', $dc_ctr)->with('bwi_twr', $bwi_twr)
                                 ->with('airports', $airports)->with('metar_last_updated', $metar_last_updated)
                                 ->with('controllers', $controllers)->with('controllers_update', $controllers_update)
                                 ->with('calendar', $calendar)->with('news', $news)->with('events', $events)
