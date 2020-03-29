@@ -424,7 +424,7 @@ class ControllerDash extends Controller
         // Get the position request to be deleted
         $request = EventRegistration::find($id);
         $current_time = new \DateTime('now +2 day');
-        $within_two_days = $request->start_time > $current_time;
+        $within_two_days = $request->start_time < $current_time;
         if (!$within_two_days) {
             // Not within 2 days, delete registration
             $request->delete();
