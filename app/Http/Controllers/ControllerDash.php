@@ -423,13 +423,17 @@ class ControllerDash extends Controller
     public function unsignupForEvent($id) {
         // Get the position request to be deleted
         $request = EventRegistration::find($id);
-
-        // Delete the request
-        $request->delete();
-
-        // Go back
-        return redirect()->back()->with('success', 'Your registration has been removed successfully.');
+        $current_time = new DateTime('now +2 day');
+        $within_two_days = $request->start_time > $current_time;
+        if (!$within_two_days) {
+            // Not within 2 days, delete registration
+            $request->delete();
+            return redirect()->back()->with('success', 'Your registration has been removed successfully.');
+        }
+        // Not within 2 days, send back with error and don't delete
+        return redirect()->back()->with('error', 'You cannot remove your registration within two days of an event.');
     }
+
 
     public function sceneryIndex(Request $request) {
         if($request->search == null) {
