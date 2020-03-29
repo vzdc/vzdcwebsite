@@ -40,29 +40,34 @@ class FrontController extends Controller
             foreach ($atc as $a) {
                 $field = substr($a->position, 0, 3);
                 $position = substr($a->position, -3);
+                if ($field == 'DC_') {
+                    if ($position == 'CTR') {
+                        $center = 1;
+                    }
+                } 
                 if ($field == 'DCA' || $field == 'IAD' || $field == 'BWI' || $field == 'PCT') {
                     if ($position == 'APP' || $position == 'DEP') {
                         $tracon = 1;
                     }
-                } elseif ($field == 'IAD') {
+                } 
+                if ($field == 'IAD') {
                     if ($position == 'TWR' || $position == 'GND') {
                         $iad = 1;
                     }
-                } elseif ($field == 'DCA') {
+                } 
+                if ($field == 'DCA') {
                     if ($position == 'TWR' || $position == 'GND') {
                         $dca = 1;
                     }
-                } elseif ($field == 'IAD') {
+                } 
+                if ($field == 'IAD') {
                     if ($position == 'TWR' || $position == 'GND') {
                         $iad = 1;
                     }
-                } elseif ($field == 'BWI') {
+                } 
+                if ($field == 'BWI') {
                     if ($position == 'TWR' || $position == 'GND') {
                         $bwi = 1;
-                    }
-                } elseif ($field == 'DC_') {
-                    if ($position == 'CTR') {
-                        $center = 1;
                     }
                 }
             }
@@ -101,7 +106,7 @@ class FrontController extends Controller
         $flights = Overflight::where('dep', '!=', '')->where('arr', '!=', '')->take(15)->get();
         $flights_update = substr(OverflightUpdate::first()->updated_at, -8, 5);
 
-        return view('site.home')->with('iad', $iad)->with('dca', $dca)->with('tracon', $tracon)->with('center', $center)->with('bwi', $bwi)
+        return view('site.home')->with('center', $center)->with('tracon', $tracon)->with('iad', $iad)->with('dca', $dca)->with('bwi', $bwi)
             ->with('airports', $airports)->with('metar_last_updated', $metar_last_updated)
             ->with('controllers', $controllers)->with('controllers_update', $controllers_update)
             ->with('calendar', $calendar)->with('news', $news)->with('events', $events)
