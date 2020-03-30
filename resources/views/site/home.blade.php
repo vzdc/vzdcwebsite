@@ -15,27 +15,27 @@ Home
                     <h5>The Virtual Washington ARTCC is the virtual representation of the real world Washington Center. Home of the first flight and the oldest continuously operating airport in the world, the airspace controlled by the Washington ARTCC is rich in history. With three major airports within 30 miles of the nation's capital, ZDC controllers handle some of the most complex airspace in the country. From the Carolinas up to New Jersey, including the busy arrival streams from the southeast into the three New York airports and Philadelphia, overflights to and from Boston, and the equally busy traffic flows to Atlanta, there is always something interesting going on at the Washington ARTCC.</h5>
                 </div>
                 <div class="col-sm-4">
-                    @if($atl_ctr == 1)
+                    @if($center == 1)
                         <div class="alert alert-success">Washington Center is ONLINE</div>
                     @else
                         <div class="alert alert-danger">Washington Center is OFFLINE</div>
                     @endif
-                    @if($atl_app == 1)
+                    @if($tracon == 1)
                         <div class="alert alert-success">POTOMAC TRACON is ONLINE</div>
                     @else
                         <div class="alert alert-danger">POTOMAC TRACON is OFFLINE</div>
                     @endif
-                    @if($atl_twr == 1)
+                    @if($dca == 1)
                         <div class="alert alert-success">DCA ATCT is ONLINE</div>
                     @else
                         <div class="alert alert-danger">DCA ATCT is OFFLINE</div>
                     @endif
-                    @if($clt_twr == 1)
+                    @if($iad == 1)
                         <div class="alert alert-success">IAD ATCT is ONLINE</div>
                     @else
                         <div class="alert alert-danger">IAD ATCT is OFFLINE</div>
                     @endif
-                    @if($bwi_twr == 1)
+                    @if($bwi == 1)
                         <div class="alert alert-success">BWI ATCT is ONLINE</div>
                     @else
                         <div class="alert alert-danger">BWI ATCT is OFFLINE</div>
