@@ -31,7 +31,7 @@ class OnlineControllerUpdate extends Command
 
     protected $facilities = [
 		/* CENTER */
-		'DC_0', 'DC_1', 'DC_2', 'DC_3', 'DC_5', 'DC_N', 'DC_S', 'DC_E', 'DC_W', 'DC_I',
+		'DC_C', 'DC_0', 'DC_1', 'DC_2', 'DC_3', 'DC_5', 'DC_N', 'DC_S', 'DC_E', 'DC_W', 'DC_I',
 		/* BRAVO */
 		'DCA_', 'IAD_', 'BWI_', 'PCT_', 'ADW_',
 		/* CHARLIE */
