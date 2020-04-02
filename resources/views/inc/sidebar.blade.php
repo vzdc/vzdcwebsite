@@ -48,7 +48,7 @@
                 <b id="caret-train" class="float-right fas fa-caret-left"></b>
             </p>
             <div class="content">
-            <b>*You are not authorized to schedule training. Please contact the TA for more info*</b>
+            <font size="2" color="red"><b>*You are not authorized to schedule training. Please contact the TA for more info*</b></font>
             </div>
         @endif
         @if(Auth::user()->can('staff') || Auth::user()->can('email') || Auth::user()->can('scenery') || Auth::user()->can('files') || Auth::user()->can('events'))
