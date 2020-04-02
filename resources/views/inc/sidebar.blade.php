@@ -41,6 +41,15 @@
                     @endif
                 @endif
             </div>
+        @else
+            <div class="dropdown-divider"></div>
+            <p class="collapsible-train" style="margin-left:-20px; cursor:pointer">
+                TRAINING
+                <b id="caret-train" class="float-right fas fa-caret-left"></b>
+            </p>
+            <div class="content">
+            Training has been restricted please reach out the TA for more information.
+            </div>
         @endif
         @if(Auth::user()->can('staff') || Auth::user()->can('email') || Auth::user()->can('scenery') || Auth::user()->can('files') || Auth::user()->can('events'))
             <div class="dropdown-divider"></div>
