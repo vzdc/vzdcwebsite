@@ -275,7 +275,7 @@ View Event
                                 </div>
                             @else
                                 @if(Auth::user()->canEvents != 1)
-                                    <b>***You are not authorized to signup for events, please contact the EC for more info***</b>
+                                    <font color="red"><b>***You are not authorized to signup for events, please contact the EC for more info***</b></font>
                                 @else
                                     Event registration is currently closed.
                                 @endif
