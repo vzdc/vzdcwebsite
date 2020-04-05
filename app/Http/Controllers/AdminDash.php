@@ -1723,8 +1723,40 @@ class AdminDash extends Controller
             return redirect()->back()->with('error', 'Access Denied.');
 
     }
+
+    public function createLogManual() {
+        if (auth()->user()->getStaffPositionAttribute() <= 3) {
+            try {
+                $id = intval(request()->get('cid'));
+            }
+            catch(\Exception $e) {
+                return redirect()->back()->with('error', 'Invalid CID.');
+            }
+
+            $log = new MemberLog;
+            $log->user_target = $id;
+            $log->user_submitter = auth()->user()->id;
+            $log->content = request()->get('content');
+            $log->save();
+
+            $submitter = User::find(auth()->user()->id);
+            $submitter_name = $submitter->fname . ' ' . $submitter->lname;
+            $content = request()->get('content');
+
+            Mail::send(['html' => 'emails.member_log'], ['controller' => $id, 'submitter' => $submitter_name, 'content' => $content], function ($m) {
+                $m->from('notams@vzdc.org', 'vZDC Website Logging');
+                $m->subject('New Manual Dossier Log Entry');
+                $m->to('srstaff@vzdc.org');
+            });
+            return redirect()->back()->with('success', 'The log has been created successfully.');
+        }
+        else {
+            return redirect()->back()->with('error', 'Access Denied.');
+        }
+    }
+
     public function removeLog($id) {
-        if(auth()->user()->getStaffPositionAttribute() < 3) {
+        if(auth()->user()->getStaffPositionAttribute() <= 3) {
             $log = MemberLog::find($id);
             if($log != null) {
                 $log->delete();

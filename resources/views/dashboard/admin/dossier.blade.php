@@ -42,6 +42,21 @@ Dossier Entries
         </div>
     {!! Form::close() !!}
 
+    <br />
+
+    <h5>Dossier Manual Entry</h5>
+    <br />
+    <div class="form-group">
+        <form action="/dashboard/admin/logs/manual" method="POST">
+            @csrf
+            <input class="form-control" type="text" placeholder="CID" required name="cid"></input>
+            <br />
+            <textarea class="form-control" placeholder="Content..." required name="content"></textarea>
+            <br>
+            <button class="btn btn-primary" type="submit">Add Member Log</button>
+        </form>
+    </div>
+
     @if($search_result != null)
         <hr>
         <h5>Showing Dossier Entries for {{ $search_result->full_name }} ({{ $search_result->id }})</h5>
