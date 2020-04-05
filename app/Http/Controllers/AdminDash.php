@@ -1716,7 +1716,12 @@ class AdminDash extends Controller
 
     public function createLogManual() {
         if (auth()->user()->getStaffPositionAttribute() < 2) {
-            $id = request()->get('cid');
+            try {
+                $id = intval(request()->get('cid'));
+            }
+            catch(Exception $e) {
+                return redirect()->back()->with('error', 'Invalid CID.');
+            }
 
             $log = new MemberLog;
             $log->user_target = $id;

@@ -48,7 +48,8 @@ Dossier Entries
     <div class="form-group">
         <form action="/dashboard/admin/logs/create/manual" method="POST">
             @csrf
-            <input type="text" required name="cid"></input>
+            <input class="form-control" type="text" required name="cid"></input>
+            <br />
             <label>Content</label>
             <textarea class="form-control" required name="content"></textarea>
             <br>
