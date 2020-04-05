@@ -224,7 +224,17 @@ class AdminDash extends Controller
     public function editController($id) {
         $user = User::find($id);
 
-        return view('dashboard.admin.roster.edit')->with('user', $user);
+        $tickets_sort = TrainingTicket::where('controller_id', $id)->get()->sortByDesc(function($t) {
+            return strtotime($t->date.' '.$t->start_time);
+        })->pluck('id');
+        if($tickets_sort->count() != 0) {
+            $tickets_order = implode(',',array_fill(0, count($tickets_sort), '?'));
+            $tickets = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(10);
+        } else {
+            $tickets = null;
+        }
+
+        return view('dashboard.admin.roster.edit')->with('user', $user)->with('tickets', $tickets);
     }
 
     public function updateController(Request $request, $id) {

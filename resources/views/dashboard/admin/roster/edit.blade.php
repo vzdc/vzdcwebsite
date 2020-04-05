@@ -505,6 +505,37 @@ Update Controller
         <br>
         <hr>
                 <div>
+                <div>
+            <center><h4>Training Tickets</h4></center>
+            <div class="table">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col"><center>Date</center></th>
+                            <th scope="col"><center>Trainer</center></th>
+                            <th scope="col"><center>Position</center></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if(isset($tickets))
+                            @foreach($tickets as $t)
+                                <tr>
+                                    <td><center><a href="/dashboard/training/view/{{ $t->id }}">{{ $t->date }}</a></center></td>
+                                    <td><center>{{ $t->trainer_name }}</center></td>
+                                    <td><center>{{ $t->position_name }}</center></td>
+                                </tr>
+                            @endforeach
+                        @endif
+                    </tbody>
+                </table>
+                @if(!isset($tickets))
+                    <p>No training tickets found.</p>
+                @endif
+            </div>
+            @if(isset($tickets))
+                {!! $tickets->links() !!}
+            @endif
+        </div>
                 <div class="form-group">
                     <form action="/dashboard/admin/logs/create/{{$user->id}}" method="POST">
                         @csrf
