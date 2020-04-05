@@ -1746,7 +1746,7 @@ class AdminDash extends Controller
     }
 
     public function removeLog($id) {
-        if(auth()->user()->getStaffPositionAttribute() < 3) {
+        if(auth()->user()->getStaffPositionAttribute() <= 5) {
             $log = MemberLog::find($id);
             if($log != null) {
                 $log->delete();
