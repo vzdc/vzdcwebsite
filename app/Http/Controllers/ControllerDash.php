@@ -198,7 +198,7 @@ class ControllerDash extends Controller
 
     public function showTicket($id) {
         $ticket = TrainingTicket::find($id);
-        if(Auth::id() == $ticket->controller_id) {
+        if(Auth::id() == $ticket->controller_id || Auth::user()->can('roster')) {
             return view('dashboard.controllers.ticket')->with('ticket', $ticket);
         } else {
             return redirect()->back()->with('error', 'You can only view your own tickets. If you are a trainer trying to view a ticket, please do that from the training section.');
