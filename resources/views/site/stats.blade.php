@@ -16,6 +16,8 @@ Stats
 
 <?php
 $mname = date("F", mktime(0, 0, 0, $month, 1, $year));
+$month = date("m");
+$year = date("Y");
 if ($month == 1) { $pm = 12; $pyr = $year - 1; } else { $pm = $month -1; $pyr = $year; }
 if ($month == 12) { $nm = 1; $nyr = $year + 1; } else { $nm = $month + 1; $nyr = $year; }
 ?>
@@ -54,6 +56,9 @@ if ($month == 12) { $nm = 1; $nyr = $year + 1; } else { $nm = $month + 1; $nyr =
         </div>
     </div>
     <hr>
+    <?php
+
+    ?>
     <div class="row">
         <div class="col-sm-2">
             <a class="btn btn-primary" href="/controllers/stats/<?=$pyr?>/<?=$pm?>"><i class="fa fa-arrow-left"></i> Previous Month</a></li>
