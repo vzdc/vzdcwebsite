@@ -66,7 +66,7 @@ if ($month == 12) { $nm = 1; $nyr = $year + 1; } else { $nm = $month + 1; $nyr =
                                 <td bgcolor="#E6B0AA" class="black"><b>{{ $stats[$c->id]->total_hrs }}</b></td>
                             @endif
                             <td>
-                                @if($c->last_training)
+                                @if($c->last_training && !$c->getLastTrainingNoShow())
                                     <p>{{ $c->last_training }}</p>
                                 @else
                                     <p><i>No Training Since 12/25/2018</i></p>
