@@ -229,6 +229,7 @@ class AdminDash extends Controller
         })->pluck('id');
         if($tickets_sort->count() != 0) {
             $tickets_order = implode(',',array_fill(0, count($tickets_sort), '?'));
+            $tickets = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(10);
         } else {
             $tickets = null;
         }
