@@ -1715,7 +1715,7 @@ class AdminDash extends Controller
     }
 
     public function createLogManual() {
-        if (auth()->user()->getStaffPositionAttribute() < 2) {
+        if (auth()->user()->getStaffPositionAttribute() <= 5) {
             try {
                 $id = intval(request()->get('cid'));
             }
@@ -1746,7 +1746,7 @@ class AdminDash extends Controller
     }
 
     public function removeLog($id) {
-        if(auth()->user()->getStaffPositionAttribute() <= 5) {
+        if(auth()->user()->getStaffPositionAttribute() <= 3) {
             $log = MemberLog::find($id);
             if($log != null) {
                 $log->delete();
