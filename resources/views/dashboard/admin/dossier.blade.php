@@ -45,13 +45,13 @@ Dossier Entries
     <br />
 
     <h5>Dossier Manual Entry</h5>
+    <br />
     <div class="form-group">
         <form action="/dashboard/admin/logs/create/manual" method="POST">
             @csrf
-            <input class="form-control" type="text" required name="cid"></input>
+            <input class="form-control" type="text" placeholder="CID" required name="cid"></input>
             <br />
-            <label>Content</label>
-            <textarea class="form-control" required name="content"></textarea>
+            <textarea class="form-control" placeholder="Content..." required name="content"></textarea>
             <br>
             <button class="btn btn-primary" type="submit">Add Member Log</button>
         </form>
