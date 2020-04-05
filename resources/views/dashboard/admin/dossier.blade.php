@@ -47,7 +47,7 @@ Dossier Entries
     <h5>Dossier Manual Entry</h5>
     <br />
     <div class="form-group">
-        <form action="/dashboard/admin/logs/create/manual" method="POST">
+        <form action="/dashboard/admin/logs/manual" method="POST">
             @csrf
             <input class="form-control" type="text" placeholder="CID" required name="cid"></input>
             <br />
