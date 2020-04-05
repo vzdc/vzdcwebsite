@@ -1715,7 +1715,7 @@ class AdminDash extends Controller
     }
 
     public function createLogManual() {
-        if (auth()->user()->getStaffPositionAttribute() <= 5) {
+        if (auth()->user()->getStaffPositionAttribute() <= 3) {
             try {
                 $id = intval(request()->get('cid'));
             }
