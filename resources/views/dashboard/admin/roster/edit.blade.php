@@ -505,7 +505,7 @@ Update Controller
         <br>
         <hr>
                 <div>
-                <div class="col-sm-6">
+                <div>
             <center><h4>Training Tickets</h4></center>
             <div class="table">
                 <table class="table table-bordered">

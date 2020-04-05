@@ -224,7 +224,7 @@ class AdminDash extends Controller
     public function editController($id) {
         $user = User::find($id);
 
-        $tickets_sort = TrainingTicket::where('controller_id', Auth::id())->get()->sortByDesc(function($t) {
+        $tickets_sort = TrainingTicket::where('controller_id', $id)->get()->sortByDesc(function($t) {
             return strtotime($t->date.' '.$t->start_time);
         })->pluck('id');
         if($tickets_sort->count() != 0) {
