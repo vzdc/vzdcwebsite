@@ -1719,7 +1719,7 @@ class AdminDash extends Controller
             try {
                 $id = intval(request()->get('cid'));
             }
-            catch(Exception $e) {
+            catch(\Exception $e) {
                 return redirect()->back()->with('error', 'Invalid CID.');
             }
 
@@ -1730,7 +1730,6 @@ class AdminDash extends Controller
             $log->save();
 
             $submitter = User::find(auth()->user()->id);
-            $submitter_name = $submitter->fname . ' ' . $submitter->lname;
             $content = request()->get('content');
 
             Mail::send(['html' => 'emails.member_log'], ['controller' => $id, 'submitter' => $submitter_name, 'content' => $content], function ($m) {
