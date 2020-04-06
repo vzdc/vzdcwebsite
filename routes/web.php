@@ -229,6 +229,12 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
     	Route::prefix('dossier')->middleware('permission:staff')->group(function() {
             Route::get('/', 'AdminDash@DossierIndex');
 		    Route::post('/search', 'AdminDash@DossierSearch');
+        });
+        Route::prefix('currency')->middleware('permission:staff')->group(function() {
+            Route::get('/', 'CurrencyDash@CurrencyIndex');
+            Route::get('/warnings', 'CurrencyDash@CurrencyWarnings');
+            Route::get('/removals', 'CurrencyDash@CurrencyRemovals');
+		    Route::post('/email/{emails}', 'CurrencyDash@DossierSearch');
 	    });
     });
 });
