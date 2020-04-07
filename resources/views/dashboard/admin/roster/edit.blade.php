@@ -520,7 +520,7 @@ Update Controller
                         @if(isset($tickets))
                             @foreach($tickets as $t)
                                 <tr>
-                                    <td><center><a href="/dashboard/training/view/{{ $t->id }}">{{ $t->date }}</a></center></td>
+                                    <td><center><a href="/dashboard/training/tickets/view/{{ $t->id }}">{{ $t->date }}</a></center></td>
                                     <td><center>{{ $t->trainer_name }}</center></td>
                                     <td><center>{{ $t->position_name }}</center></td>
                                 </tr>
