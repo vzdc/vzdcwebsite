@@ -426,8 +426,9 @@ class ControllerDash extends Controller
         $event = Event::find($id);
         // Get date & time exactly 2 days from now
         $two_days_from = new \DateTime('now +2 day');
+        $event_date = new \DateTime($event->date);
         // Check if event start time is less than 2 days from now
-        $within_two_days = $event->date < $two_days_from;
+        $within_two_days = $event_date < $two_days_from;
         if (!$within_two_days) {
             // Not within 2 days, delete registration
             $request->delete();
