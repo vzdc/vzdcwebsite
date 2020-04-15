@@ -423,17 +423,17 @@ class ControllerDash extends Controller
     public function unsignupForEvent($id) {
         // Get the position request to be deleted
         $request = EventRegistration::find($id);
-        $event = Event::find($id);
+        $event = Event::find($request->event_id);
         // Get date & time exactly 2 days from now
         $two_days_from = new \DateTime('now +2 day');
-        //$event_date = new \DateTime($event->date);
+        $event_date = new \DateTime($event->date);
         // Check if event start time is less than 2 days from now
-        //$within_two_days = $event_date < $two_days_from;
-        //if (!$within_two_days) {
+        $within_two_days = $event_date < $two_days_from;
+        if (!$within_two_days) {
             // Not within 2 days, delete registration
-        //    $request->delete();
-        //    return redirect()->back()->with('success', 'Your registration has been removed successfully.');
-        //}
+            $request->delete();
+            return redirect()->back()->with('success', 'Your registration has been removed successfully.');
+        }
         // Not within 2 days, send back with error and don't delete
         return redirect()->back()->with('error', 'You cannot remove your registration within two days of an event. DEBUG Event Date:' . $event->date);
     }
