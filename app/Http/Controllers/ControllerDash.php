@@ -435,7 +435,7 @@ class ControllerDash extends Controller
             return redirect()->back()->with('success', 'Your registration has been removed successfully.');
         }
         // Not within 2 days, send back with error and don't delete
-        return redirect()->back()->with('error', 'You cannot remove your registration within two days of an event. DEBUG Event Date:' . $event->date);
+        return redirect()->back()->with('error', 'You cannot remove your registration within two days of an event.');
     }
 
 
