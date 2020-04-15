@@ -229,7 +229,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
     	Route::prefix('dossier')->middleware('permission:staff')->group(function() {
             Route::get('/', 'AdminDash@DossierIndex');
 		    Route::post('/search', 'AdminDash@DossierSearch');
-	    });
+        });
     });
 });
 /*
