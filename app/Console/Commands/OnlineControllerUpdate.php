@@ -118,7 +118,8 @@ class OnlineControllerUpdate extends Command
 
 					// Is this neccessary? It detects if the streamupdate of the last record for the user matches this one
 					// Shouldn't bog anything down unless we are running this too often
-					$MostRecentLog = ControllerLog::where('cid', $cid)->orderBy('time_logon', 'DESC')->first();
+					$MostRecentLog = ControllerLog::where('cid', $cid)->where('time_logon', $time_logon)->where('name', $name)->
+													where('position', $position)->orderBy('time_logon', 'DESC')->first();
 
 					if (!$MostRecentLog || $MostRecentLog->time_logon != $time_logon) {
 						ControllerLog::create([
