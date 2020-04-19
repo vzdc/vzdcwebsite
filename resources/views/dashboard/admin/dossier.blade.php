@@ -54,6 +54,12 @@ Dossier Entries
             <textarea class="form-control" placeholder="Content..." required name="content"></textarea>
             <br>
             <button class="btn btn-primary" type="submit">Add Member Log</button>
+                &nbsp; &nbsp; &nbsp;
+            @if(Auth::user()->getStaffPositionAttribute() <= 3)
+                <input type="checkbox" class="form-check-input align-right" id="confidential" name="confidential">
+                <label class="form-check-label" for="confidential">Confidential</label>
+                <br />
+            @endif
         </form>
     </div>
 
@@ -64,22 +70,38 @@ Dossier Entries
         <table class="table">
             <thead>
                 <tr>
-                                    <th scope="col">Added By</th>
-                                    <th scope="col">Details</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Action</th>
+                    <th scope="col">Added By</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Confidential</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
                 </tr>
                 @if($tickets->count() > 0)
                     @foreach($tickets as $t)
                         <tr>
                             <td>
-                                 @if($t->getAuthor() != null)
+                                @if($t->getAuthor() != null)
                                     {{$t->getAuthor()->first()->getFullNameAttribute()}}
                                 @else
                                     {{$t->user_submitter}}
                                 @endif
                             </td>
-                            <td>{{ $t->content }}</td>
+                            <td>
+                                @if($t->confidential == 1 && Auth::user()->getStaffPositionAttribute() <= 3)
+                                    {{$t->content}}
+                                @elseif($t->confidential == 1 && Auth::user()->getStaffPositionAttribute() > 3)
+                                    <i>***CONFIDENTIAL ENTRY***</i>
+                                @else
+                                    {{$t->content}}
+                                @endif
+                            </td>
+                            <td>
+                                @if($t->confidential == 1)
+                                    <i class="fas fa-check" style="color:green"></i>
+                                @else
+                                    <i class="fas fa-times" style="color:red"></i>
+                                @endif
+                            </td>
                             <td>{{ $t->created_at }}</td>
                             <td>
                                 <form action="/dashboard/admin/logs/delete/{{$t->id}}" method="POST">

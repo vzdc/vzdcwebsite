@@ -543,6 +543,12 @@ Update Controller
                         <textarea class="form-control" required name="content"></textarea>
                         <br>
                         <button class="btn btn-primary" type="submit">Add Member Log</button>
+                            &nbsp; &nbsp; &nbsp;
+                        @if(Auth::user()->getStaffPositionAttribute() <= 3)
+                            <input type="checkbox" class="form-check-input align-right" id="confidential" name="confidential">
+                            <label class="form-check-label" for="confidential">Confidential</label>
+                            <br />
+                        @endif
                     </form>
                 </div>
                 <div>
@@ -552,6 +558,7 @@ Update Controller
                                 <tr>
                                     <th scope="col">Added By</th>
                                     <th scope="col">Details</th>
+                                    <th scope="col">Confidential</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -567,7 +574,20 @@ Update Controller
                                             @endif
                                         </td>
                                         <td>
-                                            {{$l->content}}
+                                            @if($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() <= 3)
+                                                {{$l->content}}
+                                            @elseif($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() > 3)
+                                                <i>***CONFIDENTIAL ENTRY***</i>
+                                            @else
+                                                {{$l->content}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($l->confidential == 1)
+                                                <i class="fas fa-check" style="color:green"></i>
+                                            @else
+                                                <i class="fas fa-times" style="color:red"></i>
+                                            @endif
                                         </td>
                                         <td>
                                             {{$l->created_at->toDateString()}}

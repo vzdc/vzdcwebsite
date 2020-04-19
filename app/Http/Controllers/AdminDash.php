@@ -1705,6 +1705,9 @@ class AdminDash extends Controller
             $log->user_target = $id;
             $log->user_submitter = auth()->user()->id;
             $log->content = request()->get('content');
+            if (request()->has('confidential')) {
+                $log->confidential = 1;
+            }
             $log->save();
 
             $controller = User::find($id);
@@ -1737,6 +1740,9 @@ class AdminDash extends Controller
             $log->user_target = $id;
             $log->user_submitter = auth()->user()->id;
             $log->content = request()->get('content');
+            if (request()->has('confidential')) {
+                $log->confidential = 1;
+            }
             $log->save();
 
             $submitter = User::find(auth()->user()->id);
