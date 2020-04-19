@@ -543,7 +543,7 @@ Update Controller
                         <textarea class="form-control" required name="content"></textarea>
                         <br>
                             @if(Auth::user()->getStaffPositionAttribute() <= 3)
-                                <input type="checkbox" class="form-check-input" required name="confidential">
+                                <input type="checkbox" class="form-check-input" name="confidential">
                                 <label class="form-check-label">Confidential</label>
                                 <br />
                             @endif
@@ -575,7 +575,7 @@ Update Controller
                                             @if($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() <= 3)
                                                 {{$l->content}}
                                             @elseif($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() > 3)
-                                                <i>[CONFIDENTIAL]</i>
+                                                <i>***CONFIDENTIAL***</i>
                                             @else
                                                 {{$l->content}}
                                             @endif
