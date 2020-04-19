@@ -97,7 +97,7 @@ Dossier Entries
                             </td>
                             <td>
                                 @if($t->confidential == 1)
-                                    <i class="far fa-check-circle" style="color:green"></i>
+                                    <i class="fas fa-check" style="color:green"></i>
                                 @else
                                     <i class="fas fa-times" style="color:red"></i>
                                 @endif
