@@ -85,9 +85,9 @@ Dossier Entries
                                 @endif
                             </td>
                             <td>
-                                @if($l->confidential == 1 && Auth::->user()->getStaffPositionAttribute() <= 3)
+                                @if($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() <= 3)
                                     {{$l->content}}
-                                @elseif($l->confidential == 1 && Auth::->user()->getStaffPositionAttribute() > 3)
+                                @elseif($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() > 3)
                                     <i>[CONFIDENTIAL]</i>
                                 @else
                                     {{$l->content}}
