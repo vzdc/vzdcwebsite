@@ -558,6 +558,7 @@ Update Controller
                                 <tr>
                                     <th scope="col">Added By</th>
                                     <th scope="col">Details</th>
+                                    <th scope="col">Confidential</th>
                                     <th scope="col">Date</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -579,6 +580,13 @@ Update Controller
                                                 <i>***CONFIDENTIAL***</i>
                                             @else
                                                 {{$l->content}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($l->confidential == 1)
+                                                <i class="far fa-check-circle" style="color:green"></i>
+                                            @else
+                                                <i class="fas fa-times" style="color:red"></i>
                                             @endif
                                         </td>
                                         <td>

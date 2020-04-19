@@ -72,6 +72,7 @@ Dossier Entries
                 <tr>
                     <th scope="col">Added By</th>
                     <th scope="col">Details</th>
+                    <th scope="col">Confidential</th>
                     <th scope="col">Date</th>
                     <th scope="col">Action</th>
                 </tr>
@@ -92,6 +93,13 @@ Dossier Entries
                                     <i>***CONFIDENTIAL***</i>
                                 @else
                                     {{$t->content}}
+                                @endif
+                            </td>
+                            <td>
+                                @if($t->confidential == 1)
+                                    <i class="far fa-check-circle" style="color:green"></i>
+                                @else
+                                    <i class="fas fa-times" style="color:red"></i>
                                 @endif
                             </td>
                             <td>{{ $t->created_at }}</td>
