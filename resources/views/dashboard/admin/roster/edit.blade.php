@@ -542,7 +542,7 @@ Update Controller
                         <label>Member Dossier</label>
                         <textarea class="form-control" required name="content"></textarea>
                         <br>
-                            @if(Auth::->user()->getStaffPositionAttribute() <= 3)
+                            @if(Auth::user()->getStaffPositionAttribute() <= 3)
                                 <input type="checkbox" class="form-check-input" required name="confidential">
                                 <label class="form-check-label">Confidential</label>
                                 <br />
