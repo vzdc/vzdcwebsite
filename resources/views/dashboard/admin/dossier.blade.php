@@ -53,6 +53,11 @@ Dossier Entries
             <br />
             <textarea class="form-control" placeholder="Content..." required name="content"></textarea>
             <br>
+            @if(Auth::->user()->getStaffPositionAttribute() <= 3)
+                <input type="checkbox" class="form-check-input" required name="confidential">
+                <label class="form-check-label">Confidential</label>
+                <br />
+            @endif
             <button class="btn btn-primary" type="submit">Add Member Log</button>
         </form>
     </div>
@@ -64,22 +69,30 @@ Dossier Entries
         <table class="table">
             <thead>
                 <tr>
-                                    <th scope="col">Added By</th>
-                                    <th scope="col">Details</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Action</th>
+                    <th scope="col">Added By</th>
+                    <th scope="col">Details</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Action</th>
                 </tr>
                 @if($tickets->count() > 0)
                     @foreach($tickets as $t)
                         <tr>
                             <td>
-                                 @if($t->getAuthor() != null)
+                                @if($t->getAuthor() != null)
                                     {{$t->getAuthor()->first()->getFullNameAttribute()}}
                                 @else
                                     {{$t->user_submitter}}
                                 @endif
                             </td>
-                            <td>{{ $t->content }}</td>
+                            <td>
+                                @if($l->confidential == 1 && Auth::->user()->getStaffPositionAttribute() <= 3)
+                                    {{$l->content}}
+                                @elseif($l->confidential == 1 && Auth::->user()->getStaffPositionAttribute() > 3)
+                                    <i>[CONFIDENTIAL]</i>
+                                @else
+                                    {{$l->content}}
+                                @endif
+                            </td>
                             <td>{{ $t->created_at }}</td>
                             <td>
                                 <form action="/dashboard/admin/logs/delete/{{$t->id}}" method="POST">
