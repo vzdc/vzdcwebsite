@@ -56,7 +56,7 @@ Dossier Entries
             <button class="btn btn-primary" type="submit">Add Member Log</button>
             &nbsp;
             @if(Auth::user()->getStaffPositionAttribute() <= 3)
-                <input type="checkbox" class="form-check-input" required name="confidential">
+                <input type="checkbox" class="form-check-input align-right" required name="confidential">
                 <label class="form-check-label">Confidential</label>
                 <br />
             @endif

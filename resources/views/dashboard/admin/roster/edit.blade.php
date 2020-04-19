@@ -545,7 +545,7 @@ Update Controller
                         <button class="btn btn-primary" type="submit">Add Member Log</button>
                             &nbsp;
                         @if(Auth::user()->getStaffPositionAttribute() <= 5)
-                            <input type="checkbox" class="form-check-input" name="confidential">
+                            <input type="checkbox" class="form-check-input align-right" name="confidential">
                             <label class="form-check-label">Confidential</label>
                             <br />
                         @endif
