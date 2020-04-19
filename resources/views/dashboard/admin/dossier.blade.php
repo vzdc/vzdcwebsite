@@ -54,10 +54,8 @@ Dossier Entries
             <textarea class="form-control" placeholder="Content..." required name="content"></textarea>
             <br>
             <button class="btn btn-primary" type="submit">Add Member Log</button>
-            <p>
                 &nbsp;
                 &nbsp;
-            </p>
             @if(Auth::user()->getStaffPositionAttribute() <= 3)
                 <input type="checkbox" class="form-check-input align-right" required name="confidential">
                 <label class="form-check-label">Confidential</label>
