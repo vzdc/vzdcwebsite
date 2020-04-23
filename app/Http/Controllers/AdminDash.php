@@ -821,7 +821,7 @@ class AdminDash extends Controller
 
         Mail::send(['html' => 'emails.visit.reject'], ['visitor' => $visitor], function($message) use ($visitor) {
             $message->from('notams@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Rejected');
-            $message->to($visitor->email)->cc('datm@vzdc.org')->cc('atm@vzdc.org');
+            $message->to($visitor->email)->cc('datm@vzdc.org')->cc('atm@vzdc.org')->cc('vatusa9@vatusa.net');
         });
 
         $audit = new Audit;
