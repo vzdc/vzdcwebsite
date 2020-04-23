@@ -515,7 +515,7 @@ class AdminDash extends Controller
 
         Mail::send('emails.visit.accept', ['visitor' => $visitor], function($message) use ($visitor){
             $message->from('notams@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Accepted');
-            $message->to($visitor->email)->cc('datm@vzdc.org')->cc('atm@vzdc.org');
+            $message->to($visitor->email)->cc('datm@vzdc.org')->cc('atm@vzdc.org')->cc('ta@vzdc.org');
         });
 
         $parts = explode(" ",$visitor->name);
