@@ -1,18 +1,18 @@
 @extends('layouts.dashboard')
 
 @section('title')
-New Event
+    New Event
 @endsection
 
 @section('content')
-<div class="container-fluid" style="background-color:#F0F0F0;">
-    &nbsp;
-    <h2>New Event</h2>
-    &nbsp;
-</div>
-<br>
-<div class="container">
-    {!! Form::open(['action' => ['AdminDash@saveEvent', $event->id], 'files' => 'true']) !!}
+    <div class="container-fluid" style="background-color:#F0F0F0;">
+        &nbsp;
+        <h2>New Event</h2>
+        &nbsp;
+    </div>
+    <br>
+    <div class="container">
+        {!! Form::open(['action' => ['AdminDash@saveEvent', $event->id], 'files' => 'true']) !!}
         @csrf
         <div class="form-group">
             <div class="row">
@@ -61,31 +61,31 @@ New Event
         </div>
         <button class="btn btn-success" type="submit">Save Event</button>
         <a class="btn btn-danger" href="/dashboard/controllers/events">Cancel</a>
-    {!! Form::close() !!}
-</div>
+        {!! Form::close() !!}
+    </div>
 
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace( 'article-ckeditor' );
-</script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('article-ckeditor');
+    </script>
 
-<script type="text/javascript">
-$(function () {
-    $('#datetimepicker1').datetimepicker({
-        format: 'L'
-    });
-});
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'L'
+            });
+        });
 
-$(function () {
-    $('#datetimepicker2').datetimepicker({
-        format: 'HH:mm'
-    });
-});
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                format: 'HH:mm'
+            });
+        });
 
-$(function () {
-    $('#datetimepicker3').datetimepicker({
-        format: 'HH:mm'
-    });
-});
-</script>
+        $(function () {
+            $('#datetimepicker3').datetimepicker({
+                format: 'HH:mm'
+            });
+        });
+    </script>
 @endsection

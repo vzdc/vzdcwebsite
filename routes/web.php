@@ -31,7 +31,7 @@ Route::post('/pilots/request-staffing', 'FrontController@staffRequest');
 Route::get('/feedback/new', 'FrontController@newFeedback');
 Route::post('/feedback/new', 'FrontController@saveNewFeedback');
 Route::get('controllers/files', 'FrontController@showFiles');
-Route::get('/pilots/privacy_policy','FrontController@showPrivacyPolicy');
+Route::get('/pilots/privacy_policy', 'FrontController@showPrivacyPolicy');
 // Route::get('/controllers/files/download/{id}', 'FrontController@downloadFile');
 /*
 *   End Front Page Stuff
@@ -43,7 +43,7 @@ Route::get('/pilots/privacy_policy','FrontController@showPrivacyPolicy');
 Route::get('/controllers/roster', 'RosterController@index');
 Route::get('/controllers/staff', 'RosterController@staffIndex');
 Route::get('/login', 'RosterController@login');
-Route::get('login', [ 'as' => 'login', 'uses' => 'RosterController@login']);
+Route::get('login', ['as' => 'login', 'uses' => 'RosterController@login']);
 Route::get('/logout', 'RosterController@logout');
 /*
 *   End Roster
@@ -52,10 +52,10 @@ Route::get('/logout', 'RosterController@logout');
 /*
 *   Controller Dashboard
 */
-Route::prefix('dashboard')->middleware('auth')->group(function() {
+Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/', 'ControllerDash@dash');
 
-    Route::prefix('controllers')->group(function() {
+    Route::prefix('controllers')->group(function () {
         Route::get('/teamspeak', 'ControllerDash@showTeamspeak');
         Route::get('/calendar/view/{id}', 'ControllerDash@showCalendarEvent');
         Route::get('/roster', 'ControllerDash@showRoster');
@@ -78,22 +78,22 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
         Route::post('/search-airport', 'ControllerDash@searchAirport');
         Route::get('/search-airport/search', 'ControllerDash@searchAirportResult');
         Route::post('/report-bug', 'ControllerDash@reportBug');
-	Route::get('/currency_hours', 'ControllerDash@showCurrency_Hours');
-	Route::get('/iron_mic', 'ControllerDash@showIron_Mic');
-        Route::prefix('incident')->group(function() {
+        Route::get('/currency_hours', 'ControllerDash@showCurrency_Hours');
+        Route::get('/iron_mic', 'ControllerDash@showIron_Mic');
+        Route::prefix('incident')->group(function () {
             Route::get('/report', 'ControllerDash@incidentReport');
             Route::post('/report', 'ControllerDash@submitIncidentReport');
         });
     });
 
-    Route::prefix('opt')->group(function() {
+    Route::prefix('opt')->group(function () {
         Route::post('/in', 'ControllerDash@optIn');
         Route::get('/out', 'ControllerDash@optOut');
     });
 
-    Route::prefix('training')->group(function() {
+    Route::prefix('training')->group(function () {
         Route::get('atcast', 'TrainingDash@showatcast');
-        Route::prefix('tickets')->middleware('permission:train')->group(function() {
+        Route::prefix('tickets')->middleware('permission:train')->group(function () {
             Route::get('/', 'TrainingDash@ticketsIndex');
             Route::post('/search', 'TrainingDash@searchTickets');
             Route::get('/new', 'TrainingDash@newTrainingTicket');
@@ -103,7 +103,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::post('/save/{id}', 'TrainingDash@saveTicket');
             Route::get('/delete/{id}', 'TrainingDash@deleteTicket');
         });
-        Route::prefix('ots-center')->middleware('role:ins|atm|datm|ta|wm')->group(function() {
+        Route::prefix('ots-center')->middleware('role:ins|atm|datm|ta|wm')->group(function () {
             Route::get('/', 'TrainingDash@otsCenter');
             Route::get('/accept/{id}', 'TrainingDash@acceptRecommendation');
             Route::get('/reject/{id}', 'TrainingDash@rejectRecommendation')->middleware('permission:snrStaff');
@@ -111,29 +111,29 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::get('/cancel/{id}', 'TrainingDash@otsCancel');
             Route::post('/complete/{id}', 'TrainingDash@completeOTS');
         });
-        Route::prefix('info')->middleware('permission:train')->group(function() {
+        Route::prefix('info')->middleware('permission:train')->group(function () {
             Route::get('/', 'TrainingDash@trainingInfo');
             Route::post('/add/{section}', 'TrainingDash@addInfo')->middleware('permission:snrStaff');
             Route::get('/delete/{id}', 'TrainingDash@deleteInfo')->middleware('permission:snrStaff');
         });
     });
 
-    Route::prefix('admin')->group(function() {
-        Route::prefix('announcement')->middleware('permission:staff')->group(function() {
+    Route::prefix('admin')->group(function () {
+        Route::prefix('announcement')->middleware('permission:staff')->group(function () {
             Route::get('/', 'AdminDash@setAnnouncement');
             Route::post('/', 'AdminDash@saveAnnouncement');
         });
-        Route::prefix('audits')->middleware('permission:snrStaff')->group(function() {
+        Route::prefix('audits')->middleware('permission:snrStaff')->group(function () {
             Route::get('/', 'AdminDash@showAudits');
         });
 
-        Route::prefix('logs')->group(function() {
-           Route::post('/create/{id}', 'AdminDash@createLog');
-           Route::post('/delete/{id}', 'AdminDash@removeLog')->middleware('permission:snrStaff');
-           Route::post('/manual', 'AdminDash@createLogManual')->middleware('permission:snrStaff');
+        Route::prefix('logs')->group(function () {
+            Route::post('/create/{id}', 'AdminDash@createLog');
+            Route::post('/delete/{id}', 'AdminDash@removeLog')->middleware('permission:snrStaff');
+            Route::post('/manual', 'AdminDash@createLogManual')->middleware('permission:snrStaff');
         });
 
-        Route::prefix('calendar')->middleware('permission:staff')->group(function() {
+        Route::prefix('calendar')->middleware('permission:staff')->group(function () {
             Route::get('/', 'AdminDash@viewCalendar');
             Route::get('/view/{id}', 'AdminDash@viewCalendarEvent');
             Route::get('/new', 'AdminDash@newCalendarEvent');
@@ -142,7 +142,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::post('/edit/{id}/save', 'AdminDash@saveCalendarEvent');
             Route::delete('/delete/{id}', 'AdminDash@deleteCalendarEvent');
         });
-        Route::prefix('scenery')->middleware('permission:scenery')->group(function() {
+        Route::prefix('scenery')->middleware('permission:scenery')->group(function () {
             Route::get('/', 'AdminDash@showScenery');
             Route::get('/view/{id}', 'AdminDash@viewScenery');
             Route::get('/new', 'AdminDash@newScenery');
@@ -151,14 +151,14 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::post('/edit/{id}/save', 'AdminDash@saveScenery');
             Route::delete('/delete/{id}', 'AdminDash@deleteScenery');
         });
-        Route::prefix('files')->middleware('permission:files')->group(function() {
+        Route::prefix('files')->middleware('permission:files')->group(function () {
             Route::get('/upload', 'AdminDash@uploadFile');
             Route::post('/upload', 'AdminDash@storeFile');
             Route::get('/edit/{id}', 'AdminDash@editFile');
             Route::post('/edit/{id}', 'AdminDash@saveFile');
             Route::get('/delete/{id}', 'AdminDash@deleteFile');
         });
-        Route::prefix('airports')->middleware('permission:staff')->group(function() {
+        Route::prefix('airports')->middleware('permission:staff')->group(function () {
             Route::get('/', 'AdminDash@showAirports');
             Route::get('/new', 'AdminDash@newAirport');
             Route::post('/new', 'AdminDash@storeAirport');
@@ -166,7 +166,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::get('/del-from-home/{id}', 'AdminDash@removeAirportFromHome');
             Route::delete('/delete/{id}', 'AdminDash@deleteAirport');
         });
-        Route::prefix('events')->middleware('permission:events')->group(function() {
+        Route::prefix('events')->middleware('permission:events')->group(function () {
             Route::get('/new', 'AdminDash@newEvent');
             Route::post('/new', 'AdminDash@saveNewEvent');
             Route::post('/positions/add/{id}', 'AdminDash@addPosition');
@@ -184,7 +184,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::post('/load-preset/{id}', 'AdminDash@retrievePositionPreset');
             Route::post('/delete-preset', 'AdminDash@deletePositionPreset');
         });
-        Route::prefix('roster')->middleware('permission:roster')->group(function() {
+        Route::prefix('roster')->middleware('permission:roster')->group(function () {
             Route::get('/visit/requests', 'AdminDash@showVisitRequests');
             Route::get('/visit/accept/{id}', 'AdminDash@acceptVisitRequest');
             Route::post('/visit/manual-add/search', 'AdminDash@manualAddVisitor');
@@ -192,43 +192,43 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
             Route::post('/visit/accept/save', 'AdminDash@storeVisitor');
             Route::post('/visit/reject/{id}', 'AdminDash@rejectVisitRequest');
             Route::get('/visit/requests/view/{id}', 'AdminDash@viewVisitRequest');
-			Route::get('/visit/remove/{id}', 'AdminDash@removeVisitor');
+            Route::get('/visit/remove/{id}', 'AdminDash@removeVisitor');
             Route::get('/purge-assistant/{year?}/{month?}', 'AdminDash@showRosterPurge');
         });
-        Route::prefix('roster')->middleware('permission:roster|train')->group(function() {
+        Route::prefix('roster')->middleware('permission:roster|train')->group(function () {
             Route::get('/edit/{id}', 'AdminDash@editController');
             Route::post('/edit/{id}', 'AdminDash@updateController');
         });
-        Route::prefix('bronze-mic')->middleware('permission:snrStaff')->group(function() {
+        Route::prefix('bronze-mic')->middleware('permission:snrStaff')->group(function () {
             Route::get('/{year?}/{month?}', 'AdminDash@showBronzeMic');
             Route::post('/{year}/{month}/{hours}/{id}', 'AdminDash@setBronzeWinner');
             Route::get('/remove/{id}/{year}/{month}', 'AdminDash@removeBronzeWinner');
         });
-        Route::prefix('pyrite-mic')->middleware('permission:snrStaff')->group(function() {
+        Route::prefix('pyrite-mic')->middleware('permission:snrStaff')->group(function () {
             Route::get('/{year?}', 'AdminDash@showPyriteMic');
             Route::post('/{year}/{hours}/{id}', 'AdminDash@setPyriteWinner');
             Route::get('/remove/{id}/{year}', 'AdminDash@removePyriteWinner');
         });
-        Route::prefix('feedback')->middleware('permission:snrStaff')->group(function() {
+        Route::prefix('feedback')->middleware('permission:snrStaff')->group(function () {
             Route::get('/', 'AdminDash@showFeedback');
             Route::post('/save/{id}', 'AdminDash@saveFeedback');
             Route::post('/hide/{id}', 'AdminDash@hideFeedback');
             Route::post('/update/{id}', 'AdminDash@updateFeedback');
             Route::post('/email/{id}', 'AdminDash@emailFeedback');
         });
-        Route::prefix('email')->middleware('permission:email')->group(function() {
+        Route::prefix('email')->middleware('permission:email')->group(function () {
             Route::get('/send', 'AdminDash@sendNewEmail');
             Route::post('/send', 'AdminDash@sendEmail');
         });
-        Route::prefix('incident')->middleware('permission:snrStaff')->group(function() {
+        Route::prefix('incident')->middleware('permission:snrStaff')->group(function () {
             Route::get('/', 'AdminDash@incidentReportIndex');
             Route::get('/view/{id}', 'AdminDash@viewIncidentReport');
             Route::get('/archive/{id}', 'AdminDash@archiveIncident');
             Route::get('/delete/{id}', 'AdminDash@deleteIncident');
         });
-    	Route::prefix('dossier')->middleware('permission:staff')->group(function() {
+        Route::prefix('dossier')->middleware('permission:staff')->group(function () {
             Route::get('/', 'AdminDash@DossierIndex');
-		    Route::post('/search', 'AdminDash@DossierSearch');
+            Route::post('/search', 'AdminDash@DossierSearch');
         });
     });
 });
@@ -250,7 +250,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function() {
 *	Use this to grant yourself webmaster privelages. Should be disabled for security reasons.
 */
 
-Route::get('/laratrust', function() {
+Route::get('/laratrust', function () {
 //	$user = App\User::find(1315435);
 //	$user->attachRole('wm');
 //    \Auth::loginUsingId(1315435);

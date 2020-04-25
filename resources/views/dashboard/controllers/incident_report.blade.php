@@ -1,20 +1,22 @@
 @extends('layouts.dashboard')
 
 @section('title')
-New Incident Report
+    New Incident Report
 @endsection
 
 @section('content')
-<div class="container-fluid" style="background-color:#F0F0F0;">
-    &nbsp;
-    <h2>New Incident Report</h2>
-    &nbsp;
-</div>
-<br>
+    <div class="container-fluid" style="background-color:#F0F0F0;">
+        &nbsp;
+        <h2>New Incident Report</h2>
+        &nbsp;
+    </div>
+    <br>
 
-<div class="container">
-    <p>Please use this to report incidents rather than sending an email. Please know that your ID and the controller's ID will be recorded for the sole reason of resolving any issues. Once any issues have been resolved, the incident will be archived without the controller/report ID.</p>
-    {!! Form::open(['action' => 'ControllerDash@submitIncidentReport']) !!}
+    <div class="container">
+        <p>Please use this to report incidents rather than sending an email. Please know that your ID and the
+            controller's ID will be recorded for the sole reason of resolving any issues. Once any issues have been
+            resolved, the incident will be archived without the controller/report ID.</p>
+        {!! Form::open(['action' => 'ControllerDash@submitIncidentReport']) !!}
         @csrf
         <div class="form-group">
             <div class="row">
@@ -60,19 +62,19 @@ New Incident Report
             {!! Form::textArea('description', null, ['placeholder' => 'Please describe the incident as descriptively as possible.', 'class' => 'form-control']) !!}
         </div>
         <button action="submit" class="btn btn-success">Submit</button>
-    {!! Form::close() !!}
-</div>
+        {!! Form::close() !!}
+    </div>
 
-<script type="text/javascript">
-$(function () {
-    $('#datetimepicker1').datetimepicker({
-        format: 'L'
-    });
-});
-$(function () {
-    $('#datetimepicker2').datetimepicker({
-        format: 'HH:mm'
-    });
-});
-</script>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                format: 'L'
+            });
+        });
+        $(function () {
+            $('#datetimepicker2').datetimepicker({
+                format: 'HH:mm'
+            });
+        });
+    </script>
 @endsection

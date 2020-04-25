@@ -1,18 +1,18 @@
 @extends('layouts.dashboard')
 
 @section('title')
-Update Controller
+    Update Controller
 @endsection
 
 @section('content')
-<div class="container-fluid" style="background-color:#F0F0F0;">
-    &nbsp;
-    <h2>Update {{ $user->full_name }} ({{ $user->id }})</h2>
-    &nbsp;
-</div>
-<br>
-<div class="container">
-    {!! Form::open(['action' => ['AdminDash@updateController', $user->id]]) !!}
+    <div class="container-fluid" style="background-color:#F0F0F0;">
+        &nbsp;
+        <h2>Update {{ $user->full_name }} ({{ $user->id }})</h2>
+        &nbsp;
+    </div>
+    <br>
+    <div class="container">
+        {!! Form::open(['action' => ['AdminDash@updateController', $user->id]]) !!}
         @csrf
         <div class="form-group">
             <div class="row">
@@ -493,120 +493,135 @@ Update Controller
             </div>
         @endif
         <br>
-                <div class="row">
-                <div class="col-sm-1">
-                    <button class="btn btn-success" type="submit">Save</button>
-                </div>
-                {!! Form::close() !!}
-                <div class="col-sm-1">
-                    <a href="/dashboard/controllers/roster" class="btn btn-danger">Cancel</a>
-                </div>
-                </div>
+        <div class="row">
+            <div class="col-sm-1">
+                <button class="btn btn-success" type="submit">Save</button>
+            </div>
+            {!! Form::close() !!}
+            <div class="col-sm-1">
+                <a href="/dashboard/controllers/roster" class="btn btn-danger">Cancel</a>
+            </div>
+        </div>
         <br>
         <hr>
-                <div>
-                <div>
-            <center><h4>Training Tickets</h4></center>
-            <div class="table">
-                <table class="table table-bordered">
-                    <thead>
+        <div>
+            <div>
+                <center><h4>Training Tickets</h4></center>
+                <div class="table">
+                    <table class="table table-bordered">
+                        <thead>
                         <tr>
-                            <th scope="col"><center>Date</center></th>
-                            <th scope="col"><center>Trainer</center></th>
-                            <th scope="col"><center>Position</center></th>
+                            <th scope="col">
+                                <center>Date</center>
+                            </th>
+                            <th scope="col">
+                                <center>Trainer</center>
+                            </th>
+                            <th scope="col">
+                                <center>Position</center>
+                            </th>
                         </tr>
-                    </thead>
-                    <tbody>
+                        </thead>
+                        <tbody>
                         @if(isset($tickets))
                             @foreach($tickets as $t)
                                 <tr>
-                                    <td><center><a href="/dashboard/training/tickets/view/{{ $t->id }}">{{ $t->date }}</a></center></td>
-                                    <td><center>{{ $t->trainer_name }}</center></td>
-                                    <td><center>{{ $t->position_name }}</center></td>
+                                    <td>
+                                        <center>
+                                            <a href="/dashboard/training/tickets/view/{{ $t->id }}">{{ $t->date }}</a>
+                                        </center>
+                                    </td>
+                                    <td>
+                                        <center>{{ $t->trainer_name }}</center>
+                                    </td>
+                                    <td>
+                                        <center>{{ $t->position_name }}</center>
+                                    </td>
                                 </tr>
                             @endforeach
                         @endif
-                    </tbody>
-                </table>
-                @if(!isset($tickets))
-                    <p>No training tickets found.</p>
+                        </tbody>
+                    </table>
+                    @if(!isset($tickets))
+                        <p>No training tickets found.</p>
+                    @endif
+                </div>
+                @if(isset($tickets))
+                    {!! $tickets->links() !!}
                 @endif
             </div>
-            @if(isset($tickets))
-                {!! $tickets->links() !!}
-            @endif
-        </div>
-                <div class="form-group">
-                    <form action="/dashboard/admin/logs/create/{{$user->id}}" method="POST">
-                        @csrf
-                        <label>Member Dossier</label>
-                        <textarea class="form-control" required name="content"></textarea>
-                        <br>
-                        <button class="btn btn-primary" type="submit">Add Member Log</button>
-                            &nbsp; &nbsp; &nbsp;
-                        @if(Auth::user()->getStaffPositionAttribute() <= 3)
-                            <input type="checkbox" class="form-check-input align-right" id="confidential" name="confidential">
-                            <label class="form-check-label" for="confidential">Confidential</label>
-                            <br />
-                        @endif
-                    </form>
-                </div>
-                <div>
-                    @if($user->getLogs() != null)
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Added By</th>
-                                    <th scope="col">Details</th>
-                                    <th scope="col">Confidential</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach($user->getLogs() as $l)
-                                    <tr>
-                                        <td>
-                                            @if($l->getAuthor() != null)
-                                                {{$l->getAuthor()->first()->getFullNameAttribute()}}
-                                            @else
-                                                {{$l->user_submitter}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() <= 3)
-                                                {{$l->content}}
-                                            @elseif($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() > 3)
-                                                <i>***CONFIDENTIAL ENTRY***</i>
-                                            @else
-                                                {{$l->content}}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($l->confidential == 1)
-                                                <i class="fas fa-check" style="color:green"></i>
-                                            @else
-                                                <i class="fas fa-times" style="color:red"></i>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            {{$l->created_at->toDateString()}}
-                                        </td>
-                                        <td>
-                                            <form action="/dashboard/admin/logs/delete/{{$l->id}}" method="POST">
-                                                @csrf
-                                                <button class="btn btn-danger" type="submit">Remove</button>
-                                            </form>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+            <div class="form-group">
+                <form action="/dashboard/admin/logs/create/{{$user->id}}" method="POST">
+                    @csrf
+                    <label>Member Dossier</label>
+                    <textarea class="form-control" required name="content"></textarea>
+                    <br>
+                    <button class="btn btn-primary" type="submit">Add Member Log</button>
+                    &nbsp; &nbsp; &nbsp;
+                    @if(Auth::user()->getStaffPositionAttribute() <= 3)
+                        <input type="checkbox" class="form-check-input align-right" id="confidential"
+                               name="confidential">
+                        <label class="form-check-label" for="confidential">Confidential</label>
+                        <br/>
                     @endif
-
-                </div>
+                </form>
             </div>
+            <div>
+                @if($user->getLogs() != null)
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th scope="col">Added By</th>
+                            <th scope="col">Details</th>
+                            <th scope="col">Confidential</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($user->getLogs() as $l)
+                            <tr>
+                                <td>
+                                    @if($l->getAuthor() != null)
+                                        {{$l->getAuthor()->first()->getFullNameAttribute()}}
+                                    @else
+                                        {{$l->user_submitter}}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() <= 3)
+                                        {{$l->content}}
+                                    @elseif($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() > 3)
+                                        <i>***CONFIDENTIAL ENTRY***</i>
+                                    @else
+                                        {{$l->content}}
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($l->confidential == 1)
+                                        <i class="fas fa-check" style="color:green"></i>
+                                    @else
+                                        <i class="fas fa-times" style="color:red"></i>
+                                    @endif
+                                </td>
+                                <td>
+                                    {{$l->created_at->toDateString()}}
+                                </td>
+                                <td>
+                                    <form action="/dashboard/admin/logs/delete/{{$l->id}}" method="POST">
+                                        @csrf
+                                        <button class="btn btn-danger" type="submit">Remove</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                @endif
+
+            </div>
+        </div>
         <br>
 
-</div>
+    </div>
 @endsection

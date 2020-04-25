@@ -24,7 +24,8 @@
 
         <div class="alert alert-success">
 
-            There is a <b>new OTS recommendation</b> that is waiting to be accepted. View the <a href="/dashboard/training/ots-center">OTS Center</a> to view more information.
+            There is a <b>new OTS recommendation</b> that is waiting to be accepted. View the <a
+                    href="/dashboard/training/ots-center">OTS Center</a> to view more information.
 
         </div>
 
@@ -38,7 +39,8 @@
 
         <div class="alert alert-success">
 
-            You have either been assigned to an OTS or you have accepted an OTS that is waiting to take place. View the <a href="/dashboard/training/ots-center">OTS Center</a> to view more information.
+            You have either been assigned to an OTS or you have accepted an OTS that is waiting to take place. View the
+            <a href="/dashboard/training/ots-center">OTS Center</a> to view more information.
 
         </div>
 
@@ -52,7 +54,8 @@
 
         <div class="alert alert-success">
 
-            You have a <b>new training ticket</b>. Visit <a href="/dashboard/controllers/profile">your profile</a> to view more information.
+            You have a <b>new training ticket</b>. Visit <a href="/dashboard/controllers/profile">your profile</a> to
+            view more information.
 
         </div>
 
@@ -66,7 +69,8 @@
 
         <div class="alert alert-success">
 
-            There is a <b>new incident report</b>. Visit <a href="/dashboard/admin/incident">incident reports</a> to view more information.
+            There is a <b>new incident report</b>. Visit <a href="/dashboard/admin/incident">incident reports</a> to
+            view more information.
 
         </div>
 
@@ -78,7 +82,8 @@
 
         <div class="alert alert-success">
 
-            There is <b>new feedback awaiting review</b>. Visit <a href="/dashboard/admin/feedback">feedback</a> to view more information.
+            There is <b>new feedback awaiting review</b>. Visit <a href="/dashboard/admin/feedback">feedback</a> to view
+            more information.
 
         </div>
 
@@ -90,7 +95,8 @@
 
         <div class="alert alert-success">
 
-            There is a <b>new visitor application</b>. Visit <a href="/dashboard/admin/roster/visit/requests">visitor requests</a> to view more information.
+            There is a <b>new visitor application</b>. Visit <a href="/dashboard/admin/roster/visit/requests">visitor
+                requests</a> to view more information.
 
         </div>
 
