@@ -18,27 +18,29 @@ use Session;
 
 class RosterController extends Controller
 {
-    public function index() {
+    public function index()
+    {
         $hcontrollers = User::where('visitor', '0')->where('status', '1')->orderBy('lname', 'ASC')->get();
         $vcontrollers = User::where('visitor', '1')->where('status', '1')->orderBy('lname', 'ASC')->get();
 
         return view('site.roster')->with('hcontrollers', $hcontrollers)->with('vcontrollers', $vcontrollers);
     }
 
-    public function login() {
-        if(Auth::check()) {
+    public function login()
+    {
+        if (Auth::check()) {
             return redirect('/')->with('error', 'You are already logged in.');
         }
-        if(Config::get('app.debug') == false) {
-            if(!Auth::check() && !isset($_GET['token'])) {
+        if (Config::get('app.debug') == false) {
+            if (!Auth::check() && !isset($_GET['token'])) {
                 $_SESSION['redirect'] = Config::get('app.url');
-                header("Location: https://login.vatusa.net/uls/v2/login?fac=".Config::get('vatusa.facility'));
+                header("Location: https://login.vatusa.net/uls/v2/login?fac=" . Config::get('vatusa.facility'));
                 exit;
             }
         } else {
-            if(!Auth::check() && !isset($_GET['token'])) {
+            if (!Auth::check() && !isset($_GET['token'])) {
                 $_SESSION['redirect'] = Config::get('app.url');
-                header("Location: https://login.vatusa.net/uls/v2/login?fac=".Config::get('vatusa.facility')."&dev=1");
+                header("Location: https://login.vatusa.net/uls/v2/login?fac=" . Config::get('vatusa.facility') . "&dev=1");
                 exit;
             }
         }
@@ -48,7 +50,7 @@ class RosterController extends Controller
 
         $token = $this->base64url_decode($parts[1]);
 
-        $jwk = json_decode(Config::get('vatusa.jwk'),   true);
+        $jwk = json_decode(Config::get('vatusa.jwk'), true);
 
         $algorithms = ['HS256' => 'sha256', 'HS384' => 'sha384', 'HS512' => 'sha512'];
 
@@ -61,16 +63,17 @@ class RosterController extends Controller
         $signature = $this->base64url_decode($parts[1]);
         $json_token = json_decode($signature, true)['sig'];
 
-        if($sig == $parts[2]) {
+        if ($sig == $parts[2]) {
 
             $token = json_decode($token, true);
 
             $x = 0;
-            Log::info("loginv2 at $x"); $x++;
-            if($token['iss'] != 'VATUSA') {
+            Log::info("loginv2 at $x");
+            $x++;
+            if ($token['iss'] != 'VATUSA') {
                 return redirect('/')->with('error', "Token not issued from VATUSA.");
             }
-            if($token['aud'] != Config::get('vatusa.facility')) {
+            if ($token['aud'] != Config::get('vatusa.facility')) {
                 return redirect('/')->with('error', "Token not issued for ZDC.");
             }
 
@@ -80,42 +83,42 @@ class RosterController extends Controller
             $res = json_decode($result->getBody()->__toString(), true);
 
             $userstatuscheck = User::find($res['cid']);
-            if($userstatuscheck) {
-                if($userstatuscheck->status == 0) {
+            if ($userstatuscheck) {
+                if ($userstatuscheck->status == 0) {
                     return redirect('/')->with('error', "You are either not an active controller and cannot login.");
-                } elseif($userstatuscheck->status == 1) {
+                } elseif ($userstatuscheck->status == 1) {
                     $userstatuscheck->fname = $res['firstname'];
                     $userstatuscheck->lname = $res['lastname'];
                     $userstatuscheck->email = $res['email'];
                     $userstatuscheck->rating_id = $res['intRating'];
                     $userstatuscheck->json_token = encrypt($json_token);
-					$client = new Client();
-					$response = $client->request('GET', 'https://api.vatusa.net/v2/user/'.$res['cid'].'?apikey='.Config::get('vatusa.api_key'));
-					$resu = json_decode($response->getBody());
-					if($resu->flag_broadcastOptedIn == 1) {
-						if($userstatuscheck->opt != 1) {
-							$opt = new Opt;
-							$opt->controller_id = $res['cid'];
-							$opt->ip_address = '0.0.0.0';
-							$opt->means = 'VATUSA API';
-							$opt->option = 1;
-							$opt->save();
-							$userstatuscheck->opt = 1;
-						}
-					} else {
+                    $client = new Client();
+                    $response = $client->request('GET', 'https://api.vatusa.net/v2/user/' . $res['cid'] . '?apikey=' . Config::get('vatusa.api_key'));
+                    $resu = json_decode($response->getBody());
+                    if ($resu->flag_broadcastOptedIn == 1) {
+                        if ($userstatuscheck->opt != 1) {
+                            $opt = new Opt;
+                            $opt->controller_id = $res['cid'];
+                            $opt->ip_address = '0.0.0.0';
+                            $opt->means = 'VATUSA API';
+                            $opt->option = 1;
+                            $opt->save();
+                            $userstatuscheck->opt = 1;
+                        }
+                    } else {
                         $user_opt = Opt::where('controller_id', $userstatuscheck->id)->where('means', '!=', 'VATUSA API')->where('option', 1)->first();
-						if($userstatuscheck->opt != 0 && !isset($user_opt)) {
-							$opt = new Opt;
-							$opt->controller_id = $res['cid'];
-							$opt->ip_address = '0.0.0.0';
-							$opt->means = 'VATUSA API';
-							$opt->option = 0;
-							$opt->save();
-							$userstatuscheck->opt = 0;
-						}
+                        if ($userstatuscheck->opt != 0 && !isset($user_opt)) {
+                            $opt = new Opt;
+                            $opt->controller_id = $res['cid'];
+                            $opt->ip_address = '0.0.0.0';
+                            $opt->means = 'VATUSA API';
+                            $opt->option = 0;
+                            $opt->save();
+                            $userstatuscheck->opt = 0;
+                        }
                     }
-                    if($userstatuscheck->visitor == '1') {
-                        if($resu->facility != 'ZZN'){
+                    if ($userstatuscheck->visitor == '1') {
+                        if ($resu->facility != 'ZZN') {
                             $userstatuscheck->visitor_from = $resu->facility;
                         }
                     } else {
@@ -138,13 +141,15 @@ class RosterController extends Controller
         }
     }
 
-    function smf_login($cid) {
+    function smf_login($cid)
+    {
         require_once(config('sso.forumapi', ''));
         smfapi_login($cid, 14400);
     }
 
-    public function logout() {
-        if(!Auth::check()) {
+    public function logout()
+    {
+        if (!Auth::check()) {
             return redirect('/')->with('error', 'You are not logged in.');
         } else {
             Auth::logout();
@@ -152,71 +157,74 @@ class RosterController extends Controller
         }
     }
 
-    public function base64url_encode($data, $use_padding = false) {
+    public function base64url_encode($data, $use_padding = false)
+    {
         $encoded = strtr(base64_encode($data), '+/', '-_');
         return true === $use_padding ? $encoded : rtrim($encoded, '=');
     }
 
-    public function base64url_decode($data) {
+    public function base64url_decode($data)
+    {
         return base64_decode(strtr($data, '-_', '+/'));
     }
 
-    public function staffIndex() {
+    public function staffIndex()
+    {
         $users = User::with('roles')->get();
 
-        $atm = $users->filter(function($user){
+        $atm = $users->filter(function ($user) {
             return $user->hasRole('atm');
         });
 
-        $datm = $users->filter(function($user){
+        $datm = $users->filter(function ($user) {
             return $user->hasRole('datm');
         });
 
-        $ta = $users->filter(function($user){
+        $ta = $users->filter(function ($user) {
             return $user->hasRole('ta');
         });
 
-        $ata = $users->filter(function($user){
+        $ata = $users->filter(function ($user) {
             return $user->hasRole('ata');
         });
 
-        $wm = $users->filter(function($user){
+        $wm = $users->filter(function ($user) {
             return $user->hasRole('wm');
         });
 
-        $awm = $users->filter(function($user){
+        $awm = $users->filter(function ($user) {
             return $user->hasRole('awm');
         });
 
-        $ec = $users->filter(function($user){
+        $ec = $users->filter(function ($user) {
             return $user->hasRole('ec');
         });
 
-        $aec = $users->filter(function($user){
+        $aec = $users->filter(function ($user) {
             return $user->hasRole('aec');
         });
 
-        $fe = $users->filter(function($user){
+        $fe = $users->filter(function ($user) {
             return $user->hasRole('fe');
         });
 
-        $afe = $users->filter(function($user){
+        $afe = $users->filter(function ($user) {
             return $user->hasRole('afe');
         });
 
-        $ins = $users->filter(function($user){
+        $ins = $users->filter(function ($user) {
             return $user->hasRole('ins');
         });
 
-        $mtr = $users->filter(function($user){
+        $mtr = $users->filter(function ($user) {
             return $user->hasRole('mtr');
         });
 
         return view('site.staff')->with('atm', $atm)->with('datm', $datm)
-                                 ->with('ta', $ta)->with('ata', $ata)
-                                 ->with('wm', $wm)->with('awm', $awm)
-                                 ->with('ec', $ec)->with('aec', $aec)
-                                 ->with('fe', $fe)->with('afe', $afe)
-                                 ->with('ins', $ins)->with('mtr', $mtr);
+            ->with('ta', $ta)->with('ata', $ata)
+            ->with('wm', $wm)->with('awm', $awm)
+            ->with('ec', $ec)->with('aec', $aec)
+            ->with('fe', $fe)->with('afe', $afe)
+            ->with('ins', $ins)->with('mtr', $mtr);
     }
 }

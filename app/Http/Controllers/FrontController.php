@@ -44,27 +44,27 @@ class FrontController extends Controller
                     if ($position == 'CTR') {
                         $center = 1;
                     }
-                } 
+                }
                 if ($field == 'DCA' || $field == 'IAD' || $field == 'BWI' || $field == 'PCT') {
                     if ($position == 'APP' || $position == 'DEP') {
                         $tracon = 1;
                     }
-                } 
+                }
                 if ($field == 'IAD') {
                     if ($position == 'TWR' || $position == 'GND') {
                         $iad = 1;
                     }
-                } 
+                }
                 if ($field == 'DCA') {
                     if ($position == 'TWR' || $position == 'GND') {
                         $dca = 1;
                     }
-                } 
+                }
                 if ($field == 'IAD') {
                     if ($position == 'TWR' || $position == 'GND') {
                         $iad = 1;
                     }
-                } 
+                }
                 if ($field == 'BWI') {
                     if ($position == 'TWR' || $position == 'GND') {
                         $bwi = 1;

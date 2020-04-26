@@ -1,21 +1,21 @@
 @extends('layouts.master')
 
 @section('title')
-New Feedback
+    New Feedback
 @endsection
 
 @section('content')
-<span class="border border-light" style="background-color:#F0F0F0">
+    <span class="border border-light" style="background-color:#F0F0F0">
     <div class="container">
         &nbsp;
         <h2>Leave New Feedback</h2>
         &nbsp;
     </div>
 </span>
-<br>
+    <br>
 
-<div class="container">
-    {!! Form::open(['action' => 'FrontController@saveNewFeedback']) !!}
+    <div class="container">
+        {!! Form::open(['action' => 'FrontController@saveNewFeedback']) !!}
         <div class="row">
             <div class="col-sm-6">
                 <div class="form-group">
@@ -67,6 +67,6 @@ New Feedback
         <div class="g-recaptcha" data-sitekey="6LcdaeMUAAAAAPegraMiMUtBu4ARKuLcbMHVcHQp"></div>
         <br>
         <button class="btn btn-success" type="submit">Send Feedback</button>
-    {!! Form::close() !!}
-</div>
+        {!! Form::close() !!}
+    </div>
 @endsection

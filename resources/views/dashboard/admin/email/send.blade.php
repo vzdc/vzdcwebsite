@@ -5,14 +5,14 @@
 @endsection
 
 @section('content')
-<div class="container-fluid" style="background-color:#F0F0F0;">
-    &nbsp;
-    <h2>Send New Email</h2>
-    &nbsp;
-</div>
-<br>
-<div class="container">
-    {!! Form::open(['action' => 'AdminDash@sendEmail']) !!}
+    <div class="container-fluid" style="background-color:#F0F0F0;">
+        &nbsp;
+        <h2>Send New Email</h2>
+        &nbsp;
+    </div>
+    <br>
+    <div class="container">
+        {!! Form::open(['action' => 'AdminDash@sendEmail']) !!}
         @csrf
         <div class="row">
             <div class="col-sm-4">
@@ -67,12 +67,12 @@
             {!! Form::textarea('message', null, ['id' => 'article-ckeditor', 'placeholder' => 'Message (Required)', 'class' => 'form-control']) !!}
         </div>
         <button class="btn btn-success" type="submit">Send</button>
-    {!! Form::close() !!}
-</div>
+        {!! Form::close() !!}
+    </div>
 
-<script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-<script>
-    CKEDITOR.replace( 'article-ckeditor' );
-</script>
+    <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
+    <script>
+        CKEDITOR.replace('article-ckeditor');
+    </script>
 
 @endsection

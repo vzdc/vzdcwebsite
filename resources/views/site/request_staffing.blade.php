@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
 @section('title')
-Staffing Request
+    Staffing Request
 @endsection
 
 @section('content')
-<span class="border border-light" style="background-color:#F0F0F0">
+    <span class="border border-light" style="background-color:#F0F0F0">
     <div class="container">
         &nbsp;
         <h2>CLOSED</h2>
@@ -15,5 +15,5 @@ Staffing Request
         &nbsp;
     </div>
 </span>
-<br>
+    <br>
 @endsection

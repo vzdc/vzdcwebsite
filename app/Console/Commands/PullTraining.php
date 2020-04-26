@@ -41,37 +41,37 @@ class PullTraining extends Command
     public function handle()
     {
         $data = DB::table('training')->get();
-        foreach($data as $d) {
+        foreach ($data as $d) {
             $ticket = new TrainingTicket;
             $ticket->controller_id = $d->CtlId;
             $ticket->trainer_id = $d->MtrId;
-            $ticket->comments = $d->comments.' '.$d->remarks;
+            $ticket->comments = $d->comments . ' ' . $d->remarks;
             $ticket->ins_comments = $d->notes;
             $ticket->date = Carbon::createFromTimestamp(strtotime($d->sessionStart))->format('m/d/Y');
             $ticket->start_time = substr($d->sessionStart, 11, 5);
             $ticket->end_time = substr($d->sessionEnd, 11, 5);
             $ticket->duration = 'N/A';
-            if($d->position == 'DELGND') {
+            if ($d->position == 'DELGND') {
                 $ticket->position = 0;
-            } elseif($d->position == 'TWR') {
+            } elseif ($d->position == 'TWR') {
                 $ticket->position = 1;
-            } elseif($d->position == 'TRACON') {
+            } elseif ($d->position == 'TRACON') {
                 $ticket->position = 2;
-            } elseif($d->position == 'CTR') {
+            } elseif ($d->position == 'CTR') {
                 $ticket->position = 3;
             }
-            if($d->facility == 'KIAD') {
+            if ($d->facility == 'KIAD') {
                 $ticket->facility = 0;
-            } elseif($d->facility == 'KBWI') {
+            } elseif ($d->facility == 'KBWI') {
                 $ticket->facility = 1;
-            } elseif($d->facility == 'KDCA') {
+            } elseif ($d->facility == 'KDCA') {
                 $ticket->facility = 2;
-            } elseif($d->facility == 'KORF') {
+            } elseif ($d->facility == 'KORF') {
                 $ticket->facility = 3;
-            } elseif($d->facility == 'KZDC') {
+            } elseif ($d->facility == 'KZDC') {
                 $ticket->facility = 4;
             }
-            if($d->OTS == 1) {
+            if ($d->OTS == 1) {
                 $ticket->type = 8;
             } else {
                 $ticket->type = 9;

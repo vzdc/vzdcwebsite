@@ -1,18 +1,18 @@
 @extends('layouts.dashboard')
 
 @section('title')
-New Visitor
+    New Visitor
 @endsection
 
 @section('content')
-<div class="container-fluid" style="background-color:#F0F0F0;">
-    &nbsp;
-    <h2>New Visitor</h2>
-    &nbsp;
-</div>
-<br>
-<div class="container">
-    {!! Form::open(['action' => 'AdminDash@storeVisitor']) !!}
+    <div class="container-fluid" style="background-color:#F0F0F0;">
+        &nbsp;
+        <h2>New Visitor</h2>
+        &nbsp;
+    </div>
+    <br>
+    <div class="container">
+        {!! Form::open(['action' => 'AdminDash@storeVisitor']) !!}
         @csrf
         @if($visitor != null)
             <div class="form-group">
@@ -143,7 +143,7 @@ New Visitor
             <button class="btn btn-success" type="submit">Save</button>
             <a class="btn btn-danger" href="/dashboard/admin/roster/visit/requests">Cancel</a>
         </div>
-    {!! Form::close() !!}
-        </div>
-</div>
+        {!! Form::close() !!}
+    </div>
+    </div>
 @endsection

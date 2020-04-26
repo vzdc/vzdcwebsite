@@ -20,7 +20,8 @@ class File extends Model
         6 => 'Staff'
     ];
 
-    public function getWordTypeAttribute() {
+    public function getWordTypeAttribute()
+    {
         foreach (File::$WordType as $id => $wordType) {
             if ($this->type == $id) {
                 return $wordType;

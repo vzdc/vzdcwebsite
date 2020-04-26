@@ -1,7 +1,7 @@
 @extends('layouts.email')
 
 @section('content')
-{!! nl2br($body) !!}
+    {!! nl2br($body) !!}
 @endsection
 
 @section('footer')
