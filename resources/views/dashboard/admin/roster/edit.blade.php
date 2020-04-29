@@ -574,9 +574,9 @@ Update Controller
                                             @endif
                                         </td>
                                         <td>
-                                            @if($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() <= 3)
+                                            @if($l->confidential == 1 && (Auth::user()->getStaffPositionAttribute() <= 3 && Auth::user()->getStaffPositionAttribute() > 0))
                                                 {{$l->content}}
-                                            @elseif($l->confidential == 1 && Auth::user()->getStaffPositionAttribute() > 3)
+                                            @elseif($l->confidential == 1 && (Auth::user()->getStaffPositionAttribute() > 3 || Auth::user()->getStaffPositionAttribute() < 1))
                                                 <i>***CONFIDENTIAL ENTRY***</i>
                                             @else
                                                 {{$l->content}}
