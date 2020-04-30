@@ -45,9 +45,9 @@ Feedback Management
                         </td>
                         <td>{{ $f->created_at }}</td>
                         <td>@if($f->contacted == 1)
-                            <center><i class="fas fa-check" style="color:green"></i></center>
+                            <i class="fas fa-check" style="color:green"></i>
                             @else
-                            <center><i class="fas fa-times" style="color:red"></i></center>
+                            <i class="fas fa-times" style="color:red"></i>
                             @endif</td>
                         <td>
                             <span data-toggle="modal" data-target="#saveFeedback{{ $f->id }}">
