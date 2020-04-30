@@ -210,7 +210,6 @@ Feedback Management
                         <th scope="col">Staff Comments</th>
                         <th scope="col">Processed</th>
                         <th scope="col">Contacted
-                        <th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
