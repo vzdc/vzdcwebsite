@@ -1180,12 +1180,13 @@ class AdminDash extends Controller
         ]);
 
         $feedback = Feedback::find($id);
+        $feedback->contacted = 1;
         $replyTo = $request->email;
         $replyToName = $request->name;
         $subject = $request->subject;
         $body = $request->body;
         $sender = Auth::user();
-
+        
         Mail::send('emails.feedback_email', ['feedback' => $feedback, 'body' => $body, 'sender' => $sender], function ($m) use ($feedback, $subject, $replyTo, $replyToName) {
             $m->from('notams@vzdc.org', 'vZDC Feedback Department')->replyTo($replyTo, $replyToName);
             $m->subject($subject);
@@ -1197,6 +1198,7 @@ class AdminDash extends Controller
         $audit->ip = $_SERVER['REMOTE_ADDR'];
         $audit->what = Auth::user()->full_name . ' emailed the pilot for feedback ' . $feedback->id . '.';
         $audit->save();
+        $feedback->save();
 
         return redirect()->back()->with('success', 'The email has been sent to the pilot successfully.');
     }
