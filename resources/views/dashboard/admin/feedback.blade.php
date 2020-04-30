@@ -49,22 +49,22 @@
                                 @else
                                         <center><i class="fas fa-times" style="color:red"></i></center>
                                 @endif</td>
-                                <td>
+                                <td><right>
                                     <span data-toggle="modal" data-target="#saveFeedback{{ $f->id }}">
                                         <button type="button" class="btn btn-success simple-tooltip"
-                                                data-placement="top" data-toggle="tooltip" title="Save Feedback"><right><i
-                                                    class="fas fa-check"></i></right></button>
+                                                data-placement="top" data-toggle="tooltip" title="Save Feedback"><i
+                                                    class="fas fa-check"></i></button>
                                     </span>
                                     <span data-toggle="modal" data-target="#hideFeedback{{ $f->id }}">
                                         <button type="button" class="btn btn-danger simple-tooltip" data-placement="top"
-                                                data-toggle="tooltip" title="Hide Feedback"><right><i class="fas fa-times"></i></right></button>
+                                                data-toggle="tooltip" title="Hide Feedback"><i class="fas fa-times"></i></button>
                                     </span>
                                     @if($f->pilot_email != null)
                                         <span data-toggle="modal" data-target="#emailFeedback{{ $f->id }}">
                                             <button type="button" class="btn btn-warning simple-tooltip"
                                                     data-placement="top" data-toggle="tooltip" title="Email Pilot"><i
                                                         class="fas fa-envelope"></i></button>
-                                        </span>
+                                        </span></right>
                                     @endif
                                 </td>
                             </tr>
