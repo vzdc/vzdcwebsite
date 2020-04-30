@@ -44,7 +44,7 @@
                                 <td data-toggle="tooltip"
                                     title="{{ $f->comments }}">{{ str_limit($f->comments, 80, '...') }}</td>
                                 <td>{{ $f->created_at }}</td>
-                                <td>if($f->contacted == 1)
+                                <td>@if($f->contacted == 1)
                                         <i class="fas fa-check" style="color:green"></i>
                                 @else
                                         <i class="fas fa-times" style="color:red"></i>
@@ -218,7 +218,7 @@
                                 <td data-toggle="tooltip"
                                     title="{{ $f->staff_comments }}">{{ str_limit($f->staff_comments, 40, '...') }}</td>
                                 <td>{{ $f->created_at }}</td>
-                                <td>if($f->contacted == 1)
+                                <td>@if($f->contacted == 1)
                                         <i class="fas fa-check" style="color:green"></i>
                                 @else
                                         <i class="fas fa-times" style="color:red"></i>
