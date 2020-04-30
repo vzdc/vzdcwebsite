@@ -219,9 +219,9 @@
                                     title="{{ $f->staff_comments }}">{{ str_limit($f->staff_comments, 40, '...') }}</td>
                                 <td>{{ $f->created_at }}</td>
                                 <td>@if($f->contacted == 1)
-                                        <i class="fas fa-check" style="color:green"></i>
+                                        <center><i class="fas fa-check" style="color:green"></i></center>
                                 @else
-                                        <i class="fas fa-times" style="color:red"></i>
+                                        <center><i class="fas fa-times" style="color:red"></i></center>
                                 @endif</td>
                                 <td>
                                     <div class="row">
@@ -229,7 +229,7 @@
                                         <span data-toggle="modal" data-target="#updateFeedback{{ $f->id }}">
                                             <button type="button" class="btn btn-success simple-tooltip"
                                                     data-placement="top" data-toggle="tooltip"
-                                                    title="Update Feedback"><i class="fas fa-pencil-alt"></i></button>
+                                                    title="Update Feedback"><center><i class="fas fa-pencil-alt"></i></center></button>
                                         </span>
                                         </div>
                                         <div class="col-sm-2">
@@ -237,7 +237,7 @@
                                                 <span data-toggle="modal" data-target="#emailFeedback{{ $f->id }}">
                                                 <button type="button" class="btn btn-warning simple-tooltip"
                                                         data-placement="top" data-toggle="tooltip"
-                                                        title="Email Pilot"><i class="fas fa-envelope"></i></button>
+                                                        title="Email Pilot"><center><i class="fas fa-envelope"></i></center></button>
                                             </span>
                                             @endif
                                         </div>
