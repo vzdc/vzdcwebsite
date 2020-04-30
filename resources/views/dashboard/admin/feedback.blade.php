@@ -32,6 +32,7 @@
                             <th scope="col">Controller</th>
                             <th scope="col">Comments</th>
                             <th scope="col">Submitted</th>
+                            <th scope="col">Contacted<th>
                             <th scope="col">Actions</th>
                         </tr>
                         </thead>
@@ -43,6 +44,11 @@
                                 <td data-toggle="tooltip"
                                     title="{{ $f->comments }}">{{ str_limit($f->comments, 80, '...') }}</td>
                                 <td>{{ $f->created_at }}</td>
+                                <td>if($f->contacted == 1)
+                                        <i class="fas fa-check" style="color:green"></i>
+                                @else
+                                        <i class="fas fa-times" style="color:red"></i>
+                                @endif</td>
                                 <td>
                                     <span data-toggle="modal" data-target="#saveFeedback{{ $f->id }}">
                                         <button type="button" class="btn btn-success simple-tooltip"
@@ -198,6 +204,7 @@
                             <th scope="col">Comments</th>
                             <th scope="col">Staff Comments</th>
                             <th scope="col">Processed</th>
+                            <th scope="col">Contacted<th>
                             <th scope="col">Actions</th>
                         </tr>
                         </thead>
@@ -211,6 +218,11 @@
                                 <td data-toggle="tooltip"
                                     title="{{ $f->staff_comments }}">{{ str_limit($f->staff_comments, 40, '...') }}</td>
                                 <td>{{ $f->created_at }}</td>
+                                <td>if($f->contacted == 1)
+                                        <i class="fas fa-check" style="color:green"></i>
+                                @else
+                                        <i class="fas fa-times" style="color:red"></i>
+                                @endif</td>
                                 <td>
                                     <div class="row">
                                         <div class="col-sm-6">
