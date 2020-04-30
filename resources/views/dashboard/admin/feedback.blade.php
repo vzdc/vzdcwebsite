@@ -32,8 +32,7 @@ Feedback Management
                         <th scope="col">Controller</th>
                         <th scope="col">Comments</th>
                         <th scope="col">Submitted</th>
-                        <th scope="col">Contacted
-                        <th>
+                        <th scope="col">Contacted</th>
                         <th scope="col">Actions</th>
                     </tr>
                 </thead>
