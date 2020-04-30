@@ -45,9 +45,9 @@
                                     title="{{ $f->comments }}">{{ str_limit($f->comments, 80, '...') }}</td>
                                 <td>{{ $f->created_at }}</td>
                                 <td>@if($f->contacted == 1)
-                                        <i class="fas fa-check" style="color:green"></i>
+                                        <center><i class="fas fa-check" style="color:green"></i></center>
                                 @else
-                                        <i class="fas fa-times" style="color:red"></i>
+                                        <center><i class="fas fa-times" style="color:red"></i></center>
                                 @endif</td>
                                 <td>
                                     <span data-toggle="modal" data-target="#saveFeedback{{ $f->id }}">
