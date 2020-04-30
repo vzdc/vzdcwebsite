@@ -49,7 +49,7 @@
                                 @else
                                         <center><i class="fas fa-times" style="color:red"></i></center>
                                 @endif</td>
-                                <td><right>
+                                <td>
                                     <span data-toggle="modal" data-target="#saveFeedback{{ $f->id }}">
                                         <button type="button" class="btn btn-success simple-tooltip"
                                                 data-placement="top" data-toggle="tooltip" title="Save Feedback"><i
@@ -64,7 +64,7 @@
                                             <button type="button" class="btn btn-warning simple-tooltip"
                                                     data-placement="top" data-toggle="tooltip" title="Email Pilot"><i
                                                         class="fas fa-envelope"></i></button>
-                                        </span></right>
+                                        </span>
                                     @endif
                                 </td>
                             </tr>
@@ -229,7 +229,7 @@
                                         <span data-toggle="modal" data-target="#updateFeedback{{ $f->id }}">
                                             <button type="button" class="btn btn-success simple-tooltip"
                                                     data-placement="top" data-toggle="tooltip"
-                                                    title="Update Feedback"><center><i class="fas fa-pencil-alt"></i></center></button>
+                                                    title="Update Feedback"><i class="fas fa-pencil-alt"></i></button>
                                         </span>
                                         </div>
                                         <div class="col-sm-2">
@@ -237,7 +237,7 @@
                                                 <span data-toggle="modal" data-target="#emailFeedback{{ $f->id }}">
                                                 <button type="button" class="btn btn-warning simple-tooltip"
                                                         data-placement="top" data-toggle="tooltip"
-                                                        title="Email Pilot"><center><i class="fas fa-envelope"></i></center></button>
+                                                        title="Email Pilot"><i class="fas fa-envelope"></i></button>
                                             </span>
                                             @endif
                                         </div>
