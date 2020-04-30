@@ -52,12 +52,12 @@
                                 <td>
                                     <span data-toggle="modal" data-target="#saveFeedback{{ $f->id }}">
                                         <button type="button" class="btn btn-success simple-tooltip"
-                                                data-placement="top" data-toggle="tooltip" title="Save Feedback"><i
-                                                    class="fas fa-check"></i></button>
+                                                data-placement="top" data-toggle="tooltip" title="Save Feedback"><right><i
+                                                    class="fas fa-check"></i></right></button>
                                     </span>
                                     <span data-toggle="modal" data-target="#hideFeedback{{ $f->id }}">
                                         <button type="button" class="btn btn-danger simple-tooltip" data-placement="top"
-                                                data-toggle="tooltip" title="Hide Feedback"><i class="fas fa-times"></i></button>
+                                                data-toggle="tooltip" title="Hide Feedback"><right><i class="fas fa-times"></i></right></button>
                                     </span>
                                     @if($f->pilot_email != null)
                                         <span data-toggle="modal" data-target="#emailFeedback{{ $f->id }}">
@@ -219,9 +219,9 @@
                                     title="{{ $f->staff_comments }}">{{ str_limit($f->staff_comments, 40, '...') }}</td>
                                 <td>{{ $f->created_at }}</td>
                                 <td>@if($f->contacted == 1)
-                                        <center><i class="fas fa-check" style="color:green"></i></center>
+                                        <right><i class="fas fa-check" style="color:green"></i></right>
                                 @else
-                                        <center><i class="fas fa-times" style="color:red"></i></center>
+                                        <right><i class="fas fa-times" style="color:red"></i></right>
                                 @endif</td>
                                 <td>
                                     <div class="row">
