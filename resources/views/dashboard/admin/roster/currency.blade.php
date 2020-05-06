@@ -40,7 +40,7 @@ Currency Manager
                         <td>{{ $stats[$controllers[$i]->id]->total_hrs }}</td>
                         <td>{{ $controllers[$i]->getLastTrainingAttribute() }}</td>
                     </tr>
-                    @endforeach
+                    @endfor
             </tbody>
         </table>
     </div>
