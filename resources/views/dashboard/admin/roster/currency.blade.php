@@ -24,6 +24,12 @@ Currency Manager
         <div role="tabpanel" class="tab-pane active" id="home">
             <table class="table table-bordered table-striped">
                 <thead>
+                    <th scope="col" colspan=5>Total Hours this Month</th>
+                </thead>
+                <thead>
+                    <th scope="col" colspan=5>{{ number_format($all_stats['month'], 2) }}</th>
+                </thead>
+                <thead>
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Rating</th>
