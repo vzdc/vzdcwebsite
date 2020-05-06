@@ -60,11 +60,13 @@ Currency Manager
                                             <input name="_method" type="hidden" value="SendEmail">
                                             <button type="button" class="btn btn-warning simple-tooltip" data-placement="top"
                                                 data-toggle="tooltip" title="Send Warning Email"><i class="fas fa-envelope"></i></button>
+                                            <input type="hidden" value="controller" />
                                         </form>
                                         <form method="POST" action="{{ route('currency.removal', $controller) }}">
                                             <input name="_method" type="hidden" value="SendEmail">
                                             <button type="button" class="btn btn-danger simple-tooltip" data-placement="top"
                                                 data-toggle="tooltip" title="Send Warning Email"><i class="fas fa-envelope"></i></button>
+                                            <input type="hidden" value="controller" />
                                         </form>
                                     @endif
                                 </td>
