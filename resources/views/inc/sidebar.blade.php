@@ -105,8 +105,8 @@
                        href="/dashboard/admin/incident">Incident Report Management</a>
                 @endif
                 @if(Auth::user()->can('snrStaff'))
-                <a class="nav-link {{ Nav::urlDoesContain('/dashboard/admin/roster/currency') }}"
-                   href="/dashboard/admin/roster/currency">Currency Manager</a>
+                <a class="nav-link {{ Nav::urlDoesContain('/dashboard/admin/currency') }}"
+                   href="/dashboard/admin/currency">Currency Manager</a>
             @endif
                 @if(Auth::user()->can('scenery'))
                     <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/scenery') }}"
