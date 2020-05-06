@@ -38,7 +38,7 @@ Currency Manager
                         <td>{{ $controllers[$i]->full_name }}</td>
                         <td>{{ $controllers[$i]->rating_short }}</td>
                         <td>{{ $stats[$controllers[$i]->id]->total_hrs }}</td>
-                        <td>{{ $trainings[$i] }}</td>
+                        <td>{{ $controllers[$i]->getLastTrainingAttribute() }}</td>
                     </tr>
                     @endforeach
             </tbody>
