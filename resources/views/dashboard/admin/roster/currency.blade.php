@@ -10,10 +10,10 @@ Currency Manager
         <div role="tabpanel" class="tab-pane active" id="home">
             <table class="table table-bordered table-striped">
                 <thead>
-                    <th scope="col" colspan=6 class="text-center">Total Hours this Month</th>
+                    <th scope="col" colspan=8 class="text-center">Total Hours this Month</th>
                 </thead>
                 <thead>
-                    <th scope="col" colspan=6 class="text-center">{{ number_format($all_stats['month'], 2) }}</th>
+                    <th scope="col" colspan=8 class="text-center">{{ number_format($all_stats['month'], 2) }}</th>
                 </thead>
                 <thead>
                     <tr>
@@ -23,18 +23,49 @@ Currency Manager
                         <th scope="col" class="text-center">Join Date</th>
                         <th scope="col" class="text-center">Last training</th>
                         <th scope="col" class="text-center">Activity Warning</th>
+                        <th scope="col" class="text-center">Recommended Action</th>
+                        <th scope="col" class="text-center">Send Email</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($controllers as $controller)
                         @if($stats[$controller->id]->total_hrs < 2)
+                            <?php
+                                $currentDate = new \DateTime('now');
+                                
+                                $twoWeeksAfterWarning = new \DateTime($controller->activity_warning_date . '+2 weeks');
+                                $twoWeeksLater = $currentDate < $twoWeeksAfterWarning;
+
+                                $oneMonthAfter = new \DateTime($controller->getLastTrainingAttribute() . '+1 month')
+                                $noTrainingwithinMonth = $currentDate < $oneMonthAfter;
+                            ?>
                             <tr>
                                 <td>{{ $controller->full_name }}</td>
                                 <td>{{ $controller->rating_short }}</td>
                                 <td>{{ $stats[$controller->id]->total_hrs }}</td>
                                 <td>{{ $controller->added_to_facility }}</td>
                                 <td>{{ $controller->getLastTrainingAttribute() == null ? "--" : $controller->getLastTrainingAttribute() }}</td>
-                                <td><center><i class="fas fa-times" style="color:red"></center></i></td>
+                                <td>
+                                    @if($controller->activity_warning == 0)
+                                    <center><i class="fas fa-times" style="color:red"></center></i>
+                                    @else
+                                    <center><i class="fas fa-check" style="color:green"></center></i>
+                                    @endif
+                                </td>
+                                <td>
+                                    @if($controller->activity_warning == 0 && $stats[$controller->id]->total_hrs < 2 && $controller->rating_short != "OBS")
+                                        Activity Warning
+                                    @elseif($controller->activity_warning == 0 && $noTrainingWithinMonth && $controller->rating_short == "OBS")
+                                        Activity Warning
+                                    @elseif($controller->activity_warning == 1 && $twoWeeksLater)
+                                        Removal
+                                    @else
+                                        No Action
+                                    @endif
+                                </td>
+                                <td>
+                                    Buttons here
+                                </td>
                             </tr>
                         @endif
                     @endforeach

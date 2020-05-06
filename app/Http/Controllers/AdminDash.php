@@ -1892,4 +1892,8 @@ class AdminDash extends Controller
 
         return view('dashboard.admin.roster.currency')->with('all_stats', $all_stats)->with('month', $month)->with('controllers', $controllers)->with('stats', $stats);
     }
+
+    public function SendCurrencyEmail($user) {
+
+    }
 }

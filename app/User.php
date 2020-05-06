@@ -19,7 +19,10 @@ class User extends Authenticatable
     use LaratrustUserTrait;
 
     protected $table = 'roster';
-    protected $fillable = ['id', 'fname', 'lname', 'email', 'rating_id', 'canTrain', 'visitor', 'status', 'loa', 'delgnd', 'twr', 'chp', 'mtv', 'shd', 'app', 'ctr', 'train_pwr', 'monitor_pwr', 'opt', 'initials', 'added_to_facility', 'warned'];
+    protected $fillable = ['id', 'fname', 'lname', 'email', 'rating_id', 'canTrain', 
+                            'visitor', 'status', 'loa', 'delgnd', 'twr', 'chp', 'mtv', 
+                            'shd', 'app', 'ctr', 'train_pwr', 'monitor_pwr', 'opt', 'initials', 
+                            'added_to_facility', 'activity_warning', 'activity_warning_date'];
     protected $secret = ['remember_token', 'password', 'json_token'];
 
     public function user()
