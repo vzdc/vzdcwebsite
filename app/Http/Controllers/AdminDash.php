@@ -1877,4 +1877,28 @@ class AdminDash extends Controller
         }
     }
 
+    
+    public function Currency() {
+        $year = date('y');
+        $month = date('n');
+        $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
+        $all_stats = ControllerLog::getAllControllerStats();
+        $controllers = User::list()->all();
+        $trainings = array();
+
+        for ($i = 0; $i < count($controllers); $i++) {
+
+            $tickets_sort = TrainingTicket::where('controller_id', $controllers[$i])->get()->sortByDesc(function ($t) {
+                return strtotime($t->date . ' ' . $t->start_time);
+            })->pluck('id');
+            if ($tickets_sort->count() != 0) {
+                $tickets_order = implode(',', array_fill(0, count($tickets_sort), '?'));
+                $last_training = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->first();
+            } else {
+                $last_training = null;
+            }
+            array_push($trainings, $last_training);
+        }
+        return view('dashboard.admin.currency')->with('all_stats', $all_stats)->with('month', $month)->with('controllers', $controllers)->with('stats', $stats)->with('trainings', $trainings);
+    }
 }

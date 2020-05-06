@@ -230,6 +230,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::get('/', 'AdminDash@DossierIndex');
             Route::post('/search', 'AdminDash@DossierSearch');
         });
+        Route::prefix('currency')->middleware('permission:snrStaff')->group(function () {
+            Route::get('/', 'AdminDash@Currency');
+        });
     });
 });
 /*
