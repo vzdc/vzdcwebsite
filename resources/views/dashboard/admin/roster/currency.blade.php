@@ -33,7 +33,7 @@ Currency Manager
                                 <td>{{ $controller->rating_short }}</td>
                                 <td>{{ $stats[$controller->id]->total_hrs }}</td>
                                 <td>{{ $controller->added_to_facility }}</td>
-                                <td>{{ $controller->getLastTrainingAttribute() }}</td>
+                                <td>{{ $controller->getLastTrainingAttribute() == null ? "--" : $controller->getLastTrainingAttribute() }}</td>
                                 <td><center><i class="fas fa-times" style="color:red"></center></i></td>
                             </tr>
                         @endif
