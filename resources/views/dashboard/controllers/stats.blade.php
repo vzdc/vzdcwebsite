@@ -115,7 +115,7 @@
                                 <td bgcolor="#E6B0AA" class="black"><b>{{ $stats[$h->id]->total_hrs }}</b></td>
                             @endif
                         </tr>
-                    @endforeach
+                    @endfor
                     </tbody>
                 </table>
             </div>
