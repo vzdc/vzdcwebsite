@@ -1883,7 +1883,7 @@ class AdminDash extends Controller
         $month = date('n');
         $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
         $all_stats = ControllerLog::getAllControllerStats();
-        $controllers = User::select()->all();
+        $controllers = User::select();
         $trainings = array();
 
         for ($i = 0; $i < count($controllers); $i++) {
