@@ -44,12 +44,12 @@ Currency Manager
                                     @endif
                                 </td>
                                 <td>
-                                    @if($controller->activity_warning == 0 && $stats[$controller->id]->total_hrs < 2 && $controller->rating_short != "OBS")
-                                        Activity Warning
+                                    @if($controller->activity_warning == 1 && $controller->warningOverTwoWeeksAgo())
+                                        Removal
                                     @elseif($controller->activity_warning == 0 && $controller->trainingOverOneMonthAgo() && $controller->rating_short == "OBS")
                                         Activity Warning
-                                    @elseif($controller->activity_warning == 1 && $controller->warningOverTwoWeeksAgo())
-                                        Removal
+                                    @elseif($controller->activity_warning == 0 && $stats[$controller->id]->total_hrs < 2 && $controller->rating_short != "OBS")
+                                        Activity Warning
                                     @else
                                         No Action
                                     @endif
