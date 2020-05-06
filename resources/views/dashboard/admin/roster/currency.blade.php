@@ -17,24 +17,24 @@ Currency Manager
                 </thead>
                 <thead>
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Rating</th>
-                        <th scope="col">Total This Month</th>
-                        <th scope="col">Join Date</th>
-                        <th scope="col">Last training</th>
-                        <th scope="col">Activity Warning</th>
+                        <th scope="col" class="text-center">Name</th>
+                        <th scope="col" class="text-center">Rating</th>
+                        <th scope="col" class="text-center">Total This Month</th>
+                        <th scope="col" class="text-center">Join Date</th>
+                        <th scope="col" class="text-center">Last training</th>
+                        <th scope="col" class="text-center">Activity Warning</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($controllers as $controller)
                         @if($stats[$controller->id]->total_hrs < 2)
                             <tr>
-                                <td>{{ $controller->full_name }}</td>
-                                <td>{{ $controller->rating_short }}</td>
-                                <td>{{ $stats[$controller->id]->total_hrs }}</td>
-                                <td>{{ $controller->added_to_facility }}</td>
-                                <td>{{ $controller->getLastTrainingAttribute() }}</td>
-                                <td><center><i class="fas fa-times" style="color:red"></center></i></td>
+                                <td class="text-center">{{ $controller->full_name }}</td>
+                                <td class="text-center">{{ $controller->rating_short }}</td>
+                                <td class="text-center">{{ $stats[$controller->id]->total_hrs }}</td>
+                                <td class="text-center">{{ $controller->added_to_facility }}</td>
+                                <td class="text-center">{{ $controller->getLastTrainingAttribute() }}</td>
+                                <td class="text-center"><center><i class="fas fa-times" style="color:red"></center></i></td>
                             </tr>
                         @endif
                     @endforeach
