@@ -56,14 +56,16 @@ Currency Manager
                                 </td>
                                 <td>
                                     @if($controller->pilot_email != null)
-                                        <span data-toggle="modal">
+                                        <form method="POST" action="{{ route('currency.warning', $controller) }}">
+                                            <input name="_method" type="hidden" value="SendEmail">
                                             <button type="button" class="btn btn-warning simple-tooltip" data-placement="top"
-                                            data-toggle="tooltip" title="Send Warning Email"><i class="fas fa-envelope"></i></button>
-                                        </span>
-                                        <span data-toggle="modal">
+                                                data-toggle="tooltip" title="Send Warning Email"><i class="fas fa-envelope"></i></button>
+                                        </form>
+                                        <form method="POST" action="{{ route('currency.removal', $controller) }}">
+                                            <input name="_method" type="hidden" value="SendEmail">
                                             <button type="button" class="btn btn-danger simple-tooltip" data-placement="top"
-                                                data-toggle="tooltip" title="Send Removal Email"><i class="fas fa-times"></i></button>
-                                        </span>
+                                                data-toggle="tooltip" title="Send Warning Email"><i class="fas fa-envelope"></i></button>
+                                        </form>
                                     @endif
                                 </td>
                             </tr>

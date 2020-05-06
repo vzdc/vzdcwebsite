@@ -232,8 +232,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         });
         Route::prefix('currency')->middleware('permission:snrStaff')->group(function () {
             Route::get('/', 'AdminDash@ShowCurrency');
-            Route::get('/warning-email', 'AdminDash@SendWarningEmail');
-            Route::get('/removal-email', 'AdminDash@SendRemovalEmail');
+            Route::post('/warning-email/{user}', 'AdminDash@SendWarningEmail')->name('currency.warning');
+            Route::post('/removal-email/{user}', 'AdminDash@SendRemovalEmail')->name('currency.removal');
         });
     });
 });
