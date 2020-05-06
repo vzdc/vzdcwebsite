@@ -1885,8 +1885,8 @@ class AdminDash extends Controller
         $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
         $all_stats = ControllerLog::getAllControllerStats();
 
-        $controllers = User::get();
-        $controllers = $controllers->sortByDesc(function ($user) use ($stats) {
+        $controllersRaw = User::get();
+        $controllers = $controllersRaw->sortByDesc(function ($user) use ($stats) {
             return $stats[$user->id]->total_hrs;
         });
 
