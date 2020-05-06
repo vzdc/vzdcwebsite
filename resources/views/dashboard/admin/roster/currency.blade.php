@@ -55,7 +55,7 @@ Currency Manager
                                     @endif
                                 </td>
                                 <td>
-                                    @if($controller->pilot_email != null)
+                                    @if($controller->email != null)
                                         <form method="POST" action="{{ route('currency.warning', $controller) }}">
                                             <input name="_method" type="hidden" value="SendEmail">
                                             <button type="button" class="btn btn-warning simple-tooltip" data-placement="top"
