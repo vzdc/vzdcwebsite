@@ -44,7 +44,7 @@ Currency Manager
                                     @endif
                                 </td>
                                 <td>
-                                    @if($controller->activity_warning == 1 && $controller->warningOverTwoWeeksAgo())
+                                    @if($controller->activity_warning == 0 && $controller->warningOverTwoWeeksAgo())
                                         Removal
                                     @elseif($controller->activity_warning == 0 && $controller->trainingOverOneMonthAgo() && $controller->rating_short == "OBS")
                                         Activity Warning
