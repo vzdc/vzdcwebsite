@@ -231,7 +231,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::post('/search', 'AdminDash@DossierSearch');
         });
         Route::prefix('currency')->middleware('permission:snrStaff')->group(function () {
-            Route::get('/', 'AdminDash@Currency');
+            Route::get('/', 'AdminDash@ShowCurrency');
         });
     });
 });

@@ -1878,7 +1878,7 @@ class AdminDash extends Controller
     }
 
     
-    public function Currency() {
+    public function ShowCurrency() {
         $year = date('y');
         $month = date('n');
 
