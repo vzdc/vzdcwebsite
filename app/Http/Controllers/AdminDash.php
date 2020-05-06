@@ -1900,6 +1900,9 @@ class AdminDash extends Controller
             $m->subject('vZDC Activity Warning');
             $m->to($controller->email);
         });
+        $controller->activity_warning_date = new \DateTime('now');
+        $controller->activity_warning = 1;
+        $controller->save();
         return redirect('/dashboard/admin/currency')->with('success', "Warning email sent to " . $controller->email);
     }
 
