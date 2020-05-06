@@ -1895,7 +1895,7 @@ class AdminDash extends Controller
 
     public function SendWarningEmail(Request $request) {
         $controller = $request->controller;
-        Mail::send(['html' => 'emails.member_log'], function ($m) use ($controller) {
+        Mail::send(['html' => 'emails.member_log'], [], function ($m) use ($controller) {
             $m->from('notams@vzdc.org', 'vZDC Activity Notice');
             $m->subject('vZDC Activity Warning');
             $m->to($controller->email);
@@ -1908,7 +1908,7 @@ class AdminDash extends Controller
 
     public function SendRemovalEmail(Request $request) {
         $controller = $request->controller;
-        Mail::send(['html' => 'emails.member_log'], function ($m) use ($controller) {
+        Mail::send(['html' => 'emails.member_log'], [], function ($m) use ($controller) {
             $m->from('notams@vzdc.org', 'vZDC Activity Notice');
             $m->subject('vZDC Removal');
             $m->to($controller->email);
