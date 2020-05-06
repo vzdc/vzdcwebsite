@@ -68,6 +68,8 @@ Currency Manager
                                                 data-toggle="tooltip" title="Send Warning Email"><i class="fas fa-envelope"></i></button>
                                             <input type="hidden" value="controller" />
                                         </form>
+                                    @else
+                                        No email on file
                                     @endif
                                 </td>
                             </tr>
