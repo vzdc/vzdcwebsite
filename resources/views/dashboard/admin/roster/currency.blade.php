@@ -5,7 +5,7 @@ Currency Manager
 @endsection
 
 @section('content')
-<div class="container-fluid">
+<div class="container">
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="home">
             <table class="table table-bordered table-striped">
@@ -22,6 +22,7 @@ Currency Manager
                         <th scope="col">Total This Month</th>
                         <th scope="col">Join Date</th>
                         <th scope="col">Last training</th>
+                        <th scope="col">Activity Warning</th>
                     </tr>
                 </thead>
                 <tbody>
