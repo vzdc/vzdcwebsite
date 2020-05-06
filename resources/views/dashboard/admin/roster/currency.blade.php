@@ -56,18 +56,14 @@ Currency Manager
                                 </td>
                                 <td>
                                     @if($controller->email != null)
-                                        <form method="POST" action="{{ route('currency.warning', $controller) }}">
-                                            <input name="_method" type="hidden" value="SendEmail">
+                                        <a href="{{ route('currency.warning', $controller) }}">
                                             <button type="button" class="btn btn-warning simple-tooltip" data-placement="top"
                                                 data-toggle="tooltip" title="Send Warning Email"><i class="fas fa-envelope"></i></button>
-                                            <input type="hidden" value="controller" />
-                                        </form>
-                                        <form method="POST" action="{{ route('currency.removal', $controller) }}">
-                                            <input name="_method" type="hidden" value="SendEmail">
+                                        </a>
+                                        <a href="{{ route('currency.removal', $controller) }}">
                                             <button type="button" class="btn btn-danger simple-tooltip" data-placement="top"
-                                                data-toggle="tooltip" title="Send Warning Email"><i class="fas fa-envelope"></i></button>
-                                            <input type="hidden" value="controller" />
-                                        </form>
+                                                data-toggle="tooltip" title="Send Removal Email"><i class="fas fa-envelope"></i></button>
+                                        </a>
                                     @else
                                         No email on file
                                     @endif
