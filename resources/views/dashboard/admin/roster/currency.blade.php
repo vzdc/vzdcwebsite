@@ -30,15 +30,13 @@ Currency Manager
                 <tbody>
                     @foreach($controllers as $controller)
                         @if($stats[$controller->id]->total_hrs < 2)
-                            <?php
-                                $currentDate = new \DateTime('now');
+                                {{$currentDate = new \DateTime('now');}}
 
-                                $twoWeeksAfterWarning = new \DateTime($controller->activity_warning_date . '+2 weeks');
-                                $twoWeeksLater = $currentDate < $twoWeeksAfterWarning;
+                                {{$twoWeeksAfterWarning = new \DateTime($controller->activity_warning_date . '+2 weeks');}}
+                                {{$twoWeeksLater = $currentDate < $twoWeeksAfterWarning;}}
 
-                                $oneMonthAfter = new \DateTime($controller->getLastTrainingAttribute() . '+1 month');
-                                $noTrainingwithinMonth = $currentDate < $oneMonthAfter;
-                            ?>
+                                {{$oneMonthAfter = new \DateTime($controller->getLastTrainingAttribute() . '+1 month');}}
+                                {{$noTrainingwithinMonth = $currentDate < $oneMonthAfter;}}
                             <tr>
                                 <td>{{ $controller->full_name }}</td>
                                 <td>{{ $controller->rating_short }}</td>
