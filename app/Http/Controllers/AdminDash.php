@@ -1899,6 +1899,6 @@ class AdminDash extends Controller
             }
             array_push($trainings, $last_training);
         }
-        return view('dashboard.admin.currency')->with('all_stats', $all_stats)->with('month', $month)->with('controllers', $controllers)->with('stats', $stats)->with('trainings', $trainings);
+        return view('dashboard.admin.roster.currency')->with('all_stats', $all_stats)->with('month', $month)->with('controllers', $controllers)->with('stats', $stats)->with('trainings', $trainings);
     }
 }
