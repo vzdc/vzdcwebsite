@@ -8,11 +8,11 @@ Currency Manager
 <div class="container">
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="home">
-            @if(Session::has('success')) {
+            @if(Session::has('success'))
                 <div class="alert alert-success" role="alert">
                     {{ Session::get('success') }}
                 </div>
-            }
+            @endif
             <table class="table table-bordered table-striped">
                 <thead>
                     <th scope="col" colspan=8 class="text-center">Total Hours this Month</th>
