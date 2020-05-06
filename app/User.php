@@ -191,6 +191,20 @@ class User extends Authenticatable
         else
             return null;
     }
+
+    public function trainingOverOneMonthAgo() {
+        $currentDate = new \DateTime('now');
+
+        $oneMonthAfter = new \DateTime($this->getLastTrainingAttribute() . '+1 month');
+        return $currentDate < $oneMonthAfter;
+    }
+
+    public function warningOverTwoWeeksAgo() {
+        $currentDate = new \DateTime('now');
+
+        $twoWeeksAfterWarning = new \DateTime($this->activity_warning_date . '+2 weeks');
+        return $currentDate < $twoWeeksAfterWarning;
+    }
 }
 
 

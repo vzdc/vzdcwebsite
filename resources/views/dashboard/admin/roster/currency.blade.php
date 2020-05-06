@@ -30,13 +30,6 @@ Currency Manager
                 <tbody>
                     @foreach($controllers as $controller)
                         @if($stats[$controller->id]->total_hrs < 2)
-                                {{$currentDate = new \DateTime('now');}}
-
-                                {{$twoWeeksAfterWarning = new \DateTime($controller->activity_warning_date . '+2 weeks');}}
-                                {{$twoWeeksLater = $currentDate < $twoWeeksAfterWarning;}}
-
-                                {{$oneMonthAfter = new \DateTime($controller->getLastTrainingAttribute() . '+1 month');}}
-                                {{$noTrainingwithinMonth = $currentDate < $oneMonthAfter;}}
                             <tr>
                                 <td>{{ $controller->full_name }}</td>
                                 <td>{{ $controller->rating_short }}</td>
@@ -53,9 +46,9 @@ Currency Manager
                                 <td>
                                     @if($controller->activity_warning == 0 && $stats[$controller->id]->total_hrs < 2 && $controller->rating_short != "OBS")
                                         Activity Warning
-                                    @elseif($controller->activity_warning == 0 && $noTrainingWithinMonth && $controller->rating_short == "OBS")
+                                    @elseif($controller->activity_warning == 0 && $controller->trainingOverOneMonthAgo() && $controller->rating_short == "OBS")
                                         Activity Warning
-                                    @elseif($controller->activity_warning == 1 && $twoWeeksLater)
+                                    @elseif($controller->activity_warning == 1 && $controller->warningOverTwoWeeksAgo())
                                         Removal
                                     @else
                                         No Action
