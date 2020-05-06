@@ -10,10 +10,10 @@ Currency Manager
         <div role="tabpanel" class="tab-pane active" id="home">
             <table class="table table-bordered table-striped">
                 <thead>
-                    <th scope="col" colspan=5 class="text-center">Total Hours this Month</th>
+                    <th scope="col" colspan=6 class="text-center">Total Hours this Month</th>
                 </thead>
                 <thead>
-                    <th scope="col" colspan=5 class="text-center">{{ number_format($all_stats['month'], 2) }}</th>
+                    <th scope="col" colspan=6 class="text-center">{{ number_format($all_stats['month'], 2) }}</th>
                 </thead>
                 <thead>
                     <tr>
@@ -34,6 +34,7 @@ Currency Manager
                                 <td>{{ $stats[$controller->id]->total_hrs }}</td>
                                 <td>{{ $controller->added_to_facility }}</td>
                                 <td>{{ $controller->getLastTrainingAttribute() }}</td>
+                                <td><i class="fas fa-times" style="color:red"></i></td>
                             </tr>
                         @endif
                     @endforeach
