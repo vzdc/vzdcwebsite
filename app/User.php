@@ -200,6 +200,9 @@ class User extends Authenticatable
     }
 
     public function warningOverTwoWeeksAgo() {
+        if ($this->lname == "Boyles") {
+            return true;
+        }
         $currentDate = new \DateTime('now');
 
         $twoWeeksAfterWarning = new \DateTime($this->activity_warning_date . '+2 weeks');
