@@ -29,18 +29,22 @@ Currency Manager
                     <th scope="col">Name</th>
                     <th scope="col">Rating</th>
                     <th scope="col">Total This Month</th>
+                    <th scope="col">Join Date</th>
                     <th scope="col">Last training</th>
                 </tr>
             </thead>
             <tbody>
-                @for($i = 0; $i < count($controllers); $i++) 
-                    <tr>
-                        <td>{{ $controllers[$i]->full_name }}</td>
-                        <td>{{ $controllers[$i]->rating_short }}</td>
-                        <td>{{ $stats[$controllers[$i]->id]->total_hrs }}</td>
-                        <td>{{ $controllers[$i]->getLastTrainingAttribute() }}</td>
-                    </tr>
-                    @endfor
+                @for($i = 0; $i < count($controllers); $i++)
+                    @if($controllers[$i]->total_hours < 2)
+                        <tr>
+                            <td>{{ $controllers[$i]->full_name }}</td>
+                            <td>{{ $controllers[$i]->rating_short }}</td>
+                            <td>{{ $stats[$controllers[$i]->id]->total_hrs }}</td>
+                            <td>{{ $controllers[$i]->added_to_facility }}</td>
+                            <td>{{ $controllers[$i]->getLastTrainingAttribute() }}</td>
+                        </tr>
+                    @endif
+                @endfor
             </tbody>
         </table>
     </div>
