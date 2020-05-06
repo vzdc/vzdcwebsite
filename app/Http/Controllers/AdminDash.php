@@ -1894,10 +1894,10 @@ class AdminDash extends Controller
     }
 
     public function SendWarningEmail($user) {
-        return redirect('/dashboard/admin/currency')->with('alert', "Warning email sent");
+        return redirect('/dashboard/admin/currency')->with('success', "Warning email send to " . "test");
     }
 
     public function SendRemovalEmail($user) {
-        return redirect('/dashboard/admin/currency')->with('alert', "Removal email sent");
+        return redirect('/dashboard/admin/currency')->with('success', "Warning email send to " . "test");
     }
 }
