@@ -35,7 +35,7 @@ Currency Manager
             </thead>
             <tbody>
                 @for($i = 0; $i < count($controllers); $i++)
-                    @if($controllers[$i]->total_hours < 2)
+                    @if($stats[$controllers[$i]->id]->total_hrs < 2)
                         <tr>
                             <td>{{ $controllers[$i]->full_name }}</td>
                             <td>{{ $controllers[$i]->rating_short }}</td>
