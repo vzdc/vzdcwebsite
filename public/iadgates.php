@@ -502,21 +502,6 @@
     <br></font><font size="3" color="red">The map refreshes automatically approximately every two minutes, but will take about 10 seconds to load the initial data.
     </font><br>
     <div id="map" style="width: 1200px; height: 600px"></div>
-<<<<<<< HEAD
-
-    <table border=1>
-      <tr><td><font color ="green">No Flight Plan:</font></td><td style="background: #A37547;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-      <!-- <td>Departures:</td><td style="background: #27c106;">&nbsp;&nbsp;&nbsp;&nbsp;</td> -->
-      <td><font color ="green">&nbsp;&nbsp;Parked:</font></td><td style="background: #FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-      <td><font color ="green">&nbsp;&nbsp;Taxiing (Dep):</font></td><td style="background: #FFFF00;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-      <td><font color ="green">&nbsp;&nbsp;Taxiing (Arr):</font></td><td style="background: #002af0;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-    </table></div>
-    <br>
-    <br>
-    <br>
-    <font size="2" color="grey">
-    The information contained on all pages of this website is to be used for flight simulation purposes only on the VATSIM network.  It is not intended nor should it be used for real world navigation.  This site is not affiliated with the FAA, the actual Washington Center or any governing aviation body.  All content contained herein is approved only for use on the VATSIM network.
-=======
     <br>
     <table border=1>
       <tr><td><font color ="green">No Flight Plan:</font></td><td style="background: #A37547;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
