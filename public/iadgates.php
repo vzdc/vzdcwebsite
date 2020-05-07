@@ -515,7 +515,7 @@
     The information contained on all pages of this website is to be used for flight simulation purposes only on the VATSIM network. <br>
   It is not intended nor should it be used for real world navigation.  This site is not affiliated with the FAA, the actual Washington Center or any governing aviation body. <br>
   All content contained herein is approved only for use on the VATSIM network.
->>>>>>> ecb1709bce0048d41a5410fdc2fbbbf3a7bde23e
+
     </font></center>
 	<center><a href="https://www.vzdc.org">Return to ZDC Website</a></center>
   </body>
