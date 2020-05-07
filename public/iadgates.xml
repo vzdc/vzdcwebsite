@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="windows-1250"?>
+<markers>
+<marker name="DATEMODED" dest="02/03/2020 18:34:16 UTC" lat="0" lng="0" flightdata="0" type="0" PColor="0" HDG="0" ACType="0"/>
+<marker name="AAL1356" dest="KMDT - KRSW" lat="37.84978" lng="-78.30907" flightdata="410kts 38027ft" type="TransientS" PColor="#333300" HDG="223" ACType="B738/L"/>
+<marker name="AAL40" dest="KLAX - KDCA" lat="35.91830" lng="-107.20265" flightdata="526kts 33008ft" type="ArrivalE" PColor="#002af0" HDG="71" ACType="A321/L"/>
+<marker name="FCY-MDU" dest="LFPG - KMIA" lat="26.75769" lng="-79.66451" flightdata="405kts 22781ft" type="TransientS" PColor="#333300" HDG="209" ACType="T/B772/F"/>
+<marker name="N619NK" dest=" - " lat="35.87841" lng="-78.79305" flightdata="0kts 390ft" type="TransientS" PColor="#333300" HDG="135" ACType=""/>
+</markers>

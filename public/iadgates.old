@@ -1,11 +1,6 @@
 <html>
   <head>
     <title>vZDC - KIAD Gates In Use</title>
-	<style>
-	body {
-   	 background-color: #000000;
-	}
-	</style>
 <?php
 //include("header.php");
 ?>
@@ -317,7 +312,7 @@
      
     function load() {
       var map = new google.maps.Map(document.getElementById("map"), {
-        center: new google.maps.LatLng(38.94740, -77.44788),
+        center: new google.maps.LatLng(38.94661, -77.44788),
         disableDefaultUI: true,
         panControl: true,
         zoomControl: true,
@@ -355,7 +350,7 @@
           strokeOpacity: 0.8,
           strokeWeight: .5,
           fillColor: '#FFFF99',
-          fillOpacity: 0.5,
+          fillOpacity: 0.35,
           map: map,
           center: gatesMap[gate].center,
           radius: gatesMap[gate].radius
@@ -367,8 +362,8 @@
       //END ADD GATES
       //ZDCArea.setMap(map);
 
-	historicalOverlay.setMap(map);
-        historicalOverlay.setOpacity(.4);
+      historicalOverlay.setMap(map);
+      historicalOverlay.setOpacity(.5);
 
       setInterval(function(){ 
 
@@ -427,7 +422,7 @@
                 text: FDBInfo,
                 position: point,
                 map: map,
-                fontSize: 11,
+                fontSize: 10,
                 strokeWeight: 0,
                 fontColor: '#00FF00',
                 align: 'left'
@@ -496,42 +491,26 @@
 
   <body onload="load()">
     <center>
-    <font size="6" color="yellow"><b>KIAD Gates In Use</b></font><br>
-    <font size="2" color="green">
+    <font size="6" color="blue"><b>KIAD Gates In Use</b></font><br>
+    <font size="2" color="blue">
     This map depicts virtual aircraft connected to the <a href="http://www.vatsim.net/">VATSIM network</a>.    <br>Use the map to see what gates are open prior to connecting your flight simulator to VATSIM.  Enjoy flying out of the vZDC!
     <br></font><font size="3" color="red">The map refreshes automatically approximately every two minutes, but will take about 10 seconds to load the initial data.
     </font><br>
-    <div id="map" style="width: 1200px; height: 600px"></div>
-<<<<<<< HEAD
+    <div id="map" style="width: 1100px; height: 500px"></div>
 
     <table border=1>
-      <tr><td><font color ="green">No Flight Plan:</font></td><td style="background: #A37547;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <tr><td>No Flight Plan:</td><td style="background: #A37547;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
       <!-- <td>Departures:</td><td style="background: #27c106;">&nbsp;&nbsp;&nbsp;&nbsp;</td> -->
-      <td><font color ="green">&nbsp;&nbsp;Parked:</font></td><td style="background: #FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-      <td><font color ="green">&nbsp;&nbsp;Taxiing (Dep):</font></td><td style="background: #FFFF00;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
-      <td><font color ="green">&nbsp;&nbsp;Taxiing (Arr):</font></td><td style="background: #002af0;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+      <td>Parked:</td><td style="background: #FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td>Taxiing (Dep):</td><td style="background: #FFFF00;">&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td>Taxiing (Arr):</td><td style="background: #002af0;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
     </table></div>
     <br>
     <br>
     <br>
-    <font size="2" color="grey">
+    <font size="2" color="blue">
     The information contained on all pages of this website is to be used for flight simulation purposes only on the VATSIM network.  It is not intended nor should it be used for real world navigation.  This site is not affiliated with the FAA, the actual Washington Center or any governing aviation body.  All content contained herein is approved only for use on the VATSIM network.
-=======
-    <br>
-    <table border=1>
-      <tr><td><font color ="green">No Flight Plan:</font></td><td style="background: #A37547;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-      <!-- <td>Departures:</td><td style="background: #27c106;">&nbsp;&nbsp;&nbsp;&nbsp;</td> -->
-      <tr><td><font color ="green">&nbsp;&nbsp;Parked:</font></td><td style="background: #FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-      <tr><td><font color ="green">&nbsp;&nbsp;Taxiing (Dep):</font></td><td style="background: #FFFF00;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-      <tr><td><font color ="green">&nbsp;&nbsp;Taxiing (Arr):</font></td><td style="background: #002af0;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
-    </table></div>
-    <br>
-    <font size="2" color="grey">
-    The information contained on all pages of this website is to be used for flight simulation purposes only on the VATSIM network. <br>
-  It is not intended nor should it be used for real world navigation.  This site is not affiliated with the FAA, the actual Washington Center or any governing aviation body. <br>
-  All content contained herein is approved only for use on the VATSIM network.
->>>>>>> ecb1709bce0048d41a5410fdc2fbbbf3a7bde23e
     </font></center>
-	<center><a href="https://www.vzdc.org">Return to ZDC Website</a></center>
+background-color: #d24dff;
   </body>
 </html>
