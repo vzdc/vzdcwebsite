@@ -1,0 +1,71 @@
+<head>
+<title>VATSIM vZDC DEL / GND / TWR Quick Reference Resource</title>
+</head>
+
+<body>
+
+<h3>"ROB'S PDC" COMMAND REFERENCE</h3>
+
+<p>
+<font size=+2>
+.rpdc<font color="ff0000">{x}</font> <font color="00bb00">{yy}</font> <font color="0000ff">{zz}</font>
+</font>
+</p>
+
+<hr>
+
+<p>
+<font color="ff0000">{x}</font> = the initial altitude in thousands.
+<ul>
+<li>values of 3 thru 7 are supported.</li><li>substitute "vs" for "Climb Via Sid."</li>
+<li><i>(note that there is NO SPACE between "rpdc" and the digit or the "vs".)</i></li>
+</ul>
+</p>
+
+<hr>
+
+<p>
+<font color="00bb00">{yy}</font> = the ID of the controller handling departures.
+<ul>
+<li>use the Controller List within VRC to determine the appropriate two-character alphanumeric ID.</li>
+<li>if departure is offline, substitute a lower-case "u" ("uncontrolled") and <i>OMIT THE SPACE BEFORE IT</i>.</li>
+</ul>
+</p>
+
+<hr>
+
+<p>
+<font color="0000ff">{zz}</font> = expected runway for departure.
+</p>
+
+<hr>
+
+<h4>EXAMPLES</h4>
+<table border=0>
+
+<tr>
+<td>.rpdc3 1j 30</td>
+<td width=5%></td>
+<td>initial altitude = 3,000, departure controller id = 1j, expect runway 30 for departure.</td>
+</tr>
+
+<tr>
+<td>.rpdcvs 32 28</td>
+<td width=5%></td>
+<td>climb via SID, departure controller id = 32, expect runway 28 for departure.</td>
+</tr>
+
+<tr>
+<td>.rpdc5u 1</td>
+<td width=5%></td>
+<td>initial altitude = 5,000, departure offline, expect runway 1 for departure.</td>
+</tr>
+
+<tr>
+<td>.rpdcvsu 15R</td>
+<td width=5%></td>
+<td>climb via SID, departure offline, expect runway 15R for departure.</td>
+</tr>
+
+</table>
+</body>
