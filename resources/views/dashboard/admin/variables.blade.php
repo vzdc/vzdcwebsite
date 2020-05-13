@@ -20,7 +20,8 @@
     
     <form action="/dashboard/admin/updatecurrencyvariable" method="POST">
         @csrf
-        <input type="text" class="form-check-input align-right" id="currency" name="currency">
+        <text class="form-control" name="currency"></text>
+        <!--<input type="text" class="form-check-input align-right" id="currency" name="currency">-->
         <label class="form-check-label" for="currency">Set Currency Hours</label>
         <br />
         <button class="btn btn-primary" type="submit">Save Currency Variable</button>
