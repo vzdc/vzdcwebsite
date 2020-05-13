@@ -1887,7 +1887,7 @@ class AdminDash extends Controller
         $requestValue = $request->get('visitors');
         $allow = isset($requestValue) ? 1 : 0;
         Variable::where('name', 'visitors')->update(['value' => $allow]);
-        return redirect('/dashboard/admin/variables')->with('success', "Visitor applications now " . $allow == 1 ? "on." : "off.");
+        return redirect('/dashboard/admin/variables')->with('success', "Visitor applications now " . ($allow == 1 ? "on." : "off."));
     }
 
     public function UpdateCurrencyHours(Request $request) {
