@@ -1885,7 +1885,7 @@ class AdminDash extends Controller
     public function UpdateVisitorsVariable(Request $request) {
         $requestValue = $request->get('visitors');
         $allow = isset($requestValue) ? 1 : 0;
-        Visitor::where('name', 'visitors')->update(['value' => $requestValue]);
+        Visitor::where('name', 'visitors')->update(['value' => $allow]);
         return redirect('/dashboard/admin/variables')->with('success', "Variables Updated " . $requestValue);
     }
 
