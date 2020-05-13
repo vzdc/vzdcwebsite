@@ -116,6 +116,10 @@
                     <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/audits') }}"
                        href="/dashboard/admin/audits">Website Activity</a>
                 @endif
+                @if(Auth::user()->can('snrStaff'))
+                    <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/variables') }}"
+                       href="/dashboard/admin/variables">Website Variables</a>
+                @endif
             </div>
         @endif
         <div class="dropdown-divider"></div>

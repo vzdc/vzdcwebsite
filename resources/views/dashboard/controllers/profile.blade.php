@@ -124,7 +124,7 @@
                     <h4>My Recent Activity:</h4>
                     <div class="card">
                         <ul class="list-group list-group-flush">
-                            @if($personal_stats->total_hrs < 2)
+                            @if($personal_stats->total_hrs < $currency->value)
                                 <li class="list-group-item" style="background-color:#E6B0AA">
                                     <h5>Hours this Month:</h5>
                                     <p><b>{{ $personal_stats->total_hrs }}</b></p>

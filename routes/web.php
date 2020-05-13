@@ -230,6 +230,11 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::get('/', 'AdminDash@DossierIndex');
             Route::post('/search', 'AdminDash@DossierSearch');
         });
+        Route::prefix('variables')->middleware('permission:snrStaff')->group(function () {
+            Route::get('/', 'AdminDash@ShowVariables');
+            Route::post('/updatevisitorsvariable', 'AdminDash@UpdateVisitorsVariable');
+            Route::post('/updatecurrencyvariable', 'AdminDash@UpdateCurrencyVariable');
+        });
     });
 });
 /*

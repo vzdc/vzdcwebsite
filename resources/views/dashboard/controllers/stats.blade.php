@@ -109,7 +109,7 @@
                             <td>{{ $stats[$h->id]->local_hrs }}</td>
                             <td>{{ $stats[$h->id]->approach_hrs }}</td>
                             <td>{{ $stats[$h->id]->enroute_hrs }}</td>
-                            @if($stats[$h->id]->total_hrs >= 2)
+                            @if($stats[$h->id]->total_hrs >= $currency->value)
                                 <td bgcolor="#A9DFBF" class="black"><b>{{ $stats[$h->id]->total_hrs }}</b></td>
                             @else
                                 <td bgcolor="#E6B0AA" class="black"><b>{{ $stats[$h->id]->total_hrs }}</b></td>
@@ -139,7 +139,7 @@
                             <td>{{ $stats[$h->id]->local_hrs }}</td>
                             <td>{{ $stats[$h->id]->approach_hrs }}</td>
                             <td>{{ $stats[$h->id]->enroute_hrs }}</td>
-                            @if($stats[$h->id]->total_hrs >= 2)
+                            @if($stats[$h->id]->total_hrs >= $currency->value)
                                 <td bgcolor="#A9DFBF" class="black"><b>{{ $stats[$h->id]->total_hrs }}</b></td>
                             @else
                                 <td bgcolor="#E6B0AA" class="black"><b>{{ $stats[$h->id]->total_hrs }}</b></td>

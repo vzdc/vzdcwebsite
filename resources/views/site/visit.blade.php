@@ -15,6 +15,7 @@ Visit
 <br>
 
 <div class="container">
+    @if($visitors->value == 1)
     {!! Form::open(['action' => 'FrontController@storeVisit']) !!}
         <div class="form-group">
             <div class="row">
@@ -58,5 +59,15 @@ Visit
         <br>
         <button class="btn btn-success" type="submit">Submit</button>
     {!! Form::close() !!}
+    @else
+    <span class="border border-light text-center" style="background-color:#F0F0F0">
+        <div class="container">
+            &nbsp;
+            <h4>Visitor applications to ZDC has been disabled per VATUSA Policy GO41520</h4>
+            <a target="_" href="https://www.vatusa.net/docs/GO-41520.pdf">View Policy</a>
+            &nbsp;
+        </div>
+    </span>
+    @endif
 </div>
 @endsection

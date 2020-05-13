@@ -15,6 +15,7 @@ use App\Overflight;
 use App\OverflightUpdate;
 use App\Scenery;
 use App\User;
+use App\Variable;
 use App\Visitor;
 use Carbon\Carbon;
 use Config;
@@ -281,14 +282,18 @@ class FrontController extends Controller
             return $stats[$user->id]->total_hrs;
         });
 
+        $currency = Variable::where('name', 'currency')->first();
+
         return view('site.stats')->with('all_stats', $all_stats)->with('year', $year)
             ->with('month', $month)->with('stats', $stats)
-            ->with('home', $home)->with('visit', $visit);
+            ->with('home', $home)->with('visit', $visit)
+            ->with('currency', $currency);
     }
 
     public function visit()
     {
-        return view('site.visit');
+        $visitors = Variable::where('name', 'visitors')->first();
+        return view('site.visit')->with('visitors', $visitors);
     }
 
     public function storeVisit(Request $request)
