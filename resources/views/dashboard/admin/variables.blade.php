@@ -12,7 +12,7 @@
     @else
         <h4>Visitor applications currently <b>off</b></h4>
     @endif
-    <h4>Last updated: {{ $visitors->last_updated }}</h4>
+    <h4>Last updated: {{ $visitors->updated_at }}</h4>
     <form action="/dashboard/admin/variables/updatevisitorsvariable" method="POST">
         @csrf
         <input type="checkbox" class="form-check-input align-right" id="visitors" name="visitors">
