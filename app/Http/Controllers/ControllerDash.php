@@ -284,9 +284,13 @@ class ControllerDash extends Controller
         $visit = $visitc->sortByDesc(function ($user) use ($stats) {
             return $stats[$user->id]->total_hrs;
         });
+
+        $currency = Variable::where('name', 'currency')->first();
+
         return view('dashboard.controllers.stats')->with('all_stats', $all_stats)->with('year', $year)
             ->with('month', $month)->with('stats', $stats)
-            ->with('home', $home)->with('visit', $visit);
+            ->with('home', $home)->with('visit', $visit)
+            ->with('currency', $currency);
     }
 
     public function showCalendarEvent($id)
