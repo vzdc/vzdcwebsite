@@ -289,8 +289,8 @@ class FrontController extends Controller
 
     public function visit()
     {
-        $visitors = Visitor::where('name', 'visitors')->first();
-        return view('site.visit')->with('visitors', $visitors->value);
+        $visitors = Variable::where('name', 'visitors')->first();
+        return view('site.visit')->with('visitors', $visitors);
     }
 
     public function storeVisit(Request $request)
