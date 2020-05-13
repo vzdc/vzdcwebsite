@@ -289,7 +289,7 @@ class FrontController extends Controller
 
     public function visit()
     {
-        $allow = DB::table('variables')->where('name', 'visitors')->first();
+        $allow = Visitor::where('name', 'visitors')->first();
         return view('site.visit')->with('allow', $allow);
     }
 
