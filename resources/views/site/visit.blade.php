@@ -63,8 +63,8 @@ Visit
     <span class="border border-light text-center" style="background-color:#F0F0F0">
         <div class="container">
             &nbsp;
-            <h4>Visitation of ZDC has been disabled per VATUSA Policy GO41520</h4>
-            <a href="https://www.vatusa.net/docs/GO-41520.pdf">View Policy</a>
+            <h4>Visitor application to ZDC has been disabled per VATUSA Policy GO41520</h4>
+            <a target="_" href="https://www.vatusa.net/docs/GO-41520.pdf">View Policy</a>
             &nbsp;
         </div>
     </span>
