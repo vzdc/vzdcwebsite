@@ -7,7 +7,7 @@
 @section('content')
 <div class="container text-center">
     <hr />
-    <form action="/dashboard/admin/updatevisitorsvariable" method="POST">
+    <form action="/dashboard/admin/variables/updatevisitorsvariable" method="POST">
         @csrf
         <input type="checkbox" class="form-check-input align-right" id="visitors" name="visitors">
         <label class="form-check-label" for="visitors">Allow Visitors</label>
@@ -18,9 +18,9 @@
     <br />
     <br />
     
-    <form action="/dashboard/admin/updatecurrencyvariable" method="POST">
+    <form action="/dashboard/admin/variables/updatecurrencyvariable" method="POST">
         @csrf
-        <text class="form-control" name="currency"></text>
+        <textarea class="form-control" name="currency"></textarea>
         <!--<input type="text" class="form-check-input align-right" id="currency" name="currency">-->
         <label class="form-check-label" for="currency">Set Currency Hours</label>
         <br />
