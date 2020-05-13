@@ -7,6 +7,12 @@
 @section('content')
 <div class="container text-center">
     <hr />
+    @if ($visitor->value == 1)
+        <h4>Visitor applications currently <b>on</b></h4>
+    @else
+        <h4>Visitor applications currently <b>off</b></h4>
+    @endif
+    <h4>Last updated: {{ $visitor->last_updated }}</h4>
     <form action="/dashboard/admin/variables/updatevisitorsvariable" method="POST">
         @csrf
         <input type="checkbox" class="form-check-input align-right" id="visitors" name="visitors">
