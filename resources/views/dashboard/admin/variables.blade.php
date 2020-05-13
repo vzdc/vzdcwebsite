@@ -8,9 +8,9 @@
 <div class="container text-center">
     <hr />
     @if ($visitors->value == 1)
-        <h4>Visitor applications currently <b>on</b></h4>
+        <h4>Visitor applications: <b>on</b></h4>
     @else
-        <h4>Visitor applications currently <b>off</b></h4>
+        <h4>Visitor applications: <b>off</b></h4>
     @endif
     <h4>Last updated: {{ $visitors->updated_at }}</h4>
     <hr />
