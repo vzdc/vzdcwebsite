@@ -15,7 +15,7 @@ Visit
 <br>
 
 <div class="container">
-    @if($allow == 1)
+    @if($visitors->value == 1)
     {!! Form::open(['action' => 'FrontController@storeVisit']) !!}
         <div class="form-group">
             <div class="row">
