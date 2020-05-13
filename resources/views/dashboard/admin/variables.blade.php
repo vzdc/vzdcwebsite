@@ -35,7 +35,7 @@
 
     <form action="/dashboard/admin/variables/updatecurrencyvariable" method="POST">
         @csrf
-        <textarea class="form-control" name="currency"></textarea>
+        <input type="text" class="form-control" id="currency" name="currency">
         <label for="currency">Set Currency Hours</label>
         <br /><br />
         <button class="btn btn-primary" type="submit">Save Currency Variable</button>
