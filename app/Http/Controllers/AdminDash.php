@@ -1892,6 +1892,7 @@ class AdminDash extends Controller
         DB::table('variables')
         ->where('name', 'currency')
         ->update(['value' => $request->name]);
+        return redirect('/dashboard/admin/variables')->with('success', 'Variables Updated');
     }
 
 }
