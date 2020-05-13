@@ -1892,10 +1892,6 @@ class AdminDash extends Controller
     }
 
     public function UpdateCurrencyVariable(Request $request) {
-        if (is_int($request->get('currency'))) {
-            return redirect('/dashboard/admin/variables')->with('error', "Invalid integer value given!");
-        }
-
         Variable::where('name', 'currency')->update(['value' => intval($request->get('currency'))]);
         return redirect('/dashboard/admin/variables')->with('success', "Currency hours updated to " . $request->get('currency'));
     }
