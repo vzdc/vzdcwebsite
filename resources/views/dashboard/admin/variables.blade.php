@@ -15,23 +15,30 @@
     <h4>Last updated: {{ $visitors->updated_at }}</h4>
     <hr />
     <br />
+
     <form action="/dashboard/admin/variables/updatevisitorsvariable" method="POST">
         @csrf
         <input type="checkbox" class="form-check-input align-right" id="visitors" name="visitors">
         <label class="form-check-label" for="visitors">Allow Visitors</label>
-        <br />
+        <br /><br />
         <button class="btn btn-primary" type="submit">Save Visitor Variable</button>
     </form>
     
     <br />
     <br />
-    
+
+    <hr />
+    <h4>Current currency requirement: <b>{{ $currency->value }}</b></h4>
+    <h4>Last updated: {{ $currency->updated_at }}</h4>
+    <hr />
+    <br />
+
     <form action="/dashboard/admin/variables/updatecurrencyvariable" method="POST">
         @csrf
         <textarea class="form-control" name="currency"></textarea>
         <!--<input type="text" class="form-check-input align-right" id="currency" name="currency">-->
         <label class="form-check-label" for="currency">Set Currency Hours</label>
-        <br />
+        <br /><br />
         <button class="btn btn-primary" type="submit">Save Currency Variable</button>
     </form>
     <hr />

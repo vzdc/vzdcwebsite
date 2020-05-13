@@ -1880,7 +1880,8 @@ class AdminDash extends Controller
 
     public function ShowVariables() {
         $visitors = Variable::where('name', 'visitors')->first();
-        return view('dashboard.admin.variables')->with('visitors', $visitors);
+        $currency = Variable::where('name', 'currency')->first();
+        return view('dashboard.admin.variables')->with('visitors', $visitors)->with('currency', $currency);
     }
 
     public function UpdateVisitorsVariable(Request $request) {
@@ -1891,8 +1892,8 @@ class AdminDash extends Controller
     }
 
     public function UpdateCurrencyHours(Request $request) {
-        Visitor::where('name', 'currency')->update(['value' => $request->name]);
-        return redirect('/dashboard/admin/variables')->with('success', 'Variables Updated');
+        Visitor::where('name', 'currency')->update(['value' => intval($request->get('currency'))]);
+        return redirect('/dashboard/admin/variables')->with('success', "Currency hours updated to " . $request->get('currency'));
     }
 
 }
