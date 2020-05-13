@@ -23,6 +23,7 @@ use App\Scenery;
 use App\SoloCert;
 use App\User;
 use App\Visitor;
+use App\Variable;
 use Artisan;
 use Auth;
 use Carbon\Carbon;
@@ -1875,6 +1876,22 @@ class AdminDash extends Controller
         } else {
             return redirect()->back()->with('error', 'There is not controller in the DB that exists with this CID.');
         }
+    }
+
+    public function ShowVariables() {
+        return view('dashboard.admin.variables');
+    }
+
+    public function UpdateVisitorsVariable(Request $request) {
+        DB::table('variables')
+        ->where('name', 'visitors')
+        ->update(['value' => $request->name]);
+    }
+
+    public function UpdateCurrencyHours(Request $request) {
+        DB::table('variables')
+        ->where('name', 'currency')
+        ->update(['value' => $request->name]);
     }
 
 }

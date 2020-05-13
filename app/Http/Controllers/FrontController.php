@@ -15,6 +15,7 @@ use App\Overflight;
 use App\OverflightUpdate;
 use App\Scenery;
 use App\User;
+use App\Variable;
 use App\Visitor;
 use Carbon\Carbon;
 use Config;
@@ -288,7 +289,8 @@ class FrontController extends Controller
 
     public function visit()
     {
-        return view('site.visit');
+        $allow = DB::table('variables')->where('name', 'visitors')->first();
+        return view('site.visit')->with('allow', $allow);
     }
 
     public function storeVisit(Request $request)
