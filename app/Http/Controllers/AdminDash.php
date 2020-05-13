@@ -1879,7 +1879,7 @@ class AdminDash extends Controller
     }
 
     public function ShowVariables() {
-        $visitors = Visitor::where('name', 'visitors')->first();
+        $visitors = Variable::where('name', 'visitors')->first();
         return view('dashboard.admin.variables')->with('visitors', $visitors);
     }
 
