@@ -1883,15 +1883,12 @@ class AdminDash extends Controller
     }
 
     public function UpdateVisitorsVariable(Request $request) {
-        DB::table('variables')
-        ->where('name', 'visitors')
-        ->update(['value' => $request->name]);
+        Visitor::where('name', 'visitors')->update(['value' => $request->name]);
+        return redirect('/dashboard/admin/variables')->with('success', 'Variables Updated');
     }
 
     public function UpdateCurrencyHours(Request $request) {
-        DB::table('variables')
-        ->where('name', 'currency')
-        ->update(['value' => $request->name]);
+        Visitor::where('name', 'currency')->update(['value' => $request->name]);
         return redirect('/dashboard/admin/variables')->with('success', 'Variables Updated');
     }
 
