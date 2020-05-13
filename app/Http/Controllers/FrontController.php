@@ -282,9 +282,12 @@ class FrontController extends Controller
             return $stats[$user->id]->total_hrs;
         });
 
+        $currency = Variable::where('name', 'currency')->first();
+
         return view('site.stats')->with('all_stats', $all_stats)->with('year', $year)
             ->with('month', $month)->with('stats', $stats)
-            ->with('home', $home)->with('visit', $visit);
+            ->with('home', $home)->with('visit', $visit)
+            ->with('currency', $currency);
     }
 
     public function visit()

@@ -22,6 +22,7 @@ use App\Pyrite;
 use App\Scenery;
 use App\TrainingTicket;
 use App\User;
+use App\Variable;
 use Auth;
 use Carbon\Carbon;
 use DB;
@@ -195,7 +196,12 @@ class ControllerDash extends Controller
             $last_training_given = null;
         }
 
-        return view('dashboard.controllers.profile')->with('personal_stats', $personal_stats)->with('feedback', $feedback)->with('tickets', $tickets)->with('last_training', $last_training)->with('last_training_given', $last_training_given);
+        $currency = Variable::where('name', 'currency')->first();
+
+        return view('dashboard.controllers.profile')->with('personal_stats', $personal_stats)
+                                                    ->with('feedback', $feedback)->with('tickets', $tickets)
+                                                    ->with('last_training', $last_training)->with('last_training_given', $last_training_given)
+                                                    ->with('currency', $currency);
     }
 
     public function showTicket($id)
