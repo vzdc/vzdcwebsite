@@ -1892,7 +1892,7 @@ class AdminDash extends Controller
     }
 
     public function UpdateCurrencyVariable(Request $request) {
-        Visitor::where('name', 'currency')->update(['value' => intval($request->get('currency'))]);
+        Variable::where('name', 'currency')->update(['value' => intval($request->get('currency'))]);
         return redirect('/dashboard/admin/variables')->with('success', "Currency hours updated to " . $request->get('currency'));
     }
 
