@@ -76,7 +76,7 @@ Exam Center
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name}}</td>
                         <td>
-                            <a href="#assignmodal" class="btn btn-primary" data-toggle="model"
+                            <a href="#exampleModal" class="btn btn-primary" data-toggle="model"
                                 data-target="#assignmodel">
                                 Assign Exam <i class="fas fa-check"></i></a>
                         </td>
@@ -125,12 +125,12 @@ Exam Center
 </div>
 
 <!-- Models -->
-<div class="modal fade" id="assignmodal" tabindex="-1" role="dialog" aria-labelledby="assignmodeltitle"
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="assignmodeltitle">Confirm Exam Assignment</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Confirm Exam Assignment</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -154,7 +154,7 @@ Exam Center
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="submit" class="btn btn-success">Assign Exam</button>
                 </div>
             </form>
         </div>
