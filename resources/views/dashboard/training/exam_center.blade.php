@@ -76,8 +76,8 @@ Exam Center
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name}}</td>
                         <td>
-                            <button type="button" class="btn btn-primary" data-toggle="model" data-target="#assignmodel">
-                                Assign Exam <i class="fas fa-check"></i></button>
+                            <a href="#assignmodal" class="btn btn-primary" data-toggle="model" data-target="#assignmodel">
+                                Assign Exam <i class="fas fa-check"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -124,7 +124,7 @@ Exam Center
 </div>
 
 <!-- Models -->
-<div class="modal fade" id="assignmodel" tabindex="-1" role="dialog" aria-labelledby="assignmodeltitle"
+<div class="modal fade" id="assignmodal" tabindex="-1" role="dialog" aria-labelledby="assignmodeltitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
