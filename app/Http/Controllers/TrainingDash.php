@@ -404,19 +404,19 @@ class TrainingDash extends Controller
     public function AssignExamRequest($id) {
         $exam = ExamRequest::where('id', $id)->first();
 
-        $client = new \GuzzleHttp\Client(['timeout'  => 2.0,]);
+        // $client = new \GuzzleHttp\Client(['timeout'  => 2.0,]);
 
-        $url = "https://api.vatusa.net/v2/exam/" . $exam->exam_id . `/assign/` . $exam->student_id;
-        $token = Cookie::get('vzdc_artcc_session');
-        $headers = array('Authorization' => $token);
+        // $url = "https://api.vatusa.net/v2/exam/" . $exam->exam_id . `/assign/` . $exam->student_id;
+        // $token = Cookie::get('vzdc_artcc_session');
+        // $headers = array('Authorization' => $token);
 
-        $res = $client->request('POST', $url, [
-            'headers' => $headers
-        ]);
+        // $res = $client->request('POST', $url, [
+        //     'headers' => $headers
+        // ]);
 
-        if ($res->getStatusCode() != 200) {
-            return redirect()->back()->with('error', "Exam request assignment error, code: " . $res->getStatusCode());
-        }
+        // if ($res->getStatusCode() != 200) {
+        //     return redirect()->back()->with('error', "Exam request assignment error, code: " . $res->getStatusCode());
+        // }
 
         $exam->accepted = 0;
         $exam->assigned = 1;
@@ -427,19 +427,19 @@ class TrainingDash extends Controller
     public function DeleteExamRequest($id) {
         $exam = ExamRequest::where('id', $id)->first();
 
-        $client = new \GuzzleHttp\Client(['timeout'  => 2.0,]);
+        // $client = new \GuzzleHttp\Client(['timeout'  => 2.0,]);
 
-        $url = "https://api.vatusa.net/v2/exam/" . $exam->exam_id . `/assign/` . $exam->student_id;
-        $token = Cookie::get('vzdc_artcc_session');
-        $headers = array('Authorization' => $token);
+        // $url = "https://api.vatusa.net/v2/exam/" . $exam->exam_id . `/assign/` . $exam->student_id;
+        // $token = Cookie::get('vzdc_artcc_session');
+        // $headers = array('Authorization' => $token);
 
-        $res = $client->request('DELETE', $url, [
-            'headers' => $headers
-        ]);
+        // $res = $client->request('DELETE', $url, [
+        //     'headers' => $headers
+        // ]);
 
-        if ($res->getStatusCode() != 200) {
-            return redirect()->back()->with('error', "Exam request assignment error, code: " . $res->getStatusCode());
-        }
+        // if ($res->getStatusCode() != 200) {
+        //     return redirect()->back()->with('error', "Exam request assignment error, code: " . $res->getStatusCode());
+        // }
 
         $exam->assigned = 0;
         $exam->accepted = 0;
