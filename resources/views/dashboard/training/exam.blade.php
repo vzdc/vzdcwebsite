@@ -19,7 +19,7 @@ Request Exam
         @csrf
         <div class="form-group">
             <label for="exams">Select Exam</label>
-            <select class="form-control" id="exams">
+            <select class="form-control" id="exams" name="exams">
                 <option>Washington Basic</option>
                 <option>Washington S2 Knowledge</option>
                 <option>Washington S2 Major Facilities</option>
