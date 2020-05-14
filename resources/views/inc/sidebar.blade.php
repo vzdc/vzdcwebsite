@@ -59,6 +59,10 @@
                         <a class="nav-link {{ Nav::urlDoesContain('dashboard/training/ots-center') }}"
                            href="/dashboard/training/ots-center">OTS Center</a>
                     @endif
+                    @if(Auth::user()->hasRole('ins') || Auth::user()->can('staff'))
+                        <a class="nav-link {{ Nav::urlDoesContain('dashboard/training/exams') }}"
+                           href="/dashboard/training/exams">Exam Center</a>
+                    @endif
                 @endif
             </div>
         @else

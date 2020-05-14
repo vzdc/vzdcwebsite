@@ -93,6 +93,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
 
     Route::prefix('training')->group(function () {
         Route::get('atcast', 'TrainingDash@showatcast');
+        Route::prefix('exam')->group(function () {
+            Route::get('/request', 'ControllerDash@ShowExamRequest');
+            Route::get('/submit', 'ControllerDash@RequestExam');
+        });
         Route::prefix('tickets')->middleware('permission:train')->group(function () {
             Route::get('/', 'TrainingDash@ticketsIndex');
             Route::post('/search', 'TrainingDash@searchTickets');
@@ -115,6 +119,12 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::get('/', 'TrainingDash@trainingInfo');
             Route::post('/add/{section}', 'TrainingDash@addInfo')->middleware('permission:snrStaff');
             Route::get('/delete/{id}', 'TrainingDash@deleteInfo')->middleware('permission:snrStaff');
+        });
+        Route::prefix('exams')->middleware('role:ins|atm|datm|ta|wm')->group(function () {
+            Route::get('/', 'TrainingDash@ShowExamCenter');
+            Route::get('/acceptexam{id}', 'TrainingDash@AcceptExamRequest');
+            Route::get('/assignexam{id}', 'TrainingDash@AssignExamRequest');
+            Route::get('/deleteexam{id}', 'TrainingDash@DeleteExamRequest');
         });
     });
 

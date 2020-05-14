@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Audit;
+use App\Exam;
 use App\Ots;
 use App\TrainingInfo;
 use App\TrainingTicket;
@@ -348,5 +349,39 @@ class TrainingDash extends Controller
         $audit->save();
 
         return redirect()->back()->with('success', 'The OTS has been unassigned from you and cancelled successfully.');
+    }
+
+    /**
+     * Show exam request for controllers
+     */
+    public function ShowExamRequest() {
+        return view('dashboard.training.exam');
+    }
+
+    public function RequestExam(Request $request) {
+        
+    }
+    
+    /**
+     * Show exam center for ins+
+     */
+    public function ShowExamCenter() {
+        $pending = Exam::where('accepted', 0)->orderBy('id', 'DSC')->paginate(20);;
+        $accepted = Exam::where('accepted', 1)->orderBy('id', 'DSC')->paginate(20);
+        $assigned = Exam::where('assigned', 1)->orderBy('id', 'DSC')->paginate(20);
+        return view('dashboard.training.exam_center')->with('pending', $pending)->with('accepted', $accepted)
+                                                    ->with('assigned', $assigned);
+    }
+
+    public function AcceptExamRequest($id) {
+
+    }
+
+    public function AssignExamRequest($id) {
+
+    }
+
+    public function DeleteExamRequest($id) {
+
     }
 }
