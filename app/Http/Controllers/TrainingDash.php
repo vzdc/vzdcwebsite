@@ -361,6 +361,7 @@ class TrainingDash extends Controller
     }
 
     public function RequestExam(Request $request) {
+        $name = $request->input('exams');
         $exam = Exam::where('name', $request->get('exams'))->first();
         $student_cid = auth()->user();
         $student_name = User::select('fname')->where('id', $student_cid)->first()
