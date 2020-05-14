@@ -57,7 +57,7 @@ Exam Center
         </div>
 
         <div role="tabpanel" class="tab-pane" id="accepted">
-            @if(count($accepted) > 0)
+            @if(count($accepted) > 0 && (Auth::user()->getStaffPositionAttribute() == 12 || Auth::user()->getStaffPositionAttribute() <= 5))
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -92,7 +92,7 @@ Exam Center
 
 
         <div role="tabpanel" class="tab-pane" id="assigned">
-            @if(count($assigned) > 0)
+            @if(count($assigned) > 0 && (Auth::user()->getStaffPositionAttribute() == 12 || Auth::user()->getStaffPositionAttribute() <= 5))
             <table class="table table-striped">
                 <thead>
                     <tr>
