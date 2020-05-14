@@ -403,9 +403,14 @@ class TrainingDash extends Controller
     public function AssignExamRequest($id) {
         $exam = ExamRequest::where('id', $id)->first();
 
-        $client = new \GuzzleHttp\Client(['base_url' => 'https://api.vatusa.net/v2/exam/', 'timeout'  => 2.0,]);
-        $res = $client->request('POST', $exam->exam_id . `/assign/` . $exam->student_cid, [
-            'auth' => ['username', 'password', 'vzdc_artcc_session']
+        $client = new \GuzzleHttp\Client(['timeout'  => 2.0,]);
+
+        $url = "https://api.vatusa.net/v2/exam/" . $exam->exam_id . `/assign/` . $exam->student_id;
+        $token = session('vzdc_artcc_session');
+        $headers = array('Authorization' => $token);
+
+        $res = $client->request('POST', $url, [
+            'headers' => $headers
         ]);
 
         if ($res->getStatusCode() != 200) {
@@ -421,9 +426,14 @@ class TrainingDash extends Controller
     public function DeleteExamRequest($id) {
         $exam = ExamRequest::where('id', $id)->first();
 
-        $client = new \GuzzleHttp\Client(['base_url' => 'https://api.vatusa.net/v2/exam/', 'timeout'  => 2.0,]);
-        $res = $client->request('DELETE', $exam->exam_id . `/assign/` . $exam->student_cid, [
-            'auth' => ['username', 'password', 'vzdc_artcc_session']
+        $client = new \GuzzleHttp\Client(['timeout'  => 2.0,]);
+
+        $url = "https://api.vatusa.net/v2/exam/" . $exam->exam_id . `/assign/` . $exam->student_id;
+        $token = session('vzdc_artcc_session');
+        $headers = array('Authorization' => $token);
+
+        $res = $client->request('DELETE', $url, [
+            'headers' => $headers
         ]);
 
         if ($res->getStatusCode() != 200) {
