@@ -57,7 +57,7 @@ Exam Center
         </div>
 
         <div role="tabpanel" class="tab-pane" id="accepted">
-            @if(count($accepted) > 0 && (Auth::user()->getStaffPositionAttribute() == 12 || Auth::user()->getStaffPositionAttribute() <= 5))
+            @if(count($accepted) > 0)
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -70,6 +70,7 @@ Exam Center
                 </thead>
                 <tbody>
                     @foreach($accepted as $entry)
+                    @if((Auth::user()->getStaffPositionAttribute() == 12 && $entry->instructor_id == Auth::user()) || Auth::user()->getStaffPositionAttribute() <= 5)
                     <tr>
                         <td>{{ $entry->student_name }}</td>
                         <td>{{ $entry->instructor_name }}</td>
@@ -81,6 +82,7 @@ Exam Center
                                 title="Accept Exam Request"><i class="fas fa-check"></i></a>
                         </td>
                     </tr>
+                    @endif
                     @endforeach
                 </tbody>
             </table>
@@ -92,7 +94,7 @@ Exam Center
 
 
         <div role="tabpanel" class="tab-pane" id="assigned">
-            @if(count($assigned) > 0 && (Auth::user()->getStaffPositionAttribute() == 12 || Auth::user()->getStaffPositionAttribute() <= 5))
+            @if(count($assigned) > 0)
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -105,6 +107,7 @@ Exam Center
                 </thead>
                 <tbody>
                     @foreach($assigned as $entry)
+                    @if((Auth::user()->getStaffPositionAttribute() == 12 && $entry->instructor_id == Auth::user()) || Auth::user()->getStaffPositionAttribute() <= 5)
                     <tr>
                         <td>{{ $entry->student_name }}</td>
                         <td>{{ $entry->instructor_name }}</td>
@@ -116,6 +119,7 @@ Exam Center
                                 title="Delete Exam Assignment"><i class="fas fa-times"></i></a>
                         </td>
                     </tr>
+                    @endif
                     @endforeach
                 </tbody>
             </table>
