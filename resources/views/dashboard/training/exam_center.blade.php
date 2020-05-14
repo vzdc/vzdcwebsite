@@ -76,7 +76,7 @@ Exam Center
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name}}</td>
                         <td>
-                            <a class="btn btn-success simple-tooltip" data-toggle="assignmodel">
+                            <a class="btn btn-success simple-tooltip" data-toggle="model" data-target="#assignmodel">
                                 Assign Exam <i class="fas fa-check"></i></a>
                         </td>
                     </tr>
