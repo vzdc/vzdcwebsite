@@ -25,6 +25,7 @@ Exam Center
     </ul>
     <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="new">
+            @if(count($pending) > 0)
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -35,11 +36,10 @@ Exam Center
                     </tr>
                 </thead>
                 <tbody>
-                    @if(count($pending) > 0)
                     @foreach($pending as $entry)
                     <tr>
                         <td>{{ $entry->student_name }}</td>
-                        <td>{{ $entry->reporter_name }}</td>
+                        <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name }}</td>
                         <td>
                             <a class="btn btn-success simple-tooltip"
@@ -47,15 +47,16 @@ Exam Center
                                 title="Accept Exam Request"><i class="fas fa-check"></i></a>
                         </td>
                     </tr>
-                    @endforeach
-                    @else
-                    <p>No pending exam requests.</p>
-                    @endif
                 </tbody>
             </table>
+            @endforeach
+            @else
+            <p>No pending exam requests.</p>
+            @endif
         </div>
 
         <div role="tabpanel" class="tab-pane" id="archive">
+            @if(count($accepted) > 0)
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -67,7 +68,6 @@ Exam Center
                     </tr>
                 </thead>
                 <tbody>
-                    @if(count($accepted) > 0)
                     @foreach($accepted as $entry)
                     <tr>
                         <td>{{ $entry->student_name }}</td>
@@ -80,15 +80,16 @@ Exam Center
                                 title="Assign Exam Request"><i class="fas fa-check"></i></a>
                         </td>
                     </tr>
-                    @endforeach
-                    @else
-                    <p>No accepted exam requests.</p>
-                    @endif
                 </tbody>
             </table>
+            @endforeach
+            @else
+            <p>No accepted exam requests.</p>
+            @endif
         </div>
 
         <div role="tabpanel" class="tab-pane" id="archive">
+            @if(count($assigned) > 0)
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -100,7 +101,6 @@ Exam Center
                     </tr>
                 </thead>
                 <tbody>
-                    @if(count($assigned) > 0)
                     @foreach($assigned as $entry)
                     <tr>
                         <td>{{ $entry->student_name }}</td>
@@ -113,12 +113,12 @@ Exam Center
                                 title="Delete Exam Assignment"><i class="fas fa-times"></i></a>
                         </td>
                     </tr>
-                    @endforeach
-                    @else
-                    <p>No assigned exam requests.</p>
-                    @endif
                 </tbody>
             </table>
+            @endforeach
+            @else
+            <p>No assigned exam requests.</p>
+            @endif
         </div>
     </div>
 </div>

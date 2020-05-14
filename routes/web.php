@@ -122,9 +122,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         });
         Route::prefix('exams')->middleware('role:ins|atm|datm|ta|wm')->group(function () {
             Route::get('/', 'TrainingDash@ShowExamCenter');
-            Route::get('/acceptexam{id}', 'TrainingDash@AcceptExamRequest');
-            Route::get('/assignexam{id}', 'TrainingDash@AssignExamRequest');
-            Route::get('/deleteexam{id}', 'TrainingDash@DeleteExamRequest');
+            Route::get('/accept{id}', 'TrainingDash@AcceptExamRequest');
+            Route::get('/assign{id}', 'TrainingDash@AssignExamRequest');
+            Route::get('/delete{id}', 'TrainingDash@DeleteExamRequest');
         });
     });
 
