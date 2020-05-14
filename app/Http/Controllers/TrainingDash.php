@@ -442,7 +442,7 @@ class TrainingDash extends Controller
         // }
 
         $exam->assigned = 0;
-        $exam->accepted = 0;
+        $exam->accepted = 1;
         $exam->save();
         return redirect()->back()->with('success', 'Exam request deleted.');
     }

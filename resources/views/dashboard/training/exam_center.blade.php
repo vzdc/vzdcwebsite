@@ -14,7 +14,8 @@ Exam Center
 <div class="container">
     <ul class="nav nav-tabs nav-justified" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" href="#pending" role="tab" data-toggle="tab" style="color:black">Pending Requests</a>
+            <a class="nav-link active" href="#pending" role="tab" data-toggle="tab" style="color:black">Pending
+                Requests</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#accepted" role="tab" data-toggle="tab" style="color:black">Accepted Requests</a>
@@ -75,9 +76,8 @@ Exam Center
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name}}</td>
                         <td>
-                            <a class="btn btn-success simple-tooltip"
-                                href="/dashboard/training/exams/assign/{{ $entry->id }}" data-toggle="tooltip"
-                                title="Assign Exam Request"><i class="fas fa-check"></i></a>
+                            <a class="btn btn-success simple-tooltip" data-toggle="assignmodel">
+                                Assign Exam<i class="fas fa-check"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -119,6 +119,43 @@ Exam Center
             @else
             <p>No assigned exam requests.</p>
             @endif
+        </div>
+    </div>
+</div>
+
+<!-- Models -->
+<div class="modal fade" id="assignmodel" tabindex="-1" role="dialog" aria-labelledby="assignmodel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="assignmodel">Confirm Exam Assignment</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="exams">Select Exam</label>
+                        <select class="form-control" id="exams" name="exams">
+                            <option>Washington Basic</option>
+                            <option>Washington S2 Knowledge</option>
+                            <option>Washington S2 Major Facilities</option>
+                            <option>Washington S3 Knowledge</option>
+                            <option>Washington S3 Chesapeake (CHP)</option>
+                            <option>Washington S3 Mount Vernon (MTV)</option>
+                            <option>Washington S3 Shenandoah (SHD)</option>
+                            <option>Washington C1 Knowledge</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
         </div>
     </div>
 </div>
