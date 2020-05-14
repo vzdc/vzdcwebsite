@@ -404,7 +404,7 @@ class TrainingDash extends Controller
         $exam = ExamRequest::where('id', $id)->first();
 
         $client = new \GuzzleHttp\Client(['base_url' => 'https://api.vatusa.net/v2/exam/', 'timeout'  => 2.0,]);
-        $res = $client->request('POST', $exam->exam_id . `/assign/` . $exam->student_cid, [
+        $res = $client->request('POST', $exam->exam_id . "\/assign\/" . $exam->student_cid, [
             'auth' => [session('vzdc_artcc_session')]
         ]);
 
