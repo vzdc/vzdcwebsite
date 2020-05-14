@@ -76,8 +76,8 @@ Exam Center
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name}}</td>
                         <td>
-                            <a href="#exampleModal" class="btn btn-primary" data-toggle="model"
-                                data-target="#assignmodel">
+                            <a class="btn btn-primary" data-toggle="model"
+                                data-target="#exampleModal">
                                 Assign Exam <i class="fas fa-check"></i></a>
                         </td>
                     </tr>
