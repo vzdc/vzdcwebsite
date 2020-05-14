@@ -405,7 +405,7 @@ class TrainingDash extends Controller
 
         $client = new \GuzzleHttp\Client(['base_url' => 'https://api.vatusa.net/v2/exam/', 'timeout'  => 2.0,]);
         $res = $client->request('POST', $exam->exam_id . "\/assign\/" . $exam->student_cid, [
-            'auth' => [session('vzdc_artcc_session')]
+            'auth' => session('vzdc_artcc_session')
         ]);
 
         if ($res->getStatusCode() != 200) {
@@ -423,7 +423,7 @@ class TrainingDash extends Controller
 
         $client = new \GuzzleHttp\Client(['base_url' => 'https://api.vatusa.net/v2/exam/', 'timeout'  => 2.0,]);
         $res = $client->request('DELETE', $exam->exam_id . `/assign/` . $exam->student_cid, [
-            'auth' => [session('vzdc_artcc_session')]
+            'auth' => session('vzdc_artcc_session')
         ]);
 
         if ($res->getStatusCode() != 200) {
