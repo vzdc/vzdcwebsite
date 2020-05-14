@@ -76,8 +76,8 @@ Exam Center
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name}}</td>
                         <td>
-                            <a class="btn btn-success simple-tooltip" data-toggle="model" data-target="#assignmodel">
-                                Assign Exam <i class="fas fa-check"></i></a>
+                            <button class="btn btn-primary" data-toggle="model" data-target="#assignmodel">
+                                Assign Exam <i class="fas fa-check"></i></button>
                         </td>
                     </tr>
                     @endforeach
@@ -153,8 +153,8 @@ Exam Center
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-success">Save changes</button>
             </div>
         </div>
     </div>
