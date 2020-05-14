@@ -15,12 +15,23 @@ Request Exam
 <div class="container">
     <p>Use this form to request an exam be assigned for completion within the VATUSA exam center.</p>
     <hr />
-    {{ Form::open(array('action' => 'TrainingDash@RequestExam')) }}
+    <form action="/dashboard/training/exam/request" method="POST">
         @csrf
-        {!! Form::label('name', 'Exam', ['class' => 'form-label']) !!}
-        {{ Form::select('name', $exams, null, ['class' => 'form-control']) }}
-        <br />
-        <button action="submit" class="btn btn-success">Submit</button>
-    {{ Form::close() }}
+        <div class="form-group">
+            <label for="exams">Select Exam</label>
+            <select class="form-control" id="exams">
+                <option>Washington Basic</option>
+                <option>Washington S2 Knowledge</option>
+                <option>Washington S2 Major Facilities</option>
+                <option>Washington S3 Knowledge</option>
+                <option>Washington S3 Chesapeake (CHP)</option>
+                <option>Washington S3 Mount Vernon (MTV)</option>
+                <option>Washington S3 Shenandoah (SHD)</option>
+                <option>Washington C1 Knowledge</option>
+            </select>
+        </div>
+        <br /><br />
+        <button class="btn btn-primary" type="submit">Save Visitor Variable</button>
+    </form>
 </div>
 @endsection
