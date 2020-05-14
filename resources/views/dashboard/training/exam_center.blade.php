@@ -57,8 +57,6 @@ Exam Center
         </div>
 
         <div role="tabpanel" class="tab-pane" id="accepted">
-            <a class="btn btn-primary" data-toggle="model" data-target="#exampleModal">
-                Assign Exam <i class="fas fa-check"></i></a>
             @if(count($accepted) > 0)
             <table class="table table-striped">
                 <thead>
@@ -78,8 +76,9 @@ Exam Center
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name}}</td>
                         <td>
-                            <a class="btn btn-primary" data-toggle="model" data-target="#exampleModal">
-                                Assign Exam <i class="fas fa-check"></i></a>
+                            <a class="btn btn-success simple-tooltip"
+                                href="/dashboard/training/exams/assign/{{ $entry->id }}" data-toggle="tooltip"
+                                title="Accept Exam Request"><i class="fas fa-check"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -123,28 +122,6 @@ Exam Center
             @else
             <p>No assigned exam requests.</p>
             @endif
-        </div>
-    </div>
-</div>
-
-<!-- Models -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Confirm Exam Assignment</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <p>test</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-success">Assign Exam</button>
-            </div>
         </div>
     </div>
 </div>
