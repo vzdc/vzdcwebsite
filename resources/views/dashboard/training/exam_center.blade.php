@@ -135,28 +135,13 @@ Exam Center
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="" method="POST">
                 <div class="modal-body">
-                    @csrf
-                    <div class="form-group">
-                        <label for="exams">Select Exam</label>
-                        <select class="form-control" id="exams" name="exams">
-                            <option>Washington Basic</option>
-                            <option>Washington S2 Knowledge</option>
-                            <option>Washington S2 Major Facilities</option>
-                            <option>Washington S3 Knowledge</option>
-                            <option>Washington S3 Chesapeake (CHP)</option>
-                            <option>Washington S3 Mount Vernon (MTV)</option>
-                            <option>Washington S3 Shenandoah (SHD)</option>
-                            <option>Washington C1 Knowledge</option>
-                        </select>
-                    </div>
+                    <p>test</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
                     <button type="submit" class="btn btn-success">Assign Exam</button>
                 </div>
-            </form>
         </div>
     </div>
 </div>
