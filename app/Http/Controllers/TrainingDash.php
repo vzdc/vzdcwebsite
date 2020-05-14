@@ -374,11 +374,15 @@ class TrainingDash extends Controller
     }
 
     public function AcceptExamRequest($id) {
-
+        $exam = Exam::where('id', $id)->first();
+        $exam->accepted = 1;
+        return redirect()->back()->with('success', 'Exam request accepted.');
     }
 
     public function AssignExamRequest($id) {
-
+        $exam = Exam::where('id', $id)->first();
+        $exam->assigned = 1;
+        return redirect()->back()->with('success', 'Exam request assigned.');
     }
 
     public function DeleteExamRequest($id) {
