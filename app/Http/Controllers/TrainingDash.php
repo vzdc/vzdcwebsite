@@ -363,10 +363,10 @@ class TrainingDash extends Controller
     public function RequestExam(Request $request) {
         $name = $request->input('exams');
         $exam = Exam::where('name', $request->get('exams'))->first();
-        $student_cid = auth()->user();
-        $student_name = User::select('fname')->where('id', $student_cid)->first()
-                        . " " . User::select('lname')->where('id', $student_cid)->first();
+        $student = User::find(Auth::id());
 
+        $student_cid = $student->id;
+        $student_name = $student->fname . " " . $student->lname;
         $exam_request = new ExamRequest;
         $exam_request->student_cid = $student_cid;
         $exam_request->student_name = $student_name;
@@ -390,6 +390,10 @@ class TrainingDash extends Controller
 
     public function AcceptExamRequest($id) {
         $exam = ExamRequest::where('id', $id)->first();
+        $instructor = User::find(Auth::id());
+
+        $exam->instructor->cid = $instructor->id;
+        $exam->instructor_name = $instructor->fname . " " . $instructor->lname;
         $exam->accepted = 1;
         $exam->save();
         return redirect()->back()->with('success', 'Exam request accepted.');
@@ -397,6 +401,7 @@ class TrainingDash extends Controller
 
     public function AssignExamRequest($id) {
         $exam = ExamRequest::where('id', $id)->first();
+        $exam->assigned = 0;
         $exam->assigned = 1;
         $exam->save();
         return redirect()->back()->with('success', 'Exam request assigned.');

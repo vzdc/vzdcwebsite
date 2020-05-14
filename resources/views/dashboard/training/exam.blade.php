@@ -30,8 +30,8 @@ Request Exam
                 <option>Washington C1 Knowledge</option>
             </select>
         </div>
-        <br /><br />
-        <button class="btn btn-primary" type="submit">Save Visitor Variable</button>
+        <br />
+        <button class="btn btn-primary" type="submit">Request Exam</button>
     </form>
 </div>
 @endsection
