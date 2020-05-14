@@ -372,6 +372,7 @@ class TrainingDash extends Controller
         $exam_request->student_name = $student_name;
         $exam_request->exam_id = $exam->id;
         $exam_request->exam_name = $exam->name;
+        $exam_request->rating = $student->rating_short;
         $exam_request->save();
 
         return redirect()->back()->with('success', "The '" . $exam->name . "' exam has been requested.");
