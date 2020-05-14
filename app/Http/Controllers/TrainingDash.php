@@ -402,6 +402,13 @@ class TrainingDash extends Controller
 
     public function AssignExamRequest($id) {
         $exam = ExamRequest::where('id', $id)->first();
+
+        $client = new \GuzzleHttp\Client(['base_url' => 'https://api.vatusa.net/v2/exam/']);
+        $res = $client->request('POST', $exam->exam_id . "/assign/" . $exam->student_cid);
+
+        if ($res->getStatusCode() != 200) {
+            return redirect()->back()->with('error', "Exam request assignment error, code: " . $res->getStatusCode());
+        }
         $exam->accepted = 0;
         $exam->assigned = 1;
         $exam->save();
