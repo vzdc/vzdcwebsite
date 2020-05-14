@@ -43,9 +43,9 @@ Exam Center
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name }}</td>
                         <td>
-                            <a class="btn btn-dange simple-tooltip"
+                            <a class="btn btn-danger simple-tooltip"
                                 href="/dashboard/training/exams/deleterequest/{{ $entry->id }}" data-toggle="tooltip"
-                                title="Remove Exam Acceptance"><i class="fas fa-check"></i></a>
+                                title="Remove Exam Request"><i class="fas fa-times"></i></a>
                             <a class="btn btn-success simple-tooltip"
                                 href="/dashboard/training/exams/accept/{{ $entry->id }}" data-toggle="tooltip"
                                 title="Accept Exam Request"><i class="fas fa-check"></i></a>
@@ -80,12 +80,12 @@ Exam Center
                         <td>{{ $entry->exam_name}}</td>
                         <td>
                             @if((Auth::user()->getStaffPositionAttribute() == 12 && $entry->instructor_id == Auth::user()) || Auth::user()->getStaffPositionAttribute() <= 5)
-                            <a class="btn btn-dange simple-tooltip"
+                            <a class="btn btn-danger simple-tooltip"
                                 href="/dashboard/training/exams/unaccept/{{ $entry->id }}" data-toggle="tooltip"
-                                title="Remove Exam Acceptance"><i class="fas fa-check"></i></a>
+                                title="Remove Exam Acceptance"><i class="fas fa-times"></i></a>
                             <a class="btn btn-warning simple-tooltip"
                                 href="/dashboard/training/exams/edit/{{ $entry->id }}" data-toggle="tooltip"
-                                title="Edit Exam Request"><i class="fas fa-check"></i></a>
+                                title="Edit Exam Request"><i class="fas fa-exclamation"></i></a>
                             <a class="btn btn-success simple-tooltip"
                                 href="/dashboard/training/exams/assign/{{ $entry->id }}" data-toggle="tooltip"
                                 title="Accept Exam Request"><i class="fas fa-check"></i></a>
