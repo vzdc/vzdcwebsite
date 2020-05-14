@@ -94,8 +94,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::prefix('training')->group(function () {
         Route::get('atcast', 'TrainingDash@showatcast');
         Route::prefix('exam')->group(function () {
-            Route::get('/', 'ControllerDash@ShowExamRequest');
-            Route::get('/request', 'ControllerDash@RequestExam');
+            Route::get('/', 'TrainingDash@ShowExamRequest');
+            Route::get('/request', 'TrainingDash@RequestExam');
         });
         Route::prefix('tickets')->middleware('permission:train')->group(function () {
             Route::get('/', 'TrainingDash@ticketsIndex');
