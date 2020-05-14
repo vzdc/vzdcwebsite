@@ -389,8 +389,8 @@ class TrainingDash extends Controller
 
     public function DeleteExamRequest($id) {
         $exam = Exam::where('id', $id)->first();
-        $exam->assigned = 1;
-        $exam->accepted = 1;
+        $exam->assigned = 0;
+        $exam->accepted = 0;
         $exam->save();
         return redirect()->back()->with('success', 'Exam request deleted.');
     }
