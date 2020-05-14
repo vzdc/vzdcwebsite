@@ -382,7 +382,7 @@ class TrainingDash extends Controller
      * Show exam center for ins+
      */
     public function ShowExamCenter() {
-        $pending = ExamRequest::where('accepted', 0)->orderBy('id', 'DSC')->paginate(20);;
+        $pending = ExamRequest::where('accepted', 0)->where('assigned', 0)->orderBy('id', 'DSC')->paginate(20);;
         $accepted = ExamRequest::where('accepted', 1)->orderBy('id', 'DSC')->paginate(20);
         $assigned = ExamRequest::where('assigned', 1)->orderBy('id', 'DSC')->paginate(20);
         return view('dashboard.training.exam_center')->with('pending', $pending)->with('accepted', $accepted)

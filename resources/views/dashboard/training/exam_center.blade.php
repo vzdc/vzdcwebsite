@@ -47,9 +47,9 @@ Exam Center
                                 title="Accept Exam Request"><i class="fas fa-check"></i></a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
-            @endforeach
             @else
             <p>No pending exam requests.</p>
             @endif
@@ -80,9 +80,9 @@ Exam Center
                                 title="Assign Exam Request"><i class="fas fa-check"></i></a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
-            @endforeach
             @else
             <p>No accepted exam requests.</p>
             @endif
@@ -113,9 +113,9 @@ Exam Center
                                 title="Delete Exam Assignment"><i class="fas fa-times"></i></a>
                         </td>
                     </tr>
+                    @endforeach
                 </tbody>
             </table>
-            @endforeach
             @else
             <p>No assigned exam requests.</p>
             @endif
