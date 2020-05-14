@@ -12,6 +12,7 @@ use App\User;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Cookie;
 use Mail;
 
 class TrainingDash extends Controller
@@ -406,7 +407,7 @@ class TrainingDash extends Controller
         $client = new \GuzzleHttp\Client(['timeout'  => 2.0,]);
 
         $url = "https://api.vatusa.net/v2/exam/" . $exam->exam_id . `/assign/` . $exam->student_id;
-        $token = session('vzdc_artcc_session');
+        $token = Cookie::get('vzdc_artcc_session');
         $headers = array('Authorization' => $token);
 
         $res = $client->request('POST', $url, [
@@ -429,7 +430,7 @@ class TrainingDash extends Controller
         $client = new \GuzzleHttp\Client(['timeout'  => 2.0,]);
 
         $url = "https://api.vatusa.net/v2/exam/" . $exam->exam_id . `/assign/` . $exam->student_id;
-        $token = session('vzdc_artcc_session');
+        $token = Cookie::get('vzdc_artcc_session');
         $headers = array('Authorization' => $token);
 
         $res = $client->request('DELETE', $url, [
