@@ -393,7 +393,7 @@ class TrainingDash extends Controller
         $exam = ExamRequest::where('id', $id)->first();
         $instructor = User::find(Auth::id());
 
-        $exam->instructor->cid = $instructor->id;
+        $exam->instructor_cid = $instructor->id;
         $exam->instructor_name = $instructor->fname . " " . $instructor->lname;
         $exam->accepted = 1;
         $exam->save();
