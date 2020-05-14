@@ -49,6 +49,8 @@
                     Session</a>
                 <a class="nav-link {{ Nav::urlDoesContain('/dashboard/training/atcast') }}"
                    href="/dashboard/training/atcast">ATCast Videos</a>
+                <a class="nav-link {{ Nav::urlDoesContain('/dashboard/training/exam') }}"
+                   href="/dashboard/training/exam">Request Exam</a>
                 @if(Auth::user()->can('train'))
                     <a class="nav-link {{ Nav::urlDoesContain('dashboard/training/files') }}"
                        href="/dashboard/training/info">Training Information</a>

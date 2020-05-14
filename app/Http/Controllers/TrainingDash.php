@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Audit;
 use App\Exam;
+use App\ExamRequest;
 use App\Ots;
 use App\TrainingInfo;
 use App\TrainingTicket;
@@ -355,40 +356,52 @@ class TrainingDash extends Controller
      * Show exam request for controllers
      */
     public function ShowExamRequest() {
-        return view('dashboard.training.exam');
+        $exams = Exam::select('name')->get();
+        return view('dashboard.training.exam')->with('exams', $exams);
     }
 
     public function RequestExam(Request $request) {
-        
+        $exam = Exam::where('name', $request->name)->first();
+        $student_cid = auth()->user();
+        $student_name = User::select('fname') . " " . User::select('lname');
+
+        $exam_request = new ExamRequest;
+        $exam_request->student_cid = $student_cid;
+        $exam_request->student_name = $student_name;
+        $exam_request->exam_id = $exam->id;
+        $exam_request->exam_name = $exam->name;
+        $exam_request->save();
+
+        return redirect()->back()->with('success', "The '" . $exam->name . "' exam has been requested.");
     }
     
     /**
      * Show exam center for ins+
      */
     public function ShowExamCenter() {
-        $pending = Exam::where('accepted', 0)->orderBy('id', 'DSC')->paginate(20);;
-        $accepted = Exam::where('accepted', 1)->orderBy('id', 'DSC')->paginate(20);
-        $assigned = Exam::where('assigned', 1)->orderBy('id', 'DSC')->paginate(20);
+        $pending = ExamRequest::where('accepted', 0)->orderBy('id', 'DSC')->paginate(20);;
+        $accepted = ExamRequest::where('accepted', 1)->orderBy('id', 'DSC')->paginate(20);
+        $assigned = ExamRequest::where('assigned', 1)->orderBy('id', 'DSC')->paginate(20);
         return view('dashboard.training.exam_center')->with('pending', $pending)->with('accepted', $accepted)
                                                     ->with('assigned', $assigned);
     }
 
     public function AcceptExamRequest($id) {
-        $exam = Exam::where('id', $id)->first();
+        $exam = ExamRequest::where('id', $id)->first();
         $exam->accepted = 1;
         $exam->save();
         return redirect()->back()->with('success', 'Exam request accepted.');
     }
 
     public function AssignExamRequest($id) {
-        $exam = Exam::where('id', $id)->first();
+        $exam = ExamRequest::where('id', $id)->first();
         $exam->assigned = 1;
         $exam->save();
         return redirect()->back()->with('success', 'Exam request assigned.');
     }
 
     public function DeleteExamRequest($id) {
-        $exam = Exam::where('id', $id)->first();
+        $exam = ExamRequest::where('id', $id)->first();
         $exam->assigned = 0;
         $exam->accepted = 0;
         $exam->save();
