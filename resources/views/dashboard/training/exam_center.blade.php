@@ -57,6 +57,8 @@ Exam Center
         </div>
 
         <div role="tabpanel" class="tab-pane" id="accepted">
+            <a class="btn btn-primary" data-toggle="model" data-target="#exampleModal">
+                Assign Exam <i class="fas fa-check"></i></a>
             @if(count($accepted) > 0)
             <table class="table table-striped">
                 <thead>
@@ -76,8 +78,7 @@ Exam Center
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name}}</td>
                         <td>
-                            <a class="btn btn-primary" data-toggle="model"
-                                data-target="#exampleModal">
+                            <a class="btn btn-primary" data-toggle="model" data-target="#exampleModal">
                                 Assign Exam <i class="fas fa-check"></i></a>
                         </td>
                     </tr>
@@ -88,6 +89,8 @@ Exam Center
             <p>No accepted exam requests.</p>
             @endif
         </div>
+
+
 
         <div role="tabpanel" class="tab-pane" id="assigned">
             @if(count($assigned) > 0)
@@ -135,13 +138,13 @@ Exam Center
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-                <div class="modal-body">
-                    <p>test</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-success">Assign Exam</button>
-                </div>
+            <div class="modal-body">
+                <p>test</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                <button type="submit" class="btn btn-success">Assign Exam</button>
+            </div>
         </div>
     </div>
 </div>
