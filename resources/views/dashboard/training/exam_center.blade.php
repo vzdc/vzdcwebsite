@@ -14,17 +14,17 @@ Exam Center
 <div class="container">
     <ul class="nav nav-tabs nav-justified" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" href="#new" role="tab" data-toggle="tab" style="color:black">Pending Requests</a>
+            <a class="nav-link active" href="#pending" role="tab" data-toggle="tab" style="color:black">Pending Requests</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#archive" role="tab" data-toggle="tab" style="color:black">Accepted Requests</a>
+            <a class="nav-link" href="#accepted" role="tab" data-toggle="tab" style="color:black">Accepted Requests</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#archive" role="tab" data-toggle="tab" style="color:black">Assigned Requests</a>
+            <a class="nav-link" href="#assigned" role="tab" data-toggle="tab" style="color:black">Assigned Requests</a>
         </li>
     </ul>
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="new">
+        <div role="tabpanel" class="tab-pane active" id="pending">
             @if(count($pending) > 0)
             <table class="table table-striped">
                 <thead>
@@ -55,7 +55,7 @@ Exam Center
             @endif
         </div>
 
-        <div role="tabpanel" class="tab-pane" id="archive">
+        <div role="tabpanel" class="tab-pane" id="accepted">
             @if(count($accepted) > 0)
             <table class="table table-striped">
                 <thead>
@@ -88,7 +88,7 @@ Exam Center
             @endif
         </div>
 
-        <div role="tabpanel" class="tab-pane" id="archive">
+        <div role="tabpanel" class="tab-pane" id="assigned">
             @if(count($assigned) > 0)
             <table class="table table-striped">
                 <thead>
