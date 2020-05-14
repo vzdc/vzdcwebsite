@@ -77,7 +77,7 @@ Exam Center
                         <td>{{ $entry->exam_name}}</td>
                         <td>
                             <a class="btn btn-success simple-tooltip" data-toggle="assignmodel">
-                                Assign Exam<i class="fas fa-check"></i></a>
+                                Assign Exam <i class="fas fa-check"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -124,12 +124,12 @@ Exam Center
 </div>
 
 <!-- Models -->
-<div class="modal fade" id="assignmodel" tabindex="-1" role="dialog" aria-labelledby="assignmodel"
+<div class="modal fade" id="assignmodel" tabindex="-1" role="dialog" aria-labelledby="assignmodeltitle"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="assignmodel">Confirm Exam Assignment</h5>
+                <h5 class="modal-title" id="assignmodeltitle">Confirm Exam Assignment</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
