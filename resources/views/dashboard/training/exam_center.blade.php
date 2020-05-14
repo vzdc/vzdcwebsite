@@ -43,6 +43,9 @@ Exam Center
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name }}</td>
                         <td>
+                            <a class="btn btn-dange simple-tooltip"
+                                href="/dashboard/training/exams/deleterequest/{{ $entry->id }}" data-toggle="tooltip"
+                                title="Remove Exam Acceptance"><i class="fas fa-check"></i></a>
                             <a class="btn btn-success simple-tooltip"
                                 href="/dashboard/training/exams/accept/{{ $entry->id }}" data-toggle="tooltip"
                                 title="Accept Exam Request"><i class="fas fa-check"></i></a>
@@ -70,19 +73,25 @@ Exam Center
                 </thead>
                 <tbody>
                     @foreach($accepted as $entry)
-                    @if((Auth::user()->getStaffPositionAttribute() == 12 && $entry->instructor_id == Auth::user()) || Auth::user()->getStaffPositionAttribute() <= 5)
                     <tr>
                         <td>{{ $entry->student_name }}</td>
                         <td>{{ $entry->instructor_name }}</td>
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name}}</td>
                         <td>
+                            @if((Auth::user()->getStaffPositionAttribute() == 12 && $entry->instructor_id == Auth::user()) || Auth::user()->getStaffPositionAttribute() <= 5)
+                            <a class="btn btn-dange simple-tooltip"
+                                href="/dashboard/training/exams/unaccept/{{ $entry->id }}" data-toggle="tooltip"
+                                title="Remove Exam Acceptance"><i class="fas fa-check"></i></a>
+                            <a class="btn btn-warning simple-tooltip"
+                                href="/dashboard/training/exams/edit/{{ $entry->id }}" data-toggle="tooltip"
+                                title="Edit Exam Request"><i class="fas fa-check"></i></a>
                             <a class="btn btn-success simple-tooltip"
                                 href="/dashboard/training/exams/assign/{{ $entry->id }}" data-toggle="tooltip"
                                 title="Accept Exam Request"><i class="fas fa-check"></i></a>
+                            @endif
                         </td>
                     </tr>
-                    @endif
                     @endforeach
                 </tbody>
             </table>
@@ -107,19 +116,19 @@ Exam Center
                 </thead>
                 <tbody>
                     @foreach($assigned as $entry)
-                    @if((Auth::user()->getStaffPositionAttribute() == 12 && $entry->instructor_id == Auth::user()) || Auth::user()->getStaffPositionAttribute() <= 5)
                     <tr>
                         <td>{{ $entry->student_name }}</td>
                         <td>{{ $entry->instructor_name }}</td>
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name}}</td>
                         <td>
+                            @if((Auth::user()->getStaffPositionAttribute() == 12 && $entry->instructor_id == Auth::user()) || Auth::user()->getStaffPositionAttribute() <= 5)
                             <a class="btn btn-danger simple-tooltip"
-                                href="/dashboard/training/exams/delete/{{ $entry->id }}" data-toggle="tooltip"
+                                href="/dashboard/training/exams/unassign/{{ $entry->id }}" data-toggle="tooltip"
                                 title="Delete Exam Assignment"><i class="fas fa-times"></i></a>
+                            @endif
                         </td>
                     </tr>
-                    @endif
                     @endforeach
                 </tbody>
             </table>
