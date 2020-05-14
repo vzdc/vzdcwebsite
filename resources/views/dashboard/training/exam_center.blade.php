@@ -76,7 +76,8 @@ Exam Center
                         <td>{{ $entry->student_rating }}</td>
                         <td>{{ $entry->exam_name}}</td>
                         <td>
-                            <a href="#assignmodal" class="btn btn-primary" data-toggle="model" data-target="#assignmodel">
+                            <a href="#assignmodal" class="btn btn-primary" data-toggle="model"
+                                data-target="#assignmodel">
                                 Assign Exam <i class="fas fa-check"></i></a>
                         </td>
                     </tr>
@@ -134,8 +135,8 @@ Exam Center
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <form action="" method="POST">
+            <form action="" method="POST">
+                <div class="modal-body">
                     @csrf
                     <div class="form-group">
                         <label for="exams">Select Exam</label>
@@ -150,12 +151,12 @@ Exam Center
                             <option>Washington C1 Knowledge</option>
                         </select>
                     </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                <button type="submit" class="btn btn-success">Save changes</button>
-            </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-success">Save changes</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
