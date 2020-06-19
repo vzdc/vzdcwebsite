@@ -217,7 +217,7 @@ while ($enoughAlready < 1) {
                if ($contdata[11] =="") { echo "\n$contdata[0] has no Dept field\n";}
                if ($contdata[8]<2) {
                   if ($contdata[11] =="") {
-                    $PColor = "#A37547";
+                    $PColor = "#FF00FF";
                     $iconz = "OnGndKIADstoppedNoFP";
                   } else {
                     $PColor = "#ff0000";
@@ -233,10 +233,10 @@ while ($enoughAlready < 1) {
                   }
                } else {
                   if ($contdata[11] == "KIAD") {
-                    $PColor = "#FFFF00";
+                    $PColor = "#00FF00";
                     $iconz = "OnGndKIADtaxiingOut";
                   } else {
-                    $PColor = "#002af0";
+                    $PColor = "#FFFF00";
                     $iconz = "OnGndKIADtaxiingIn";
                   }
                }
