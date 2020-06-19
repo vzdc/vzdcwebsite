@@ -506,7 +506,7 @@
     <table border=1>
       <tr><td><font color ="green">No Flight Plan:</font></td><td style="background: #A37547;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
       <!-- <td>Departures:</td><td style="background: #27c106;">&nbsp;&nbsp;&nbsp;&nbsp;</td> -->
-      <tr><td><font color ="green">&nbsp;&nbsp;Parked:</font></td><td style="background: #FFFFFF;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
+      <tr><td><font color ="green">&nbsp;&nbsp;Parked:</font></td><td style="background: #ff0000;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
       <tr><td><font color ="green">&nbsp;&nbsp;Taxiing (Dep):</font></td><td style="background: #FFFF00;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
       <tr><td><font color ="green">&nbsp;&nbsp;Taxiing (Arr):</font></td><td style="background: #002af0;">&nbsp;&nbsp;&nbsp;&nbsp;</td></tr>
     </table></div>
