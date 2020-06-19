@@ -220,7 +220,7 @@ while ($enoughAlready < 1) {
                     $PColor = "#A37547";
                     $iconz = "OnGndKIADstoppedNoFP";
                   } else {
-                    $PColor = "#FFFFFF";
+                    $PColor = "#ff0000";
                     $iconz = "OnGndKIADstopped";
                     /* Is the a/c at a gate??
                     foreach ($KIADGates as $value) {
