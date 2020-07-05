@@ -18,8 +18,32 @@
     {!! Form::open(['action' => ['Admindash@UpdateLoa', $loa->id]]) !!}
     @csrf
     <div class="form-group">
-        
+        <div class="row">
+            <div class="col-sm-4">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="{{ $loa->controller_name }}" readonly>
+            </div>
+            <div class="col-sm-4">
+                <label for="end_date" class="form-label">End Date</label>
+                <input type="text" class="form-control" id="end_date" placeholder="{{ $loa->end_date }}" readonly>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <label for="name" class="form-label text-center">Reason</label>
+            <textarea type="text" class="form-control" id="reason" placeholder="{{ $loa->reason }}" readonly></textarea>
+        </div>
     </div>
+    <div class="form-group">
+        {!! Form::label('status', 'Update LOA Status') !!}
+        {!! Form::select('status', array('Approve' => 1, 'Deny' => -1), 'Approve') !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('reason', 'Reason for Denial (If Applicable') !!}
+        {!! Form::textArea('reason', null, ['class' => 'form-control']) !!}
+    </div>
+    <button class="btn btn-success" type="submit">Submit LOA</button>
+        <a class="btn btn-danger" href="/dashboard/admin/loas">Cancel</a>
+        {!! Form::close() !!}
 </div>
 
 @endsection
