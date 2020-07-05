@@ -20,17 +20,21 @@
     <div class="form-group">
         <div class="row">
             <div class="col-sm-4">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" placeholder="{{ $loa->controller_name }}" readonly>
+                {!! form::label('name', 'Name') !!}
+                {!! form::text('name', $loa->controller_name, ['class' => 'form-control', 'placeholder' => $loa->controller_name], array('disabled')) !!}
             </div>
             <div class="col-sm-4">
-                <label for="end_date" class="form-label">End Date</label>
-                <input type="text" class="form-control" id="end_date" placeholder="{{ $loa->end_date }}" readonly>
+                {!! form::label('end_date', 'End Date') !!}
+                {!! form::text('end_date', $loa->end_date, ['class' => 'form-control', 'placeholder' => $loa->end_date], array('disabled')) !!}
+            </div>
+            <div class="col-sm-4">
+                {!! form::label('email', 'Email') !!}
+                {!! form::text('email', $loa->controller_email, ['class' => 'form-control', 'placeholder' => $loa->controller_email], array('disabled')) !!}
             </div>
         </div>
         <div class="form-group">
-            <label for="name" class="form-label text-center">Reason</label>
-            <textarea type="text" class="form-control" id="reason" placeholder="{{ $loa->reason }}" readonly></textarea>
+            {!! form::label('reason', 'Reason') !!}
+            {!! form::textarea('reason', $loa->reason, ['class' => 'form-control', 'placeholder' => $loa->reason], array('disabled')) !!}
         </div>
     </div>
     <div class="form-group">

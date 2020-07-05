@@ -5,10 +5,8 @@ namespace App\Console\Commands;
 use App\ATC;
 use App\ControllerLog;
 use App\ControllerLogUpdate;
-use App\Loa;
 use Carbon\Carbon;
 use DB;
-use Mail;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -112,6 +110,7 @@ class OnlineControllerUpdate extends Command
                         'cid' => $cid,
                         'time_logon' => $time_logon,
                     ]);
+
 
                     // Is this neccessary? It detects if the streamupdate of the last record for the user matches this one
                     // Shouldn't bog anything down unless we are running this too often
