@@ -56,7 +56,7 @@ class LoaEmailsAndExpiration extends Command
                 $user->status = 1;
                 $user->save();
 
-                Mail::send(['html' => 'emails.loas.expiration'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa, $user) {
+                Mail::send(['html' => 'emails.loas.expiration'], ['loa' => $loa, 'user' => $user], function ($m) use ($user) {
                     $m->from('loas@vzdc.org', 'vZDC LOA Center');
                     $m->subject('Your vZDC LOA Has Expired');
                     $m->to($user->email);
@@ -74,7 +74,7 @@ class LoaEmailsAndExpiration extends Command
 
                 $user = User::find($loa->controller_id);
 
-                Mail::send(['html' => 'emails.loas.expiration_soon'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa, $user) {
+                Mail::send(['html' => 'emails.loas.expiration_soon'], ['loa' => $loa, 'user' => $user], function ($m) use ($user) {
                     $m->from('loas@vzdc.org', 'vZDC LOA Center');
                     $m->subject('Your vZDC LOA is Expiring Soon');
                     $m->to($user->email);

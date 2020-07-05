@@ -35,7 +35,7 @@
     </div>
     <div class="form-group">
         {!! Form::label('status', 'Update LOA Status') !!}
-        {!! Form::select('status', array(1 => 'Approve', -1 => 'Deny'), 1) !!}
+        {!! Form::select('status', array(1 => 'Approve', -1 => 'Deny', 3 => 'Manually End'), 1) !!}
     </div>
     <div class="form-group">
         {!! Form::label('reason', 'Reason for Denial (If Applicable)') !!}
