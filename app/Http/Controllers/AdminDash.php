@@ -1906,7 +1906,7 @@ class AdminDash extends Controller
 
     public function ViewLoa($id) {
         $loa = Loa::find($id);
-        return view('dashboard.admin.loas.view')->with('loa', $loa);
+        return view('dashboard.admin.loas.edit')->with('loa', $loa);
     }
 
     public function UpdateLoa(Request $request, $id) {
