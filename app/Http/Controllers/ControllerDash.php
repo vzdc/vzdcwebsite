@@ -688,6 +688,8 @@ class ControllerDash extends Controller
 
         $user = User::find(Auth::id());
 
+        return redirect('/dashboard')->with('error', $user->email);
+
         $loa = new Loa;
         $loa->controller_id = $user->id;
         $loa->controller_name = $user->getFullNameAttribute();
