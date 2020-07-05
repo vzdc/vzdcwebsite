@@ -241,7 +241,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         });
         Route::prefix('loas')->middleware('permission:snrStaff')->group(function () {
             Route::get('/', 'AdminDash@ShowLoas');
-            Route::get('/view/{id}', 'AdminDash@ViewLoa');
+            Route::get('/edit/{id}', 'AdminDash@ViewLoa');
             Route::post('/update/{id}', 'AdminDash@UpdateLoa');
         });
     });
