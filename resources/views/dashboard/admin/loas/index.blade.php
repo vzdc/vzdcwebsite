@@ -57,7 +57,7 @@
     </div>
 
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="active">
+        <div role="tabpanel" class="tab-pane" id="active">
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -88,7 +88,7 @@
     </div>
 
     <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="inactive">
+        <div role="tabpanel" class="tab-pane" id="inactive">
             <table class="table table-striped">
                 <thead>
                     <tr>
