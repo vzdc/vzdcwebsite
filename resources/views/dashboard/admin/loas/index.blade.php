@@ -37,7 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if($pending->length > 0)
+                    @if($pending->count() > 0)
                         @foreach ($pending as $loa)
                             <td>{{$loa->controller_name}}</td>
                             <td>{{$loa->end_date}}</td>
@@ -68,7 +68,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if($active->length > 0)
+                    @if($active->count() > 0)
                         @foreach ($active as $loa)
                             <td>{{$loa->controller_name}}</td>
                             <td>{{$loa->end_date}}</td>
@@ -99,7 +99,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @if($inactive->length > 0)
+                    @if($inactive->count() > 0)
                         @foreach ($inactive as $loa)
                             <td>{{$loa->controller_name}}</td>
                             <td>{{$loa->end_date}}</td>
