@@ -44,7 +44,7 @@
                             <td>{{$loa->created_at}}</td>
                             <td>
                                 <a class="btn btn-warning simple-tooltip"
-                                    href="/dashboard/admin/loas/view/{{ $loa->id }}" data-toggle="tooltip"
+                                    href="/dashboard/admin/loas/edit/{{ $loa->id }}" data-toggle="tooltip"
                                     title="View LOA"><i class="fas fa-eye"></i></a>
                             </td>
                         @endforeach
@@ -75,7 +75,7 @@
                             <td>{{$loa->created_at}}</td>
                             <td>
                                 <a class="btn btn-warning simple-tooltip"
-                                    href="/dashboard/admin/loas/view/{{ $loa->id }}" data-toggle="tooltip"
+                                    href="/dashboard/admin/loas/edit/{{ $loa->id }}" data-toggle="tooltip"
                                     title="View LOA"><i class="fas fa-eye"></i></a>
                             </td>
                         @endforeach
@@ -106,7 +106,7 @@
                             <td>{{$loa->created_at}}</td>
                             <td>
                                 <a class="btn btn-warning simple-tooltip"
-                                    href="/dashboard/admin/loas/view/{{ $loa->id }}" data-toggle="tooltip"
+                                    href="/dashboard/admin/loas/edit/{{ $loa->id }}" data-toggle="tooltip"
                                     title="View LOA"><i class="fas fa-eye"></i></a>
                             </td>
                         @endforeach
