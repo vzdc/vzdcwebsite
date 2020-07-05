@@ -35,10 +35,10 @@
     </div>
     <div class="form-group">
         {!! Form::label('status', 'Update LOA Status') !!}
-        {!! Form::select('status', array('Approve' => 1, 'Deny' => -1), 'Approve') !!}
+        {!! Form::select('status', array(1 => 'Approve', -1 => 'Deny'), 1) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('reason', 'Reason for Denial (If Applicable') !!}
+        {!! Form::label('reason', 'Reason for Denial (If Applicable)') !!}
         {!! Form::textArea('reason', null, ['class' => 'form-control']) !!}
     </div>
     <button class="btn btn-success" type="submit">Submit LOA</button>
