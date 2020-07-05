@@ -19,7 +19,7 @@ class Kernel extends ConsoleKernel
         '\App\Console\Commands\EventEmails',
         '\App\Console\Commands\ARTCCOverflights',
         '\App\Console\Commands\SoloCerts',
-        '\App\Console\Commands\LoaEmailsAndExpiration',
+        '\App\Console\Commands\LoaExpiration',
     ];
 
     /**
