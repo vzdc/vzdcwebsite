@@ -691,6 +691,7 @@ class ControllerDash extends Controller
         $loa = new Loa;
         $loa->controller_id = $user->id;
         $loa->controller_name = $user->getFullNameAttribute();
+        $loa->controller_email = $user->email;
         $loa->end_date = $request->end_date;
         $loa->reason = $request->reason;
         $loa->save();

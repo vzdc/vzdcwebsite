@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Loa extends Model
 {
     protected $table = 'loas';
-    protected $fillable = ['id', 'controller_id', 'controller_name', 'end_date', 'reason', 'status', 'updated_at', 'created_at'];
+    protected $fillable = ['id', 'controller_id', 'controller_name', 'controller_email', 'end_date', 'reason', 'status', 'updated_at', 'created_at'];
 }
 
