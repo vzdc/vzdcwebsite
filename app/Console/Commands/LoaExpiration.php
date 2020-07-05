@@ -5,10 +5,11 @@ namespace App\Console\Commands;
 use App\Loa;
 use App\User;
 use Mail;
+use DateTime;
 use Illuminate\Console\Command;
 
 
-class LoaEmailsAndExpiration extends Command
+class LoaExpiration extends Command
 {
     /**
      * The name and signature of the console command.
@@ -42,12 +43,10 @@ class LoaEmailsAndExpiration extends Command
     public function handle()
     {
         $loas = Loa::where('status', 1)->get();
-        $date = new \DateTime('now');
-
-        $date_week_before = new \DateTime('now -7 days');
+        $date = new DateTime('now');
 
         foreach($loas as $loa) {
-            $loa_date = new \DateTime($loa->end_date);
+            $loa_date = new DateTime($loa->end_date);
             if ($date <= $loa_date) {
                 $loa->status = 3;
                 $loa->save();
