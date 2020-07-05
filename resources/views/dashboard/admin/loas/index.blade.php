@@ -56,9 +56,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
 
-    <div class="tab-content">
         <div role="tabpanel" class="tab-pane" id="active">
             <table class="table table-striped">
                 <thead>
@@ -89,9 +87,7 @@
                 </tbody>
             </table>
         </div>
-    </div>
 
-    <div class="tab-content">
         <div role="tabpanel" class="tab-pane" id="inactive">
             <table class="table table-striped">
                 <thead>
