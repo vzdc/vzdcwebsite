@@ -7,7 +7,7 @@ LOA Request
 @section('content')
 <div class="container-fluid" style="background-color:#F0F0F0;">
     <br />
-    <h2>New LOA Request</h2>
+    <h2 class="text-center">New LOA Request</h2>
     <br />
     <p class="text-center">Once submitted please allow up to 48 hours for approval. If approved you will recieve an
         email indicating as such.</p>
@@ -18,9 +18,9 @@ LOA Request
     {!! Form::open(['action' => 'ControllerDash@SubmitLoaRequest']) !!}
     @csrf
     <div class="form-group">
-        {!! Form::label('End_Date', 'Ending Date of LOA') !!}
+        {!! Form::label('end_date', 'Ending Date of LOA') !!}
         <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-            {!! Form::text('End_Date', null, ['placeholder' => 'MM/DD/YYYY', 'class' => 'form-control datetimepicker-input', 'data-target' => '#datetimepicker1']) !!}
+            {!! Form::text('end_date', null, ['placeholder' => 'MM/DD/YYYY', 'class' => 'form-control datetimepicker-input', 'data-target' => '#datetimepicker1']) !!}
             <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
             </div>
