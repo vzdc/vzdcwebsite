@@ -37,9 +37,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
                     @if(count($pending) > 0)
                         @foreach ($pending as $loa)
+                        <tr>
                             <td>{{$loa->controller_name}}</td>
                             <td>{{$loa->end_date}}</td>
                             <td>{{$loa->created_at}}</td>
@@ -48,11 +48,11 @@
                                     href="/dashboard/admin/loas/edit/{{ $loa->id }}" data-toggle="tooltip"
                                     title="View LOA"><i class="fas fa-eye"></i></a>
                             </td>
+                        </tr>
                         @endforeach
                     @else
-                        <td colspan="3">No pending LOA's</td>
+                        <p>No pending LOA's</p>
                     @endif
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -70,9 +70,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
                     @if(count($active) > 0)
                         @foreach ($active as $loa)
+                        <tr>
                             <td>{{$loa->controller_name}}</td>
                             <td>{{$loa->end_date}}</td>
                             <td>{{$loa->created_at}}</td>
@@ -81,11 +81,11 @@
                                     href="/dashboard/admin/loas/edit/{{ $loa->id }}" data-toggle="tooltip"
                                     title="View LOA"><i class="fas fa-eye"></i></a>
                             </td>
+                        </tr>
                         @endforeach
                     @else
-                        <td colspan="3">No active LOA's</td>
+                        <p>No active LOA's</p>
                     @endif
-                    </tr>
                 </tbody>
             </table>
         </div>
@@ -103,9 +103,9 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
                     @if(count($inactive) > 0)
                         @foreach ($inactive as $loa)
+                        <tr>
                             <td>{{$loa->controller_name}}</td>
                             <td>{{$loa->end_date}}</td>
                             <td>{{$loa->created_at}}</td>
@@ -114,11 +114,11 @@
                                     href="/dashboard/admin/loas/edit/{{ $loa->id }}" data-toggle="tooltip"
                                     title="View LOA"><i class="fas fa-eye"></i></a>
                             </td>
+                        </tr>
                         @endforeach
                     @else
-                        <td colspan="3">No inactive LOA's</td>
+                        <p>No inactive LOA's</p>
                     @endif
-                    </tr>
                 </tbody>
             </table>
         </div>
