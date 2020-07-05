@@ -15,7 +15,7 @@
 <br />
 
 <div class="container">
-    {!! Form::open(['action' => ['Admindash@UpdateLoa', $loa->id]]) !!}
+    {!! Form::open(['action' => ['AdminDash@UpdateLoa', $loa->id]]) !!}
     @csrf
     <div class="form-group">
         <div class="row">

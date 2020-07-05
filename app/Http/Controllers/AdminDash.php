@@ -1910,7 +1910,7 @@ class AdminDash extends Controller
     }
 
     public function UpdateLoa(Request $request, $id) {
-        $loa = Loa::find($request->id);
+        $loa = Loa::find($id);
         $user = User::find($loa->controller_id);
         $loa->status = $request->status;
         $loa->save();
