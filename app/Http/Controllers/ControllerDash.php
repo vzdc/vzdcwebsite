@@ -695,12 +695,6 @@ class ControllerDash extends Controller
         $loa->reason = $request->reason;
         $loa->save();
 
-        $audit = new Audit;
-        $audit->cid = Auth::id();
-        $audit->ip = $_SERVER['REMOTE_ADDR'];
-        $audit->what = Auth::user()->full_name . ' submitted a new LOA request.';
-        $audit->save();
-
         return redirect()->back()->with('success', 'Your LOA request was sucessfully submitted. You will recieve an email once approved.');
     }
 }
