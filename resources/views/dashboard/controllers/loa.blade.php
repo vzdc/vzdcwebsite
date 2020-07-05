@@ -18,7 +18,7 @@ LOA Request
     {!! Form::open(['action' => 'ControllerDash@SaveLoaRequest']) !!}
     @csrf
     <div class="form-group">
-        {!! Form::label('End Date' 'Ending Date of LOA') !!}
+        {!! Form::label('End Date', 'Ending Date of LOA') !!}
         {!! Form::text('end_date', null, ['placeholder' => 'MM/DD/YYYY', 'class' => 'form-control
         datetimepicker-input', 'data-target' => '#datetimepicker1']) !!}
         <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
