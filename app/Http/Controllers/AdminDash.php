@@ -1922,7 +1922,7 @@ class AdminDash extends Controller
         if ($loa->status == -1) {
             $reason = $request->reason;
             Mail::send(['html' => 'emails.loas.denied'], ['loa' => $loa, 'reason' => $reason], function ($m) use ($request) {
-                $m->from('loas@vzdc.org', 'vZDC LOA Center');
+                $m->from('datm@vzdc.org', 'vZDC LOA Center');
                 $m->subject('Your vZDC LOA Has Been Denied');
                 $m->to($request->email);
             });
