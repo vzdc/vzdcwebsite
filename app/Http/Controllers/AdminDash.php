@@ -1921,24 +1921,22 @@ class AdminDash extends Controller
 
         if ($loa->status == -1) {
             $reason = $request->reason;
-            Mail::send(['html' => 'emails.loas.denied'], ['loa' => $loa, 'user' => $user, 'reason' => $reason], function ($m) use ($user) {
-                $m->from('datm@vzdc.org', 'vZDC LOA Center');
+            Mail::send(['html' => 'emails.loas.denied'], ['loa' => $loa, 'reason' => $reason], function ($m) use ($user) {
+                $m->from('loas@vzdc.org', 'vZDC LOA Center');
                 $m->subject('Your vZDC LOA Has Been Denied');
                 $m->to($user->email);
             });
         }
 
         if ($loa->status == 1) {
-            Mail::send(['html' => 'emails.loas.approved'], ['loa' => $loa, 'user' => $user], function ($m) use ($user) {
-                $m->from('datm@vzdc.org', 'vZDC LOA Center');
+            Mail::send(['html' => 'emails.loas.approved'], ['loa' => $loa], function ($m) use ($user) {
+                $m->from('loas@vzdc.org', 'vZDC LOA Center');
                 $m->subject('Your vZDC LOA Has Been Approved');
                 $m->to($user->email);
             });
             $user->status = 0;
             $user->save();
         }
-
         return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully " . ($loa->status == 1 ? "approved" : "denied"));
     }
-
 }

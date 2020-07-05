@@ -37,6 +37,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
                     @if(count($pending) > 0)
                         @foreach ($pending as $loa)
                             <td>{{$loa->controller_name}}</td>
@@ -51,6 +52,7 @@
                     @else
                         <td colspan="3">No pending LOA's</td>
                     @endif
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -68,6 +70,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
                     @if(count($active) > 0)
                         @foreach ($active as $loa)
                             <td>{{$loa->controller_name}}</td>
@@ -82,6 +85,7 @@
                     @else
                         <td colspan="3">No active LOA's</td>
                     @endif
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -99,6 +103,7 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <tr>
                     @if(count($inactive) > 0)
                         @foreach ($inactive as $loa)
                             <td>{{$loa->controller_name}}</td>
@@ -113,6 +118,7 @@
                     @else
                         <td colspan="3">No inactive LOA's</td>
                     @endif
+                    </tr>
                 </tbody>
             </table>
         </div>
