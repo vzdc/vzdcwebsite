@@ -63,23 +63,5 @@ class LoaEmailsAndExpiration extends Command
                 });
             }
         }
-
-        $loas = Loa::where('status', 2)->get();
-
-        foreach($loas as $loa) {
-            $loa_date = new \DateTime($loa->end_date);
-            if ($date_week_before <= $loa_date) {
-                $loa->status = 2;
-                $loa->save();
-
-                $user = User::find($loa->controller_id);
-
-                Mail::send(['html' => 'emails.loas.expiration_soon'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
-                    $m->from('notams@vzdc.org', 'vZDC LOA Center');
-                    $m->subject('Your vZDC LOA is Expiring Soon');
-                    $m->to($loa->controller_email);
-                });
-            }
-        }
     }
 }
