@@ -21,7 +21,7 @@ LOA Request
         {!! Form::label('End Date', 'Ending Date of LOA') !!}
         {!! Form::text('end_date', null, ['placeholder' => 'MM/DD/YYYY', 'class' => 'form-control
         datetimepicker-input', 'data-target' => '#datetimepicker1']) !!}
-        <div class="input-group-append" data-target="#datetimepicker" data-toggle="datetimepicker">
+        <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
             <div class="input-group-text"><i class="fa fa-calendar"></i></div>
         </div>
         <div class="form-group">
@@ -36,7 +36,7 @@ LOA Request
 
 <script type="text/javascript">
     $(function () {
-            $('#datetimepicker').datetimepicker({
+            $('#datetimepicker1').datetimepicker({
                 format: 'L'
             });
         });

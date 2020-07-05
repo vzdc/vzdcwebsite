@@ -22,6 +22,7 @@ use App\Pyrite;
 use App\Scenery;
 use App\TrainingTicket;
 use App\User;
+use App\Loa;
 use App\Variable;
 use Auth;
 use Carbon\Carbon;
@@ -682,7 +683,7 @@ class ControllerDash extends Controller
 
         $currentDate = new \DateTime('now');
         if ($currentDate < $request->end_time) {
-            return redirect()->back()->with('error', 'Your end date cannot be in the past.');
+            return redirect('/dashboard')->with('error', 'Your end date cannot be in the past.');
         }
 
         $user = User::find(Auth::id());
