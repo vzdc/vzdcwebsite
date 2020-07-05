@@ -696,6 +696,6 @@ class ControllerDash extends Controller
         $loa->reason = $request->reason;
         $loa->save();
 
-        return redirect()->back()->with('success', 'Your LOA request was sucessfully submitted. You will recieve an email once approved.');
+        return redirect('/dashboard')->with('success', 'Your LOA request was sucessfully submitted. You will recieve an email once approved.');
     }
 }
