@@ -24,6 +24,7 @@ use App\SoloCert;
 use App\User;
 use App\Visitor;
 use App\Variable;
+use App\Loa;
 use Artisan;
 use Auth;
 use Carbon\Carbon;
@@ -1894,6 +1895,42 @@ class AdminDash extends Controller
     public function UpdateCurrencyVariable(Request $request) {
         Variable::where('name', 'currency')->update(['value' => intval($request->get('currency'))]);
         return redirect('/dashboard/admin/variables')->with('success', "Currency hours updated to " . $request->get('currency'));
+    }
+
+    public function ShowLoas() {
+        $pending = Loa::where('status', 0)->get();
+        $active = Loa::where('status', 1)->get();
+        $inactive = Loa::where('status', 3)->get();
+        return view("dashboard.admin.loas.index")->with('pending', $pending)->with('active', $active)->with('inactive', $inactive);
+    }
+
+    public function ViewLoa($id) {
+        $loa = Loa::find($id);
+        return view('dashboard.admin.loas.view')->with('loa', $loa);
+    }
+
+    public function UpdateLoa(Request $request, $id) {
+        $loa = Loa::find($request->id);
+        $user = User::find($loa->controller_id);
+        $loa->status = ($request->status == 'approved') ? 1 : -1;
+
+        if ($loa->status == -1) {
+            Mail::send(['html' => 'emails.loas.denied'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa, $user) {
+                $m->from('loas@vzdc.org', 'vZDC LOA Center');
+                $m->subject('Your vZDC LOA Has Been Denied');
+                $m->to($user->email);
+            });
+        }
+
+        if ($loa->status == 1) {
+            Mail::send(['html' => 'emails.loas.approved'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa, $user) {
+                $m->from('loas@vzdc.org', 'vZDC LOA Center');
+                $m->subject('Your vZDC LOA Has Been Approved');
+                $m->to($user->email);
+            });
+        }
+
+        return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully " . ($loa->status == 1 ? "approved" : "denied"));
     }
 
 }

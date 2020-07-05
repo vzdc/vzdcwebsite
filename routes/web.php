@@ -84,6 +84,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::get('/report', 'ControllerDash@incidentReport');
             Route::post('/report', 'ControllerDash@submitIncidentReport');
         });
+        Route::prefix('loa')->group(function () {
+            Route::get('/request', 'ControllerDash@LoaRequest');
+            Route::post('/submit', 'ControllerDash@SubmitLoaRequest');
+        });
     });
 
     Route::prefix('opt')->group(function () {
@@ -234,6 +238,11 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::get('/', 'AdminDash@ShowVariables');
             Route::post('/updatevisitorsvariable', 'AdminDash@UpdateVisitorsVariable');
             Route::post('/updatecurrencyvariable', 'AdminDash@UpdateCurrencyVariable');
+        });
+        Route::prefix('loas')->middleware('permission:snrStaff')->group(function () {
+            Route::get('/', 'AdminDash@ShowLoas');
+            Route::get('/view/{id}', 'AdminDash@ViewLoa');
+            Route::post('/update/{id}', 'AdminDash@UpdateLoa');
         });
     });
 });

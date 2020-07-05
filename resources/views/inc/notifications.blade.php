@@ -10,13 +10,27 @@
 
     count(App\Feedback::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff') ||
 
-    count(App\Visitor::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff')
+    count(App\Visitor::where('status', 0)->get()) > 0 && Auth::user()->can('snrStaff') ||
 
+    count (App\Loa::where('status', 0)->get()) > 0 && Auth::user()->hasRole('datm')
+    
     )
 
     <hr>
 
     <center><h4><i>Notifications</i></h4></center>
+
+    @if(App\Loa::where('status' 1) && Auth::user()->hasRole('datm'))
+    <br>
+
+    <div class="alert alert-success">
+
+        There is a <b>new LOA rrequest</b> that is waiting to be accepted. View the <a
+                href="/dashboard/admin/loas">Pending LOA's</a> to view more information.
+
+    </div>
+
+    @endif
 
     @if(Auth::user()->hasRole('ins') && App\Ots::where('status', 0)->get()->count() > 0 || Auth::user()->hasRole('atm') && App\Ots::where('status', 0)->get()->count() > 0)
 
