@@ -28,7 +28,7 @@
                 <input type="text" class="form-control" id="end_date" placeholder="{{ $loa->end_date }}" readonly>
             </div>
         </div>
-        <div class="col-sm-4">
+        <div class="form-group">
             <label for="name" class="form-label text-center">Reason</label>
             <textarea type="text" class="form-control" id="reason" placeholder="{{ $loa->reason }}" readonly></textarea>
         </div>
