@@ -113,23 +113,6 @@ class OnlineControllerUpdate extends Command
                         'time_logon' => $time_logon,
                     ]);
 
-                    // Check if they have an active LOA
-                    // If so end their LOA
-
-                    $loa = Loa::where('controller_id', $cid)->where('status', 1)->first();
-                    $user = User::find($cid);
-
-                    if ($loa != null) {
-                        $loa->status = 3;
-                        $loa->save();
-
-                        Mail::send(['html' => 'emails.loas.controlled'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa, $user) {
-                            $m->from('loas@vzdc.org', 'vZDC LOA Center');
-                            $m->subject('Your vZDC LOA Has Been Revoked');
-                            $m->to($user->email);
-                        });
-                    }
-
                     // Is this neccessary? It detects if the streamupdate of the last record for the user matches this one
                     // Shouldn't bog anything down unless we are running this too often
                     $MostRecentLog = ControllerLog::where('cid', $cid)->where('time_logon', $time_logon)->where('name', $name)->
