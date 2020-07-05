@@ -20,7 +20,7 @@
 
     <center><h4><i>Notifications</i></h4></center>
 
-    @if(App\Loa::where('status' 1) && Auth::user()->hasRole('datm'))
+    @if(App\Loa::where('status' 1)->get()->count() > 0 && Auth::user()->hasRole('datm'))
     <br>
 
     <div class="alert alert-success">
