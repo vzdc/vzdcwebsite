@@ -15,7 +15,7 @@ LOA Request
 </div>
 <br />
 <div class="container">
-    {!! Form::open(['action' => 'ControllerDash@SaveLoaRequest']) !!}
+    {!! Form::open(['action' => 'ControllerDash@SubmitLoaRequest']) !!}
     @csrf
     <div class="form-group">
         {!! Form::label('End Date', 'Ending Date of LOA') !!}
