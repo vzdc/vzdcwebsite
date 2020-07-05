@@ -1931,7 +1931,7 @@ class AdminDash extends Controller
 
         if ($loa->status == 1) {
             Mail::send(['html' => 'emails.loas.approved'], ['loa' => $loa], function ($m) use ($request) {
-                $m->from('loas@vzdc.org', 'vZDC LOA Center');
+                $m->from('datm@vzdc.org', 'vZDC LOA Center');
                 $m->subject('Your vZDC LOA Has Been Approved');
                 $m->to($request->email);
             });
