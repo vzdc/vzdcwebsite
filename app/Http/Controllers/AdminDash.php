@@ -1915,6 +1915,8 @@ class AdminDash extends Controller
         $loa->status = intval($request->status);
         $loa->save();
 
+        return redirect()->back()->with('error', 'user email: ' . $user->email);
+
         if ($loa->status == -1 && $request->reason == null) {
             return redirect()->back()->with('error', 'You must supply a reason for LOA denial.');
         }
