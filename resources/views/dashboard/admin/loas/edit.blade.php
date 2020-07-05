@@ -15,8 +15,6 @@
 <br />
 
 <div class="container">
-    <button class="btn btn-primary" href="/dashboard/admin/loas">Back</button>
-    <br />
     {!! Form::open(['action' => ['AdminDash@UpdateLoa', $loa->id]]) !!}
     @csrf
     <div class="form-group">
