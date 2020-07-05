@@ -8,7 +8,7 @@
 
 <div class="container-fluid" style="background-color:#F0F0F0;">
     <br />
-    <h2>Edit LOA</h2>
+    <h2 class="text-center">Edit LOA</h2>
     <br />
 </div>
 
