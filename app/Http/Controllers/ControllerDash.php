@@ -663,9 +663,9 @@ class ControllerDash extends Controller
         $desc = $request->desc;
 
         Mail::send('emails.bug', ['reporter' => $reporter, 'url' => $url, 'error' => $error, 'desc' => $desc], function ($m) use ($reporter) {
-            $m->from('bugs@[ARTCC EMAIL]', '[ARTCC NAME] Bugs')->replyTo($reporter->email, $reporter->full_name);
+            $m->from('notams@vzdc.org', 'vZDC Bugs')->replyTo($reporter->email, $reporter->full_name);
             $m->subject('New Bug Report');
-            $m->to('[WM EMAIL]');
+            $m->to('wm@vzdc.org');
         });
 
         return redirect()->back()->with('success', 'Your bug has been reported successfully.');
