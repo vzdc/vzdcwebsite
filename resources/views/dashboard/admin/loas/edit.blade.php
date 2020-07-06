@@ -31,6 +31,27 @@
                 {!! form::label('email', 'Email') !!}
                 {!! form::text('email', $loa->controller_email, ['class' => 'form-control', 'placeholder' => $loa->controller_email, 'readonly' => 'true']) !!}
             </div>
+            @if ($loa->status == 0)
+                <div class="col-sm-4">
+                    {!! form::label('status', 'Status') !!}
+                    {!! form::text('status', $loa->status, ['class' => 'form-control', 'placeholder' => 'Pending', 'readonly' => 'true']) !!}
+                </div>
+            @elseif ($loa->status == 1)
+                <div class="col-sm-4">
+                    {!! form::label('status', 'Status') !!}
+                    {!! form::text('status', $loa->status, ['class' => 'form-control', 'placeholder' => 'Approved', 'readonly' => 'true']) !!}
+                </div>
+            @elseif ($loa->status == 3)
+                <div class="col-sm-4">
+                    {!! form::label('status', 'Status') !!}
+                    {!! form::text('status', $loa->status, ['class' => 'form-control', 'placeholder' => 'Expired', 'readonly' => 'true']) !!}
+                </div>
+            @elseif ($loa->status == -1)
+                <div class="col-sm-4">
+                    {!! form::label('status', 'Status') !!}
+                    {!! form::text('status', $loa->status, ['class' => 'form-control', 'placeholder' => 'Denied', 'readonly' => 'true']) !!}
+                </div>
+            @endif
         </div>
         <div class="form-group">
             {!! form::label('reason', 'Reason') !!}
