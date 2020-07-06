@@ -28,7 +28,7 @@
             <a class="nav-link {{ Nav::urlDoesContain('dashboard/controllers/currency_hours') }}"
                href="/dashboard/controllers/currency_hours">Currency Hours</a>
                <a class="nav-link {{ Nav::urlDoesContain('dashboard/controllers/loa/request') }}"
-               href="dashboard/controllers/loa/request">LOA Request</a>
+               href="/dashboard/controllers/loa/request">LOA Request</a>
             <a class="nav-link" href="https://www.vzdc.org/ZDC_quickreference/" target="_top">
                ZDC Quick Ref<font size="1" color="red"> -New!</font></a>
             <div class="dropdown-divider"></div>
