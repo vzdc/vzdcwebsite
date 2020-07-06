@@ -22,9 +22,11 @@ use App\Pyrite;
 use App\Scenery;
 use App\TrainingTicket;
 use App\User;
+use App\Loa;
 use App\Variable;
 use Auth;
 use Carbon\Carbon;
+use DateTime;
 use DB;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
@@ -667,5 +669,33 @@ class ControllerDash extends Controller
         });
 
         return redirect()->back()->with('success', 'Your bug has been reported successfully.');
+    }
+
+    public function LoaRequest() {
+        return view('dashboard.controllers.loa');
+    }
+
+    public function SubmitLoaRequest(Request $request) {
+        $validator = $request->validate([
+            'end_date' => 'required',
+            'reason' => 'required'
+        ]);
+
+        $currentDate = new \DateTime('now');
+        if ($currentDate < $request->end_time) {
+            return redirect('/dashboard')->with('error', 'Your end date cannot be in the past.');
+        }
+
+        $user = User::find(Auth::id());
+
+        $loa = new Loa;
+        $loa->controller_id = $user->id;
+        $loa->controller_name = $user->getFullNameAttribute();
+        $loa->controller_email = $user->email;
+        $loa->end_date = $request->end_date;
+        $loa->reason = $request->reason;
+        $loa->save();
+
+        return redirect('/dashboard')->with('success', 'Your LOA request was sucessfully submitted. You will recieve an email once approved.');
     }
 }

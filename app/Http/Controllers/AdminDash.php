@@ -24,6 +24,7 @@ use App\SoloCert;
 use App\User;
 use App\Visitor;
 use App\Variable;
+use App\Loa;
 use Artisan;
 use Auth;
 use Carbon\Carbon;
@@ -1896,4 +1897,60 @@ class AdminDash extends Controller
         return redirect('/dashboard/admin/variables')->with('success', "Currency hours updated to " . $request->get('currency'));
     }
 
+    public function ShowLoas() {
+        $pending = Loa::where('status', 0)->get();
+        $active = Loa::where('status', 1)->get();
+        $inactive = Loa::where('status', 3)->get();
+        $denied = Loa::where('status', -1)->get();
+        return view("dashboard.admin.loas.index")->with('pending', $pending)->with('active', $active)->with('inactive', $inactive)->with('denied', $denied);
+    }
+
+    public function ViewLoa($id) {
+        $loa = Loa::find($id);
+        return view('dashboard.admin.loas.edit')->with('loa', $loa);
+    }
+
+    public function UpdateLoa(Request $request, $id) {
+        $loa = Loa::find($id);
+        $user = User::find($loa->controller_id);
+        $loa->status = intval($request->status);
+        $loa->save();
+
+        if ($loa->status == -1 && $request->reason == null) {
+            return redirect()->back()->with('error', 'You must supply a reason for LOA denial.');
+        }
+
+        if ($loa->status == -1) {
+            $reason = $request->reason;
+            Mail::send(['html' => 'emails.loas.denied'], ['loa' => $loa, 'reason' => $reason], function ($m) use ($loa) {
+                $m->from('notams@vzdc.org', 'vZDC LOA Center');
+                $m->subject('Your vZDC LOA Has Been Denied');
+                $m->to($loa->controller_email);
+            });
+            return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully denied.");
+        }
+
+        if ($loa->status == 1) {
+            Mail::send(['html' => 'emails.loas.approved'], ['loa' => $loa], function ($m) use ($loa) {
+                $m->from('notams@vzdc.org', 'vZDC LOA Center');
+                $m->subject('Your vZDC LOA Has Been Approved');
+                $m->to($loa->controller_email);
+            });
+            $user->status = 0;
+            $user->save();
+            return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully approved.");
+        }
+
+        if ($loa->status == 3) {
+            Mail::send(['html' => 'emails.loas.manual'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
+                $m->from('notams@vzdc.org', 'vZDC LOA Center');
+                $m->subject('Your vZDC LOA Has Been Manually Ended');
+                $m->to($loa->controller_email);
+            });
+            $user->status = 1;
+            $user->save();
+            return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully approved.");
+        }
+        return redirect('/dashboard/admin/loas')->with('error', "An error has occured, please try again.");
+    }
 }

@@ -3,10 +3,13 @@
 namespace App\Console\Commands;
 
 use App\ATC;
+use App\User;
 use App\ControllerLog;
 use App\ControllerLogUpdate;
+use App\Loa;
 use Carbon\Carbon;
 use DB;
+use Mail;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -131,6 +134,23 @@ class OnlineControllerUpdate extends Command
                         $MostRecentLog->duration = $duration;
                         $MostRecentLog->streamupdate = strtotime($update_now->created_at);
                         $MostRecentLog->save();
+                    }
+
+                    // Check for loa
+                    $loa = Loa::where('controller_id', $cid)->where('status', 1)->first();
+                    if ($loa != null) {
+                        $user = User::find($cid);
+                        $user->status = 1;
+                        $loa->status = 3;
+
+                        $user->save();
+                        $loa->save();
+
+                        Mail::send(['html' => 'emails.loas.controlled'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
+                            $m->from('notams@vzdc.org', 'vZDC LOA Center');
+                            $m->subject('Your vZDC LOA Has Expired Due To Controlling');
+                            $m->to($loa->controller_email);
+                        });
                     }
                 }
             }
