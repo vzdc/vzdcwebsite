@@ -45,7 +45,7 @@
         {!! Form::label('reason', 'Reason for Denial (If Applicable)') !!}
         {!! Form::textArea('reason', null, ['class' => 'form-control']) !!}
     </div>
-    <button class="btn btn-success" type="submit">Submit LOA</button>
+    <button class="btn btn-success" type="submit">Submit</button>
         <a class="btn btn-danger" href="/dashboard/admin/loas">Cancel</a>
         {!! Form::close() !!}
 </div>
