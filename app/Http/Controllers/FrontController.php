@@ -340,7 +340,7 @@ class FrontController extends Controller
 
     public function newFeedback()
     {
-        $controllers = User::where('status', 1)->orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
+        $controllers = User::where('status', 1)->orderBy('lname', 'ASC')->get()->pluck('backwards_name_with_cid', 'id');
         return view('site.feedback')->with('controllers', $controllers);
     }
 
