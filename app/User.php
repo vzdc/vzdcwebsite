@@ -7,7 +7,6 @@ use Carbon\Carbon;
 use App\CotrollerLog;
 use App\SoloCert;
 use App\TrainingTicket;
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -30,6 +29,10 @@ class User extends Authenticatable
     public function getBackwardsNameAttribute()
     {
         return $this->lname . ', ' . $this->fname;
+    }
+
+    public function GetBackwardsNameWithCidAttribute() {
+        return $this->lname . ', ' . $this->fname . ' (' . $this->id . ')';
     }
 
     public function getFullNameAttribute()
