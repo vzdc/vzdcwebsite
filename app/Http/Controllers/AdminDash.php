@@ -264,9 +264,9 @@ class AdminDash extends Controller
             $user->delgnd = Input::get('delgnd');
             if ($user->twr == 99) {
                 if (Input::get('twr') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->twr = Input::get('twr');
@@ -287,9 +287,9 @@ class AdminDash extends Controller
             }
             if ($user->shd == 99) {
                 if (Input::get('shd') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->shd = Input::get('shd');
@@ -310,9 +310,9 @@ class AdminDash extends Controller
             }
             if ($user->chp == 99) {
                 if (Input::get('chp') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->chp = Input::get('chp');
@@ -333,9 +333,9 @@ class AdminDash extends Controller
             }
             if ($user->mtv == 99) {
                 if (Input::get('mtv') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->mtv = Input::get('mtv');
@@ -356,9 +356,9 @@ class AdminDash extends Controller
             }
             if ($user->app == 99) {
                 if (Input::get('app') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->app = Input::get('app');
@@ -379,9 +379,9 @@ class AdminDash extends Controller
             }
             if ($user->ctr == 99) {
                 if (Input::get('ctr') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->ctr = Input::get('ctr');
