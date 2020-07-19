@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use Mail;
 use App\SoloCert;
 use App\User;
 use Carbon\Carbon;
@@ -64,6 +65,11 @@ class SoloCerts extends Command
                 }
                 $user->save();
                 $c->save();
+
+                Mail::send('emails.solocert_expire', ['user' => $user], function ($message) use ($user) {
+                    $message->from('notams@vzdc.org', 'vZDC Training Department')->subject('Solo Certification Expired');
+                    $message->to($user->email);
+                });
             }
         }
     }
