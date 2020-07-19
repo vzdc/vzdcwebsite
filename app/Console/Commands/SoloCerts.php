@@ -54,7 +54,7 @@ class SoloCerts extends Command
                         $cert->cid = $s->cid;
                         $cert->pos = 2;
                         $cert->expiration = $s->expires;
-                        $cert->status = 0;
+                        $cert->status = 1;
                         $cert->save();
 
                         $user = User::find($s->cid);
@@ -71,7 +71,7 @@ class SoloCerts extends Command
                                 $cert->cid = $s->cid;
                                 $cert->pos = 1;
                                 $cert->expiration = $s->expires;
-                                $cert->status = 0;
+                                $cert->status = 1;
                                 $cert->save();
 
                                 $user = $h;
@@ -90,7 +90,7 @@ class SoloCerts extends Command
                                 $cert->cid = $s->cid;
                                 $cert->pos = 1;
                                 $cert->expiration = $s->expires;
-                                $cert->status = 0;
+                                $cert->status = 1;
                                 $cert->save();
 
                                 $user = $h;
@@ -109,7 +109,7 @@ class SoloCerts extends Command
                                 $cert->cid = $s->cid;
                                 $cert->pos = 1;
                                 $cert->expiration = $s->expires;
-                                $cert->status = 0;
+                                $cert->status = 1;
                                 $cert->save();
 
                                 $user = $h;
@@ -128,7 +128,7 @@ class SoloCerts extends Command
                                 $cert->cid = $s->cid;
                                 $cert->pos = 1;
                                 $cert->expiration = $s->expires;
-                                $cert->status = 0;
+                                $cert->status = 1;
                                 $cert->save();
 
                                 $user = $h;

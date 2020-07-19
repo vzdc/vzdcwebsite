@@ -303,7 +303,7 @@ class AdminDash extends Controller
                 $cert->cid = $id;
                 $cert->pos = 1;
                 $cert->expiration = $expire;
-                $cert->status = 0;
+                $cert->status = 1;
                 $cert->save();
             } else {
                 $user->shd = Input::get('shd');
