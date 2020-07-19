@@ -241,5 +241,16 @@ class RosterUpdate extends Command
                 }
             }
         }
+
+        // Update visitors
+        $visitors = User::where('visitor', 1)->get();
+        foreach($visitors as $visitor) {
+            $res = $client->request('GET', 'https://api.vatusa.net/v2/user/' . $visitor->cid . '?apikey=' . Config::get('vatusa.api_key'));
+            $json = json_decode($res->getBody());
+            if ($visitor->rating_id != $json['rating']) {
+                $visitor->rating_id = $json['rating'];
+                $visitor->save();
+            }
+        }
     }
 }
