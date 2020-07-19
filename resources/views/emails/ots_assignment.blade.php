@@ -7,7 +7,7 @@
                 href="mailto:ta@vzdc.org">ta@vzdc.org</a>.</p>
     <br>
     <p><b>Controller Name:</b> {{ $ots->controller_name }}</p>
-    <p><b>Position:</b> {{ $ots->position_name }}</p>
+    <p><b>Position:</b> {{ $ots->facility_position }}</p>
     <p><b>Date of Recommendation:</b> {{ $ots->recommended_on }}</p>
     <p><b>Recommending Mentor/Instructor:</b> {{ $ots->recommender_name }}</p>
     <br>
