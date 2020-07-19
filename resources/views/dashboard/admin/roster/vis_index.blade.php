@@ -158,7 +158,7 @@
                                     <center>{{ $v->updated_at }}</center>
                                 </td>
                                 <td>
-                                    <center>{{ Auth::user($v->updated_by)->full_name }}</center>
+                                    <center>{{ $v->updated_by_name }}</center>
                                 </td>
                             </tr>
                         @endforeach
@@ -210,7 +210,7 @@
                                     <center>{{ $v->updated_at }}</center>
                                 </td>
                                 <td>
-                                    <center>{{ Auth::user($v->updated_by)->full_name }}</center>
+                                    <center>{{ $v->updated_by_name }}</center>
                                 </td>
                             </tr>
                         @endforeach

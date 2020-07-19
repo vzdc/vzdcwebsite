@@ -531,6 +531,7 @@ class AdminDash extends Controller
     {
         $visitor = Visitor::find($id);
         $visitor->updated_by = Auth::id();
+        $visitor->updated_by_name = Auth::user()->full_name;
         $visitor->status = 1;
         $visitor->save();
 
