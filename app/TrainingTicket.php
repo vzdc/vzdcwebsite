@@ -71,15 +71,19 @@ class TrainingTicket extends Model
     {
         $pos = $this->position;
         if ($pos == 0) {
-            $position = 'Delivery/Ground';
+            $position = 'Minor Delivery/Ground';
         } elseif ($pos == 1) {
-            $position = 'Tower';
+            $position = 'Minor Local';
         } elseif ($pos == 2) {
-            $position = 'TRACON';
+            $position = 'Major Delivery/Ground';
         } elseif ($pos == 3) {
+            $position = 'Major Local';
+        } elseif ($pos == 4) {
+            $position = 'Minor Approach';
+        } elseif ($pos == 5) {
+            $position = 'Major Approach';
+        } elseif ($pos == 6) {
             $position = 'Center';
-        } else {
-            $position = null;
         }
 
         return $position;
