@@ -45,35 +45,37 @@ class EventEmails extends Command
     public function handle()
     {
         $today = Carbon::now()->format('m/d/Y');
-        $event = Event::where('date', $today)->first();
+        $events = Event::where('date', $today)->get();
 
-        if ($event != null) {
-            $positions = EventRegistration::where('status', 1)->where('event_id', $event->id)->get()->sortBy(function ($a) use ($event) {
-                if ($a->start_time == null) {
-                    return $event->start_time;
-                } else {
-                    return $a->start_time;
-                }
-            })->sortBy(function ($p) {
-                return $p->position_name;
-            });
-            $registrations = EventRegistration::where('event_id', $event->id)->get();
-            foreach ($registrations as $remind) {
-                $r = EventRegistration::find($remind->id);
-                if ($r->reminder != 1) {
-                    $user = User::find($r->controller_id);
-                    $reg = EventRegistration::where('controller_id', $user->id)->where('event_id', $event->id)->get();
-                    $r->reminder = 1;
-                    $r->save();
-                    foreach ($reg as $re) {
-                        $re->reminder = 1;
-                        $re->save();
+        foreach ($events as $event) {
+            if ($event != null) {
+                $positions = EventRegistration::where('status', 1)->where('event_id', $event->id)->get()->sortBy(function ($a) use ($event) {
+                    if ($a->start_time == null) {
+                        return $event->start_time;
+                    } else {
+                        return $a->start_time;
                     }
-
-                    Mail::send('emails.event_reminder', ['user' => $user, 'event' => $event, 'positions' => $positions], function ($message) use ($user) {
-                        $message->from('notams@vzdc.org', 'vZDC ARTCC Events Department')->subject('Upcoming Event Reminder');
-                        $message->to($user->email);
-                    });
+                })->sortBy(function ($p) {
+                    return $p->position_name;
+                });
+                $registrations = EventRegistration::where('event_id', $event->id)->get();
+                foreach ($registrations as $remind) {
+                    $r = EventRegistration::find($remind->id);
+                    if ($r->reminder != 1) {
+                        $user = User::find($r->controller_id);
+                        $reg = EventRegistration::where('controller_id', $user->id)->where('event_id', $event->id)->get();
+                        $r->reminder = 1;
+                        $r->save();
+                        foreach ($reg as $re) {
+                            $re->reminder = 1;
+                            $re->save();
+                        }
+    
+                        Mail::send('emails.event_reminder', ['user' => $user, 'event' => $event, 'positions' => $positions], function ($message) use ($user) {
+                            $message->from('notams@vzdc.org', 'vZDC ARTCC Events Department')->subject('Upcoming Event Reminder');
+                            $message->to($user->email);
+                        });
+                    }
                 }
             }
         }
