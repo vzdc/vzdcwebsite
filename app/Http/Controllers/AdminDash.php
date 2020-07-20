@@ -264,14 +264,14 @@ class AdminDash extends Controller
             $user->delgnd = Input::get('delgnd');
             if ($user->twr == 99) {
                 if (Input::get('twr') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->twr = Input::get('twr');
                 } else {
-                    $user->twr = 99;
+                    $user->twr = 0;
                 }
             } elseif (Input::get('twr') == 99) {
                 $expire = Carbon::now()->addMonth()->format('Y-m-d');
@@ -287,14 +287,14 @@ class AdminDash extends Controller
             }
             if ($user->shd == 99) {
                 if (Input::get('shd') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->shd = Input::get('shd');
                 } else {
-                    $user->shd = 99;
+                    $user->shd = 0;
                 }
             } elseif (Input::get('shd') == 99) {
                 $expire = Carbon::now()->addMonth()->format('Y-m-d');
@@ -303,21 +303,21 @@ class AdminDash extends Controller
                 $cert->cid = $id;
                 $cert->pos = 1;
                 $cert->expiration = $expire;
-                $cert->status = 0;
+                $cert->status = 1;
                 $cert->save();
             } else {
                 $user->shd = Input::get('shd');
             }
             if ($user->chp == 99) {
                 if (Input::get('chp') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->chp = Input::get('chp');
                 } else {
-                    $user->chp = 99;
+                    $user->chp = 0;
                 }
             } elseif (Input::get('chp') == 99) {
                 $expire = Carbon::now()->addMonth()->format('Y-m-d');
@@ -333,14 +333,14 @@ class AdminDash extends Controller
             }
             if ($user->mtv == 99) {
                 if (Input::get('mtv') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->mtv = Input::get('mtv');
                 } else {
-                    $user->mtv = 99;
+                    $user->mtv = 0;
                 }
             } elseif (Input::get('mtv') == 99) {
                 $expire = Carbon::now()->addMonth()->format('Y-m-d');
@@ -356,14 +356,14 @@ class AdminDash extends Controller
             }
             if ($user->app == 99) {
                 if (Input::get('app') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->app = Input::get('app');
                 } else {
-                    $user->app = 99;
+                    $user->app = 0;
                 }
             } elseif (Input::get('app') == 99) {
                 $expire = Carbon::now()->addMonth()->format('Y-m-d');
@@ -379,14 +379,14 @@ class AdminDash extends Controller
             }
             if ($user->ctr == 99) {
                 if (Input::get('ctr') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 0)->first();
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
                     if ($solo) {
-                        $solo->status = 1;
+                        $solo->status = 2;
                         $solo->save();
                     }
                     $user->ctr = Input::get('ctr');
                 } else {
-                    $user->ctr = 99;
+                    $user->ctr = 0;
                 }
             } elseif (Input::get('ctr') == 99) {
                 $expire = Carbon::now()->addMonth()->format('Y-m-d');
