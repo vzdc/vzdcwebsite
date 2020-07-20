@@ -16,8 +16,6 @@
 
     <?php
     $mname = date("F", mktime(0, 0, 0, $month, 1, $year));
-    $month = date("m");
-    $year = date("Y");
     if ($month == 1) {
         $pm = 12;
         $pyr = $year - 1;
