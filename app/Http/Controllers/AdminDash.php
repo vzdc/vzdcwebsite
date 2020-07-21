@@ -1972,21 +1972,11 @@ class AdminDash extends Controller
 
         foreach ($users as $user) {
             if ($stats[$user->id] < 2) {
-                $activity = new Activity;
-                $activity->controller_id = $user->id;
-                $activity->controller_name = $user->full_name;
-                $activity->controller_email = $user->email;
-                $activity->visitor = $user->visitor;
-                $activity->year = date('y');
-                $activity->month = date('n');
-                $activity->status = 0;
-                $activity->save();
-
-                if ($activity->visitor == 0) {
-                    array_push($homeWarnings, $activty);
+                if ($user->visitor == 0) {
+                    array_push($homeWarnings, $user);
                 }
                 else {
-                    array_push($visitorWarnings, $activity);
+                    array_push($visitorWarnings, $user);
                 }
             }
         }

@@ -244,6 +244,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::get('/edit/{id}', 'AdminDash@ViewLoa');
             Route::post('/update/{id}', 'AdminDash@UpdateLoa');
         });
+        Route::prefix('currency')->middleware('permission:snrStaff')->group(function () {
+            Route::get('/', 'AdminDash@ShowCurrencyCenter');
+        });
     });
 });
 /*
