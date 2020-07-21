@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Activity;
 use App\Airport;
 use App\Audit;
 use App\Announcement;
@@ -1952,5 +1953,48 @@ class AdminDash extends Controller
             return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully approved.");
         }
         return redirect('/dashboard/admin/loas')->with('error', "An error has occured, please try again.");
+    }
+
+    public function ShowCurrencyCenter() {
+        $today = new \DateTime('now');
+
+        $year = date('y');
+        $month = date('n');
+        $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
+
+        $users = User::get();
+
+        $homeWarnings = array();
+        $visitorWarnings = array();
+
+        $homeRemovals = Activity::where('visitor', 0)->where('status', 2)->orWhere('status', 4)->get();
+        $visitorRemovals = Activity::where('visitor', 1)->where('status', 2)->orWhere('status', 4)->get();
+
+        foreach ($users as $user) {
+            if ($stats[$user->id] < 2) {
+                $activity = new Activity;
+                $activity->controller_id = $user->id;
+                $activity->controller_name = $user->full_name;
+                $activity->controller_email = $user->email;
+                $activity->visitor = $user->visitor;
+                $activity->year = date('y');
+                $activity->month = date('n');
+                $activity->status = 0;
+                $activity->save();
+
+                if ($activity->visitor == 0) {
+                    array_push($homeWarnings, $activty);
+                }
+                else {
+                    array_push($visitorWarnings, $activity);
+                }
+            }
+        }
+
+        return view('admin.dashboard.currency.index')
+                        ->with('homeWarnings', $homeWarnings)
+                        ->with('visitorWarnings', $visitorWarnings)
+                        ->with('homeRemovals', $homeRemovals)
+                        ->with('visitorRemovals', $visitorRemovals);
     }
 }
