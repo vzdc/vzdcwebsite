@@ -1985,6 +1985,7 @@ class AdminDash extends Controller
                         ->with('homeWarnings', $homeWarnings)
                         ->with('visitorWarnings', $visitorWarnings)
                         ->with('homeRemovals', $homeRemovals)
-                        ->with('visitorRemovals', $visitorRemovals);
+                        ->with('visitorRemovals', $visitorRemovals)
+                        ->with('stats', $stats);
     }
 }

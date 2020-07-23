@@ -44,7 +44,7 @@
                                 <tr>
                                     <td> {{$controller->id}} </td>
                                     <td> {{$controller->full_name}} </td>
-                                    <td> {{$stats[$controller->id]}} </td>
+                                    <td> {{$stats[$controller->id]->total_hrs}} </td>
                                 </tr>
                             @endforeach
                         @else
@@ -71,7 +71,7 @@
                                 <tr>
                                     <td> {{$controller->id}} </td>
                                     <td> {{$controller->full_name}} </td>
-                                    <td> {{$stats[$controller->id]}} </td>
+                                    <td> {{$stats[$controller->id]->total_hrs}} </td>
                                 </tr>
                             @endforeach
                         @else
@@ -98,7 +98,7 @@
                                 <tr>
                                     <td> {{$controller->controller_id}} </td>
                                     <td> {{$controller->controller_name}} </td>
-                                    <td> {{$stats[$controller->controller_id]}} </td>
+                                    <td> {{$stats[$controller->controller_id]->total_hrs}} </td>
                                 </tr>
                             @endforeach
                         @else
@@ -125,7 +125,7 @@
                                 <tr>
                                     <td> {{$controller->controller_id}} </td>
                                     <td> {{$controller->controller_name}} </td>
-                                    <td> {{$stats[$controller->controller_id]}} </td>
+                                    <td> {{$stats[$controller->controller_id]->total_hrs}} </td>
                                 </tr>
                             @endforeach
                         @else
