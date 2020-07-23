@@ -1962,7 +1962,7 @@ class AdminDash extends Controller
         $month = date('n');
         $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
 
-        $users = User::get();
+        $users = User::where('status', 1)->orderBy('lname', 'desc')->get();
 
         $homeWarnings = array();
         $visitorWarnings = array();

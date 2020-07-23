@@ -15,16 +15,16 @@
     <div class="container">
         <ul class="nav nav-tabs nav-justified" role="tablist">
             <li class="nav-item">
-                <a class="nav-link active" href="#homewarnings" role="tab" data-toggle="tab" style="color:black">New LOA's</a>
+                <a class="nav-link active" href="#homewarnings" role="tab" data-toggle="tab" style="color:black">Home Controller Warnings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#visitorwarnings" role="tab" data-toggle="tab" style="color:black">Active LOA's</a>
+                <a class="nav-link" href="#visitorwarnings" role="tab" data-toggle="tab" style="color:black">Visitor Controller Warnings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#homeremovals" role="tab" data-toggle="tab" style="color:black">Inactive LOA's</a>
+                <a class="nav-link" href="#homeremovals" role="tab" data-toggle="tab" style="color:black">Home Controller Removals</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#visitorremovals" role="tab" data-toggle="tab" style="color:black">Denied LOA's</a>
+                <a class="nav-link" href="#visitorremovals" role="tab" data-toggle="tab" style="color:black">Visitor Controller Removals</a>
             </li>
         </ul>
 
