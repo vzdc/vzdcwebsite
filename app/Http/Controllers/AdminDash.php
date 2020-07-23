@@ -1971,7 +1971,7 @@ class AdminDash extends Controller
         $visitorRemovals = Activity::where('visitor', 1)->where('status', 2)->orWhere('status', 4)->get();
 
         foreach ($users as $user) {
-            if ($stats[$user->id] < 2) {
+            if ($stats[$user->id]->total_hrs < 2) {
                 if ($user->visitor == 0) {
                     array_push($homeWarnings, $user);
                 }
