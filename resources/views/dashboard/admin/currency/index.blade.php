@@ -56,7 +56,7 @@
                 </table>
             </div>
 
-            <div role="tabpanel" class="tab-pane active" id="visitorwarnings">
+            <div role="tabpanel" class="tab-pane" id="visitorwarnings">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -83,7 +83,7 @@
                 </table>
             </div>
 
-            <div role="tabpanel" class="tab-pane active" id="homeremovals">
+            <div role="tabpanel" class="tab-pane" id="homeremovals">
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -110,7 +110,7 @@
                 </table>
             </div>
 
-            <div role="tabpanel" class="tab-pane active" id="visitorremovals">
+            <div role="tabpanel" class="tab-pane" id="visitorremovals">
                 <table class="table table-striped">
                     <thead>
                         <tr>
