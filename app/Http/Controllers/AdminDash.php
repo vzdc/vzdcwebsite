@@ -1981,7 +1981,7 @@ class AdminDash extends Controller
             }
         }
 
-        return view('admin.dashboard.currency.index')
+        return view('dashboard.admin.currency.index')
                         ->with('homeWarnings', $homeWarnings)
                         ->with('visitorWarnings', $visitorWarnings)
                         ->with('homeRemovals', $homeRemovals)
