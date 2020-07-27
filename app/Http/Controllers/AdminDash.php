@@ -1972,11 +1972,15 @@ class AdminDash extends Controller
 
         foreach ($users as $user) {
             if ($stats[$user->id]->total_hrs < 2) {
-                if ($user->visitor == 0) {
-                    array_push($homeWarnings, $user);
-                }
-                else {
-                    array_push($visitorWarnings, $user);
+                $activity = Activity::where('controller_id', $user->id)
+                                    ->where('month', $month)->where('year', $year)->get();
+                if (count($activity) > 0) {
+                    if ($user->visitor == 0) {
+                        array_push($homeWarnings, $user);
+                    }
+                    else {
+                        array_push($visitorWarnings, $user);
+                    }
                 }
             }
         }
