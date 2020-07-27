@@ -82,7 +82,7 @@
                             @foreach($visitorWarnings as $controller)
                                 <tr>
                                     <td>
-                                        {{ Form::text('id[]', {{$controller->id}}, ['class'=>'class-name','readonly']) }}   
+                                        {{ Form::text('id[]', $controller->id, ['class'=>'class-name','readonly']) }}   
                                     </td>
                                     <td> {{$controller->full_name}} </td>
                                     <td> {{$stats[$controller->id]->total_hrs}} </td>
