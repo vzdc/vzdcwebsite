@@ -2001,7 +2001,7 @@ class AdminDash extends Controller
 
             $user = User::find(intval($id));
             
-            if (isset($checks[$index])) {
+            if (isset($checks[$index]) || $checks[$index] == 1) {
                 $activity = new Activity;
                 $activity->controller_id = $user->id;
                 $activity->controller_name = $user->full_name;

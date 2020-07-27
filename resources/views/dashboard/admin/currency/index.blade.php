@@ -87,7 +87,7 @@
                                     <td> {{$controller->full_name}} </td>
                                     <td> {{$stats[$controller->id]->total_hrs}} </td>
                                     <td>
-                                        {{ Form::checkbox( 'check[]') }}
+                                        {{ Form::checkbox( 'check[]', 0) }}
                                     </td>
                                 </tr>
                             @endforeach
