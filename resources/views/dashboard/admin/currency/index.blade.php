@@ -49,7 +49,7 @@
                                     <td> {{$controller->full_name}} </td>
                                     <td> {{$stats[$controller->id]->total_hrs}} </td>
                                     <td>
-                                        {{ Form::checkbox( 'warnings[]', $controller->id ) }}
+                                        {{ Form::checkbox( 'warnings[]', $controller->id) }}
                                     </td>
                                 </tr>
                             @endforeach
@@ -81,13 +81,11 @@
                             @csrf
                             @foreach($visitorWarnings as $controller)
                                 <tr>
-                                    <td>
-                                        {{ Form::text('id[]', $controller->id, ['class'=>'class-name','readonly']) }}   
-                                    </td>
+                                    <td> {{$controller->id}} </td>
                                     <td> {{$controller->full_name}} </td>
                                     <td> {{$stats[$controller->id]->total_hrs}} </td>
                                     <td>
-                                        {{ Form::checkbox( 'check[]', 0) }}
+                                        {{ Form::checkbox( 'warnings[]', $controller->id) }}
                                     </td>
                                 </tr>
                             @endforeach

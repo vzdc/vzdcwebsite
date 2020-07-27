@@ -1994,24 +1994,21 @@ class AdminDash extends Controller
     }
 
     public function SubmitWarnings(Request $request) {
-        $ids = $request->id;
-        $checks = $request->check;
+        $data = $request->warnings;
 
-        foreach ($ids as $index => $id) {
+        foreach ($data as $id) {
 
             $user = User::find(intval($id));
             
-            if (isset($checks[$index]) || $checks[$index] == 1) {
-                $activity = new Activity;
-                $activity->controller_id = $user->id;
-                $activity->controller_name = $user->full_name;
-                $activity->controller_email = $user->email;
-                $activity->visitor = $user->visitor;
-                $activity->month = date('n');
-                $activity->year = date('y');
-                $activity->save();
-                // send email
-            }
+            $activity = new Activity;
+            $activity->controller_id = $user->id;
+            $activity->controller_name = $user->full_name;
+            $activity->controller_email = $user->email;
+            $activity->visitor = $user->visitor;
+            $activity->month = date('n');
+            $activity->year = date('y');
+            $activity->save();
+            // send email
         }
 
         return redirect()->back()->with('success', 'Users have been warned.');
