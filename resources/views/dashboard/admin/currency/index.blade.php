@@ -36,20 +36,27 @@
                             <th scope="col">CID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Hours</th>
+                            <th scope="col">Send Warnings</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (count($homeWarnings) > 0)
+                            {!! Form::open(['action' => 'AdminDash@SubmitWarnings']) !!}
+                            @csrf
                             @foreach($homeWarnings as $controller)
                                 <tr>
                                     <td> {{$controller->id}} </td>
                                     <td> {{$controller->full_name}} </td>
                                     <td> {{$stats[$controller->id]->total_hrs}} </td>
+                                    <td>
+                                        {{ Form::checkbox( 'warnings[]', $controller->id ) }}
+                                    </td>
                                 </tr>
                             @endforeach
+                            {!! Form::close() !!}
                         @else
                             <tr>
-                                <td colspan="3">No controllers to display</td>
+                                <td colspan="4">No controllers to display</td>
                             </tr>
                         @endif
                     </tbody>
@@ -63,20 +70,27 @@
                             <th scope="col">CID</th>
                             <th scope="col">Name</th>
                             <th scope="col">Hours</th>
+                            <th scope="col">Send Warnings</th>
                         </tr>
                     </thead>
                     <tbody>
                         @if (count($visitorWarnings) > 0)
+                            {!! Form::open(['action' => 'AdminDash@SubmitWarnings']) !!}
+                            @csrf
                             @foreach($visitorWarnings as $controller)
                                 <tr>
                                     <td> {{$controller->id}} </td>
                                     <td> {{$controller->full_name}} </td>
                                     <td> {{$stats[$controller->id]->total_hrs}} </td>
+                                    <td>
+                                        {{ Form::checkbox( 'warnings[]', $controller->id ) }}
+                                    </td>
                                 </tr>
                             @endforeach
+                            {!! Form::close() !!}
                         @else
                             <tr>
-                                <td colspan="3">No controllers to display</td>
+                                <td colspan="4">No controllers to display</td>
                             </tr>
                         @endif
                     </tbody>

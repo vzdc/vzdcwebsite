@@ -1988,4 +1988,8 @@ class AdminDash extends Controller
                         ->with('visitorRemovals', $visitorRemovals)
                         ->with('stats', $stats);
     }
+
+    public function SubmitWarnings(Request $request) {
+        
+    }
 }
