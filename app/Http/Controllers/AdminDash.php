@@ -1994,7 +1994,7 @@ class AdminDash extends Controller
         $checks = $request->check;
 
         foreach ($ids as $index => $id) {
-            
+
             $user = User::find(intval($id));
             
             if (isset($checks[$index])) {
@@ -2009,5 +2009,7 @@ class AdminDash extends Controller
                 // send email
             }
         }
+
+        return redirect()->back()->with('success', 'Users have been warned.');
     }
 }
