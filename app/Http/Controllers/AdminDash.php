@@ -1974,7 +1974,7 @@ class AdminDash extends Controller
             if ($stats[$user->id]->total_hrs < 2) {
                 $activity = Activity::where('controller_id', $user->id)
                                     ->where('month', $month)->where('year', $year)->get();
-                if (count($activity) > 0) {
+                if (count($activity) < 1) {
                     if ($user->visitor == 0) {
                         array_push($homeWarnings, $user);
                     }
