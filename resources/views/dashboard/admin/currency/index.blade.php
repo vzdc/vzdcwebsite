@@ -28,7 +28,7 @@
             </li>
         </ul>
 
-        <div class="tab-content">
+        <div class="tab-content text-center">
             <div role="tabpanel" class="tab-pane active" id="homewarnings">
                 <table class="table table-striped">
                     <thead>
@@ -53,6 +53,8 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            <button class="btn btn-success" type="submit">Send Warnings</button>
+                            <a class="btn btn-danger" href="/dashboard/admin/currency">Cancel</a>
                             {!! Form::close() !!}
                         @else
                             <tr>
@@ -79,14 +81,18 @@
                             @csrf
                             @foreach($visitorWarnings as $controller)
                                 <tr>
-                                    <td> {{$controller->id}} </td>
+                                    <td>
+                                        {{ Form::text('id[]', '{{$controller->id}}', ['class'=>'class-name','readonly']) }}   
+                                    </td>
                                     <td> {{$controller->full_name}} </td>
                                     <td> {{$stats[$controller->id]->total_hrs}} </td>
                                     <td>
-                                        {{ Form::checkbox( 'warnings[]', $controller->id ) }}
+                                        {{ Form::checkbox( 'check[]') }}
                                     </td>
                                 </tr>
                             @endforeach
+                            <button class="btn btn-success" type="submit">Send Warnings</button>
+                            <a class="btn btn-danger" href="/dashboard/admin/currency">Cancel</a>
                             {!! Form::close() !!}
                         @else
                             <tr>
