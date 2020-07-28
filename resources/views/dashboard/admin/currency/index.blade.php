@@ -53,12 +53,20 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            <br />
                             <button class="btn btn-success" type="submit">Send Warnings</button>
+                            <br />
                             <a class="btn btn-danger" href="/dashboard/admin/currency">Cancel</a>
+                            <br />
                             {!! Form::close() !!}
                         @else
                             <tr>
                                 <td colspan="4">No controllers to display</td>
+                            </tr>
+                        @endif
+                        @if (date('z') + 1 != 1 || date('z') + 1 != 0)
+                            <tr>
+                                <td colspan="4">It is not the beginning/end of a month so data may not be accurate.</td>
                             </tr>
                         @endif
                     </tbody>
@@ -89,12 +97,20 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            <br />
                             <button class="btn btn-success" type="submit">Send Warnings</button>
+                            <br />
                             <a class="btn btn-danger" href="/dashboard/admin/currency">Cancel</a>
+                            <br />
                             {!! Form::close() !!}
                         @else
                             <tr>
                                 <td colspan="4">No controllers to display</td>
+                            </tr>
+                        @endif
+                        @if (date('z') + 1 != 1 || date('z') + 1 != 0)
+                            <tr>
+                                <td colspan="4">It is not the beginning/end of a month so data may not be accurate.</td>
                             </tr>
                         @endif
                     </tbody>
