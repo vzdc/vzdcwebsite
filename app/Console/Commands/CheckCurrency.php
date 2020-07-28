@@ -41,7 +41,10 @@ class CheckCurrency extends Command
      */
     public function handle()
     {
-        $today = new \DateTime('now');
+        $year = date('y');
+        $month = date('n');
+        $day = date('z') + 1;
+        
         $activity = Activity::where('status', '!=', 3)->get();
     }
 }

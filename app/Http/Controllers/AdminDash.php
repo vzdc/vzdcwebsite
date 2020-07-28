@@ -1956,24 +1956,31 @@ class AdminDash extends Controller
     }
 
     public function ShowCurrencyCenter() {
-        $today = new \DateTime('now');
-
+        // Get date
         $year = date('y');
         $month = date('n');
+
+        // All controller stats
         $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
 
+        // List of users who are active
         $users = User::where('status', 1)->orderBy('lname', 'asc')->get();
 
+        // Init new arrays
         $homeWarnings = array();
         $visitorWarnings = array();
 
+        // Get activity objects of those who qualify for removal
         $homeRemovals = Activity::where('visitor', 0)->where('status', 2)->orWhere('status', 4)->get();
         $visitorRemovals = Activity::where('visitor', 1)->where('status', 2)->orWhere('status', 4)->get();
 
         foreach ($users as $user) {
+            // If user has less than 2 hours
             if ($stats[$user->id]->total_hrs < 2) {
+                // Try to get activity object if it exists for the user
                 $activity = Activity::where('controller_id', $user->id)
                                     ->where('month', $month)->where('year', $year)->first();
+                // If no activity object is found
                 if ($activity == null) {
                     if ($user->visitor == 0) {
                         array_push($homeWarnings, $user);
@@ -1994,12 +2001,13 @@ class AdminDash extends Controller
     }
 
     public function SubmitWarnings(Request $request) {
+        // Get request data
         $data = $request->warnings;
 
         foreach ($data as $id) {
-
+            // Find user that matches id
             $user = User::find(intval($id));
-            
+            // create new activity object
             $activity = new Activity;
             $activity->controller_id = $user->id;
             $activity->controller_name = $user->full_name;

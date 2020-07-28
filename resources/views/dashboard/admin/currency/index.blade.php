@@ -40,6 +40,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if (date('z') + 1 != 1 || date('z') + 1 != 0)
+                            <tr>
+                                <td colspan="4"><b>It is not the beginning/end of a month so data may not be accurate.</b></td>
+                            </tr>
+                        @endif
                         @if (count($homeWarnings) > 0)
                             {!! Form::open(['action' => 'AdminDash@SubmitWarnings']) !!}
                             @csrf
@@ -64,11 +69,6 @@
                                 <td colspan="4">No controllers to display</td>
                             </tr>
                         @endif
-                        @if (date('z') + 1 != 1 || date('z') + 1 != 0)
-                            <tr>
-                                <td colspan="4">It is not the beginning/end of a month so data may not be accurate.</td>
-                            </tr>
-                        @endif
                     </tbody>
                 </table>
             </div>
@@ -84,6 +84,11 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if (date('z') + 1 != 1 || date('z') + 1 != 0)
+                            <tr>
+                                <td colspan="4"><b>It is not the beginning/end of a month so data may not be accurate.</b></td>
+                            </tr>
+                        @endif
                         @if (count($visitorWarnings) > 0)
                             {!! Form::open(['action' => 'AdminDash@SubmitWarnings']) !!}
                             @csrf
@@ -106,11 +111,6 @@
                         @else
                             <tr>
                                 <td colspan="4">No controllers to display</td>
-                            </tr>
-                        @endif
-                        @if (date('z') + 1 != 1 || date('z') + 1 != 0)
-                            <tr>
-                                <td colspan="4">It is not the beginning/end of a month so data may not be accurate.</td>
                             </tr>
                         @endif
                     </tbody>
