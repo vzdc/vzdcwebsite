@@ -84,8 +84,8 @@ class RosterController extends Controller
 
             $userstatuscheck = User::find($res['cid']);
             if ($userstatuscheck) {
-                if ($userstatuscheck->status == 0) {
-                    return redirect('/')->with('error', "You are either not an active controller and cannot login.");
+                if ($userstatuscheck->status == 0 || 2) {
+                    return redirect('/')->with('error', "ACCESS DENIED: You are not an active controller.");
                 } elseif ($userstatuscheck->status == 1) {
                     $userstatuscheck->fname = $res['firstname'];
                     $userstatuscheck->lname = $res['lastname'];
