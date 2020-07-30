@@ -328,6 +328,11 @@ class ControllerDash extends Controller
     public function viewEvent($id)
     {
         $event = Event::find($id);
+
+        if ($event->status != 1 && !Auth::user()->can('events')) {
+            return redirect()->back()->with('error', 'Event not found.');
+        }
+
         $positions = EventPosition::where('event_id', $event->id)->orderBy('created_at', 'ASC')->get();
         if (Auth::user()->can('events')) {
             $registrations = EventRegistration::where('event_id', $event->id)->where('status', 0)->orderBy('created_at', 'ASC')->get();
