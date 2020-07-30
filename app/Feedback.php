@@ -42,8 +42,4 @@ class Feedback extends Model
         }
         return $name;
     }
-
-    public function getControllerCidAttribute() {
-        return $this->controller_id;
-    }
 }
