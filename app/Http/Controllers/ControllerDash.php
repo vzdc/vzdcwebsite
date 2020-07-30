@@ -305,7 +305,7 @@ class ControllerDash extends Controller
     public function showFeedbackDetails($id)
     {
         $feedback = Feedback::find($id);
-        if ($feedback->controller_id != Auth::id()) {
+        if ($feedback->controller_cid != Auth::id()) {
             return redirect()->back()->with('error', 'You may only view your own feedback.');
         }
         return view('dashboard.controllers.feedback')->with('feedback', $feedback);
