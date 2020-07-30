@@ -329,7 +329,7 @@ class ControllerDash extends Controller
     {
         $event = Event::find($id);
 
-        if ($event->status != 1) {
+        if ($event->status != 1 && !Auth::user()->can('events')) {
             return redirect()->back()->with('error', 'Event not found.');
         }
 
