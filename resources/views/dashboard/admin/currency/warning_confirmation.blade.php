@@ -28,7 +28,7 @@
                     @foreach($users as $user)
                         <tr>
                             <td> {{ Form::text('users[]', $user->id, ['class' => 'form-control', 'readonly' => 'true']) }} </td>
-                            <td> {{ Form::text('users[]', $user->full_name, ['class' => 'form-control', 'readonly' => 'true']) }} </td>
+                            <td> {{ Form::text('names[]', $user->full_name, ['class' => 'form-control', 'readonly' => 'true']) }} </td>
                         </tr>
                     @endforeach
                     <br />
