@@ -46,7 +46,7 @@
                             </tr>
                         @endif
                         @if (count($homeWarnings) > 0)
-                            {!! Form::open(['action' => 'AdminDash@SubmitWarnings']) !!}
+                            {!! Form::open(['action' => 'AdminDash@WarningConfirmation']) !!}
                             @csrf
                             @foreach($homeWarnings as $controller)
                                 <tr>
