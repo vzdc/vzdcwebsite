@@ -90,7 +90,7 @@
                             </tr>
                         @endif
                         @if (count($visitorWarnings) > 0)
-                            {!! Form::open(['action' => 'AdminDash@SubmitWarnings']) !!}
+                            {!! Form::open(['action' => 'AdminDash@WarningConfirmation']) !!}
                             @csrf
                             @foreach($visitorWarnings as $controller)
                                 <tr>
