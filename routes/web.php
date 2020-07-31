@@ -246,6 +246,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         });
         Route::prefix('currency')->middleware('permission:snrStaff')->group(function () {
             Route::get('/', 'AdminDash@ShowCurrencyCenter');
+            Route::post('/confirm', 'AdminDash@WarningConfirmation');
             Route::post('/submit', 'AdminDash@SubmitWarnings');
         });
     });

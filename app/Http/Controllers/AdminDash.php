@@ -2000,9 +2000,25 @@ class AdminDash extends Controller
                         ->with('stats', $stats);
     }
 
-    public function SubmitWarnings(Request $request) {
+    public function WarningConfirmation(Request $request) {
         // Get request data
         $data = $request->warnings;
+
+        // Create empty array to save users to
+        $users = array();
+
+        foreach ($data as $id) {
+            // Find user that matches id
+            $user = User::find(intval($id));
+            array_push($users, $user);
+        }
+
+        return view('dashboard.admin.currency.warning_confirmation')->with('users', $users);
+    }
+
+    public function SubmitWarnings(Request $request) {
+        // Get request data
+        $data = $request->users;
 
         foreach ($data as $id) {
             // Find user that matches id
