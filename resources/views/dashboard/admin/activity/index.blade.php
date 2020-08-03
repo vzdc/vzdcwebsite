@@ -23,7 +23,7 @@
     </div>
     <br />
 
-    <div class="container">
+    <div class="container text-center">
         <ul class="nav nav-tabs nav-justified" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" href="#homewarnings" role="tab" data-toggle="tab" style="color:black">Home Controllers</a>

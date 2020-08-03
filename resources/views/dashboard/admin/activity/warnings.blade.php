@@ -23,7 +23,7 @@
 </div>
 <br />
 
-<table class="table table-striped">
+<table class="table table-striped text-center">
     <thead>
         <tr>
             <th scope="col">CID</th>
