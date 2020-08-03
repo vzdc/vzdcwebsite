@@ -1970,10 +1970,6 @@ class AdminDash extends Controller
         $homeWarnings = array();
         $visitorWarnings = array();
 
-        // Get activity objects of those who qualify for removal
-        $homeRemovals = Activity::where('visitor', 0)->where('status', 3)->orWhere('status', 5)->get();
-        $visitorRemovals = Activity::where('visitor', 1)->where('status', 3)->orWhere('status', 5)->get();
-
         foreach ($users as $user) {
             // If user has less than 2 hours
             if ($stats[$user->id]->total_hrs < 2) {
@@ -1995,8 +1991,6 @@ class AdminDash extends Controller
         return view('dashboard.admin.activity.index')
                         ->with('homeWarnings', $homeWarnings)
                         ->with('visitorWarnings', $visitorWarnings)
-                        ->with('homeRemovals', $homeRemovals)
-                        ->with('visitorRemovals', $visitorRemovals)
                         ->with('stats', $stats);
     }
 

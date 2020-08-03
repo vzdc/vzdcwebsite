@@ -17,7 +17,7 @@
                 <a class="btn btn-warning" href="/dashboard/admin/currency/warnings">Show Warnings</a>
             </div>
             <div class="col-sm">
-                <a class="btn btn-warning" href="/dashboard/admin/currency/removals">Show Removals</a>
+                <a class="btn btn-warning float-right" href="/dashboard/admin/currency/removals">Show Removals</a>
             </div>
         </div>
     </div>
