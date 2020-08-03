@@ -2002,7 +2002,7 @@ class AdminDash extends Controller
 
     public function QueueWarnings(Request $request) {
         // Get request data
-        $data = $request->users;
+        $data = $request->warnings;
 
         // Get date
         $year = date('y');
