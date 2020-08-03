@@ -17,7 +17,7 @@
                 <a class="btn btn-warning" href="/dashboard/admin/activity/warnings">Show Warnings</a>
             </div>
             <div class="col-sm">
-                <a class="btn btn-warning pull-right" href="/dashboard/admin/activity/removals">Show Removals</a>
+                <a class="btn btn-warning float-right" href="/dashboard/admin/activity/removals">Show Removals</a>
             </div>
         </div>
     </div>
