@@ -2032,6 +2032,11 @@ class AdminDash extends Controller
         return view('dashboard.admin.activity.removals')->with('removals', $removals);
     }
 
+    public function ShowActiveWarnings() {
+        $warnings = Activity::where('status', 1)->orWhere('status', 2)->get();
+        return view('dashboard.admin.activity.active-warnings')->with('warnings', $warnings);
+    }
+
     public function RemoveWarning($id) {
         $warning = Activity::where('id', $id)->first();
         $warning->delete();

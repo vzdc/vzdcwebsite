@@ -248,6 +248,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::get('/', 'AdminDash@ShowActivityCenter');
             Route::post('/queue-warnings', 'AdminDash@QueueWarnings');
             Route::get('/warnings', 'AdminDash@ShowWarnings');
+            Route::get('/active-warnings', 'AdminDash@ShowActiveWarnings');
             Route::post('/queue-removals', 'AdminDash@QueueWarnings');
             Route::get('/removals', 'AdminDash@ShowRemovals');
             Route::get('/remove-warning/{id}', 'AdminDash@RemoveWarning');
