@@ -34,7 +34,7 @@
         </tr>
     </thead>
     <tbody>
-        @if (date('z') != 28 || date('z') != 29 || date('z') != 30 || date('z') != 31 date('z') != 15)
+        @if (date('z') != 28 || date('z') != 29 || date('z') != 30 || date('z') != 31 || date('z') != 15)
             <tr>
                 <td colspan="4"><b>It is not the middle or end of a month so data may not be accurate.</b></td>
             </tr>
