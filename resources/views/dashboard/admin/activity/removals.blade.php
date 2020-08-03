@@ -42,8 +42,8 @@
         @if (count($removals) > 0)
             @foreach($removals as $removal)
                 <tr>
-                    <td> {{$removal->id}} </td>
-                    <td> {{$removal->full_name}} </td>
+                    <td> {{$removal->controller_id}} </td>
+                    <td> {{$removal->controller_name}} </td>
                     <td> {{$removal->visitor}} </td>
                     <td> {{$removal->status_text}} </td>
                     <td>

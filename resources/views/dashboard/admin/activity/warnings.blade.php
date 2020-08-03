@@ -41,8 +41,8 @@
         @if (count($warnings) > 0)
             @foreach($warnings as $warning)
                 <tr>
-                    <td> {{$warning->id}} </td>
-                    <td> {{$warning->full_name}} </td>
+                    <td> {{$warning->controller_id}} </td>
+                    <td> {{$warning->controller_name}} </td>
                     <td> {{$warning->visitor}} </td>
                     <td>
                         <a href="/dashboard/admin/activity/remove-warning/{{ $warning->id }}"
