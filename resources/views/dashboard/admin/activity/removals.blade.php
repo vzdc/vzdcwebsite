@@ -14,10 +14,10 @@
 <div class="container">
     <div class="row">
         <div class="col-sm">
-            <a class="btn btn-danger" href="/dashboard/admin/currency">Back</a>
+            <a class="btn btn-danger" href="/dashboard/admin/activity">Back</a>
         </div>
         <div class="col-sm">
-            <a class="btn btn-warning" href="/dashboard/admin/currency/send-warnings">Send Removal Emails</a>
+            <a class="btn btn-warning" href="/dashboard/admin/activity/send-warnings">Send Removal Emails</a>
         </div>
     </div>
 </div>

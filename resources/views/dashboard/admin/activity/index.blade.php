@@ -70,7 +70,7 @@
                                         <button class="btn btn-success" type="submit">Add Warnings</button>
                                     </div>
                                     <div class="col-sm">
-                                        <a class="btn btn-danger" href="/dashboard/admin/currency">Cancel</a>
+                                        <a class="btn btn-danger" href="/dashboard/admin/activity">Cancel</a>
                                     </div>
                                 </div>
                             </div>
@@ -121,7 +121,7 @@
                                         <button class="btn btn-success" type="submit">Add Warnings</button>
                                     </div>
                                     <div class="col-sm">
-                                        <a class="btn btn-danger" href="/dashboard/admin/currency">Cancel</a>
+                                        <a class="btn btn-danger" href="/dashboard/admin/activity">Cancel</a>
                                     </div>
                                 </div>
                             </div>
