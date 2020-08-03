@@ -17,7 +17,7 @@
             <a class="btn btn-danger" href="/dashboard/admin/activity">Back</a>
         </div>
         <div class="col-sm">
-            <a class="btn btn-warning" href="/dashboard/admin/activity/active-warnings">Active Warnings</a>
+            <a class="btn btn-warning text-center" href="/dashboard/admin/activity/active-warnings">Active Warnings</a>
         </div>
         <div class="col-sm">
             <a class="btn btn-warning float-right" href="/dashboard/admin/activity/send-warnings">Send Warning Emails</a>
