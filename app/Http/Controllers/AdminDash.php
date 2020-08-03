@@ -2028,7 +2028,7 @@ class AdminDash extends Controller
     }
 
     public function ShowRemovals() {
-        $removals = Activity::where('status', 3)->orWhere('status', 5)->get();
+        $removals = Activity::where('status', 3)->orWhere('status', 5)->orderBy('status', 'desc')->get();
         return view('dashboard.admin.activity.removals')->with('removals', $removals);
     }
 
