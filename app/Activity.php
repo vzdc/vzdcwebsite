@@ -26,7 +26,7 @@ class Activity extends Model
             return "Warned & 2 hours in first two weeks and 2 more hours in last two weeks achieved";
         }
         else if ($this->status == 5) {
-            return "Warned & 2 hours in first two weeks and 2 more hours in last two weeks not achieved ";
+            return "Warned & 2 hours in first two weeks and 2 more hours in last two weeks not achieved";
         }
     }
 }
