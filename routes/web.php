@@ -250,8 +250,8 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::get('/warnings', 'AdminDash@ShowWarnings');
             Route::post('/queue-removals', 'AdminDash@QueueWarnings');
             Route::get('/removals', 'AdminDash@ShowRemovals');
-            Route::post('/remove-warning/{id}', 'AdminDash@RemoveWarning');
-            Route::post('/remove-removal/{id}', 'AdminDash@RemoveRemoval');
+            Route::get('/remove-warning/{id}', 'AdminDash@RemoveWarning');
+            Route::get('/remove-removal/{id}', 'AdminDash@RemoveRemoval');
             Route::get('/send-warnings', 'AdminDash@SendWarnings');
             Route::get('/send-removals', 'AdminDash@SendRemovals');
         });
