@@ -244,10 +244,16 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::get('/edit/{id}', 'AdminDash@ViewLoa');
             Route::post('/update/{id}', 'AdminDash@UpdateLoa');
         });
-        Route::prefix('currency')->middleware('permission:snrStaff')->group(function () {
-            Route::get('/', 'AdminDash@ShowCurrencyCenter');
-            Route::post('/confirm', 'AdminDash@WarningConfirmation');
-            Route::post('/submit', 'AdminDash@SubmitWarnings');
+        Route::prefix('activity')->middleware('permission:snrStaff')->group(function () {
+            Route::get('/', 'AdminDash@ShowActivityCenter');
+            Route::post('/queue-warnings', 'AdminDash@QueueWarnings');
+            Route::get('/warnings', 'AdminDash@ShowWarnings');
+            Route::post('/queue-removals', 'AdminDash@QueueWarnings');
+            Route::get('/removals', 'AdminDash@ShowRemovals');
+            Route::post('/remove-warning/{id}', 'AdminDash@RemoveWarning');
+            Route::post('/remove-removal/{id}', 'AdminDash@RemoveRemoval');
+            Route::get('/send-warnings', 'AdminDash@SendWarnings');
+            Route::get('/send-removals', 'AdminDash@SendRemovals');
         });
     });
 });

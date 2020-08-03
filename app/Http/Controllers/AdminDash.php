@@ -1955,7 +1955,7 @@ class AdminDash extends Controller
         return redirect('/dashboard/admin/loas')->with('error', "An error has occured, please try again.");
     }
 
-    public function ShowCurrencyCenter() {
+    public function ShowActivityCenter() {
         // Get date
         $year = date('y');
         $month = date('n');
@@ -1971,8 +1971,8 @@ class AdminDash extends Controller
         $visitorWarnings = array();
 
         // Get activity objects of those who qualify for removal
-        $homeRemovals = Activity::where('visitor', 0)->where('status', 2)->orWhere('status', 4)->get();
-        $visitorRemovals = Activity::where('visitor', 1)->where('status', 2)->orWhere('status', 4)->get();
+        $homeRemovals = Activity::where('visitor', 0)->where('status', 3)->orWhere('status', 5)->get();
+        $visitorRemovals = Activity::where('visitor', 1)->where('status', 3)->orWhere('status', 5)->get();
 
         foreach ($users as $user) {
             // If user has less than 2 hours
@@ -1992,7 +1992,7 @@ class AdminDash extends Controller
             }
         }
 
-        return view('dashboard.admin.currency.index')
+        return view('dashboard.admin.activity.index')
                         ->with('homeWarnings', $homeWarnings)
                         ->with('visitorWarnings', $visitorWarnings)
                         ->with('homeRemovals', $homeRemovals)
@@ -2000,41 +2000,83 @@ class AdminDash extends Controller
                         ->with('stats', $stats);
     }
 
-    public function WarningConfirmation(Request $request) {
-        // Get request data
-        $data = $request->warnings;
-
-        // Create empty array to save users to
-        $users = array();
-
-        foreach ($data as $id) {
-            // Find user that matches id
-            $user = User::find(intval($id));
-            array_push($users, $user);
-        }
-
-        return view('dashboard.admin.currency.warning_confirmation')->with('users', $users);
-    }
-
-    public function SubmitWarnings(Request $request) {
+    public function QueueWarnings(Request $request) {
         // Get request data
         $data = $request->users;
 
+        // Get date
+        $year = date('y');
+        $month = date('n');
+
+        // All controller stats
+        $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
+
         foreach ($data as $id) {
             // Find user that matches id
             $user = User::find(intval($id));
-            // create new activity object
+            // Create new activity object
             $activity = new Activity;
             $activity->controller_id = $user->id;
             $activity->controller_name = $user->full_name;
             $activity->controller_email = $user->email;
+            $activity->hours = $stats[$user->id];
             $activity->visitor = $user->visitor;
             $activity->month = date('n');
             $activity->year = date('y');
             $activity->save();
-            // send email
+        }
+        return redirect()->back()->with('success', 'Users have been added to the warning queue.');
+    }
+
+    public function ShowWarnings() {
+        $warnings = Activity::where('status', 0)->get();
+        return view('dashboard.admin.activity.warnings')->with('warnings', $warnings);
+    }
+
+    public function ShowRemovals() {
+        $removals = Activity::where('status', 3)->orWhere('status', 5)->get();
+        return view('dashboard.admin.activity.removals')->with('removals', $removals);
+    }
+
+    public function RemoveWarning($id) {
+        $warning = Activity::where('id', $id)->first();
+        $warning->delete();
+
+        return redirect()->back()->with('sucess', 'Warning successfully deleted.');
+    }
+
+    public function RemoveRemoval($id) {
+        $removal = Activity::where('id', $id)->first();
+        $removal->delete();
+
+        return redirect()->back()->with('sucess', 'Removal successfully deleted.');
+    }
+
+    public function SendWarnings() {
+        $warnings = Activity::where('status', 0)->get();
+
+        foreach ($warnings as $warning) {
+            $warning->status = 1;
+            $warning->save();
+            // Send Email
         }
 
-        return redirect()->back()->with('success', 'Users have been warned.');
+        return redirect()->back()->with('sucess', 'Warning emails successfully sent.');
+    }
+
+    public function SendRemovals() {
+        $warnings = Activity::where('status', 0)->get();
+
+        foreach ($warnings as $warning) {
+            $warning->status = 1;
+            $warning->save();
+            // Send Email
+
+            $user = User::where('id', $warning->controller_id)->first();
+            $user->status = 0;
+            $user->save();
+        }
+
+        return redirect()->back()->with('sucess', 'Removal emails successfully sent.');
     }
 }

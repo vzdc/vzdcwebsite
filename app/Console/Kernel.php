@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
         '\App\Console\Commands\ARTCCOverflights',
         '\App\Console\Commands\SoloCerts',
         '\App\Console\Commands\LoaExpiration',
+        'App\Console\Commands\CheckActivity'
     ];
 
     /**
@@ -37,6 +38,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('Event:SendEventReminder')->dailyAt('00:30');
         $schedule->command('SoloCerts:Expiration')->dailyAt('00:30');
         $schedule->command('LOAs:Expiration')->dailyAt('00:30');
+        //$schedule->command('Activity:CheckActivity')->dailyAt('00:30');
     }
 
     /**

@@ -4,18 +4,19 @@ namespace App\Console\Commands;
 
 use Mail;
 use App\Activity;
+use App\ControllerLog;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
 
-class CheckCurrency extends Command
+class CheckActivity extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'Currency:CheckCurrency';
+    protected $signature = 'Activity:CheckActivity';
 
     /**
      * The console command description.
@@ -43,8 +44,19 @@ class CheckCurrency extends Command
     {
         $year = date('y');
         $month = date('n');
-        $day = date('z') + 1;
+        $day = date('z');
+
+        $date = new \DateTime('last day of this month');
         
-        $activity = Activity::where('status', '!=', 3)->get();
+        $activity = Activity::where('status', '!=', 4)->get();
+
+        // All controller stats
+        $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
+
+        foreach($activity as $warnings) {
+            if ($warnings->status == 1) {
+                
+            }
+        }
     }
 }

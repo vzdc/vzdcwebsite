@@ -106,8 +106,8 @@
                 href="/dashboard/admin/feedback">Feedback Management</a>
             <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/incident') }}"
                 href="/dashboard/admin/incident">Incident Report Management</a>
-            <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/currency') }}"
-                href="/dashboard/admin/currency">Currency Center</a>
+            <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/activity') }}"
+                href="/dashboard/admin/activity">Activity Center</a>
             @endif
             @if(Auth::user()->can('scenery'))
             <a class="nav-link {{ Nav::urlDoesContain('dashboard/admin/scenery') }}"
