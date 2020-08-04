@@ -20,7 +20,7 @@
                        aria-expanded="false">Pilots</a>
                     <div class="dropdown-menu" aria-labelledby="pilots">
                         <a class="dropdown-item" href="/pilots/airports">Airports</a>
-                        <a class="dropdown-item" href="http://www.aircharts.org/" target="_blank">Charts</a>
+                        <a class="dropdown-item" href="https://skyvector.com/" target="_blank">Charts</a>
                         <a class="dropdown-item" href="http://www.flightaware.com/statistics/ifr-route/"
                            target="_blank">IFR Routes</a>
                         <a class="dropdown-item" href="/iadgates.php">KIAD Gates In Use</a>
