@@ -16,7 +16,7 @@ class MemberLog extends Model
             return $u->getFullNameAttribute();
         }
         else if ($this->user_submitter == 0) {
-            return "ADMIN";
+            return "SYSTEM";
         }
         else {
             return null;
