@@ -141,7 +141,7 @@ class OnlineControllerUpdate extends Command
                     if ($loa != null) {
                         $user = User::find($cid);
                         $user->status = 1;
-                        $loa->status = 3;
+                        $loa->status = 5;
 
                         $user->save();
                         $loa->save();

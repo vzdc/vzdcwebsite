@@ -1899,10 +1899,11 @@ class AdminDash extends Controller
 
     public function ShowLoas() {
         $pending = Loa::where('status', 0)->get();
-        $active = Loa::where('status', 1)->get();
+        $accepted = Loa::where('status', 1)->get();
+        $active = Loa::where('status', 2)->get();
         $inactive = Loa::where('status', 3)->get();
         $denied = Loa::where('status', -1)->get();
-        return view("dashboard.admin.loas.index")->with('pending', $pending)->with('active', $active)->with('inactive', $inactive)->with('denied', $denied);
+        return view("dashboard.admin.loas.index")->with('pending', $pending)->with('accepted', $accepted)->with('active', $active)->with('inactive', $inactive)->with('denied', $denied);
     }
 
     public function ViewLoa($id) {
@@ -1936,8 +1937,6 @@ class AdminDash extends Controller
                 $m->subject('Your vZDC LOA Has Been Approved');
                 $m->to($loa->controller_email);
             });
-            $user->status = 0;
-            $user->save();
             return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully approved.");
         }
 

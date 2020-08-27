@@ -18,6 +18,13 @@ LOA Request
     {!! Form::open(['action' => 'ControllerDash@SubmitLoaRequest']) !!}
     @csrf
     <div class="form-group">
+        {!! Form::label('start_date', 'Starting Date of LOA') !!}
+        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+            {!! Form::text('start_date', null, ['placeholder' => 'MM/DD/YYYY', 'class' => 'form-control datetimepicker-input', 'data-target' => '#datetimepicker1']) !!}
+            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
+                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+            </div>
+        </div>
         {!! Form::label('end_date', 'Ending Date of LOA') !!}
         <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
             {!! Form::text('end_date', null, ['placeholder' => 'MM/DD/YYYY', 'class' => 'form-control datetimepicker-input', 'data-target' => '#datetimepicker1']) !!}

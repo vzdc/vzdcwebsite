@@ -18,6 +18,9 @@
             <a class="nav-link active" href="#new" role="tab" data-toggle="tab" style="color:black">New LOA's</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" href="#accepted" role="tab" data-toggle="tab" style="color:black">Accepted LOA's</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" href="#active" role="tab" data-toggle="tab" style="color:black">Active LOA's</a>
         </li>
         <li class="nav-item">
@@ -55,6 +58,37 @@
                         @endforeach
                     @else
                         <p>No pending LOA's</p>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+
+        <div role="tabpanel" class="tab-pane" id="accepted">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Controller</th>
+                        <th scope="col">End Date</th>
+                        <th scope="col">Requested At</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if(count($accepted) > 0)
+                        @foreach ($accepted as $loa)
+                        <tr>
+                            <td>{{$loa->controller_name}}</td>
+                            <td>{{$loa->end_date}}</td>
+                            <td>{{$loa->created_at}}</td>
+                            <td>
+                                <a class="btn btn-warning simple-tooltip"
+                                    href="/dashboard/admin/loas/edit/{{ $loa->id }}" data-toggle="tooltip"
+                                    title="View LOA"><i class="fas fa-eye"></i></a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    @else
+                        <p>No accepted LOA's</p>
                     @endif
                 </tbody>
             </table>

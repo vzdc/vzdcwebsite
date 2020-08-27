@@ -685,6 +685,7 @@ class ControllerDash extends Controller
 
     public function SubmitLoaRequest(Request $request) {
         $validator = $request->validate([
+            'start_date' => 'required',
             'end_date' => 'required',
             'reason' => 'required'
         ]);
@@ -700,6 +701,7 @@ class ControllerDash extends Controller
         $loa->controller_id = $user->id;
         $loa->controller_name = $user->getFullNameAttribute();
         $loa->controller_email = $user->email;
+        $loa->start_date = $request->start_date;
         $loa->end_date = $request->end_date;
         $loa->reason = $request->reason;
         $loa->save();
