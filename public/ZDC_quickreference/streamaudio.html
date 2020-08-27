@@ -1,0 +1,110 @@
+<head>
+<title>VATSIM vZDC DEL / GND / TWR Quick Reference Resource</title>
+</head>
+
+<body>
+
+<h3>LIVE-STREAMING VATSIM ATC WITHOUT TEAMSPEAK AUDIO</h3>
+
+<p>
+<b>Rob Shearman, VATSIM vZDC S2 and ATC Mentor</b><br>
+<i><a href=mailto:slantalphaadventures@gmail.com>slantalphaadventures@gmail.com</a><br>
+updated August 2020</i>
+</p>
+
+<hr>
+
+<p>
+At Virtual Washington ARTCC, live-streaming your ATC sessions is permitted, and in many ways, encouraged.  However, the inter-controller coordination via TeamSpeak is not permitted to be included in the livestream audio.  The main reason for this is that when pilots do something unexpected, controllers must quickly coordinate to handle the situation, and the resulting conversation can easily be misconstrued as us badmouthing or ridiculing pilots for messing up.  To avoid any hurt feelings the ARTCC makes it a rule NOT to include coordination audio in your broadcast.
+</p>
+
+<p>
+Muting your TeamSpeak is not a good option, because it means that it takes much longer to get a hold of one another when coordination is needed -- and when you un-mute to coordinate, <i><u>you've defeated the purpose of the rule</u></i>.  The best solution is to set up your audio channels so that the ATC audio is streamed, but TeamSpeak audio is sent straight to your headset, bypassing the stream audio output.  Here are the basic steps for setting this up:
+</p>
+
+<hr>
+
+<h4>1. Install Voicemeeter Banana <i>(<a href="https://www.vb-audio.com/Voicemeeter/banana.htm" target="_blank">https://www.vb-audio.com/Voicemeeter/banana.htm</a></i>)</h4>
+
+<p>
+<i><b><u>CAUTION!</u>:</b> VoiceMeeter's virtual mixing panels come in multiple varieties.  The standard one only has one virtual input channel.  As of this writing, "Banana" has two, and "Potato" has three.  Make sure you are downloading the "Banana" version.  (The below process will work also with "Potato," provided you can keep track of which inputs you're using and can select the appropriate output for each.)</i>
+</p>
+
+<p>
+VoiceMeeter Banana is "donationware" meaning you can download, install, and use it for free; but it will periodically prompt you for a donation.  Everyone's financial means are different, but my opinion is that it's a fantastic piece of software and well worth a few bucks as a thank-you to the developer.  Current version as of this writing is 2.0.5.0.  You can get either the .zip or the .exe file.  I find the .exe to be slightly easier.
+</p>
+
+<p>
+Once the installer has run, <i><b><u>you MUST do a complete system restart immediately</u></b></i> to complete the setup process.  None of the below will work if you don't.
+</p>
+
+<hr>
+
+<h4>2. Set Windows Default Audio Device to "VoiceMeeter Input"</h4>
+
+<img src="https://i.imgur.com/al3sWgD.jpg">
+
+<p>
+In the system tray in the lower right, click on the "speaker" icon.  You probably have that set to your PC speakers or possibly your headset.  Change it to "VoiceMeeter Input."  <i>(Do NOT select "AUX input" -- these are two separate "channels.")</i>  When you open VRC and vATIS, the notification sounds for each should automatically end up in your Windows default audio device, which in this case will now be VoiceMeeter Input.
+</p>
+
+<hr>
+
+<h4>3. Change AFV Audio Output Device to "VoiceMeeter Input"</h4>
+
+<img src="https://i.imgur.com/fZQTcaw.jpg">
+
+<p>
+Open the AFV app.  If it opens into "small mode," click the "down-arrow" icon to expand it so you have the "Settings" button among the choices up top.  Open the "Settings" window and change "Output Device" to "VoiceMeeter Input."  <i>(AGAIN, do NOT choose "VoiceMeeter Aux Input" as that is a separate channel.)</i>
+</p>
+
+<hr>
+
+<h4>4. Change TeamSpeak Audio Output Device to "VocieMeeter Aux Input"</h4>
+
+<img src="https://i.imgur.com/2T9vzh2.jpg">
+
+<p>
+Under "Tools," "Settings," and "Playback," choose the Playback Device of "VoiceMeeter Aux Input."  <i><b>YES, THIS TIME, *DO* CHOOSE "AUX"!</b></i>  You can probably see what's going on at this point -- everything we want to be included in the stream, we're putting in "VoiceMeeter Input" and everything we DON'T want included in the stream is going in "VoiceMeeter Aux Input."
+</p>
+
+<hr>
+
+<h4>5. Route VoiceMeeter Inputs to Headset<br>
+5a. <i>(OPTIONAL)</i> adjust balance to put streamed audio in left ear, and non-streamed audio in right ear</h4>
+
+<p>
+Open the VoiceMeeter Banana console.  <i><b><u>CAUTION!</u>:</b> like we mentioned above, VoiceMeeter's virtual mixing panels come in multiple varieties.  The standard one only has one virtual input channel.  As of this writing, "Banana" has two, and "Potato" has three.  Make sure you are opening the "Banana" version.  (The below process will work also with "Potato," provided you can keep track of which inputs you're using and can select the appropriate output for each.)  <b><u>Even if you downloaded and installed "Banana" or "Potato" you will still need to be careful about which one you are opening up.</u></b></i>
+</p>
+
+<img src="https://i.imgur.com/E1W1L1H.jpg">
+
+<p>
+In the upper right, click on the "A1" button by "Hardware Out" and select your headset.  Under the "Virtual Inputs" section, make sure the "A1" buttons in both channel-stacks are selected.
+</p>
+
+<p>
+OPTIONALLY, you can do something "clever" and adjust the faders so that the streamed audio (left side under Virtual Inputs, "Voicemeeter VAIO") is faded to the left, and non-streamed audio (right-side under Virtual Inputs, "Voicemeeter AUX") is faded to the right.  For myself, this actually helps me remember which push-to-talk does what.  I use Left-CTRL for AFV and Right-CTRL for TeamSpeak; and with this system, I use the left PTT to talk to the people in my left ear (pilots), and the right PTT to talk to the people in my right ear (ATCers).  It's not perfect but it has cut down significantly on instances where I talk over the opposite app than I intended.
+</p>
+
+<p>
+ALSO OPTIONALLY, you can specify two different devices for A1 and A2, and send streamed audio (left side under Virtual Inputs, "Voicemeeter VAIO") to A1, and non-streamed audio (right-side under Virtual Inputs, "Voicemeeter AUX") to A2.  HOWEVER, I strongly recommend NOT sending the TeamSpeak audio to speakers, where it will be picked up by your mic, and sent over your livestream anyway -- exactly what we're spending all this effort trying to avoid!  Maybe your ATC can go into speakers and TeamSpeak can go to headset -- play with these options however you like.  This CAN be an easy way to quickly switch audio from headset to speakers if you need to step away for a moment -- just make sure your mic is muted from the stream, so the TeamSpeak doesn't end up going out over your broadcast.  Once you get the hang of how this all works, you can customize to your heart's content.  This may well come in very handy once a future version of AFV allows you to monitor secondary ATC channels on separate audio devices.  Just be sure to double-check with a quick test-stream to make sure the audio you want is going out over the stream, and the audio you don't want isn't.
+</p>
+
+<hr>
+
+<h4>6. Carefully Choose Audio Sources in Stream Scene Editor</h4>
+
+<img src="https://i.imgur.com/Lsdjprj.jpg">
+
+<p>
+When creating your "scene" within Streamlabs OBS (or any other streaming software), ensure you add "VoiceMeeter Output" but DO NOT add "VoiceMeeter Aux Output" as an audio source.  Perform a quick test-stream to make sure the audio you want is going out over the stream, and the audio you don't want isn't.
+</p>
+
+<hr>
+
+<p>
+<i>Direct any questions to the</i> <b>#streamers</b> <i>channel of the vZDC Discord, or to Rob Shearman at <a href=mailto:slantalphaadventures@gmail.com>slantalphaadventures@gmail.com</a>.
+</p>
+
+</body>
