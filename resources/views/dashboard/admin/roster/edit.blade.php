@@ -582,7 +582,7 @@
                             <tr>
                                 <td>
                                     @if($l->getAuthor() != null)
-                                        {{$l->getAuthor()->first()->getFullNameAttribute()}}
+                                        {{$l->getAuthor()}}
                                     @else
                                         {{$l->user_submitter}}
                                     @endif
