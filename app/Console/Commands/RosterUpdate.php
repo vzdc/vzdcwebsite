@@ -242,6 +242,7 @@ class RosterUpdate extends Command
 
                     $dossier = new MemberLog();
                     $dossier->user_target = $use->id;
+                    $dossier->user_submitter = 0;
                     $dossier->content = "User has been removed from the ZDC roster.";
                     $dossier->save();
                 }
