@@ -43,9 +43,21 @@ class LoaExpiration extends Command
     public function handle()
     {
         $today = Carbon::now()->format('m/d/Y');
-        $loas = Loa::where('end_date', $today)->where('status', 1)->get();
 
-        foreach($loas as $loa) {
+        $startingLoas = Loa::where('start_date', $today)->where('status', 1);
+        
+        foreach($startingLoas as $loa) {
+            $loa->status = 2;
+            $user = User::find($loa->controller_id);
+            $user->status = 0;
+
+            $loa->save();
+            $user->save();
+        }
+
+        $endingLoas = Loa::where('end_date', $today)->where('status', 2)->get();
+
+        foreach($endingLoas as $loa) {
             $loa->status = 3;
             $loa->save();
 
