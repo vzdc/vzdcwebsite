@@ -19,16 +19,16 @@ LOA Request
     @csrf
     <div class="form-group">
         {!! Form::label('start_date', 'Starting Date of LOA') !!}
-        <div class="input-group date" id="datetimepickerend" data-target-input="nearest">
-            {!! Form::text('start_date', null, ['placeholder' => 'MM/DD/YYYY', 'class' => 'form-control datetimepicker-input', 'data-target' => '#datetimepickerend']) !!}
-            <div class="input-group-append" data-target="#datetimepickerstart" data-toggle="datetimepicker">
+        <div class="input-group date" id="datetimepicker2" data-target-input="nearest">
+            {!! Form::text('start_date', null, ['placeholder' => 'MM/DD/YYYY', 'class' => 'form-control datetimepicker-input', 'data-target' => '#datetimepicker1']) !!}
+            <div class="input-group-append" data-target="#datetimepicker2" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
             </div>
         </div>
         {!! Form::label('end_date', 'Ending Date of LOA') !!}
-        <div class="input-group date" id="datetimepickerend" data-target-input="nearest">
-            {!! Form::text('end_date', null, ['placeholder' => 'MM/DD/YYYY', 'class' => 'form-control datetimepicker-input', 'data-target' => '#datetimepickerend']) !!}
-            <div class="input-group-append" data-target="#datetimepickerend" data-toggle="datetimepicker">
+        <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+            {!! Form::text('end_date', null, ['placeholder' => 'MM/DD/YYYY', 'class' => 'form-control datetimepicker-input', 'data-target' => '#datetimepicker1']) !!}
+            <div class="input-group-append" data-target="#datetimepicker1" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
             </div>
         </div>
@@ -44,11 +44,11 @@ LOA Request
 
 <script type="text/javascript">
     $(function () {
-            $('#datetimepickerstart').datetimepicker({
+            $('#datetimepicker1').datetimepicker({
                 format: 'L'
             });
 
-            $('#datetimepickerend').datetimepicker({
+            $('#datetimepicker2').datetimepicker({
                 format: 'L'
             });
         });
