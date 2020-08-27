@@ -37,6 +37,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Controller</th>
+                        <th scope="col">Start Date</th>
                         <th scope="col">End Date</th>
                         <th scope="col">Requested At</th>
                         <th scope="col">Actions</th>
@@ -47,6 +48,7 @@
                         @foreach ($pending as $loa)
                         <tr>
                             <td>{{$loa->controller_name}}</td>
+                            <td>{{$loa->start_date}}</td>
                             <td>{{$loa->end_date}}</td>
                             <td>{{$loa->created_at}}</td>
                             <td>
@@ -68,6 +70,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Controller</th>
+                        <th scope="col">Start Date</th>
                         <th scope="col">End Date</th>
                         <th scope="col">Requested At</th>
                         <th scope="col">Actions</th>
@@ -78,6 +81,7 @@
                         @foreach ($accepted as $loa)
                         <tr>
                             <td>{{$loa->controller_name}}</td>
+                            <td>{{$loa->start_date}}</td>
                             <td>{{$loa->end_date}}</td>
                             <td>{{$loa->created_at}}</td>
                             <td>
@@ -99,6 +103,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Controller</th>
+                        <th scope="col">Start Date</th>
                         <th scope="col">End Date</th>
                         <th scope="col">Requested At</th>
                         <th scope="col">Actions</th>
@@ -109,6 +114,7 @@
                         @foreach ($active as $loa)
                         <tr>
                             <td>{{$loa->controller_name}}</td>
+                            <td>{{$loa->start_date}}</td>
                             <td>{{$loa->end_date}}</td>
                             <td>{{$loa->created_at}}</td>
                             <td>
@@ -130,6 +136,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Controller</th>
+                        <th scope="col">Start Date</th>
                         <th scope="col">End Date</th>
                         <th scope="col">Requested At</th>
                         <th scope="col">Actions</th>
@@ -140,6 +147,7 @@
                         @foreach ($inactive as $loa)
                         <tr>
                             <td>{{$loa->controller_name}}</td>
+                            <td>{{$loa->start_date}}</td>
                             <td>{{$loa->end_date}}</td>
                             <td>{{$loa->created_at}}</td>
                             <td>
@@ -161,6 +169,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Controller</th>
+                        <th scope="col">Start Date</th>
                         <th scope="col">End Date</th>
                         <th scope="col">Requested At</th>
                         <th scope="col">Actions</th>
@@ -171,6 +180,7 @@
                         @foreach ($denied as $loa)
                         <tr>
                             <td>{{$loa->controller_name}}</td>
+                            <td>{{$loa->start_date}}</td>
                             <td>{{$loa->end_date}}</td>
                             <td>{{$loa->created_at}}</td>
                             <td>
