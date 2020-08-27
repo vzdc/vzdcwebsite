@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\EventRegistration;
 use App\User;
+use App\MemberLog;
 use Config;
 use Eloquent\Collection;
 use GuzzleHttp\Client;
@@ -238,6 +239,12 @@ class RosterUpdate extends Command
                     }
                     $use->status = 2;
                     $use->save();
+
+                    $dossier = new MemberLog();
+                    $dossier->user_target = $use->id;
+                    $dossier->user_submitter = 0;
+                    $dossier->content = "User has been removed from the ZDC roster.";
+                    $dossier->save();
                 }
             }
         }

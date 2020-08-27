@@ -12,9 +12,14 @@ class MemberLog extends Model
     public function getAuthor()
     {
         $u = User::find($this->user_submitter);
-        if ($u != null)
-            return $this->hasOne(User::class, 'id', 'user_submitter');
-        else
+        if ($u != null) {
+            return $u->getFullNameAttribute();
+        }
+        else if ($this->user_submitter == 0) {
+            return "SYSTEM";
+        }
+        else {
             return null;
+        }
     }
 }
