@@ -51,7 +51,7 @@
     </div>
     <div class="form-group">
             {!! form::label('notes', 'Notes') !!}
-            {!! form::textarea('notes', $loa->notes, ['class' => 'form-control', 'placeholder' => $loa->notes, 'readonly' => 'true']) !!}
+            {!! form::textarea('notes', $loa->notes, ['class' => 'form-control', 'placeholder' => $loa->notes]) !!}
         </div>
     <button class="btn btn-success" type="submit">Submit</button>
         <a class="btn btn-danger" href="/dashboard/admin/loas">Cancel</a>
