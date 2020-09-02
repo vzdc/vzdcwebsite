@@ -15,22 +15,22 @@
 <div class="container">
     <ul class="nav nav-tabs nav-justified" role="tablist">
         <li class="nav-item">
-            <a class="nav-link active" href="#new" role="tab" data-toggle="tab" style="color:black">New LOA's</a>
+            <a class="nav-link active" href="#new" role="tab" data-toggle="tab" style="color:black">New</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="#info" role="tab" data-toggle="tab" style="color:black">LOA's Requiring More Info</a>
+            <a class="nav-link active" href="#info" role="tab" data-toggle="tab" style="color:black">More Info</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#accepted" role="tab" data-toggle="tab" style="color:black">Accepted LOA's</a>
+            <a class="nav-link" href="#accepted" role="tab" data-toggle="tab" style="color:black">Accepted</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#active" role="tab" data-toggle="tab" style="color:black">Active LOA's</a>
+            <a class="nav-link" href="#active" role="tab" data-toggle="tab" style="color:black">Active</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#inactive" role="tab" data-toggle="tab" style="color:black">Inactive LOA's</a>
+            <a class="nav-link" href="#inactive" role="tab" data-toggle="tab" style="color:black">Inactive</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="#denied" role="tab" data-toggle="tab" style="color:black">Denied LOA's</a>
+            <a class="nav-link" href="#denied" role="tab" data-toggle="tab" style="color:black">Denied</a>
         </li>
     </ul>
 
