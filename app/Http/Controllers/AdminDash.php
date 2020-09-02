@@ -1935,6 +1935,10 @@ class AdminDash extends Controller
             return redirect()->back()->with('error', 'You must supply a reason for LOA denial.');
         }
 
+        if ($loa->status == -2 && $request->info == null) {
+            return redirect()->back()->with('error', 'You must supply what information you require.');
+        }
+
         if ($loa->status == -2) {
             $reason = $request->denial;
             Mail::send(['html' => 'emails.loas.denied'], ['loa' => $loa, 'reason' => $reason], function ($m) use ($loa) {
