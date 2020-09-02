@@ -1937,7 +1937,7 @@ class AdminDash extends Controller
             $reason = $request->reason;
             Mail::send(['html' => 'emails.loas.denied'], ['loa' => $loa, 'reason' => $reason], function ($m) use ($loa) {
                 $m->from('notams@vzdc.org', 'vZDC LOA Center');
-                $m->subject('Your vZDC LOA Has Been Denied');
+                $m->subject($loa->controller_name . ": vZDC LOA Denied");
                 $m->to($loa->controller_email)->bcc('staff@vzdc.org');
             });
 
@@ -1954,7 +1954,7 @@ class AdminDash extends Controller
         if ($loa->status == 1) {
             Mail::send(['html' => 'emails.loas.approved'], ['loa' => $loa], function ($m) use ($loa) {
                 $m->from('notams@vzdc.org', 'vZDC LOA Center');
-                $m->subject('Your vZDC LOA Has Been Accepted');
+                $m->subject($loa->controller_name . " vZDC LOA Accepted");
                 $m->to($loa->controller_email)->bcc('staff@vzdc.org');
             });
 
@@ -1971,7 +1971,7 @@ class AdminDash extends Controller
         if ($loa->status == 3) {
             Mail::send(['html' => 'emails.loas.manual'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
                 $m->from('notams@vzdc.org', 'vZDC LOA Center');
-                $m->subject('Your vZDC LOA Has Been Manually Ended');
+                $m->subject($loa->controller_name . ": vZDC LOA Manually Ended");
                 $m->to($loa->controller_email);
             });
             $user->status = 1;

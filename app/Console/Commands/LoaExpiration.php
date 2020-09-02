@@ -62,7 +62,7 @@ class LoaExpiration extends Command
 
                     Mail::send(['html' => 'emails.loas.started'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
                         $m->from('notams@vzdc.org', 'vZDC LOA Center');
-                        $m->subject('Your vZDC LOA Has Started');
+                        $m->subject($loa->controller_name . ": vZDC LOA Started");
                         $m->to($loa->controller_email)->bcc('staff@vzdc.org');
                     });
 
@@ -86,7 +86,7 @@ class LoaExpiration extends Command
         
                     Mail::send(['html' => 'emails.loas.expiration'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
                         $m->from('notams@vzdc.org', 'vZDC LOA Center');
-                        $m->subject('Your vZDC LOA Has Expired');
+                        $m->subject($loa->controller_name . ": vZDC LOA Has Expired");
                         $m->to($loa->controller_email)->bcc('staff@vzdc.org');
                     });
 
