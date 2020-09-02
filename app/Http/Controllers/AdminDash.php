@@ -1931,11 +1931,11 @@ class AdminDash extends Controller
         $loa->notes = $request->notes;
         $loa->save();
 
-        if ($loa->status == -1 && $request->reason == null) {
+        if ($loa->status == -1 && ($request->denial == null || $request->denial == "" )) {
             return redirect()->back()->with('error', 'You must supply a reason for LOA denial.');
         }
 
-        if ($loa->status == -2 && $request->info == null) {
+        if ($loa->status == -2 && ($request->info == null || $request->info == "" )) {
             return redirect()->back()->with('error', 'You must supply what information you require.');
         }
 
