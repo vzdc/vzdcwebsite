@@ -138,7 +138,7 @@ class OnlineControllerUpdate extends Command
                     }
 
                     // Check for loa
-                    $loa = Loa::where('controller_id', $cid)->where('status', 1)->first();
+                    $loa = Loa::where('controller_id', $cid)->where('status', 2)->first();
                     if ($loa != null) {
                         $user = User::find($cid);
                         $user->status = 1;
