@@ -1938,8 +1938,16 @@ class AdminDash extends Controller
             Mail::send(['html' => 'emails.loas.denied'], ['loa' => $loa, 'reason' => $reason], function ($m) use ($loa) {
                 $m->from('notams@vzdc.org', 'vZDC LOA Center');
                 $m->subject('Your vZDC LOA Has Been Denied');
-                $m->to($loa->controller_email);
+                $m->to($loa->controller_email)->bcc('staff@vzdc.org');
             });
+
+            $dossier = new MemberLog();
+            $dossier->user_submitter = 0;
+            $dossier->user_target = $loa->controller_id;
+            $dossier->content = "LOA Denied: " . $reason;
+            $dossier->confidential = 0;
+            $dossier->save();
+
             return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully denied.");
         }
 
@@ -1947,8 +1955,16 @@ class AdminDash extends Controller
             Mail::send(['html' => 'emails.loas.approved'], ['loa' => $loa], function ($m) use ($loa) {
                 $m->from('notams@vzdc.org', 'vZDC LOA Center');
                 $m->subject('Your vZDC LOA Has Been Accepted');
-                $m->to($loa->controller_email);
+                $m->to($loa->controller_email)->bcc('staff@vzdc.org');
             });
+
+            $dossier = new MemberLog();
+            $dossier->user_submitter = 0;
+            $dossier->user_target = $loa->controller_id;
+            $dossier->content = "LOA Denied Accepted";
+            $dossier->confidential = 0;
+            $dossier->save();
+
             return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully approved.");
         }
 
@@ -1960,6 +1976,14 @@ class AdminDash extends Controller
             });
             $user->status = 1;
             $user->save();
+
+            $dossier = new MemberLog();
+            $dossier->user_submitter = 0;
+            $dossier->user_target = $loa->controller_id;
+            $dossier->content = "LOA Manually Ended";
+            $dossier->confidential = 0;
+            $dossier->save();
+
             return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully approved.");
         }
         return redirect('/dashboard/admin/loas')->with('error', "An error has occured, please try again.");
