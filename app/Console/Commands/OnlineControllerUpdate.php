@@ -6,6 +6,7 @@ use App\ATC;
 use App\User;
 use App\ControllerLog;
 use App\ControllerLogUpdate;
+use App\MemberLog;
 use App\Loa;
 use Carbon\Carbon;
 use DB;
@@ -148,9 +149,16 @@ class OnlineControllerUpdate extends Command
 
                         Mail::send(['html' => 'emails.loas.controlled'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
                             $m->from('notams@vzdc.org', 'vZDC LOA Center');
-                            $m->subject('Your vZDC LOA Has Expired Due To Controlling');
-                            $m->to($loa->controller_email);
+                            $m->subject($loa->controller_name . ": vZDC LOA Expired Due To Controlling");
+                            $m->to($loa->controller_email)->bcc('staff@vzdc.org');
                         });
+
+                        $dossier = new MemberLog();
+                        $dossier->user_submitter = 0;
+                        $dossier->user_target = $loa->controller_id;
+                        $dossier->content = "LOA Ended Due To Controlling";
+                        $dossier->confidential = 0;
+                        $dossier->save();
                     }
                 }
             }
