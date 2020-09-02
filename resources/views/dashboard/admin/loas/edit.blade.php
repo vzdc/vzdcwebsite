@@ -43,11 +43,11 @@
     </div>
     <div class="form-group">
         {!! Form::label('denial', 'Reason for Denial (If Applicable)') !!}
-        {!! Form::textArea('denial', null, ['class' => 'form-control']) !!}
+        {!! Form::text('denial', null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('info', 'Required Information (If Applicable)') !!}
-        {!! Form::textArea('info', null, ['class' => 'form-control']) !!}
+        {!! Form::text('info', null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
             {!! form::label('notes', 'Notes') !!}
