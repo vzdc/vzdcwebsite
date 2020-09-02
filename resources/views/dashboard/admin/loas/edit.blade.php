@@ -39,12 +39,20 @@
     </div>
     <div class="form-group">
         {!! Form::label('status', 'Update LOA Status') !!}
-        {!! Form::select('status', array(1 => 'Approve', -1 => 'Deny', 3 => 'Manually End'), 1) !!}
+        {!! Form::select('status', array(-1 => 'More Information Required', -2 => 'Deny', 1 => 'Approve', 3 => 'Manually End'), 1) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('reason', 'Reason for Denial (If Applicable)') !!}
-        {!! Form::textArea('reason', null, ['class' => 'form-control']) !!}
+        {!! Form::label('denial', 'Reason for Denial (If Applicable)') !!}
+        {!! Form::textArea('denial', null, ['class' => 'form-control']) !!}
     </div>
+    <div class="form-group">
+        {!! Form::label('info', 'Required Information (If Applicable)') !!}
+        {!! Form::textArea('info', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+            {!! form::label('notes', 'Notes') !!}
+            {!! form::textarea('notes', $loa->notes, ['class' => 'form-control', 'placeholder' => $loa->notes, 'readonly' => 'true']) !!}
+        </div>
     <button class="btn btn-success" type="submit">Submit</button>
         <a class="btn btn-danger" href="/dashboard/admin/loas">Cancel</a>
         {!! Form::close() !!}

@@ -1927,14 +1927,15 @@ class AdminDash extends Controller
         $loa = Loa::find($id);
         $user = User::find($loa->controller_id);
         $loa->status = intval($request->status);
+        $loa->notes = $request->notes;
         $loa->save();
 
         if ($loa->status == -1 && $request->reason == null) {
             return redirect()->back()->with('error', 'You must supply a reason for LOA denial.');
         }
 
-        if ($loa->status == -1) {
-            $reason = $request->reason;
+        if ($loa->status == -2) {
+            $reason = $request->denial;
             Mail::send(['html' => 'emails.loas.denied'], ['loa' => $loa, 'reason' => $reason], function ($m) use ($loa) {
                 $m->from('notams@vzdc.org', 'vZDC LOA Center');
                 $m->subject($loa->controller_name . ": vZDC LOA Denied");
@@ -1947,6 +1948,17 @@ class AdminDash extends Controller
             $dossier->content = "LOA Denied: " . $reason;
             $dossier->confidential = 0;
             $dossier->save();
+
+            return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully denied.");
+        }
+
+        if ($loa->status == -1) {
+            $info = $request->info;
+            Mail::send(['html' => 'emails.loas.info'], ['loa' => $loa, 'info' => $info], function ($m) use ($loa) {
+                $m->from('notams@vzdc.org', 'vZDC LOA Center');
+                $m->subject($loa->controller_name . ": vZDC LOA Information Required");
+                $m->to($loa->controller_email);
+            });
 
             return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully denied.");
         }
