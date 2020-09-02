@@ -1972,7 +1972,7 @@ class AdminDash extends Controller
             Mail::send(['html' => 'emails.loas.manual'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
                 $m->from('notams@vzdc.org', 'vZDC LOA Center');
                 $m->subject($loa->controller_name . ": vZDC LOA Manually Ended");
-                $m->to($loa->controller_email);
+                $m->to($loa->controller_email)->bcc('staff@vzdc.org');
             });
             $user->status = 1;
             $user->save();
