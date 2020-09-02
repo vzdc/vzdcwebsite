@@ -1911,11 +1911,12 @@ class AdminDash extends Controller
 
     public function ShowLoas() {
         $pending = Loa::where('status', 0)->get();
+        $info = Loa::where('status', -1)->get();
         $accepted = Loa::where('status', 1)->get();
         $active = Loa::where('status', 2)->get();
         $inactive = Loa::where('status', 3)->get();
-        $denied = Loa::where('status', -1)->get();
-        return view("dashboard.admin.loas.index")->with('pending', $pending)->with('accepted', $accepted)->with('active', $active)->with('inactive', $inactive)->with('denied', $denied);
+        $denied = Loa::where('status', -2)->get();
+        return view("dashboard.admin.loas.index")->with('pending', $pending)->with('accepted', $accepted)->with('active', $active)->with('inactive', $inactive)->with('denied', $denied)->with('info', $info);
     }
 
     public function ViewLoa($id) {
