@@ -18,7 +18,7 @@
             <a class="nav-link active" href="#new" role="tab" data-toggle="tab" style="color:black">New</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link active" href="#info" role="tab" data-toggle="tab" style="color:black">More Info</a>
+            <a class="nav-link" href="#info" role="tab" data-toggle="tab" style="color:black">More Info</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="#accepted" role="tab" data-toggle="tab" style="color:black">Accepted</a>
