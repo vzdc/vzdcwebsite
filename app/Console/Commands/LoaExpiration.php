@@ -49,10 +49,11 @@ class LoaExpiration extends Command
         
         foreach($loas as $loa) {
 
-            $date = new \DateTime($loa->start_date);
+            $start = new \DateTime($loa->start_date);
+            $end = new \DateTimeZone($loa->end_date);
 
             if ($loa->status == 1) {
-                if ($date >= $today) {
+                if ($start >= $today) {
                     $loa->status = 2;
                     $loa->save();
 
@@ -76,7 +77,7 @@ class LoaExpiration extends Command
             }
 
             if ($loa->status == 2) {
-                if ($date <= $today) {
+                if ($end <= $today) {
                     $loa->status = 3;
                     $loa->save();
         
