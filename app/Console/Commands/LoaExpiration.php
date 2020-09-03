@@ -52,52 +52,47 @@ class LoaExpiration extends Command
             $start = new \DateTime($loa->start_date);
             $end = new \DateTimeZone($loa->end_date);
 
-            if ($loa->status == 1) {
-                if ($start >= $today) {
-                    $loa->status = 2;
-                    $loa->save();
+            if ($loa->status == 1 && $start >= $today) {
+                $loa->status = 2;
+                $loa->save();
+                $user = User::find($loa->controller_id);
+                $user->status = 0;
+                $user->save();
 
-                    $user = User::find($loa->controller_id);
-                    $user->status = 0;
-                    $user->save();
+                Mail::send(['html' => 'emails.loas.started'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
+                    $m->from('notams@vzdc.org', 'vZDC LOA Center');
+                    $m->subject($loa->controller_name . ": vZDC LOA Started");
+                    $m->to($loa->controller_email)->bcc('staff@vzdc.org');
+                });
 
-                    Mail::send(['html' => 'emails.loas.started'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
-                        $m->from('notams@vzdc.org', 'vZDC LOA Center');
-                        $m->subject($loa->controller_name . ": vZDC LOA Started");
-                        $m->to($loa->controller_email)->bcc('staff@vzdc.org');
-                    });
-
-                    $dossier = new MemberLog();
-                    $dossier->user_submitter = 0;
-                    $dossier->user_target = $loa->controller_id;
-                    $dossier->content = "LOA Started";
-                    $dossier->confidential = 0;
-                    $dossier->save();
-                }
+                $dossier = new MemberLog();
+                $dossier->user_submitter = 0;
+                $dossier->user_target = $loa->controller_id;
+                $dossier->content = "LOA Started";
+                $dossier->confidential = 0;
+                $dossier->save();
             }
 
-            if ($loa->status == 2) {
-                if ($end <= $today) {
-                    $loa->status = 3;
-                    $loa->save();
+            if ($loa->status == 2 && $end <= $today) {
+                $loa->status = 3;
+                $loa->save();
         
-                    $user = User::find($loa->controller_id);
-                    $user->status = 1;
-                    $user->save();
+                $user = User::find($loa->controller_id);
+                $user->status = 1;
+                $user->save();
         
-                    Mail::send(['html' => 'emails.loas.expiration'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
-                        $m->from('notams@vzdc.org', 'vZDC LOA Center');
-                        $m->subject($loa->controller_name . ": vZDC LOA Has Expired");
-                        $m->to($loa->controller_email)->bcc('staff@vzdc.org');
-                    });
+                Mail::send(['html' => 'emails.loas.expiration'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
+                    $m->from('notams@vzdc.org', 'vZDC LOA Center');
+                    $m->subject($loa->controller_name . ": vZDC LOA Has Expired");
+                    $m->to($loa->controller_email)->bcc('staff@vzdc.org');
+                });
 
-                    $dossier = new MemberLog();
-                    $dossier->user_submitter = 0;
-                    $dossier->user_target = $loa->controller_id;
-                    $dossier->content = "LOA Ended";
-                    $dossier->confidential = 0;
-                    $dossier->save();
-                }
+                $dossier = new MemberLog();
+                $dossier->user_submitter = 0;
+                $dossier->user_target = $loa->controller_id;
+                $dossier->content = "LOA Ended";
+                $dossier->confidential = 0;
+                $dossier->save();
             }
         }
     }

@@ -37,7 +37,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('Event:SendEventReminder')->dailyAt('00:30');
         $schedule->command('SoloCerts:Expiration')->dailyAt('00:30');
         //$schedule->command('LOAs:Expiration')->dailyAt('00:30');
-        $schedule->command('LOAs:Expiration')->everyFiveMinutes();
+        //$schedule->command('LOAs:Expiration')->everyFiveMinutes();
     }
 
     /**
