@@ -51,7 +51,7 @@ class LoaExpiration extends Command
 
             $date = new \DateTime($loa->start_date);
 
-            if ($loa->status = 1) {
+            if ($loa->status == 1) {
                 if ($date >= $today) {
                     $loa->status = 2;
                     $loa->save();
@@ -75,7 +75,7 @@ class LoaExpiration extends Command
                 }
             }
 
-            if ($loa->status = 2) {
+            if ($loa->status == 2) {
                 if ($date <= $today) {
                     $loa->status = 3;
                     $loa->save();
