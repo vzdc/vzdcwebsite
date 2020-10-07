@@ -657,6 +657,14 @@ class ControllerDash extends Controller
         $incident->status = 0;
         $incident->save();
 
+        $user = User::find(Auth::id());
+
+        Mail::send('emails.incident_report', ['user' => $user, 'report' => $incident], function ($m) use ($user, $incident) {
+            $m->from('notams@vzdc.org', 'vZDC Senior Staff');
+            $m->subject('Incident Report Recieved');
+            $m->to($user->email)->bcc('datm@vzdc.org')->bcc('atm@vzdc.org');
+        });
+
         return redirect('/dashboard')->with('success', 'Your report has been submitted successfully.');
     }
 
