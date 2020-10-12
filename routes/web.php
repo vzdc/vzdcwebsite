@@ -121,7 +121,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::get('/delete/{id}', 'TrainingDash@deleteInfo')->middleware('permission:snrStaff');
         });
         Route::prefix('feedback')->middleware('role:ins|atm|datm|ta|wm')->group(function () {
-            Route::get('/', 'TrainingDash@Feedback');
+            Route::get('/', 'TrainingDash@ViewFeedback');
             Route::post('/search', 'TrainingDash@searchFeedback');
         });
     });

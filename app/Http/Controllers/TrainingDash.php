@@ -7,9 +7,9 @@ use App\Ots;
 use App\TrainingInfo;
 use App\TrainingTicket;
 use App\User;
+use App\Feedback;
 use Auth;
 use Carbon\Carbon;
-use Feedback;
 use Illuminate\Http\Request;
 use Mail;
 
@@ -354,7 +354,7 @@ class TrainingDash extends Controller
     /**
      * Function to show feedback dropdown for instructors
      */
-    public function Feedback(Request $request) {
+    public function ViewFeedback(Request $request) {
         // Get all controllers names and ids and order it by last name
         $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
 
