@@ -364,9 +364,8 @@ class TrainingDash extends Controller
             $result = null;
         }
         if ($result != null) {
-            $feedback = Feedback::where('status', 1)->orWhere('status', 2)
-                                ->where('controller_id', $result->id)
-                                ->orderBy('created_at', 'DESC')->get();
+            $feedback = Feedback::where('controller_id', $result->id)
+                                ->where('status', 1)->orderBy('created_at', 'DESC')->get();
         } else {
             $feedback = null;
         }
