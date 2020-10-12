@@ -15,14 +15,15 @@ Feedback
 
 <div class="container">
     <div class="row">
-        {!! Form::open(['url' => '/dashboard/training/feedback/view']) !!}
-            <div class="col-sm">
-                {!! Form::select('cid', $controllers, null, ['placeholder' => 'Select Controller', 'class' => 'form-control']) !!}
+        <form method="get" href="/dashboard/training/feedback/view">
+            <div class="form-group">
+                <label for="id">Select Controller</label>
+                <select class="form-control" id="id">
+                    @foreach($controller in $controllers)
+                        <option value="{{ $controller->id }}">{{ $controller->backwards_name_with_cid }}</option>
+                    @endforeach
+                </select>
             </div>
-            <div class="col-sm-1">
-                <button class="btn btn-primary" action="submit">Search</button>
-            </div>
-        </div>
-    {!! Form::close() !!}
+        </form>
     </div>
 </div>
