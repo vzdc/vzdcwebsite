@@ -354,30 +354,41 @@ class TrainingDash extends Controller
     /**
      * Function to show feedback dropdown for instructors
      */
-    public function Feedback() {
+    public function Feedback(Request $request) {
         // Get all controllers names and ids and order it by last name
         $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
 
         // Return view with list of controllers
         return view('dashboard.training.feedback')->with('controllers', $controllers);
+
+        if ($request->id != null) {
+            $result = User::find($request->id);
+        } else {
+            $result = null;
+        }
+        if ($result != null) {
+            $feedback_sort = Feedback::where('controller_id', $result->id)->get()->sortByDesc(function ($t) {
+                return strtotime($t->date . ' ' . $t->start_time);
+            })->pluck('id');
+            $feedback_order = implode(',', array_fill(0, count($feedback_sort), '?'));
+            $feedback = Feedback::whereIn('id', $feedback_sort)->orderByRaw("field(id,{$feedback_order})", $feedback_sort);
+        } else {
+            $tickets = null;
+        }
+
+        return view('dashboard.training.feedback')->with('controllers', $controllers)->with('result', $result)->with('feedback', $feedback);
     }
 
     /**
      * Function to show all feedback of selected controller
      */
-    public function ViewFeedback(Request $request) {
-        // make sure controller exists
-        $controller = User::find($request->cid);
-        if ($controller == null) {
-            return redirect()->back()->with('error', 'controller not found');
+    public function searchFeedback(Request $request)
+    {
+        $result = User::find($request->cid);
+        if ($result != null) {
+            return redirect('/dashboard/training/tickets?id=' . $result->id);
+        } else {
+            return redirect()->back()->with('error', 'There is not controlling that exists with this CID.');
         }
-
-        // Get all controller's processed feedback
-        $feedback = Feedback::where('controller_id', $controller->id)
-                            ->where('status', 1)
-                            ->orderByDesc('created_at')->get();
-
-        // Return view with all feedback and controller
-        return view('dashboard.training.view_feedback')->with('feedback', $feedback)->with('controller', $controller);
     }
 }

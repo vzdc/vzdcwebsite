@@ -122,7 +122,7 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         });
         Route::prefix('feedback')->middleware('role:ins|atm|datm|ta|wm')->group(function () {
             Route::get('/', 'TrainingDash@Feedback');
-            Route::get('/view/{id}', 'TrainingDash@ViewFeedback');
+            Route::post('/search', 'TrainingDash@searchFeedback');
         });
     });
 
