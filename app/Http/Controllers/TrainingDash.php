@@ -364,11 +364,7 @@ class TrainingDash extends Controller
             $result = null;
         }
         if ($result != null) {
-            $feedback_sort = Feedback::where('controller_id', $result->id)->get()->sortByDesc(function ($t) {
-                return strtotime($t->date . ' ' . $t->start_time);
-            })->pluck('id');
-            $feedback_order = implode(',', array_fill(0, count($feedback_sort), '?'));
-            $feedback = Feedback::whereIn('id', $feedback_sort)->orderByRaw("field(id,{$feedback_order})", $feedback_sort);
+            $feedback = Feedback::where('controller_id', $result->id)->where('status', 1)->get();
         } else {
             $feedback = null;
         }
