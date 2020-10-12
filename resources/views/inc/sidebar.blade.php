@@ -61,6 +61,10 @@
                         <a class="nav-link {{ Nav::urlDoesContain('dashboard/training/ots-center') }}"
                            href="/dashboard/training/ots-center">OTS Center</a>
                     @endif
+                    @if(Auth::user()->hasRole('ins') || Auth::user()->can('snrStaff'))
+                        <a class="nav-link {{ Nav::urlDoesContain('dashboard/training/feedback') }}"
+                            href="/dashboard/training/feedback">Feedback</a>
+                    @endif
                 @endif
             </div>
         @else

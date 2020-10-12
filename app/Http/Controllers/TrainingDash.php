@@ -7,6 +7,7 @@ use App\Ots;
 use App\TrainingInfo;
 use App\TrainingTicket;
 use App\User;
+use App\Feedback;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -348,5 +349,40 @@ class TrainingDash extends Controller
         $audit->save();
 
         return redirect()->back()->with('success', 'The OTS has been unassigned from you and cancelled successfully.');
+    }
+
+    /**
+     * Function to show feedback dropdown for instructors
+     */
+    public function ViewFeedback(Request $request) {
+        // Get all controllers names and ids and order it by last name
+        $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
+
+        if ($request->id != null) {
+            $result = User::find($request->id);
+        } else {
+            $result = null;
+        }
+        if ($result != null) {
+            $feedback = Feedback::where('controller_id', $result->id)
+                                ->where('status', 1)->orderBy('created_at', 'DESC')->get();
+        } else {
+            $feedback = null;
+        }
+
+        return view('dashboard.training.feedback')->with('controllers', $controllers)->with('result', $result)->with('feedback', $feedback);
+    }
+
+    /**
+     * Function to show all feedback of selected controller
+     */
+    public function searchFeedback(Request $request)
+    {
+        $result = User::find($request->cid);
+        if ($result != null) {
+            return redirect('/dashboard/training/feedback?id=' . $result->id);
+        } else {
+            return redirect()->back()->with('error', 'There is not controlling that exists with this CID.');
+        }
     }
 }

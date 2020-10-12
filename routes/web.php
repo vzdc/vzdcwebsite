@@ -120,6 +120,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
             Route::post('/add/{section}', 'TrainingDash@addInfo')->middleware('permission:snrStaff');
             Route::get('/delete/{id}', 'TrainingDash@deleteInfo')->middleware('permission:snrStaff');
         });
+        Route::prefix('feedback')->middleware('role:ins|atm|datm|ta|wm')->group(function () {
+            Route::get('/', 'TrainingDash@ViewFeedback');
+            Route::post('/search', 'TrainingDash@searchFeedback');
+        });
     });
 
     Route::prefix('admin')->group(function () {
