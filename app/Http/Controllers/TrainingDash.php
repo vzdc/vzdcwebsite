@@ -370,7 +370,7 @@ class TrainingDash extends Controller
             $feedback_order = implode(',', array_fill(0, count($feedback_sort), '?'));
             $feedback = Feedback::whereIn('id', $feedback_sort)->orderByRaw("field(id,{$feedback_order})", $feedback_sort);
         } else {
-            $tickets = null;
+            $feedback = null;
         }
 
         return view('dashboard.training.feedback')->with('controllers', $controllers)->with('result', $result)->with('feedback', $feedback);
