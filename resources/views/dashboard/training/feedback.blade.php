@@ -49,7 +49,6 @@ Feedback
                     <th scope="col">Position</th>
                     <th scope="col">Comments</th>
                     <th scope="col">Submitted</th>
-                    <th scope="col">Contacted</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,13 +58,6 @@ Feedback
                     <td data-toggle="tooltip" title="{{ $f->comments }}">{{ str_limit($f->comments, 80, '...') }}
                     </td>
                     <td>{{ $f->created_at }}</td>
-                    <td>
-                        @if($f->contacted == 1)
-                            <i class="fas fa-check text-center" style="color:green"></i>
-                        @else
-                            <i class="fas fa-times text-center" style="color:red"></i>
-                        @endif
-                    </td>
                 </tr>
                 @endforeach
             </tbody>
