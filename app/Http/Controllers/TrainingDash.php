@@ -383,7 +383,7 @@ class TrainingDash extends Controller
     {
         $result = User::find($request->cid);
         if ($result != null) {
-            return redirect('/dashboard/training/tickets?id=' . $result->id);
+            return redirect('/dashboard/training/feedback?id=' . $result->id);
         } else {
             return redirect()->back()->with('error', 'There is not controlling that exists with this CID.');
         }

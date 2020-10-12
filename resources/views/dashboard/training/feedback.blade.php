@@ -15,7 +15,7 @@ Feedback
 
 <div class="container">
     <br><br>
-    <h5>Search Training Tickets:</h5>
+    <h5>Search Feedback:</h5>
     {!! Form::open(['url' => '/dashboard/training/feedback/search']) !!}
         <div class="row">
             <div class="col-sm-3">
