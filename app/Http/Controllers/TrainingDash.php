@@ -365,9 +365,9 @@ class TrainingDash extends Controller
     /**
      * Function to show all feedback of selected controller
      */
-    public function ViewFeedback($id) {
+    public function ViewFeedback(Request $request) {
         // make sure controller exists
-        $controller = User::find($id);
+        $controller = User::find($request->cid);
         if ($controller == null) {
             return redirect()->back()->with('error', 'controller not found');
         }

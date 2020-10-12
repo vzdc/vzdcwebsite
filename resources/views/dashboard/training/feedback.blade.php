@@ -19,8 +19,8 @@ Feedback
             <div class="row">
                 <div class="col-sm">
                     <div class="form-group">
-                        <label for="id">Select Controller</label>
-                        <select class="form-control" id="id">
+                        <label for="cid">Select Controller</label>
+                        <select class="form-control" id="cid">
                             @foreach($controller in $controllers)
                                 <option value="{{ $controller->id }}">{{ $controller->backwards_name_with_cid }}</option>
                             @endforeach
