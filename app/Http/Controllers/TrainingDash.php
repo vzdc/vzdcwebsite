@@ -9,6 +9,7 @@ use App\TrainingTicket;
 use App\User;
 use Auth;
 use Carbon\Carbon;
+use Feedback;
 use Illuminate\Http\Request;
 use Mail;
 
@@ -348,5 +349,35 @@ class TrainingDash extends Controller
         $audit->save();
 
         return redirect()->back()->with('success', 'The OTS has been unassigned from you and cancelled successfully.');
+    }
+
+    /**
+     * Function to show feedback dropdown for instructors
+     */
+    public function Feedback() {
+        // Get all controllers names and ids and order it by last name
+        $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
+
+        // Return view with list of controllers
+        return view('dashboard.training.feedback')->with('controllers', $controllers);
+    }
+
+    /**
+     * Function to show all feedback of selected controller
+     */
+    public function ViewFeedback($id) {
+        // make sure controller exists
+        $controller = User::find($id);
+        if ($controller == null) {
+            return redirect()->back()->with('error', 'controller not found');
+        }
+
+        // Get all controller's processed feedback
+        $feedback = Feedback::where('controller_id', $controller->id)
+                            ->where('status', 1)
+                            ->orderByDesc('created_at')->get();
+
+        // Return view with all feedback and controller
+        return view('dashboard.training.view_feedback')->with('feedback', $feedback)->with('controller', $controller);
     }
 }
