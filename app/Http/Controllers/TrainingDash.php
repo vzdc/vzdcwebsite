@@ -358,9 +358,6 @@ class TrainingDash extends Controller
         // Get all controllers names and ids and order it by last name
         $controllers = User::orderBy('lname', 'ASC')->get()->pluck('backwards_name', 'id');
 
-        // Return view with list of controllers
-        return view('dashboard.training.feedback')->with('controllers', $controllers);
-
         if ($request->id != null) {
             $result = User::find($request->id);
         } else {
