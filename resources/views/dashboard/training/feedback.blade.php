@@ -72,3 +72,5 @@ Feedback
         </table>
     @endif
 </div>
+
+@endsection
