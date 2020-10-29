@@ -13,13 +13,18 @@ Visit
     </div>
 </span>
 <br>
-<br>
-<h3>Visiting Criteria:<h3>
+<span class="border border-light" style="background-color:#d2d4f4">
+    <div class="container">
+        &nbsp;
+<h3>Visiting Criteria:</h3>
 -You must currently be a member of a facility.
 -You must currently hold a rating greater than OBS.
 -You must have obtained 50 hours on your current rating.
 -You must have been a member of your current facility for 90 days.
 -You must have held your current rating for 90 days.
+        &nbsp;
+    </div>
+</span>
 <br>
 <div class="container">
     @if($visitors->value == 1)
