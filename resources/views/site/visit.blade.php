@@ -15,7 +15,6 @@ Visit
 <br>
 <span class="border border-light" style="background-color:#d2d4f4">
     <div class="container">
-        &nbsp;
 <h5>Visiting Criteria:</h5>
 <ul>
 <li>You must currently be a member of a facility.</li>
@@ -23,7 +22,6 @@ Visit
 <li>You must have obtained 50 hours on your current rating.</li>
 <li>You must have been a member of your current facility for 90 days.</li>
 <li>You must have held your current rating for 90 days.</li>
-        &nbsp;
     </div>
 </span>
 <br>
