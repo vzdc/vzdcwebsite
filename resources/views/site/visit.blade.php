@@ -13,7 +13,7 @@ Visit
     </div>
 </span>
 <br>
-<span class="border border-light" style="background-color:#d2d4f4">
+<span class="border border-light" style="background-color:#fbf79d">
     <div class="container">
 <h5>Visiting Criteria:</h5>
 <ul>
