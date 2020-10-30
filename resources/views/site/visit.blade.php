@@ -13,7 +13,18 @@ Visit
     </div>
 </span>
 <br>
-
+<span class="border border-light" style="background-color:#fbf79d">
+    <div class="container">
+<h5>Visiting Criteria:</h5>
+<ul>
+<li>You must currently be a member of a facility.</li>
+<li>You must currently hold a rating greater than OBS.</li>
+<li>You must have obtained 50 hours on your current rating.</li>
+<li>You must have been a member of your current facility for 90 days.</li>
+<li>You must have held your current rating for 90 days.</li>
+    </div>
+</span>
+<br>
 <div class="container">
     @if($visitors->value == 1)
     {!! Form::open(['action' => 'FrontController@storeVisit']) !!}
