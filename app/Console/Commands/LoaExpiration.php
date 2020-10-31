@@ -43,28 +43,46 @@ class LoaExpiration extends Command
      */
     public function handle()
     {
+        // Get accepted not started loas
+        $not_started = Loa::where('status', 1)->get();
+        
+        // Check if loa has started
+        $this->checkLoaStart($not_started);
+
+        // Get all active loas
+        $active = Loa::where('status', 2)->get();
+
+        // Check if loa has ended
+        $this->checkLoaEnd($active);
+    }
+
+    public function checkLoaStart($loas) {
+        // Get todays date
         $today = new \DateTime('now');
 
-        $loas = Loa::get();
-        
         foreach($loas as $loa) {
-
+            // Get start date
             $start = new \DateTime($loa->start_date);
-            $end = new \DateTimeZone($loa->end_date);
 
+            // Check if loa is accepted not started, and date is less than today
             if ($loa->status == 1 && $start >= $today) {
+                // Set status to started
                 $loa->status = 2;
                 $loa->save();
+
+                // Set user to on loa
                 $user = User::find($loa->controller_id);
                 $user->status = 0;
                 $user->save();
 
+                // Send email
                 Mail::send(['html' => 'emails.loas.started'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
                     $m->from('notams@vzdc.org', 'vZDC LOA Center');
-                    $m->subject($loa->controller_name . ": vZDC LOA Started");
+                    $m->subject($loa->controller_name . "vZDC LOA Started");
                     $m->to($loa->controller_email)->bcc('staff@vzdc.org');
                 });
 
+                // Add dossier entry for loa start
                 $dossier = new MemberLog();
                 $dossier->user_submitter = 0;
                 $dossier->user_target = $loa->controller_id;
@@ -72,21 +90,36 @@ class LoaExpiration extends Command
                 $dossier->confidential = 0;
                 $dossier->save();
             }
+        }
+    }
 
-            if ($loa->status == 2 && $end <= $today) {
+    public function checkLoaEnd($loas) {
+        // Get todays date
+        $today = new \DateTime('now');
+
+        foreach($loas as $loa) {
+            // Get start date
+            $end = new \DateTime($loa->end_date);
+
+            // Check if loa is accepted not started, and date is less than today
+            if ($loa->status == 1 && $end >= $today) {
+                // Set status to ended
                 $loa->status = 3;
                 $loa->save();
-        
+
+                // Set user back to active
                 $user = User::find($loa->controller_id);
                 $user->status = 1;
                 $user->save();
-        
+
+                // Send email
                 Mail::send(['html' => 'emails.loas.expiration'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
                     $m->from('notams@vzdc.org', 'vZDC LOA Center');
-                    $m->subject($loa->controller_name . ": vZDC LOA Has Expired");
+                    $m->subject($loa->controller_name . "vZDC LOA Has Expired");
                     $m->to($loa->controller_email)->bcc('staff@vzdc.org');
                 });
 
+                // Add dossier entry for loa ending
                 $dossier = new MemberLog();
                 $dossier->user_submitter = 0;
                 $dossier->user_target = $loa->controller_id;
