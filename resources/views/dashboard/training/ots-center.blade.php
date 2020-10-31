@@ -170,7 +170,10 @@ OTS Center
                                 <td>{{ $o->recommender_name }}</td>
                                 <td>{{ $o->ins_name }}</td>
                                 <td>{{ $o->facility_position }}</td>
-                                <td>{{ $o->result }}@if($o->result == 'Pass') <i class="fas fa-check"></i>@else <i class="fas fa-times"></i>@endif <a href="{{ $o->report }}" target="_blank">(View Report)</a></td>
+                                <td>
+                                    {{ $o->result }}@if($o->result == 'Pass') <i class="fas fa-check"></i>@else <i class="fas fa-times"></i>@endif 
+                                    @if($o->report != null) <a href="{{ $o->report }}" target="_blank">(View Report)</a> @endif
+                                </td>
                             </tr>
                         @endforeach
                     @else

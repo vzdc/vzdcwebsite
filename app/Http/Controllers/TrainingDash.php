@@ -111,7 +111,8 @@ class TrainingDash extends Controller
             'date' => 'required',
             'start' => 'required',
             'end' => 'required',
-            'duration' => 'required'
+            'duration' => 'required',
+            'score' => 'required'
         ]);
 
         $ticket = new TrainingTicket;
@@ -127,6 +128,7 @@ class TrainingDash extends Controller
         $ticket->comments = $request->comments;
         $ticket->ins_comments = $request->trainer_comments;
         $ticket->no_show = $request->no_show;
+        $ticket->score = $request->score;
         $ticket->save();
         $extra = null;
 
@@ -155,6 +157,20 @@ class TrainingDash extends Controller
         $audit->ip = $_SERVER['REMOTE_ADDR'];
         $audit->what = Auth::user()->full_name . ' added a training ticket for ' . User::find($ticket->controller_id)->full_name . '.';
         $audit->save();
+
+        $response = null;
+        if ($ticket->no_show == 0) {
+            $response = Http::post("https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record", [
+                'instructor_id ' => $ticket->instructor_id,
+                'session_date' => $ticket->date,
+                'position' => $ticket->position_central,
+                'duration' => $ticket->duration,
+                'movements' => $ticket->movements,
+                'score' => $ticket->score,
+                'notes' => $ticket->comments,
+                'location' => $ticket->type_central
+            ]);
+        }
 
         return redirect('/dashboard/training/tickets?id=' . $ticket->controller_id)->with('success', 'The training ticket has been submitted successfully' . $extra . '.');
     }
@@ -188,7 +204,8 @@ class TrainingDash extends Controller
                 'date' => 'required',
                 'start' => 'required',
                 'end' => 'required',
-                'duration' => 'required'
+                'duration' => 'required',
+                'score' => 'required'
             ]);
 
             $ticket->controller_id = $request->controller;
@@ -201,6 +218,7 @@ class TrainingDash extends Controller
             $ticket->duration = $request->duration;
             $ticket->comments = $request->comments;
             $ticket->ins_comments = $request->trainer_comments;
+            $ticket->score = $request->score;
             $ticket->save();
 
             $audit = new Audit;
@@ -208,6 +226,7 @@ class TrainingDash extends Controller
             $audit->ip = $_SERVER['REMOTE_ADDR'];
             $audit->what = Auth::user()->full_name . ' edited a training ticket for ' . User::find($request->controller)->full_name . '.';
             $audit->save();
+
 
             return redirect('/dashboard/training/tickets/view/' . $ticket->id)->with('success', 'The ticket has been updated successfully.');
         } else {
