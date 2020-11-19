@@ -30,7 +30,7 @@
             <p>The Air Traffic Manager is the Chief Executive and in charge of all oversight and administration of the ARTCC.
                The ATM’s duties and responsibilities include, but are not limited to the following:
                <ol>
-                   <li>Reports to the North Eastern Region Director (VATUSA9)</li>
+                   <li>Reports to the Northeastern Regional Manager (VATUSA7)</li>
                    <li>Responsible for all operations associated with the Washington D.C. ARTCC.</li>
                    <li>Maintains an online presence on the VATSIM server.</li>
                    <li>Attends periodic meetings to report on ARTCC activities.</li>
