@@ -160,7 +160,7 @@ class TrainingDash extends Controller
 
         $client = new \GuzzleHttp\Client();
         $client->post(
-            "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record",
+            "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . env('VATUSA_API_KEY'),
             array(
                 'form_params' => array(
                     'instructor_id ' => $ticket->instructor_id,
