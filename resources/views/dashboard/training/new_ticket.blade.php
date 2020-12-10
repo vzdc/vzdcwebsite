@@ -43,6 +43,8 @@ New Training Ticket
                     ], null, ['placeholder' => 'Select Position', 'class' => 'form-control']) !!}
                 </div>
             </div>
+        </div>
+        <div class="row">
             <div class="col-sm">
                 <div class="form-group">
                     {!! Form::label('facility', 'Facility', ['class' => 'form-label']) !!}
@@ -55,8 +57,6 @@ New Training Ticket
                     ], null, ['placeholder' => 'Select Facility', 'class' => 'form-control']) !!}
                 </div>
             </div>
-        </div>
-        <div class="row">
             <div class="col-sm">
                 <div class="form-group">
                     @if(Auth::user()->hasRole('ins'))
@@ -80,18 +80,6 @@ New Training Ticket
                             3 => 'Live Monitoring'
                         ], null, ['placeholder' => 'Select Session Type', 'class' => 'form-control']) !!}
                     @endif
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="form-group">
-                    {!! Form::label('score', 'Student Score', ['class' => 'form-label']) !!}
-                    {!! Form::select('score', [
-                        1 => '1 - Unsatisfactory',
-                        2 => '2 - Poor',
-                        3 => '3 - Average',
-                        4 => '4 - Good',
-                        5 => '5 - Excellent'
-                    ], null, ['placeholder' => 'Select Score', 'class' => 'form-control']) !!}
                 </div>
             </div>
         </div>

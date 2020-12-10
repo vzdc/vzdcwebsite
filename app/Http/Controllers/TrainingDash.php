@@ -111,8 +111,7 @@ class TrainingDash extends Controller
             'date' => 'required',
             'start' => 'required',
             'end' => 'required',
-            'duration' => 'required',
-            'score' => 'required'
+            'duration' => 'required'
         ]);
 
         $ticket = new TrainingTicket;
