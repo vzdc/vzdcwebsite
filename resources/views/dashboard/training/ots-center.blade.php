@@ -118,7 +118,7 @@ OTS Center
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Upload OTS Report</h5>
+                                            <h5 class="modal-title">Submit OTS Report</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -127,11 +127,13 @@ OTS Center
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                {!! Form::label('result', 'Result') !!}
-                                                {!! Form::select('result', [2 => 'Pass', 3 => 'Fail'], null, ['placeholder' => 'Select Result', 'class' => 'form-control']) !!}
+                                                <span class="text-danger">Submit to VATUSA first</span>
+                                                <a class="btn btn-primary" href="https://www.vatusa.net/mgt/controller/" . {{ $o->controller_id }} . "#training" target="_blank">VATUSA OTS Submission</a>
                                             </div>
                                             <div class="form-group">
-                                                {!! Form::file('ots_report', ['class' => 'form-control']) !!}
+                                                <span class="text-danger">Next complete the OTS</span>
+                                                {!! Form::label('result', 'Result') !!}
+                                                {!! Form::select('result', [2 => 'Pass', 3 => 'Fail'], null, ['placeholder' => 'Select Result', 'class' => 'form-control']) !!}
                                             </div>
                                         </div>
                                         <div class="modal-footer">

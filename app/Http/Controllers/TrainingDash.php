@@ -165,8 +165,6 @@ class TrainingDash extends Controller
                 'session_date' => $ticket->date,
                 'position' => $ticket->position_central,
                 'duration' => $ticket->duration,
-                'movements' => $ticket->movements,
-                'score' => $ticket->score,
                 'notes' => $ticket->comments,
                 'location' => $ticket->type_central
             ]);
@@ -324,21 +322,13 @@ class TrainingDash extends Controller
     {
         $validator = $request->validate([
             'result' => 'required',
-            'ots_report' => 'required'
         ]);
 
         $ots = Ots::find($id);
 
         if ($ots->ins_id == Auth::id()) {
-            $ext = $request->file('ots_report')->getClientOriginalExtension();
-            $time = Carbon::now()->timestamp;
-            $path = $request->file('ots_report')->storeAs(
-                'public/ots_reports', $time . '.' . $ext
-            );
-            $public_url = '/storage/ots_reports/' . $time . '.' . $ext;
 
             $ots->status = $request->result;
-            $ots->report = $public_url;
             $ots->save();
 
             $audit = new Audit;

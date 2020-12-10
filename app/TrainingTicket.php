@@ -12,7 +12,7 @@ class TrainingTicket extends Model
 {
     protected $table = 'training_tickets';
     protected $fillable = ['id', 'controller_id', 'trainer_id', 'position', 'no_show', 'type', 'date', 'start_time', 'end_time', 
-                            'duration', 'comments', 'ins_comments', 'score', 'updated_at', 'created_at'];
+                            'duration', 'comments', 'ins_comments', 'updated_at', 'created_at'];
 
     public function getTrainerNameAttribute()
     {
