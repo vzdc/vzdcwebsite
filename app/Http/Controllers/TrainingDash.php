@@ -176,7 +176,7 @@ class TrainingDash extends Controller
         return redirect('/dashboard')->with(
             'error', 'Instructor ID: ' . $ticket->instructor_id . ' Date: ' . 
             $ticket->date . ' Position: ' . $ticket->position_central . 'Duration: ' .
-            $ticket->duration . ' Notes: ' . $ticket->comments . ' Location: ' . $ticket->type_central . ' Score: ' .
+            $ticket->duration . ' Notes: ' . $ticket->comments . ' Location: ' . $ticket->type_central
         );
 
         return redirect('/dashboard/training/tickets?id=' . $ticket->controller_id)->with('success', 'The training ticket has been submitted successfully' . $extra . '.');
