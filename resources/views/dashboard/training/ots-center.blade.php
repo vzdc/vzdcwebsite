@@ -128,10 +128,12 @@ OTS Center
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <span class="text-danger">Submit to VATUSA first</span>
+                                                <br />
                                                 <a class="btn btn-primary" href="https://www.vatusa.net/mgt/controller/{{ $o->controller_id }}#training" target="_blank">VATUSA OTS Submission</a>
                                             </div>
                                             <div class="form-group">
                                                 <span class="text-danger">Next complete the OTS</span>
+                                                <br />
                                                 {!! Form::label('result', 'Result') !!}
                                                 {!! Form::select('result', [2 => 'Pass', 3 => 'Fail'], null, ['placeholder' => 'Select Result', 'class' => 'form-control']) !!}
                                             </div>
