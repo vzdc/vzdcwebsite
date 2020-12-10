@@ -158,19 +158,25 @@ class TrainingDash extends Controller
         $audit->what = Auth::user()->full_name . ' added a training ticket for ' . User::find($ticket->controller_id)->full_name . '.';
         $audit->save();
 
-        $client = new \GuzzleHttp\Client();
-        $client->post(
-            "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'),
-            array(
-                'form_params' => array(
-                    'instructor_id ' => $ticket->trainer_id,
-                    'session_date' => $ticket->date,
-                    'position' => $ticket->position_central,
-                    'duration' => $ticket->duration,
-                    'notes' => $ticket->comments,
-                    'location' => $ticket->type_central
-                )
-            )
+        // $client = new \GuzzleHttp\Client();
+        // $client->post(
+        //     "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'),
+        //     array(
+        //         'form_params' => array(
+        //             'instructor_id ' => $ticket->instructor_id,
+        //             'session_date' => $ticket->date,
+        //             'position' => $ticket->position_central,
+        //             'duration' => $ticket->duration,
+        //             'notes' => $ticket->comments,
+        //             'location' => $ticket->type_central
+        //         )
+        //     )
+        // );
+
+        return redirect('/dashboard')->with(
+            'error', 'Instructor ID: ' . $ticket->instructor_id . ' Date: ' . 
+            $ticket->date . ' Position: ' . $ticket->position_central . 'Duration: ' .
+            $ticket->duration . ' Notes: ' . $ticket->comments . ' Location: ' . $ticket->type_central
         );
 
         return redirect('/dashboard/training/tickets?id=' . $ticket->controller_id)->with('success', 'The training ticket has been submitted successfully' . $extra . '.');
