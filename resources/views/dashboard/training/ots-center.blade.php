@@ -174,7 +174,7 @@ OTS Center
                                 <td>{{ $o->facility_position }}</td>
                                 <td>
                                     {{ $o->result }}@if($o->result == 'Pass') <i class="fas fa-check"></i>@else <i class="fas fa-times"></i>@endif 
-                                    @if($o->report != null) <a href="{{ $o->report }}" target="_blank">(View Report)</a> @endif
+                                    @if($o->report != null) <a href="{{ $o->report }}" target="_blank">(View Report)</a> <br /> @endif
                                     <a href="https://www.vatusa.net/mgt/controller/{{ $o->controller_id }}#training" target="_blank">(View Training History)</a>
                                 </td>
                             </tr>
