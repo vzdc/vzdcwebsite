@@ -11,7 +11,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mail;
-use GuzzleHttp\Client;
+use Config;
 class TrainingDash extends Controller
 {
     public function showATCast()
@@ -158,7 +158,7 @@ class TrainingDash extends Controller
         $audit->what = Auth::user()->full_name . ' added a training ticket for ' . User::find($ticket->controller_id)->full_name . '.';
         $audit->save();
 
-        $apiKey = env('VATUSA_API_KEY');
+        $apiKey = Config::get('vatusa.api_key');
 
         $client = new \GuzzleHttp\Client();
         $client->post(
