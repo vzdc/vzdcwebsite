@@ -166,7 +166,8 @@ class TrainingDash extends Controller
                 'position' => $ticket->position_central,
                 'duration' => $ticket->duration,
                 'notes' => $ticket->comments,
-                'location' => $ticket->type_central
+                'location' => $ticket->type_central,
+                'score' => $ticket->score
             ]);
         }
 

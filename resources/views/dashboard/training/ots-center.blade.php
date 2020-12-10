@@ -128,7 +128,7 @@ OTS Center
                                         <div class="modal-body">
                                             <div class="form-group">
                                                 <span class="text-danger">Submit to VATUSA first</span>
-                                                <a class="btn btn-primary" href="https://www.vatusa.net/mgt/controller/" . {{ $o->controller_id }} . "#training" target="_blank">VATUSA OTS Submission</a>
+                                                <a class="btn btn-primary" href="https://www.vatusa.net/mgt/controller/{{ $o->controller_id }}#training" target="_blank">VATUSA OTS Submission</a>
                                             </div>
                                             <div class="form-group">
                                                 <span class="text-danger">Next complete the OTS</span>
@@ -175,6 +175,7 @@ OTS Center
                                 <td>
                                     {{ $o->result }}@if($o->result == 'Pass') <i class="fas fa-check"></i>@else <i class="fas fa-times"></i>@endif 
                                     @if($o->report != null) <a href="{{ $o->report }}" target="_blank">(View Report)</a> @endif
+                                    <a href="https://www.vatusa.net/mgt/controller/{{ $o->controller_id }}#training" target="_blank">(View Training History)</a>
                                 </td>
                             </tr>
                         @endforeach
