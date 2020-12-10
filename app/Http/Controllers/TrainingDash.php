@@ -158,9 +158,11 @@ class TrainingDash extends Controller
         $audit->what = Auth::user()->full_name . ' added a training ticket for ' . User::find($ticket->controller_id)->full_name . '.';
         $audit->save();
 
+        $apiKey = env('VATUSA_API_KEY');
+
         $client = new \GuzzleHttp\Client();
         $client->post(
-            "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . env('VATUSA_API_KEY'),
+            "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey={{ $apiKey }}",
             array(
                 'form_params' => array(
                     'instructor_id ' => $ticket->instructor_id,
