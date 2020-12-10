@@ -11,6 +11,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mail;
+use Illuminate\Support\Facades\Http;
 
 class TrainingDash extends Controller
 {
