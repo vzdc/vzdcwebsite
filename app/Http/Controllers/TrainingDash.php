@@ -11,8 +11,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mail;
-use Illuminate\Support\Facades\Http;
-
+use GuzzleHttp\Client;
 class TrainingDash extends Controller
 {
     public function showATCast()
@@ -159,19 +158,21 @@ class TrainingDash extends Controller
         $audit->what = Auth::user()->full_name . ' added a training ticket for ' . User::find($ticket->controller_id)->full_name . '.';
         $audit->save();
 
-        $response = null;
-        if ($ticket->no_show == 0) {
-            $response = Http::post("https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record", [
-                'instructor_id ' => $ticket->instructor_id,
-                'session_date' => $ticket->date,
-                'position' => $ticket->position_central,
-                'duration' => $ticket->duration,
-                'notes' => $ticket->comments,
-                'location' => $ticket->type_central,
-                'score' => $ticket->score
-            ]);
-        }
-
+        $client = new \GuzzleHttp\Client();
+        $client->post(
+            "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record",
+            array(
+                'form_params' => array(
+                    'instructor_id ' => $ticket->instructor_id,
+                    'session_date' => $ticket->date,
+                    'position' => $ticket->position_central,
+                    'duration' => $ticket->duration,
+                    'notes' => $ticket->comments,
+                    'location' => $ticket->type_central,
+                    'score' => $ticket->score
+                )
+            )
+        );
         return redirect('/dashboard/training/tickets?id=' . $ticket->controller_id)->with('success', 'The training ticket has been submitted successfully' . $extra . '.');
     }
 
