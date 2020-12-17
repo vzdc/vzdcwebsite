@@ -78,12 +78,6 @@ class RosterUpdate extends Command
                 $user->status = '1';
                 $user->added_to_facility = substr($r->facility_join, 0, 10).' '.substr($r->facility_join, 11, 8);
                 $user->save();
-                
-                $dossier = new MemberLog();
-                $dossier->user_target = $use->id;
-                $dossier->user_submitter = 0;
-                $dossier->content = "User has been added to the ZDC roster.";
-                $dossier->save();
 
                 //Assigns controller initials
                 $user = User::find($r->cid);
