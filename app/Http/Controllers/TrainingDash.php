@@ -161,15 +161,18 @@ class TrainingDash extends Controller
 
         $date = new \DateTime($ticket->date);
 
-        $client = new \GuzzleHttp\Client();
-        $request = $client->createRequest("POST", "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), [
+        $array = array(
             'instructor_id ' => $ticket->trainer_id,
             'session_date' => $date->format('Y-m-d') . " " . $request->start,
             'position' => $ticket->position_central,
             'duration' => $ticket->duration,
             'notes' => $ticket->comments,
             'location' => $ticket->type_central
-        ]);
+        );
+
+        $client = new \GuzzleHttp\Client();
+        $request = $client->createRequest("POST", "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), 
+        ['body' => json_encode($array)]);
 
         return redirect('/dashboard')->with('error', $request->getBody()->read(1024));
 
