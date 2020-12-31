@@ -171,18 +171,15 @@ class TrainingDash extends Controller
             'location' => $ticket->type_central);
             $stream = GuzzleHttp\Psr7\Utils::streamFor($array);
 
-            $client->request('POST', "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), ['body' => $stream]);
-
-            // $res = $client->post("https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), [
-            //     'instructor_id ' => $ticket->trainer_id,
-            //     'session_date' => $date->format('Y-m-d') . " " . $request->start,
-            //     'position' => $ticket->position_central,
-            //     'duration' => $ticket->duration,
-            //     'notes' => $ticket->comments,
-            //     'location' => $ticket->type_central
-            // ]);
-
-            // dd($res->getBody());
+            $response = $client->request('POST', "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), [
+                'form_params' => [
+                    'session_date' => $date->format('Y-m-d') . " " . $request->start,
+                    'position' => $ticket->position_central,
+                    'duration' => $ticket->duration,
+                    'notes' => $ticket->comments,
+                    'location' => $ticket->type_central
+                ]
+            ]);
         }
         catch (Exception $ex) {
             dd($ex);
