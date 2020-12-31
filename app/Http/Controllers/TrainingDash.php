@@ -162,6 +162,16 @@ class TrainingDash extends Controller
         $client = new \GuzzleHttp\Client();
 
         try {
+
+            dd([
+                'instructor_id ' => $ticket->trainer_id,
+                'session_date' => $date->format('Y-m-d') . " " . $request->start,
+                'position' => $ticket->position_central,
+                'duration' => $ticket->duration,
+                'notes' => $ticket->comments,
+                'location' => $ticket->type_central
+            ]);
+
             $res = $client->post("https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), [
                 'instructor_id ' => $ticket->trainer_id,
                 'session_date' => $date->format('Y-m-d') . " " . $request->start,
