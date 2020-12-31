@@ -159,18 +159,32 @@ class TrainingDash extends Controller
 
         $date = new \DateTime($ticket->date);
 
-        $client = new \GuzzleHttp\Client();
+        $client = new \GuzzleHttp\Client([
+            'headers' => [ 'Content-Type' => 'application/json' ]
+        ]);
 
         try {
-            $response = $client->request('POST', "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), [
-                'form_params' => [
-                    'session_date' => $date->format('Y-m-d') . " " . $request->start,
-                    'position' => $ticket->position_central,
-                    'duration' => $ticket->duration,
-                    'notes' => $ticket->comments,
-                    'location' => $ticket->type_central
-                ]
-            ]);
+            // $response = $client->request('POST', "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), [
+            //     'form_params' => [
+            //         'session_date' => $date->format('Y-m-d') . " " . $request->start,
+            //         'position' => $ticket->position_central,
+            //         'duration' => $ticket->duration,
+            //         'notes' => $ticket->comments,
+            //         'location' => $ticket->type_central
+            //     ]
+            // ]);
+
+            $response = $client->post("https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'),
+                ['body' => json_encode(
+                    [
+                        'session_date' => $date->format('Y-m-d') . " " . $request->start,
+                                'position' => $ticket->position_central,
+                                'duration' => $ticket->duration,
+                                'notes' => $ticket->comments,
+                                'location' => $ticket->type_central
+                    ]
+                )]
+            );
         }
         catch (Exception $ex) {
             dd($ex);
