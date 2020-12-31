@@ -167,9 +167,11 @@ class TrainingDash extends Controller
         //     'location' => $ticket->type_central
         // ]);
 
+        $date = new \DateTime($ticket->date);
+
         return redirect('/dashboard')->with(
             'error', 'Instructor ID: ' . $ticket->trainer_id . ' Date: ' . 
-            $ticket->date->format('Y/m/d') . " " . $request->start . ' Position: ' . $ticket->position_central . 'Duration: ' .
+            $date->format('Y/m/d') . " " . $request->start . ' Position: ' . $ticket->position_central . 'Duration: ' .
             $ticket->duration . ' Notes: ' . $ticket->comments . ' Location: ' . $ticket->type_central
         );
 
