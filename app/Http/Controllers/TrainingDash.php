@@ -12,8 +12,6 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mail;
 use Config;
-use GuzzleHttp\Stream\Stream;
-
 class TrainingDash extends Controller
 {
     public function showATCast()
@@ -161,20 +159,15 @@ class TrainingDash extends Controller
 
         $date = new \DateTime($ticket->date);
 
-        $array = array(
+        $client = new \GuzzleHttp\Client();
+        $client->post("https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), [
             'instructor_id ' => $ticket->trainer_id,
             'session_date' => $date->format('Y-m-d') . " " . $request->start,
             'position' => $ticket->position_central,
             'duration' => $ticket->duration,
             'notes' => $ticket->comments,
             'location' => $ticket->type_central
-        );
-
-        $client = new \GuzzleHttp\Client();
-        $request = $client->createRequest("POST", "https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), 
-        ['body' => json_encode($array)]);
-
-        return redirect('/dashboard')->with('error', $request->getBody()->read(1024));
+        ]);
 
         // return redirect('/dashboard')->with(
         //     'error', 'Student ID: ' . $ticket->controller_id . ' Instructor ID: ' . $ticket->trainer_id . ' Date: ' . 
