@@ -157,15 +157,15 @@ class TrainingDash extends Controller
         $audit->what = Auth::user()->full_name . ' added a training ticket for ' . User::find($ticket->controller_id)->full_name . '.';
         $audit->save();
 
-        $client = new \GuzzleHttp\Client();
-        $client->post("https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), [
-            'instructor_id ' => $ticket->trainer_id,
-            'session_date' => $ticket->date . " " . $ticket->start,
-            'position' => $ticket->position_central,
-            'duration' => $ticket->duration,
-            'notes' => $ticket->comments,
-            'location' => $ticket->type_central
-        ]);
+        // $client = new \GuzzleHttp\Client();
+        // $client->post("https://api.vatusa.net/v2/user/" . $ticket->controller_id . "/training/record?apikey=" . Config::get('vatusa.api_key'), [
+        //     'instructor_id ' => $ticket->trainer_id,
+        //     'session_date' => $ticket->date . " " . $ticket->start,
+        //     'position' => $ticket->position_central,
+        //     'duration' => $ticket->duration,
+        //     'notes' => $ticket->comments,
+        //     'location' => $ticket->type_central
+        // ]);
 
         return redirect('/dashboard')->with(
             'error', 'Instructor ID: ' . $ticket->trainer_id . ' Date: ' . 
