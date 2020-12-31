@@ -171,7 +171,7 @@ class TrainingDash extends Controller
                 'location' => $ticket->type_central
             ]);
 
-            dd($res);
+            dd($res->getBody());
         }
         catch (Exception $ex) {
             dd($ex);
