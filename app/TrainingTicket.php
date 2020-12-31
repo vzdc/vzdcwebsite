@@ -92,13 +92,13 @@ class TrainingTicket extends Model
     {
         $fac = $this->facility;
         if ($fac == 0) {
-            $facility = 'KIAD';
+            $facility = 'IAD';
         } elseif ($fac == 1) {
-            $facility = 'KBWI';
+            $facility = 'BWI';
         } elseif ($fac == 2) {
-            $facility = 'KDCA';
+            $facility = 'DCA';
         } elseif ($fac == 3) {
-            $facility = 'KORF';
+            $facility = 'ORF';
         } elseif ($fac == 4) {
             $facility = 'DC';
         }
