@@ -164,12 +164,13 @@ class TrainingDash extends Controller
         // ]);
 
         try {
-            $date = $request->date . " " . $request->start;
+            $date = new \DateTime($request->date);
+            $dateString = $date->format('Y-m-d') . " " . $request->start;
             $client = new \GuzzleHttp\Client();
             $data = [
               'json' => [
                 'instructor_id' => $ticket->trainer_id,
-                'session_date' => $date,
+                'session_date' => $dateString,
                 'position' => $ticket->position_central,
                 'duration' => $ticket->duration,
                 'notes' => $ticket->comments,
