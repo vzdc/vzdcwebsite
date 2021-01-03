@@ -118,7 +118,7 @@ OTS Center
                                 <div class="modal-dialog" role="document">
                                     <div class="modal-content">
                                         <div class="modal-header">
-                                            <h5 class="modal-title">Upload OTS Report</h5>
+                                            <h5 class="modal-title">Submit OTS Report</h5>
                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                 <span aria-hidden="true">&times;</span>
                                             </button>
@@ -127,11 +127,15 @@ OTS Center
                                         @csrf
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                {!! Form::label('result', 'Result') !!}
-                                                {!! Form::select('result', [2 => 'Pass', 3 => 'Fail'], null, ['placeholder' => 'Select Result', 'class' => 'form-control']) !!}
+                                                <span class="text-danger">Submit to VATUSA first</span>
+                                                <br />
+                                                <a class="btn btn-primary" href="https://www.vatusa.net/mgt/controller/{{ $o->controller_id }}#training" target="_blank">VATUSA OTS Submission</a>
                                             </div>
                                             <div class="form-group">
-                                                {!! Form::file('ots_report', ['class' => 'form-control']) !!}
+                                                <span class="text-danger">Next complete the OTS</span>
+                                                <br />
+                                                {!! Form::label('result', 'Result') !!}
+                                                {!! Form::select('result', [2 => 'Pass', 3 => 'Fail'], null, ['placeholder' => 'Select Result', 'class' => 'form-control']) !!}
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -170,7 +174,11 @@ OTS Center
                                 <td>{{ $o->recommender_name }}</td>
                                 <td>{{ $o->ins_name }}</td>
                                 <td>{{ $o->facility_position }}</td>
-                                <td>{{ $o->result }}@if($o->result == 'Pass') <i class="fas fa-check"></i>@else <i class="fas fa-times"></i>@endif <a href="{{ $o->report }}" target="_blank">(View Report)</a></td>
+                                <td>
+                                    {{ $o->result }}@if($o->result == 'Pass') <i class="fas fa-check"></i>@else <i class="fas fa-times"></i>@endif 
+                                    @if($o->report != null) <a href="{{ $o->report }}" target="_blank">(View Report)</a> <br /> @endif
+                                    <a href="https://www.vatusa.net/mgt/controller/{{ $o->controller_id }}#training" target="_blank">(View Training History)</a>
+                                </td>
                             </tr>
                         @endforeach
                     @else

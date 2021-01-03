@@ -11,7 +11,8 @@ use SimpleXMLElement;
 class TrainingTicket extends Model
 {
     protected $table = 'training_tickets';
-    protected $fillable = ['id', 'controller_id', 'trainer_id', 'position', 'no_show', 'type', 'date', 'start_time', 'end_time', 'duration', 'comments', 'ins_comments', 'updated_at', 'created_at'];
+    protected $fillable = ['id', 'controller_id', 'trainer_id', 'position', 'no_show', 'type', 'date', 'start_time', 'end_time', 
+                            'duration', 'comments', 'ins_comments', 'updated_at', 'created_at'];
 
     public function getTrainerNameAttribute()
     {
@@ -63,7 +64,6 @@ class TrainingTicket extends Model
         } elseif ($pos == 9) {
             $position = 'N/A';
         }
-
         return $position;
     }
 
@@ -85,7 +85,6 @@ class TrainingTicket extends Model
         } elseif ($pos == 6) {
             $position = 'Center';
         }
-
         return $position;
     }
 
@@ -93,15 +92,15 @@ class TrainingTicket extends Model
     {
         $fac = $this->facility;
         if ($fac == 0) {
-            $facility = 'KIAD';
+            $facility = 'IAD';
         } elseif ($fac == 1) {
-            $facility = 'KBWI';
+            $facility = 'BWI';
         } elseif ($fac == 2) {
-            $facility = 'KDCA';
+            $facility = 'DCA';
         } elseif ($fac == 3) {
-            $facility = 'KORF';
+            $facility = 'ORF';
         } elseif ($fac == 4) {
-            $facility = 'ZDC';
+            $facility = 'DC';
         }
 
         return $facility;
@@ -126,6 +125,63 @@ class TrainingTicket extends Model
             return 'Yes';
         } else {
             return 'No';
+        }
+    }
+
+    // Function to get position name for centralized training
+    public function getPositionCentralAttribute() {
+        // Get position id
+        $position = $this->position;
+
+        // Get facility name string
+        $facility = $this->facility_name;
+
+        // Check each position and return string
+        switch ($position) {
+            case 0:
+                return $facility . "_" . "GND";
+            case 1:
+                return $facility . "_" . "TWR";
+            case 2:
+                return $facility . "_" . "GND";
+            case 3:
+                return $facility . "_" . "TWR";
+            case 4:
+                return $facility . "_" . "APP";
+            case 5:
+                return $facility . "_" . "APP";
+            case 6:
+                return $facility . "_" . "CTR";
+            default:
+                return null;
+        }
+    }
+
+    // Function to get type for centralized training
+    public function getTypeCentralAttribute() {
+        switch($this->type) {
+            case 0:
+                return 0;
+            case 1:
+                return 2;
+            case 2:
+                return 1;
+            case 3:
+                return 1;
+            case 4:
+                return 2;
+            case 5:
+                return 1;
+            case 6:
+                return 2;
+            case 7:
+                return 1;
+            case 8:
+                return 2;
+            case 9:
+                return 0;
+            default:
+                return 0;
         }
     }
 }

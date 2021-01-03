@@ -12,14 +12,14 @@ New Training Ticket
 </div>
 <br>
 <div align="right">
-       <right><h5>Zulu/UTC Time Now:</h5></right>
-       <right><iframe style="pointer-events: none" src="https://freesecure.timeanddate.com/clock/i6hnccu7/fs16/tct/pct/bas6/bat6/bac777/pa8/tt0/tm2/th1/ta1/tb4" frameborder="0" width="200" height="64" allowTransparency="true"></iframe></right>
-       </div>
+    <right><h5>Zulu/UTC Time Now:</h5></right>
+    <right><iframe style="pointer-events: none" src="https://freesecure.timeanddate.com/clock/i6hnccu7/fs16/tct/pct/bas6/bat6/bac777/pa8/tt0/tm2/th1/ta1/tb4" frameborder="0" width="200" height="64" allowTransparency="true"></iframe></right>
+</div>
 <div class="container">
     {!! Form::open(['action' => 'TrainingDash@saveNewTicket']) !!}
         @csrf
         <div class="row">
-            <div class="col-sm-4">
+            <div class="col-sm">
                 <div class="form-group">
                     {!! Form::label('controller', 'Controller', ['class' => 'form-label']) !!}
                     @if($c != null)
@@ -29,7 +29,7 @@ New Training Ticket
                     @endif
                 </div>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm">
                 <div class="form-group">
                     {!! Form::label('position', 'Position', ['class' => 'form-label']) !!}
                     {!! Form::select('position', [
@@ -43,7 +43,9 @@ New Training Ticket
                     ], null, ['placeholder' => 'Select Position', 'class' => 'form-control']) !!}
                 </div>
             </div>
-            <div class="col-sm-2">
+        </div>
+        <div class="row">
+            <div class="col-sm">
                 <div class="form-group">
                     {!! Form::label('facility', 'Facility', ['class' => 'form-label']) !!}
                     {!! Form::select('facility', [
@@ -51,11 +53,11 @@ New Training Ticket
                         1 => 'KBWI',
                         2 => 'KDCA',
                         3 => 'KORF',
-                        4 => 'ZDC'
+                        4 => 'DC'
                     ], null, ['placeholder' => 'Select Facility', 'class' => 'form-control']) !!}
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm">
                 <div class="form-group">
                     @if(Auth::user()->hasRole('ins'))
                         {!! Form::label('type', 'Session Type', ['class' => 'form-label']) !!}

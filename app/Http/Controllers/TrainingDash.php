@@ -12,7 +12,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Mail;
-
+use Config;
 class TrainingDash extends Controller
 {
     public function showATCast()
@@ -128,6 +128,7 @@ class TrainingDash extends Controller
         $ticket->comments = $request->comments;
         $ticket->ins_comments = $request->trainer_comments;
         $ticket->no_show = $request->no_show;
+        $ticket->score = $request->score;
         $ticket->save();
         $extra = null;
 
@@ -156,6 +157,26 @@ class TrainingDash extends Controller
         $audit->ip = $_SERVER['REMOTE_ADDR'];
         $audit->what = Auth::user()->full_name . ' added a training ticket for ' . User::find($ticket->controller_id)->full_name . '.';
         $audit->save();
+
+        try {
+            $date = new \DateTime($request->date);
+            $dateString = $date->format('Y-m-d') . " " . $request->start;
+            $client = new \GuzzleHttp\Client();
+            $data = [
+                'json' => [
+                    'instructor_id' => $ticket->trainer_id,
+                    'session_date' => $dateString,
+                    'position' => $ticket->position_central,
+                    'duration' => $ticket->duration,
+                    'notes' => $ticket->comments,
+                    'location' => $ticket->type_central
+                ]
+            ];
+            $res = $client->post('https://api.vatusa.net/v2/user/'.$ticket->controller_id.'/training/record?apikey='.Config::get('vatusa.api_key'), $data);
+        }
+        catch (Exception $ex) {
+            dd($ex);
+        }
 
         return redirect('/dashboard/training/tickets?id=' . $ticket->controller_id)->with('success', 'The training ticket has been submitted successfully' . $extra . '.');
     }
@@ -189,7 +210,8 @@ class TrainingDash extends Controller
                 'date' => 'required',
                 'start' => 'required',
                 'end' => 'required',
-                'duration' => 'required'
+                'duration' => 'required',
+                'score' => 'required'
             ]);
 
             $ticket->controller_id = $request->controller;
@@ -202,6 +224,7 @@ class TrainingDash extends Controller
             $ticket->duration = $request->duration;
             $ticket->comments = $request->comments;
             $ticket->ins_comments = $request->trainer_comments;
+            $ticket->score = $request->score;
             $ticket->save();
 
             $audit = new Audit;
@@ -209,6 +232,7 @@ class TrainingDash extends Controller
             $audit->ip = $_SERVER['REMOTE_ADDR'];
             $audit->what = Auth::user()->full_name . ' edited a training ticket for ' . User::find($request->controller)->full_name . '.';
             $audit->save();
+
 
             return redirect('/dashboard/training/tickets/view/' . $ticket->id)->with('success', 'The ticket has been updated successfully.');
         } else {
@@ -306,21 +330,13 @@ class TrainingDash extends Controller
     {
         $validator = $request->validate([
             'result' => 'required',
-            'ots_report' => 'required'
         ]);
 
         $ots = Ots::find($id);
 
         if ($ots->ins_id == Auth::id()) {
-            $ext = $request->file('ots_report')->getClientOriginalExtension();
-            $time = Carbon::now()->timestamp;
-            $path = $request->file('ots_report')->storeAs(
-                'public/ots_reports', $time . '.' . $ext
-            );
-            $public_url = '/storage/ots_reports/' . $time . '.' . $ext;
 
             $ots->status = $request->result;
-            $ots->report = $public_url;
             $ots->save();
 
             $audit = new Audit;
