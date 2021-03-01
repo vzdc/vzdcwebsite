@@ -158,24 +158,26 @@ class TrainingDash extends Controller
         $audit->what = Auth::user()->full_name . ' added a training ticket for ' . User::find($ticket->controller_id)->full_name . '.';
         $audit->save();
 
-        try {
-            $date = new \DateTime($request->date);
-            $dateString = $date->format('Y-m-d') . " " . $request->start;
-            $client = new \GuzzleHttp\Client();
-            $data = [
-                'json' => [
-                    'instructor_id' => $ticket->trainer_id,
-                    'session_date' => $dateString,
-                    'position' => $ticket->position_central,
-                    'duration' => $ticket->duration,
-                    'notes' => $ticket->comments,
-                    'location' => $ticket->type_central
-                ]
-            ];
-            $res = $client->post('https://api.vatusa.net/v2/user/'.$ticket->controller_id.'/training/record?apikey='.Config::get('vatusa.api_key'), $data);
-        }
-        catch (Exception $ex) {
-            dd($ex);
+        if (!$ticket->no_show) {
+            try {
+                $date = new \DateTime($request->date);
+                $dateString = $date->format('Y-m-d') . " " . $request->start;
+                $client = new \GuzzleHttp\Client();
+                $data = [
+                    'json' => [
+                        'instructor_id' => $ticket->trainer_id,
+                        'session_date' => $dateString,
+                        'position' => $ticket->position_central,
+                        'duration' => $ticket->duration,
+                        'notes' => $ticket->comments,
+                        'location' => $ticket->type_central
+                    ]
+                ];
+                $res = $client->post('https://api.vatusa.net/v2/user/'.$ticket->controller_id.'/training/record?apikey='.Config::get('vatusa.api_key'), $data);
+            }
+            catch (Exception $ex) {
+                dd($ex);
+            }
         }
 
         return redirect('/dashboard/training/tickets?id=' . $ticket->controller_id)->with('success', 'The training ticket has been submitted successfully' . $extra . '.');
