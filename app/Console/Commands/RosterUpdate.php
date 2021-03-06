@@ -53,7 +53,7 @@ class RosterUpdate extends Command
         foreach($roster as $r) {
             // VATUSA now includes a `testing: false` field as the last item, we can ignore this and contune
             // to the next iteration.
-            if(is_bool($r)) continue;
+            if(is_bool($r) || is_array($r)) continue;
             
             if(User::find($r->cid) !== null) {
                 $user = User::find($r->cid);
