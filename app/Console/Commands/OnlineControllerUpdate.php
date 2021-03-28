@@ -81,14 +81,14 @@ class OnlineControllerUpdate extends Command
             $logon = $entry->logon_time;
 
             // Check that it's a vZDC facility
-            foreach ($this->facilities as $facility) {
-                $is_controller = substr($entry->callsign, 0, 4) == $facility;
-                if ($is_controller) break;
+            if(!in_array(substr($entry->callsign, 0, 4), $this->facilities)) {
+                continue;
             }
 
             // Get timings
             $time_now = strtotime(Carbon::now());
-            $duration = $time_now - $logon;
+            $logon_time = new Carbon($logon);
+            $duration = $time_now - $logon_time;
 
             // Create ATC object
             ATC::create([
