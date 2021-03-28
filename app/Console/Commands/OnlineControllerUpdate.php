@@ -86,9 +86,9 @@ class OnlineControllerUpdate extends Command
             }
 
             // Get timings
-            $time_now = strtotime(Carbon::now());
+            $time_now = Carbon::now();
             $logon_time = new Carbon($logon);
-            $duration = $time_now - $logon_time;
+            $duration = $time_now->diffInHours($logon_time);
 
             // Create ATC object
             ATC::create([
