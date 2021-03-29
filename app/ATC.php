@@ -12,7 +12,7 @@ class ATC extends Model
 
     public function getTimeOnlineAttribute()
     {
-        $time_logon = $this->time_logon;
+        $time_logon = new Carbon($this->time_logon);
         $time_now = Carbon::now();
 
         $time_online = $time_logon->diffInMinutes($time_now) * 60;
