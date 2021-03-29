@@ -12,7 +12,7 @@ class ATC extends Model
 
     public function getTimeOnlineAttribute()
     {
-        $time_logon = Carbon::createFromTimestamp($this->time_logon);
+        $time_logon = $this->time_logon;
         $time_now = Carbon::now();
 
         $time_online = $time_logon->diffInMinutes($time_now) * 60;
@@ -20,11 +20,5 @@ class ATC extends Model
         $time = date("H:i", $time_online);
 
         return $time;
-    }
-
-    public function getLogonTimeAttribute()
-    {
-        $time = Carbon::createFromTimestamp($this->time_logon);
-        return $time->format('m/d/Y H:i') . 'z';
     }
 }
