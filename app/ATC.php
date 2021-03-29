@@ -21,4 +21,10 @@ class ATC extends Model
 
         return $time;
     }
+
+    public function getLogonTimeAttribute()
+    {
+        $time = new Carbon($this->time_logon);
+        return $time->format('m/d/Y H:i') . 'z';
+    }
 }
