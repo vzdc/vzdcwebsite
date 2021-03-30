@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="background-color:#F0F0F0; padding-bottom: 20px;">
+    <div class="container-fluid" style="background-color:#F0F0F0; padding-bottom: 35px;">
         &nbsp;
         <h2>
             <span style="float: left;">Controller Dashboard</span>
