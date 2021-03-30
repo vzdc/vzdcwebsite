@@ -937,6 +937,13 @@ class AdminDash extends Controller
             $audit->what = Auth::user()->full_name . ' removed the visitor ' . $name . '.';
             $audit->save();
 
+            $client = new Client();
+            $client->request("DELETE", "https://api.vatusa.net/v2/facility/" . Config::get('vatusa.facility') . "/roster/manageVisitor/" . $user->id . "?apikey=" . Config::get('vatusa.api_key'), [
+                'body' => [
+                    'reason' => 'User is now a home controller.'
+                ]
+            ]);
+
             return redirect('/dashboard/controllers/roster')->with('success', 'The visitor has been removed successfully.');
         }
     }
