@@ -119,7 +119,7 @@ class RosterUpdate extends Command
         $lastInitial = $lastName[0];
         $initials = $firstInitial . $lastInitial;
         // Find if initials already exist
-        $existingInitials = User::where("initials", $initials)->first();
+        $existingInitials = User::where('status', 1)->where("initials", $initials)->first();
         // If exisiting initials were found
         if ($existingInitials) {
             // Split first name to a char array
@@ -129,7 +129,7 @@ class RosterUpdate extends Command
                 // Create initials based on first name letter
                 $initials = $letter . $lastInitial;
                 // See if new initials exist
-                $existingInitials = User::where("initials", $initials)->first();
+                $existingInitials = User::where('status', 1)->where("initials", $initials)->first();
                 if ($existingInitials) {
                     continue;
                 }
@@ -142,7 +142,7 @@ class RosterUpdate extends Command
                 // Create initials based on first name letter
                 $initials = $firstInitial . $letter;
                 // See if new initials exist
-                $existingInitials = User::where("initials", $initials)->first();
+                $existingInitials = User::where('status', 1)->where("initials", $initials)->first();
                 if ($existingInitials) {
                     continue;
                 }
