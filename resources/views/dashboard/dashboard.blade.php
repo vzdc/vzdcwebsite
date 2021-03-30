@@ -9,9 +9,9 @@
         &nbsp;
         <h2 class="text-left">Controller Dashboard</h2>
         @if($hours < $currency->value)
-        <h2 class="text-right" style="color:#E6B0AA">Month Hours - {{$hours}}</h2>
+        <h2 class="text-right" style="color:#E6B0AA">Month Hours - {{$hours->total_hrs}}</h2>
         @else
-        <h2 class="text-right" style="color:#A9DFBF">Month Hours - {{$hours}}</h2>
+        <h2 class="text-right" style="color:#A9DFBF">Month Hours - {{$hours->total_hrs}}</h2>
         @endif
         &nbsp;
     </div>
