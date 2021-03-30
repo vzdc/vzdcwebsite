@@ -940,7 +940,7 @@ class AdminDash extends Controller
             $client = new Client();
             $client->request("DELETE", "https://api.vatusa.net/v2/facility/" . Config::get('vatusa.facility') . "/roster/manageVisitor/" . $user->id . "?apikey=" . Config::get('vatusa.api_key'), [
                 'body' => [
-                    'reason' => 'User is now a home controller.'
+                    'reason' => 'User has been removed.'
                 ]
             ]);
 
