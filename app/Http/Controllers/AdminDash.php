@@ -514,8 +514,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name . ' made changes to ' . $user->full_name . '.';
         $audit->save();
 
-        return redirect('/dashboard/controllers/roster')->with('success', 'Controller updated successfully.');
-
+        return View('dashboard.admin.dossier-entry')->with('id', $user->id)->with('success', 'Controller updated successfully.');
     }
 
     public function showVisitRequests()
@@ -538,7 +537,7 @@ class AdminDash extends Controller
         $dossier = new MemberLog();
         $dossier->user_target = $visitor->id;
         $dossier->user_submitter = Auth::id();
-        $dossier->content = "Visitor added on ". Carbon::now()->format('m/d/Y') . ".";
+        $dossier->content = "Visitor added on " . Carbon::now()->format('m/d/Y') . ".";
         $dossier->save();
 
         Mail::send('emails.visit.accept', ['visitor' => $visitor], function ($message) use ($visitor) {
@@ -695,7 +694,7 @@ class AdminDash extends Controller
         $dossier = new MemberLog();
         $dossier->user_target = $request->cid;
         $dossier->user_submitter = Auth::id();
-        $dossier->content = "Visitor added on ". Carbon::now()->format('m/d/Y') . ".";
+        $dossier->content = "Visitor added on " . Carbon::now()->format('m/d/Y') . ".";
         $dossier->save();
 
         $client = new Client(['exceptions' => false]);
@@ -979,7 +978,6 @@ class AdminDash extends Controller
         $audit->save();
 
         return redirect('/dashboard/admin/calendar')->with('success', 'The calendar event or news posting has been created.');
-
     }
 
     public function editCalendarEvent($id)
@@ -1052,7 +1050,8 @@ class AdminDash extends Controller
         $name = $request->title . '_' . $time . '.' . $ext;
 
         $path = $request->file('file')->storeAs(
-            '/public/files', $name
+            '/public/files',
+            $name
         );
 
         $public_url = '/storage/files/' . $name;
@@ -1201,7 +1200,7 @@ class AdminDash extends Controller
         $subject = $request->subject;
         $body = $request->body;
         $sender = Auth::user();
-        
+
         Mail::send('emails.feedback_email', ['feedback' => $feedback, 'body' => $body, 'sender' => $sender], function ($m) use ($feedback, $subject, $replyTo, $replyToName) {
             $m->from('notams@vzdc.org', 'vZDC Feedback Department')->replyTo($replyTo, $replyToName);
             $m->subject($subject);
@@ -1459,7 +1458,8 @@ class AdminDash extends Controller
             $ext = $request->file('banner')->getClientOriginalExtension();
             $time = Carbon::now()->timestamp;
             $path = $request->file('banner')->storeAs(
-                'public/event_banners', $time . '.' . $ext
+                'public/event_banners',
+                $time . '.' . $ext
             );
             $public_url = '/storage/event_banners/' . $time . '.' . $ext;
         } else {
@@ -1509,7 +1509,8 @@ class AdminDash extends Controller
             $ext = $request->file('banner')->getClientOriginalExtension();
             $time = Carbon::now()->timestamp;
             $path = $request->file('banner')->storeAs(
-                'public/event_banners', $time . '.' . $ext
+                'public/event_banners',
+                $time . '.' . $ext
             );
             $public_url = '/storage/event_banners/' . $time . '.' . $ext;
         } else {
@@ -1811,7 +1812,6 @@ class AdminDash extends Controller
             return redirect()->back()->with('success', 'The log has been created successfully.');
         } else
             return redirect()->back()->with('error', 'Access Denied.');
-
     }
 
     public function createLogManual()
@@ -1845,6 +1845,51 @@ class AdminDash extends Controller
         } else {
             return redirect()->back()->with('error', 'Access Denied.');
         }
+    }
+
+    public function createLogUser($cid)
+    {
+        if (auth()->user()->getStaffPositionAttribute() <= 3) {
+
+            $user = User::find($cid);
+
+            if ($user == null) {
+                return redirect()->back()->with('error', 'Invalid CID.');
+            }
+
+            $log = new MemberLog;
+            $log->user_target = $cid;
+            $log->user_submitter = auth()->user()->id;
+            $log->content = request()->get('content');
+            if (request()->has('confidential')) {
+                $log->confidential = 1;
+            }
+            $log->save();
+
+            $submitter = User::find(auth()->user()->id);
+            $submitter_name = $submitter->fname . ' ' . $submitter->lname;
+            $content = request()->get('content');
+
+            Mail::send(['html' => 'emails.member_log'], ['controller' => $cid, 'submitter' => $submitter_name, 'content' => $content], function ($m) {
+                $m->from('notams@vzdc.org', 'vZDC Website Logging');
+                $m->subject('New Manual Dossier Log Entry');
+                $m->to('srstaff@vzdc.org');
+            });
+            return View('dashboard.admin.roster.index')->with('success', 'The log has been created successfully.');
+        } else {
+            return redirect()->back()->with('error', 'Access Denied.');
+        }
+    }
+
+    public function manualLogUserView($id)
+    {
+        $user = User::find($id);
+
+        if ($user == null) {
+            return redirect()->back()->with('error', 'Invalid CID.');
+        }
+
+        return View('dashboard.admin.dossier-entry')->with('id', $id);
     }
 
     public function removeLog($id)
@@ -1891,25 +1936,29 @@ class AdminDash extends Controller
         }
     }
 
-    public function ShowVariables() {
+    public function ShowVariables()
+    {
         $visitors = Variable::where('name', 'visitors')->first();
         $currency = Variable::where('name', 'currency')->first();
         return view('dashboard.admin.variables')->with('visitors', $visitors)->with('currency', $currency);
     }
 
-    public function UpdateVisitorsVariable(Request $request) {
+    public function UpdateVisitorsVariable(Request $request)
+    {
         $requestValue = $request->get('visitors');
         $allow = isset($requestValue) ? 1 : 0;
         Variable::where('name', 'visitors')->update(['value' => $allow]);
         return redirect('/dashboard/admin/variables')->with('success', "Visitor applications now " . ($allow == 1 ? "on." : "off."));
     }
 
-    public function UpdateCurrencyVariable(Request $request) {
+    public function UpdateCurrencyVariable(Request $request)
+    {
         Variable::where('name', 'currency')->update(['value' => intval($request->get('currency'))]);
         return redirect('/dashboard/admin/variables')->with('success', "Currency hours updated to " . $request->get('currency'));
     }
 
-    public function ShowLoas() {
+    public function ShowLoas()
+    {
         $pending = Loa::where('status', 0)->get();
         $accepted = Loa::where('status', 1)->get();
         $active = Loa::where('status', 2)->get();
@@ -1918,12 +1967,14 @@ class AdminDash extends Controller
         return view("dashboard.admin.loas.index")->with('pending', $pending)->with('accepted', $accepted)->with('active', $active)->with('inactive', $inactive)->with('denied', $denied);
     }
 
-    public function ViewLoa($id) {
+    public function ViewLoa($id)
+    {
         $loa = Loa::find($id);
         return view('dashboard.admin.loas.edit')->with('loa', $loa);
     }
 
-    public function UpdateLoa(Request $request, $id) {
+    public function UpdateLoa(Request $request, $id)
+    {
         $loa = Loa::find($id);
         $user = User::find($loa->controller_id);
         $loa->status = intval($request->status);
