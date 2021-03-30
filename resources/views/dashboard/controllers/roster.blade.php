@@ -18,8 +18,8 @@
         tbody {
             display: block;
             overflow-y: auto;
-            table-layout: fixed;
-            max-height: 800px;
+            table-layout: auto;
+            max-height: 700px;
         }
     </style>
     <div class="container-fluid" style="background-color:#F0F0F0;">
