@@ -7,7 +7,12 @@
 @section('content')
     <div class="container-fluid" style="background-color:#F0F0F0;">
         &nbsp;
-        <h2>Controller Dashboard</h2>
+        <h2 class="text-left">Controller Dashboard</h2>
+        @if($hours < $currency->value)
+        <h2 class="text-right" style="color:#E6B0AA">Month Hours - {{$hours}}</h2>
+        @else
+        <h2 class="text-right" style="color:#A9DFBF">Month Hours - {{$hours}}</h2>
+        @endif
         &nbsp;
     </div>
     <br>
