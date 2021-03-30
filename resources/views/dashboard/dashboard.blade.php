@@ -11,9 +11,9 @@
             <span style="float: left;">Controller Dashboard</span>
             <span>
             @if($hours->total_hrs < $currency->value)
-            <span style="float: right; color: red;">Month Hours - {{$hours->total_hrs}}</span>
+            <span style="float: right; color: red;">Month Hours: {{$hours->total_hrs}}</span>
             @else
-            <span style="float: right; color: green;">Month Hours - {{$hours->total_hrs}}</span>
+            <span style="float: right; color: green;">Month Hours: {{$hours->total_hrs}}</span>
             @endif
             </span>
         </h2>
