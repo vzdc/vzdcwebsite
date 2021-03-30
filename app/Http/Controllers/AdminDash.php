@@ -36,6 +36,7 @@ use Storage;
 
 use GuzzleHttp\Client;
 use App\TrainingTicket;
+use Illuminate\Support\Facades\Redirect;
 
 class AdminDash extends Controller
 {
@@ -514,7 +515,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name . ' made changes to ' . $user->full_name . '.';
         $audit->save();
 
-        return View('dashboard.admin.dossier-entry')->with('id', $user->id)->with('success', 'Controller updated successfully.');
+        return Redirect('/dashboard/admin/logs/manual/' . $user->id)->with('id', $user->id)->with('success', 'Controller updated successfully.');
     }
 
     public function showVisitRequests()
