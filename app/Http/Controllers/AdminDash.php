@@ -1979,8 +1979,16 @@ class AdminDash extends Controller
             Mail::send(['html' => 'emails.loas.denied'], ['loa' => $loa, 'reason' => $reason], function ($m) use ($loa) {
                 $m->from('notams@vzdc.org', 'vZDC LOA Center');
                 $m->subject('Your vZDC LOA Has Been Denied');
-                $m->to($loa->controller_email);
+                $m->to($loa->controller_email)->cc("staff@vzdc.org");
             });
+
+            $dossier = new MemberLog();
+            $dossier->user_target = $user->id;
+            $dossier->user_submitter = 0;
+            $dossier->content = "LOA denied";
+            $dossier->confidential = 0;
+            $dossier->save();
+
             return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully denied.");
         }
 
@@ -1988,8 +1996,16 @@ class AdminDash extends Controller
             Mail::send(['html' => 'emails.loas.approved'], ['loa' => $loa], function ($m) use ($loa) {
                 $m->from('notams@vzdc.org', 'vZDC LOA Center');
                 $m->subject('Your vZDC LOA Has Been Accepted');
-                $m->to($loa->controller_email);
+                $m->to($loa->controller_email)->cc("staff@vzdc.org");
             });
+
+            $dossier = new MemberLog();
+            $dossier->user_target = $user->id;
+            $dossier->user_submitter = 0;
+            $dossier->content = "LOA accepted";
+            $dossier->confidential = 0;
+            $dossier->save();
+
             return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully approved.");
         }
 
@@ -1997,10 +2013,18 @@ class AdminDash extends Controller
             Mail::send(['html' => 'emails.loas.manual'], ['loa' => $loa, 'user' => $user], function ($m) use ($loa) {
                 $m->from('notams@vzdc.org', 'vZDC LOA Center');
                 $m->subject('Your vZDC LOA Has Been Manually Ended');
-                $m->to($loa->controller_email);
+                $m->to($loa->controller_email)->cc("staff@vzdc.org");
             });
             $user->status = 1;
             $user->save();
+
+            $dossier = new MemberLog();
+            $dossier->user_target = $user->id;
+            $dossier->user_submitter = 0;
+            $dossier->content = "LOA manually ended";
+            $dossier->confidential = 0;
+            $dossier->save();
+
             return redirect('/dashboard/admin/loas')->with('success', "LOA request sucessfully approved.");
         }
         return redirect('/dashboard/admin/loas')->with('error', "An error has occured, please try again.");
