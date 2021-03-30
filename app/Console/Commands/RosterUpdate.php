@@ -46,7 +46,7 @@ class RosterUpdate extends Command
     public function handle()
     {
         $client = new Client();
-        $res = $client->get('https://api.vatusa.net/v2/facility/' . Config::get('vatusa.facility') . '/roster?apikey=' . Config::get('vatusa.api_key'));
+        $res = $client->get('https://api.vatusa.net/v2/facility/' . Config::get('vatusa.facility') . '/roster/both?apikey=' . Config::get('vatusa.api_key'));
         $roster = json_decode($res->getBody())->data;
         $users = User::where('status', '1')->get()->pluck('id');
 
@@ -58,7 +58,7 @@ class RosterUpdate extends Command
                 $user->initials = $this->getInitials($user->fname, $user->lname);
                 $user->email = $r->email;
                 $user->rating_id = $r->rating;
-                $user->visitor = !$r->flag_homecontroller;
+                $user->visitor = $r->membership == "visit";
                 if ($user->visitor) {
                     $user->visitor_from = $user->facility;
                 }
@@ -74,7 +74,7 @@ class RosterUpdate extends Command
                 $user->lname = $r->lname;
                 $user->email = $r->email;
                 $user->rating_id = $r->rating;
-                $user->visitor = !$r->flag_homecontroller;
+                $user->visitor = $r->membership == "visit";
                 if ($user->visitor) {
                     $user->visitor_from = $user->facility;
                 }
