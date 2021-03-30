@@ -44,7 +44,7 @@ Training Tickets
 
     @if($search_result == null)
     <hr>
-        <h5>Ten Most Recent Training Tickets</h5>
+        <h5 class="text-center">Ten Most Recent Training Tickets</h5>
     <br>
     <table class="table">
         <thead>
