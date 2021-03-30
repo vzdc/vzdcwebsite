@@ -11,7 +11,7 @@ Dossier Entry
     <h5>Dossier Manual Entry</h5>
     <br />
     <div class="form-group">
-        <form action="/dashboard/admin/logs/manual" method="POST">
+        <form action="/dashboard/admin/logs/manual/{{$id}}" method="POST">
             @csrf
             <textarea class="form-control" placeholder="Content..." required name="content"></textarea>
             <br>
