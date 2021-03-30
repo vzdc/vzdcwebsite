@@ -80,7 +80,7 @@ Training Tickets
 
     @if($search_result != null)
         <hr>
-        <h5>Showing Training Tickets for {{ $search_result->full_name }} ({{ $search_result->id }})</h5>
+        <h5 class="text-center">Showing Training Tickets for {{ $search_result->full_name }} ({{ $search_result->id }})</h5>
         <br>
         <table class="table">
             <thead>
