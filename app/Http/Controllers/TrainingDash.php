@@ -78,6 +78,7 @@ class TrainingDash extends Controller
             })->pluck('id');
             $tickets_order = implode(',', array_fill(0, count($tickets_sort), '?'));
             $tickets = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(25);
+            $ticketsRecent = null;
         } else {
             $tickets = null;
             $tickets_sort = TrainingTicket::get()->sortByDesc(function ($t) {
