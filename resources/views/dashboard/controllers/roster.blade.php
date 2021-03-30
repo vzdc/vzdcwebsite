@@ -5,6 +5,23 @@
 @endsection
 
 @section('content')
+
+    <style>
+        table {
+            width: 100%;
+        }
+        thead, tbody tr {
+            display: table;
+            width: 100%;
+            table-layout: fixed;
+        }
+        tbody {
+            display: block;
+            overflow-y: auto;
+            table-layout: fixed;
+            max-height: 200px;
+        }
+    </style>
     <div class="container-fluid" style="background-color:#F0F0F0;">
         &nbsp;
         <h2>Roster</h2>
