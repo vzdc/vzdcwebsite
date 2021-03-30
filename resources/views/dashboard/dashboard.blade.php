@@ -8,7 +8,7 @@
     <div class="container-fluid" style="background-color:#F0F0F0;">
         &nbsp;
         <h2 class="text-left">Controller Dashboard</h2>
-        @if($hours < $currency->value)
+        @if($hours->total_hrs < $currency->value)
         <h2 class="text-right" style="color:#E6B0AA">Month Hours - {{$hours->total_hrs}}</h2>
         @else
         <h2 class="text-right" style="color:#A9DFBF">Month Hours - {{$hours->total_hrs}}</h2>
