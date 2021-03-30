@@ -229,6 +229,7 @@ class AdminDash extends Controller
 
         $stats = ControllerLog::aggregateAllControllersByPosAndMonth($year, $month);
         $homec = User::where('visitor', 0)->where('status', 1)->orderBy('lname', 'ASC')->get();
+        // todo figuree out if we still have visiting agreements with these 2 artccs
         $visitc = User::where('visitor', 1)->where('status', 1)->where('visitor_from', '!=', 'ZHU')->where('visitor_from', '!=', 'ZJX')->orderBy('lname', 'ASC')->get();
         $trainc = User::orderBy('lname', 'ASC')->get()->filter(function ($user) {
             return $user->hasRole('mtr') || $user->hasRole('ins');
@@ -404,6 +405,14 @@ class AdminDash extends Controller
             $user->train_pwr = Input::get('train_pwr');
             $user->monitor_pwr = Input::get('monitor_pwr');
             if (Input::get('visitor') == null) {
+                if ($user->visitor == 1) {
+                    $client = new Client();
+                    $client->request("DELETE", "https://api.vatusa.net/v2/facility/" . Config::get('vatusa.facility') . "/roster/manageVisitor/" . $user->id . "?apikey=" . Config::get('vatusa.api_key'), [
+                        'body' => [
+                            'reason' => 'User is now a home controller.'
+                        ]
+                    ]);
+                }
                 $user->visitor = 0;
             } elseif (Input::get('visitor') == 1) {
                 $user->visitor = 1;
@@ -515,7 +524,6 @@ class AdminDash extends Controller
         $audit->save();
 
         return redirect('/dashboard/controllers/roster')->with('success', 'Controller updated successfully.');
-
     }
 
     public function showVisitRequests()
@@ -538,13 +546,17 @@ class AdminDash extends Controller
         $dossier = new MemberLog();
         $dossier->user_target = $visitor->id;
         $dossier->user_submitter = Auth::id();
-        $dossier->content = "Visitor added on ". Carbon::now()->format('m/d/Y') . ".";
+        $dossier->content = "Visitor added on " . Carbon::now()->format('m/d/Y') . ".";
         $dossier->save();
 
         Mail::send('emails.visit.accept', ['visitor' => $visitor], function ($message) use ($visitor) {
             $message->from('notams@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Accepted');
             $message->to($visitor->email)->cc('datm@vzdc.org')->cc('atm@vzdc.org')->cc('ta@vzdc.org');
         });
+
+        $client = new Client();
+
+        $client->request("POST", "https://api.vatusa.net/v2/facility/" . Config::get('vatusa.facility') . "/roster/manageVisitor/" . $visitor->id . "?apikey=" . Config::get('vatusa.api_key'));
 
         $parts = explode(" ", $visitor->name);
         $fname = $parts[0];
@@ -695,7 +707,7 @@ class AdminDash extends Controller
         $dossier = new MemberLog();
         $dossier->user_target = $request->cid;
         $dossier->user_submitter = Auth::id();
-        $dossier->content = "Visitor added on ". Carbon::now()->format('m/d/Y') . ".";
+        $dossier->content = "Visitor added on " . Carbon::now()->format('m/d/Y') . ".";
         $dossier->save();
 
         $client = new Client(['exceptions' => false]);
@@ -979,7 +991,6 @@ class AdminDash extends Controller
         $audit->save();
 
         return redirect('/dashboard/admin/calendar')->with('success', 'The calendar event or news posting has been created.');
-
     }
 
     public function editCalendarEvent($id)
@@ -1052,7 +1063,8 @@ class AdminDash extends Controller
         $name = $request->title . '_' . $time . '.' . $ext;
 
         $path = $request->file('file')->storeAs(
-            '/public/files', $name
+            '/public/files',
+            $name
         );
 
         $public_url = '/storage/files/' . $name;
@@ -1201,7 +1213,7 @@ class AdminDash extends Controller
         $subject = $request->subject;
         $body = $request->body;
         $sender = Auth::user();
-        
+
         Mail::send('emails.feedback_email', ['feedback' => $feedback, 'body' => $body, 'sender' => $sender], function ($m) use ($feedback, $subject, $replyTo, $replyToName) {
             $m->from('notams@vzdc.org', 'vZDC Feedback Department')->replyTo($replyTo, $replyToName);
             $m->subject($subject);
@@ -1459,7 +1471,8 @@ class AdminDash extends Controller
             $ext = $request->file('banner')->getClientOriginalExtension();
             $time = Carbon::now()->timestamp;
             $path = $request->file('banner')->storeAs(
-                'public/event_banners', $time . '.' . $ext
+                'public/event_banners',
+                $time . '.' . $ext
             );
             $public_url = '/storage/event_banners/' . $time . '.' . $ext;
         } else {
@@ -1509,7 +1522,8 @@ class AdminDash extends Controller
             $ext = $request->file('banner')->getClientOriginalExtension();
             $time = Carbon::now()->timestamp;
             $path = $request->file('banner')->storeAs(
-                'public/event_banners', $time . '.' . $ext
+                'public/event_banners',
+                $time . '.' . $ext
             );
             $public_url = '/storage/event_banners/' . $time . '.' . $ext;
         } else {
@@ -1811,7 +1825,6 @@ class AdminDash extends Controller
             return redirect()->back()->with('success', 'The log has been created successfully.');
         } else
             return redirect()->back()->with('error', 'Access Denied.');
-
     }
 
     public function createLogManual()
@@ -1891,25 +1904,29 @@ class AdminDash extends Controller
         }
     }
 
-    public function ShowVariables() {
+    public function ShowVariables()
+    {
         $visitors = Variable::where('name', 'visitors')->first();
         $currency = Variable::where('name', 'currency')->first();
         return view('dashboard.admin.variables')->with('visitors', $visitors)->with('currency', $currency);
     }
 
-    public function UpdateVisitorsVariable(Request $request) {
+    public function UpdateVisitorsVariable(Request $request)
+    {
         $requestValue = $request->get('visitors');
         $allow = isset($requestValue) ? 1 : 0;
         Variable::where('name', 'visitors')->update(['value' => $allow]);
         return redirect('/dashboard/admin/variables')->with('success', "Visitor applications now " . ($allow == 1 ? "on." : "off."));
     }
 
-    public function UpdateCurrencyVariable(Request $request) {
+    public function UpdateCurrencyVariable(Request $request)
+    {
         Variable::where('name', 'currency')->update(['value' => intval($request->get('currency'))]);
         return redirect('/dashboard/admin/variables')->with('success', "Currency hours updated to " . $request->get('currency'));
     }
 
-    public function ShowLoas() {
+    public function ShowLoas()
+    {
         $pending = Loa::where('status', 0)->get();
         $accepted = Loa::where('status', 1)->get();
         $active = Loa::where('status', 2)->get();
@@ -1918,12 +1935,14 @@ class AdminDash extends Controller
         return view("dashboard.admin.loas.index")->with('pending', $pending)->with('accepted', $accepted)->with('active', $active)->with('inactive', $inactive)->with('denied', $denied);
     }
 
-    public function ViewLoa($id) {
+    public function ViewLoa($id)
+    {
         $loa = Loa::find($id);
         return view('dashboard.admin.loas.edit')->with('loa', $loa);
     }
 
-    public function UpdateLoa(Request $request, $id) {
+    public function UpdateLoa(Request $request, $id)
+    {
         $loa = Loa::find($id);
         $user = User::find($loa->controller_id);
         $loa->status = intval($request->status);
