@@ -1875,7 +1875,7 @@ class AdminDash extends Controller
                 $m->subject('New Manual Dossier Log Entry');
                 $m->to('srstaff@vzdc.org');
             });
-            return View('dashboard.admin.roster.index')->with('success', 'The log has been created successfully.');
+            return View('dashboard.controllers.roster')->with('success', 'The log has been created successfully.');
         } else {
             return redirect()->back()->with('error', 'Access Denied.');
         }
