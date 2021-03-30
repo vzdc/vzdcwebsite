@@ -515,7 +515,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name . ' made changes to ' . $user->full_name . '.';
         $audit->save();
 
-        return Redirect('/dashboard/admin/logs/manual/' . $user->id)->with('id', $user->id)->with('success', 'Controller updated successfully.');
+        return redirect('/dashboard/admin/logs/manual/' . $user->id)->with('id', $user->id)->with('success', 'Controller updated successfully.');
     }
 
     public function showVisitRequests()
