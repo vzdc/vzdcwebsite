@@ -1849,7 +1849,7 @@ class AdminDash extends Controller
 
     public function createLogUser($cid)
     {
-        if (auth()->user()->getStaffPositionAttribute() <= 3) {
+        if (auth()->user()->getStaffPositionAttribute() > 0 || auth()->user()->getTrainPositionAttribute() > 0) {
 
             $user = User::find($cid);
 
