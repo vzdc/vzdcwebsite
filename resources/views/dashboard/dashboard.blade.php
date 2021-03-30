@@ -5,20 +5,19 @@
 @endsection
 
 @section('content')
-    <div class="container-fluid" style="background-color:#F0F0F0;">
+    <div class="container-fluid" style="background-color:#F0F0F0; padding-bottom: 20px;">
         &nbsp;
         <h2>
             <span style="float: left;">Controller Dashboard</span>
             <span>
             @if($hours->total_hrs < $currency->value)
-            <span style="float: right; color: #E6B0AA;">Month Hours - {{$hours->total_hrs}}</span>
+            <span style="float: right; color: red;">Month Hours - {{$hours->total_hrs}}</span>
             @else
-            <span style="float: right; color: #A9DFBF;">Month Hours - {{$hours->total_hrs}}</span>
+            <span style="float: right; color: green;">Month Hours - {{$hours->total_hrs}}</span>
             @endif
             </span>
         </h2>
         &nbsp;
-        <br>
     </div>
     <br>
 
