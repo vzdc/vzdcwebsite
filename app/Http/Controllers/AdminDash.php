@@ -515,7 +515,7 @@ class AdminDash extends Controller
         $audit->what = Auth::user()->full_name . ' made changes to ' . $user->full_name . '.';
         $audit->save();
 
-        return redirect('/dashboard/admin/logs/manual/' . $user->id)->with('id', $user->id)->with('success', 'Controller updated successfully.');
+        return View('dashboard.admin.dossier-entry')->with('id', $user->id)->with('success', 'Controller updated successfully.');
     }
 
     public function showVisitRequests()
@@ -1880,17 +1880,6 @@ class AdminDash extends Controller
         } else {
             return redirect()->back()->with('error', 'Access Denied.');
         }
-    }
-
-    public function manualLogUserView($id)
-    {
-        $user = User::find($id);
-
-        if ($user == null) {
-            return redirect()->back()->with('error', 'Invalid CID.');
-        }
-
-        return View('dashboard.admin.dossier-entry')->with('id', $id);
     }
 
     public function removeLog($id)
