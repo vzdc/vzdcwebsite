@@ -50,6 +50,7 @@ Training Tickets
         <thead>
             <tr>
                 <th scope="col">Training Date</th>
+                <th scope="col">Controller Name</th>
                 <th scope="col">Trainer Name</th>
                 <th scope="col">Position</th>
                 <th scope="col">Session Type</th>
@@ -61,6 +62,7 @@ Training Tickets
                 @foreach($ticketsRecent as $t)
                     <tr>
                         <td><a href="/dashboard/training/tickets/view/{{ $t->id }}">{{ $t->date }}</a></td>
+                        <td>{{ $t->controller_name }}</td>
                         <td>{{ $t->trainer_name }}</td>
                         <td>{{ $t->facility_name }} {{ $t->position_name }}</td>
                         <td>{{ $t->type_name }}</td>
