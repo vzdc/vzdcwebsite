@@ -78,11 +78,17 @@ class TrainingDash extends Controller
             })->pluck('id');
             $tickets_order = implode(',', array_fill(0, count($tickets_sort), '?'));
             $tickets = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->paginate(25);
+            $ticketsRecent = null;
         } else {
             $tickets = null;
+            $tickets_sort = TrainingTicket::get()->sortByDesc(function ($t) {
+                return strtotime($t->date . ' ' . $t->start_time);
+            })->pluck('id');
+            $tickets_order = implode(',', array_fill(0, count($tickets_sort), '?'));
+            $ticketsRecent = TrainingTicket::whereIn('id', $tickets_sort)->orderByRaw("field(id,{$tickets_order})", $tickets_sort)->take(10)->get();
         }
 
-        return view('dashboard.training.tickets')->with('controllers', $controllers)->with('search_result', $search_result)->with('tickets', $tickets);
+        return view('dashboard.training.tickets')->with('controllers', $controllers)->with('search_result', $search_result)->with('tickets', $tickets)->with('ticketsRecent', $ticketsRecent);
     }
 
     public function searchTickets(Request $request)

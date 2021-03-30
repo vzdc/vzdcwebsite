@@ -42,9 +42,47 @@ Training Tickets
         </div>
     {!! Form::close() !!}
 
+    @if($search_result == null)
+    <hr>
+        <h5 class="text-center">Ten Most Recent Training Tickets</h5>
+    <br>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Training Date</th>
+                <th scope="col">Controller Name</th>
+                <th scope="col">Trainer Name</th>
+                <th scope="col">Position</th>
+                <th scope="col">Session Type</th>
+                <th scope="col">Start Time</th>
+                <th scope="col">End Time</th>
+                <th scope="col">No Show</th>
+            </tr>
+            @if($ticketsRecent->count() > 0)
+                @foreach($ticketsRecent as $t)
+                    <tr>
+                        <td><a href="/dashboard/training/tickets/view/{{ $t->id }}">{{ $t->date }}</a></td>
+                        <td>{{ $t->controller_name }}</td>
+                        <td>{{ $t->trainer_name }}</td>
+                        <td>{{ $t->facility_name }} {{ $t->position_name }}</td>
+                        <td>{{ $t->type_name }}</td>
+                        <td>{{ $t->start_time }}z</td>
+                        <td>{{ $t->end_time }}z</td>
+                        <td>@if($t->no_show == '1') <i class="fas fa-check" style="color:red"></i>@endif</td>
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="6">No training tickets found.</td>
+                </tr>
+            @endif
+        </thead>
+    </table>
+    @endif
+
     @if($search_result != null)
         <hr>
-        <h5>Showing Training Tickets for {{ $search_result->full_name }} ({{ $search_result->id }})</h5>
+        <h5 class="text-center">Showing Training Tickets for {{ $search_result->full_name }} ({{ $search_result->id }})</h5>
         <br>
         <table class="table">
             <thead>
