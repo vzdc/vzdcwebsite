@@ -19,7 +19,7 @@
             display: block;
             overflow-y: auto;
             table-layout: fixed;
-            max-height: 200px;
+            max-height: 100%;
         }
     </style>
     <div class="container-fluid" style="background-color:#F0F0F0;">
