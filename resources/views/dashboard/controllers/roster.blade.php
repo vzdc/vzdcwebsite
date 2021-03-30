@@ -13,12 +13,12 @@
         thead, tbody tr {
             display: table;
             width: 100%;
-            table-layout: auto;
+            table-layout: fixed;
         }
         tbody {
             display: block;
-            overflow-y: auto;
-            table-layout: auto;
+            overflow-y: scroll;
+            table-layout: fixed;
             max-height: 700px;
         }
     </style>
