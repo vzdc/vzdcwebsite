@@ -13,7 +13,7 @@
         thead, tbody tr {
             display: table;
             width: 100%;
-            table-layout: fixed;
+            table-layout: auto;
         }
         tbody {
             display: block;
