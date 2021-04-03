@@ -94,7 +94,7 @@ class RosterController extends Controller
                     $userstatuscheck->json_token = encrypt($json_token);
                     $client = new Client();
                     $response = $client->request('GET', 'https://api.vatusa.net/v2/user/' . $res['cid'] . '?apikey=' . Config::get('vatusa.api_key'));
-                    $resu = json_decode($response->getBody());
+                    $resu = json_decode($response->getBody())->data;
                     if ($resu->flag_broadcastOptedIn == 1) {
                         if ($userstatuscheck->opt != 1) {
                             $opt = new Opt;
