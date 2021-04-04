@@ -46,7 +46,7 @@ class RosterUpdate extends Command
     public function handle()
     {
         $client = new Client();
-        $res = $client->get('https://api.vatusa.net/v2/facility/' . Config::get('vatusa.facility') . '/roster/both?apikey=' . Config::get('vatusa.api_key'));
+        $res = $client->get('https://api.vatusa.net/v2/facility/' . Config::get('vatusa.facility') . '/roster?apikey=' . Config::get('vatusa.api_key'));
         $roster = json_decode($res->getBody())->data;
         $users = User::where('status', '1')->get()->pluck('id');
 
