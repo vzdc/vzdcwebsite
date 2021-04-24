@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 //KIAD GATES
 $KIADGates = array(
@@ -188,144 +188,119 @@ $zdcctl=0;
 $enoughAlready=0;
 
 while ($enoughAlready < 1) {
-    //$vatfile=(file("http://info.vroute.net/vatsim-data.txt"));
-    //$vatfile=(file("http://vatsim-data.hardern.net/vatsim-data.txt"));
-      $vatfile=(file("http://us.data.vatsim.net/vatsim-data.txt"));
-      $zdc = array("KIAD", "KDCA", "KBWI");
-      
-      $outString = "<?xml version=\"1.0\" encoding=\"windows-1250\"?>\n<markers>\n";
-      $DateModed = "<datemods><datemod mod=\"";
-      $lineNum = 0;
-      foreach ($vatfile as $dataline) {
-          $iconz = "Default";
-          $PColor = "#c8ccd0";
-          $printWorthy = 0;
-          if ($lineNum == 4){
-              $dataline= substr ($dataline, 7, 16);
-              $DateModed .= $dataline;
-              $outString .= "<marker name=\"DATEMODED\" dest=\"$dataline\" lat=\"0\" lng=\"0\" flightdata=\"0\" type=\"0\" PColor=\"0\" HDG=\"0\" ACType=\"0\"/>\n";
-              echo "\n$dataline\n";
+  //Get VATSIM Data File
+  $vatfile=("https://data.vatsim.net/v3/vatsim-data.json");
+  $filedata = file_get_contents($vatfile);
+  $loadeddata = json_decode($filedata) or die("{\"error\":\"Malformed JSON\"}");
+
+  $zdc = array("KIAD", "KDCA", "KBWI");
+  $outString = "<?xml version=\"1.0\" encoding=\"windows-1250\"?>\n<markers>\n";
+  $DateModed = "<datemods><datemod mod=\"";
+
+  $updatetime = $loadeddata->general->update_timestamp;
+  $DateModed .= $updatetime;
+  $outString .= "<marker name=\"DATEMODED\" dest=\"$dataline\" lat=\"0\" lng=\"0\" flightdata=\"0\" type=\"0\" PColor=\"0\" HDG=\"0\" ACType=\"0\"/>\n";
+  echo "\n$dataline\n";
+
+  foreach($loadeddata->pilots as $pilot){
+    $iconz = "Default";
+    $PColor = "#c8ccd0";
+    $printWorthy = 0;
+
+    $cal = $pilot->callsign;
+    $lat = $pilot->latitude;
+    $lon = $pilot->longitude;
+    $hdg = $pilot->heading;
+    $spd = $pilot->groundspeed;
+    $alt = $pilot->altitude;
+    $typ = $pilot->flightplan->aircraftshort;
+    $dep = $pilot->flightplan->departure;
+    $arr = $pilot->flightplan->arrival;
+
+      if (isAtKIAD($pilot->latitude,$pilot->longitude)&&$pilot->groundspeed<500) {
+        ///SPECIFIC FOR A/C ON THE GROUND AT KIAD
+        //print_r($contdata);
+        if ($dep =="") { echo "\n$cal has no Dept field\n";}
+        if ($spd<2) {
+          if ($dep =="") {
+            $PColor = "#FF00FF";
+            $iconz = "OnGndKIADstoppedNoFP";
+          } else {
+            $PColor = "#ff0000";
+            $iconz = "OnGndKIADstopped";
           }
-          $lineNum++;
-          
-          if (strpos($dataline,':PILOT:')!=0) {       
-            $contdata=explode(':',$dataline);
-          
-            if (isAtKIAD($contdata[5], $contdata[6])&&$contdata[7]<500) {
-               ///SPECIFIC FOR A/C ON THE GROUND AT KIAD
-               //print_r($contdata);
-               if ($contdata[11] =="") { echo "\n$contdata[0] has no Dept field\n";}
-               if ($contdata[8]<2) {
-                  if ($contdata[11] =="") {
-                    $PColor = "#FF00FF";
-                    $iconz = "OnGndKIADstoppedNoFP";
-                  } else {
-                    $PColor = "#ff0000";
-                    $iconz = "OnGndKIADstopped";
-                    /* Is the a/c at a gate??
-                    foreach ($KIADGates as $value) {
-                        if (isAtGate($value['lat'], $value['lon'],$contdata[5],$contdata[6]) <= $value['radius']) {
-                           echo isAtGate($value['lat'], $value['lon'],$contdata[5],$contdata[6]) ." from a gate, specifically Gate ". $value['name'] ."\n";
-                           //echo  array_keys($KIADGates[$value]) ."\n";
-                           $gatesString .= "<gate name=\"".$value['name']."\" acCall=\"".$contdata[0]."\"/>\n";
-                        }
-                    }*/
-                  }
-               } else {
-                  if ($contdata[11] == "KIAD") {
-                    $PColor = "#00FF00";
-                    $iconz = "OnGndKIADtaxiingOut";
-                  } else {
-                    $PColor = "#FFFF00";
-                    $iconz = "OnGndKIADtaxiingIn";
-                  }
-               }
-               echo "$contdata[0] is at KIAD, alt = $contdata[7], speed = $contdata[8], (lat = $contdata[5], lon = $contdata[6]) \n";
-  
-               $printWorthy = 1;
-               
-            } elseif (in_array(substr($contdata[13],0,4),$zdc)) {
-  
-              $iconz = "Arrival";
-              $PColor = "#002af0";
-              if ($contdata[8]<50) { $PColor = "#FFFF00"; }  //Taxing
-              echo "$contdata[0] = $iconz, speed = $contdata[8]\n";
-              $printWorthy = 1;
-           } elseif (in_array(substr($contdata[11],0,4),$zdc)) {
-              $iconz = "Departure";
-              $PColor = "#27c106";
-              if ($contdata[8]<50) { $PColor = "#FFFF00"; }  //Taxing
-              echo "$contdata[0] = $iconz, speed = $contdata[8]\n";
-              $printWorthy = 1;
-           } elseif (isInZDC ($contdata[5], $contdata[6])) {
-              $iconz = "Transient";
-              $PColor = "#333300";
-              
-              echo "$contdata[0] is $iconz (lat = $contdata[5], lon = $contdata[6])\n";
-              //print_r($contdata);
-              $printWorthy = 1;            
-           } else {
-              $printWorthy = 0;
-           }
-                
-            if ($printWorthy) {
-                $needle = strpos($contdata[9], "/");
-                $ac = $contdata[9];
-              if(!$needle) {
-                $ac = $contdata[9];
-              } elseif($needle < 2) {
-                $ac = substr($contdata[9],2,4);
-              } elseif($needle >= 4) {
-                $ac = substr($contdata[9],0,4);
-              } else { $ac = substr($contdata[9],$needle,4); }
-                   //arrivals
-                  $HDG = $contdata[38];
-                   if ($HDG >= 315 or $HDG < 45) {
-                       $iconz .= "N";
-                   } elseif ($HDG >= 45 and $HDG < 135) {
-                       $iconz .= "E";
-                   } elseif ($HDG >= 135 and $HDG < 225) {
-                       $iconz .= "S";
-                   } elseif ($HDG >= 225 and $HDG < 315) {
-                       $iconz .= "W";
-                   } else {
-                      $iconz = "Default";
-                   }
-                   //$iconz = "ArrivalN";
-                   $outString .= "<marker name=\"$contdata[0]\" dest=\"$contdata[11] - $contdata[13]\" lat=\"$contdata[5]\" lng=\"$contdata[6]\" flightdata=\"$contdata[8]kts $contdata[7]ft\" type=\"$iconz\" PColor=\"$PColor\" HDG=\"$HDG\" ACType=\"$contdata[9]\"/>\n";
-                   //echo "<tr><td><a href=\"http://www.vataware.com/pilot.cfm?cid=$contdata[1]\" target=\"_about\">$contdata[2]</a></td><td>$contdata[0]</td><td>$ac</td><td>$contdata[11]</td><td>$contdata[13]</td></tr>";
-             } 
+        } else {
+          if ($dep == "KIAD") {
+            $PColor = "#00FF00";
+            $iconz = "OnGndKIADtaxiingOut";
+          } else {
+            $PColor = "#FFFF00";
+            $iconz = "OnGndKIADtaxiingIn";
           }
+        }
+        echo "$cal is at KIAD, alt = $alt, speed = $spd, (lat = $lat, lon = $lon) \n";
+        $printWorthy = 1;
+      } elseif (in_array($arr,$zdc)) {
+        $iconz = "Arrival";
+        $PColor = "#002af0";
+        if ($spd<50) { $PColor = "#FFFF00"; }  //Taxing
+        echo "$cal = $iconz, speed = $spd\n";
+        $printWorthy = 1;
+      } elseif (in_array($dep,$zdc)) {
+        $iconz = "Departure";
+        $PColor = "#27c106";
+        if ($spd<50) { $PColor = "#FFFF00"; }  //Taxing
+        echo "$cal = $iconz, speed = $spd\n";
+        $printWorthy = 1;
+      } elseif (isInZDC ($lat, $lon)) {
+        $iconz = "Transient";
+        $PColor = "#333300";
+        echo "$cal is $iconz (lat = $lat, lon = $lon)\n";
+        $printWorthy = 1;
+      } else {
+        $printWorthy = 0;
       }
-    $DateModed .= "\"/></datemods>";
-    $outString .= $gatesString;
-    $outString .= "</markers>\n";
-    //$outString .= $DateModed;
-echo $outString;
-    $file = '/var/www/html/public/iadgates.xml';
-    
-    // Write the contents back to the file;
-   file_put_contents($file, $outString, LOCK_EX);
+      if ($printWorthy) {
+        //arrivals
+        if ($hdg >= 315 or $hdg < 45) {
+          $iconz .= "N";
+        } elseif ($hdg >= 45 and $hdg < 135) {
+          $iconz .= "E";
+        } elseif ($hdg >= 135 and $hdg < 225) {
+          $iconz .= "S";
+        } elseif ($hdg >= 225 and $hdg < 315) {
+          $iconz .= "W";
+        } else {
+          $iconz = "Default";
+        }
+        $outString .= "<marker name=\"$cal\" dest=\"$dep - $arr\" lat=\"$lat\" lng=\"$lon\" flightdata=\"$spd kts $alt ft\" type=\"$iconz\" PColor=\"$PColor\" HDG=\"$hdg\" ACType=\"$typ\"/>\n";
+      }
+  }
+  $DateModed .= "\"/></datemods>";
+  $outString .= $gatesString;
+  $outString .= "</markers>\n";
+  echo $outString;
+  $file = '/var/www/html/public/iadgates.xml';
 
-    
-    /*Set if want to get more then one per minute*/
-    //sleep(20);
-    $enoughAlready++;
-    $vatfile ="";
-    //echo "\n***$enoughAlready****\n";
-    
+  // Write the contents back to the file;
+  file_put_contents($file, $outString, LOCK_EX);
 
+  /*Set if want to get more then one per minute*/
+  //sleep(20);
+  $enoughAlready++;
+  $vatfile ="";
 }
+
 function isInZDC ($longitude_x, $latitude_y) {
   $vertices_x = array(34.84218,35.36138,36.08671,37.33099,37.3033,37.47035,38.76632,39.16591,39.17086,39.36922,39.84961,39.87933,39.689,39.69745,39.4449,39.38429, 39.38954,39.59152,39.2577,39.62069,39.64762,39.65249,39.58915,39.57228,39.02618,38.53143,37.06305,35.44713,35.33281,33.12753,34.43293, 34.4381,34.8414);    // x-coordinates of the vertices of the polygon
   $vertices_y = array(-80.13043,-79.78922,-79.741, -80.63072,-80.74487,-80.83775,-80.56513,-80.3994,-79.89054,-79.53773,-77.93114,-77.15751,-77.16428,-77.35562,-77.1031,-76.81173,-76.34183,-76.02692,-75.83631,-74.98601,-74.77344,-74.45261,-74.48832,-74.18629,-73.64949,-73.97473,-74.54369,-74.87064,-75.16455,-76.9742,-78.72476,-79.31027,-79.88813); // y-coordinates of the vertices of the polygon
   $points_polygon = count($vertices_x) - 1;  // number vertices - zero-based array
-  
+
   $i = $j = $c = 0;
   for ($i = 0, $j = $points_polygon ; $i < $points_polygon; $j = $i++) {
     if ( (($vertices_y[$i]  >  $latitude_y != ($vertices_y[$j] > $latitude_y)) &&
-     ($longitude_x < ($vertices_x[$j] - $vertices_x[$i]) * ($latitude_y - $vertices_y[$i]) / ($vertices_y[$j] - $vertices_y[$i]) + $vertices_x[$i]) ) )
-       $c = !$c;
+    ($longitude_x < ($vertices_x[$j] - $vertices_x[$i]) * ($latitude_y - $vertices_y[$i]) / ($vertices_y[$j] - $vertices_y[$i]) + $vertices_x[$i]) ) )
+    $c = !$c;
   }
 
   if ($c){
@@ -339,12 +314,12 @@ function isAtKIAD ($longitude_x, $latitude_y) {
   $vertices_x = array(38.980,38.90,38.900,38.980);    // x-coordinates of the vertices of the polygon
   $vertices_y = array(-77.515,-77.515,-77.42, -77.42); // y-coordinates of the vertices of the polygon
   $points_polygon = count($vertices_x) - 1;  // number vertices - zero-based array
-  
+
   $i = $j = $c = 0;
   for ($i = 0, $j = $points_polygon ; $i < $points_polygon; $j = $i++) {
     if ( (($vertices_y[$i]  >  $latitude_y != ($vertices_y[$j] > $latitude_y)) &&
-     ($longitude_x < ($vertices_x[$j] - $vertices_x[$i]) * ($latitude_y - $vertices_y[$i]) / ($vertices_y[$j] - $vertices_y[$i]) + $vertices_x[$i]) ) )
-       $c = !$c;
+    ($longitude_x < ($vertices_x[$j] - $vertices_x[$i]) * ($latitude_y - $vertices_y[$i]) / ($vertices_y[$j] - $vertices_y[$i]) + $vertices_x[$i]) ) )
+    $c = !$c;
   }
 
   if ($c){
@@ -364,8 +339,7 @@ function isAtKIAD ($longitude_x, $latitude_y) {
  * @param float $earthRadius Mean earth radius in [m]
  * @return float Distance between points in [m] (same as earthRadius)
  */
-function isAtGate ( $latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000 )
-{
+function isAtGate ( $latitudeFrom, $longitudeFrom, $latitudeTo, $longitudeTo, $earthRadius = 6371000 ) {
   // convert from degrees to radians
   $latFrom = deg2rad($latitudeFrom);
   $lonFrom = deg2rad($longitudeFrom);
