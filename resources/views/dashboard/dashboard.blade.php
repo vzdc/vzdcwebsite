@@ -10,19 +10,19 @@
         <h2 class="text-center">Controller Dashboard</h2>
         &nbsp;
     </div>
-    // @if($hours->total_hrs < $currency->value)
-    //    <div class="container-fluid" style="background-color:#E6B0AA;">
-    //        &nbsp;
-    //        <h2 class="text-center">Month Hours: {{$hours->total_hrs}}</h2>
-    //        &nbsp;
-    //    </div>
-    // @else
-    //    <div class="container-fluid" style="background-color:#A9DFBF;">
-    //        &nbsp;
-    //        <h2 class="text-center">Month Hours: {{$hours->total_hrs}}</h2>
-    //        &nbsp;
-    //    </div>
-    // @endif
+    #@if($hours->total_hrs < $currency->value)
+    #    <div class="container-fluid" style="background-color:#E6B0AA;">
+    #        &nbsp;
+    #        <h2 class="text-center">Month Hours: {{$hours->total_hrs}}</h2>
+    #        &nbsp;
+    #    </div>
+    #@else
+    #    <div class="container-fluid" style="background-color:#A9DFBF;">
+    #        &nbsp;
+    #        <h2 class="text-center">Month Hours: {{$hours->total_hrs}}</h2>
+    #        &nbsp;
+    #    </div>
+    #@endif
     <br>
 
     <div class="container-fluid">
