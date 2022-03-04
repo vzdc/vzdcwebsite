@@ -12,8 +12,6 @@
         {{$report->description}}
     </p>
     <br />
-    <p>Thank you,</p>
-    <p>Raymond Salvagnini</p>
-    <p>Air Traffic Manager</p>
-    <p>Virtual Washington ARTCC</p>
+    <p>Sincerely,</p>
+    <p>ZDC ARTCC Senior Staff</p>
 @endsection
