@@ -213,9 +213,9 @@ while ($enoughAlready < 1) {
     $hdg = $pilot->heading;
     $spd = $pilot->groundspeed;
     $alt = $pilot->altitude;
-    $typ = $pilot->flightplan->aircraftshort;
-    $dep = $pilot->flightplan->departure;
-    $arr = $pilot->flightplan->arrival;
+    $typ = $pilot->flight_plan->aircraft_short;
+    $dep = $pilot->flight_plan->departure;
+    $arr = $pilot->flight_plan->arrival;
 
       if (isAtKIAD($pilot->latitude,$pilot->longitude)&&$pilot->groundspeed<500) {
         ///SPECIFIC FOR A/C ON THE GROUND AT KIAD
