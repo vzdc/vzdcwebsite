@@ -21,6 +21,7 @@
                         {!! Form::label('cid', 'CID') !!}
                         {!! Form::text('cid', $visitor->cid, ['class' => 'form-control', 'disabled']) !!}
                         {!! Form::hidden('cid', $visitor->cid) !!}
+                        {!! Form::hidden('id', -1) !!}
                     </div>
                     <div class="col-sm-6">
                         {!! Form::label('rating_id', 'Rating') !!}
