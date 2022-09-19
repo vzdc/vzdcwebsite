@@ -530,21 +530,6 @@ class AdminDash extends Controller
     public function acceptVisitRequest($id)
     {
         $visitor = Visitor::find($id);
-        $visitor->updated_by = Auth::id();
-        $visitor->updated_by_name = Auth::user()->full_name;
-        $visitor->status = 1;
-        $visitor->save();
-
-        $dossier = new MemberLog();
-        $dossier->user_target = $visitor->id;
-        $dossier->user_submitter = Auth::id();
-        $dossier->content = "Visitor added on " . Carbon::now()->format('m/d/Y') . ".";
-        $dossier->save();
-
-        Mail::send('emails.visit.accept', ['visitor' => $visitor], function ($message) use ($visitor) {
-            $message->from('notams@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Accepted');
-            $message->to($visitor->email)->cc('datm@vzdc.org')->cc('atm@vzdc.org')->cc('ta@vzdc.org');
-        });
 
         $parts = explode(" ", $visitor->name);
         $fname = $parts[0];
@@ -872,6 +857,27 @@ class AdminDash extends Controller
     public function storeVisitor(Request $request)
     {
         $userid = Input::get('cid');
+        $id = Input::get('id');
+        if ($id != -1) {
+            $visitor = Visitor::find($id);
+
+            $visitor->updated_by = Auth::id();
+            $visitor->updated_by_name = Auth::user()->full_name;
+            $visitor->status = 1;
+            $visitor->save();
+        }
+
+        $dossier = new MemberLog();
+        $dossier->user_target = $visitor->id;
+        $dossier->user_submitter = Auth::id();
+        $dossier->content = "Visitor added on " . Carbon::now()->format('m/d/Y') . ".";
+        $dossier->save();
+
+        Mail::send('emails.visit.accept', ['visitor' => $visitor], function ($message) use ($visitor) {
+            $message->from('notams@vzdc.org', 'vZDC Visiting Department')->subject('Visitor Request Accepted');
+            $message->to($visitor->email)->cc('datm@vzdc.org')->cc('atm@vzdc.org')->cc('ta@vzdc.org');
+        });
+
         if (User::find($userid) !== null) {
             $user = User::find($userid);
             $user->status = 1;
