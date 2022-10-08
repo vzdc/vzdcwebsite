@@ -75,10 +75,28 @@
                             <center>Status</center>
                         </th>
                         <th scope="col">
-                            <center>DEL/GND</center>
+                            <center>Minor GND</center>
                         </th>
                         <th scope="col">
-                            <center>Tower</center>
+                            <center>Minor TWR</center>
+                        </th>
+                        <th scope="col">
+                            <center>BWI GND</center>
+                        </th>
+                        <th scope="col">
+                            <center>BWI TWR</center>
+                        </th>
+                        <th scope="col">
+                            <center>DCA GND</center>
+                        </th>
+                        <th scope="col">
+                            <center>DCA TWR</center>
+                        </th>
+                        <th scope="col">
+                            <center>IAD GND</center>
+                        </th>
+                        <th scope="col">
+                            <center>IAD TWR</center>
                         </th>
                         <th scope="col">
                             <center>Minor APP</center>
@@ -164,6 +182,102 @@
                                     <center><i class="far fa-check-circle" style="color:green"></i></center>
                                 </td>
                             @elseif($c->twr == 3)
+                                <td>
+                                    <center><i class="fas fa-check" style="color:green"></i></center>
+                                </td>
+                            @endif
+                            @if($c->bwi_gnd == 0)
+                                <td>
+                                    <center><i class="fas fa-times" style="color:red"></i></center>
+                                </td>
+                            @elseif($c->bwi_gnd == 1)
+                                <td>
+                                    <center><i class="far fa-check-circle" style="color:green"></i></center>
+                                </td>
+                            @elseif($c->bwi_gnd == 2)
+                                <td>
+                                    <center><i class="fas fa-check" style="color:green"></i></center>
+                                </td>
+                            @endif
+                            @if($c->bwi_twr == 0)
+                                <td>
+                                    <center><i class="fas fa-times" style="color:red"></i></center>
+                                </td>
+                            @elseif($c->bwi_twr == 99)
+                                <td>
+                                    <center><i class="fab fa-stripe-s" data-toggle="tooltip"
+                                               title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}"
+                                               style="color:#c1ad13"></i></center>
+                                </td>
+                            @elseif($c->bwi_twr == 2)
+                                <td>
+                                    <center><i class="far fa-check-circle" style="color:green"></i></center>
+                                </td>
+                            @elseif($c->bwi_twr == 3)
+                                <td>
+                                    <center><i class="fas fa-check" style="color:green"></i></center>
+                                </td>
+                            @endif
+                            @if($c->dca_gnd == 0)
+                                <td>
+                                    <center><i class="fas fa-times" style="color:red"></i></center>
+                                </td>
+                            @elseif($c->dca_gnd == 1)
+                                <td>
+                                    <center><i class="far fa-check-circle" style="color:green"></i></center>
+                                </td>
+                            @elseif($c->dca_gnd == 2)
+                                <td>
+                                    <center><i class="fas fa-check" style="color:green"></i></center>
+                                </td>
+                            @endif
+                            @if($c->dca_twr == 0)
+                                <td>
+                                    <center><i class="fas fa-times" style="color:red"></i></center>
+                                </td>
+                            @elseif($c->dca_twr == 99)
+                                <td>
+                                    <center><i class="fab fa-stripe-s" data-toggle="tooltip"
+                                               title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}"
+                                               style="color:#c1ad13"></i></center>
+                                </td>
+                            @elseif($c->dca_twr == 2)
+                                <td>
+                                    <center><i class="far fa-check-circle" style="color:green"></i></center>
+                                </td>
+                            @elseif($c->dca_twr == 3)
+                                <td>
+                                    <center><i class="fas fa-check" style="color:green"></i></center>
+                                </td>
+                            @endif
+                            @if($c->iad_gnd == 0)
+                                <td>
+                                    <center><i class="fas fa-times" style="color:red"></i></center>
+                                </td>
+                            @elseif($c->iad_gnd == 1)
+                                <td>
+                                    <center><i class="far fa-check-circle" style="color:green"></i></center>
+                                </td>
+                            @elseif($c->iad_gnd == 2)
+                                <td>
+                                    <center><i class="fas fa-check" style="color:green"></i></center>
+                                </td>
+                            @endif
+                            @if($c->iad_twr == 0)
+                                <td>
+                                    <center><i class="fas fa-times" style="color:red"></i></center>
+                                </td>
+                            @elseif($c->iad_twr == 99)
+                                <td>
+                                    <center><i class="fab fa-stripe-s" data-toggle="tooltip"
+                                               title="Solo Cert Expiration: {{ $c->solo_cert_expiration }}"
+                                               style="color:#c1ad13"></i></center>
+                                </td>
+                            @elseif($c->iad_twr == 2)
+                                <td>
+                                    <center><i class="far fa-check-circle" style="color:green"></i></center>
+                                </td>
+                            @elseif($c->iad_twr == 3)
                                 <td>
                                     <center><i class="fas fa-check" style="color:green"></i></center>
                                 </td>

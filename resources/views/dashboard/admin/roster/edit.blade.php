@@ -33,11 +33,10 @@
                     {!! Form::text('fname', $user->fname, ['class' => 'form-control', 'disabled']) !!}
                 </div>
                 <div class="col-sm-6">
-                    {!! Form::label('delgnd', 'Delivery/Ground Certification') !!}
+                    {!! Form::label('delgnd', 'Minor Delivery/Ground') !!}
                     {!! Form::select('delgnd', [
                         0 => 'None',
-                        1 => 'Minor Certified',
-                        2 => 'Major Certified'
+                        2 => 'Certified'
                     ], $user->delgnd, ['class' => 'form-control']) !!}
                 </div>
             </div>
@@ -49,12 +48,11 @@
                     {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
                 </div>
                 <div class="col-sm-6">
-                    {!! Form::label('twr', 'Tower Certification') !!}
+                    {!! Form::label('twr', 'Minor Tower Certification') !!}
                     {!! Form::select('twr', [
                         0 => 'None',
                         99 => 'Solo Certification',
-                        2 => 'Minor Certified',
-                        3 => 'Major Certified'
+                        3 => 'Certified'
                     ], $user->twr, ['class' => 'form-control']) !!}
                 </div>
             </div>
