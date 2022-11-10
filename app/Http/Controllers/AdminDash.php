@@ -265,7 +265,7 @@ class AdminDash extends Controller
             $user->delgnd = Input::get('delgnd');
             $user->bwi_gnd = Input::get('bwi_gnd');
             $user->dca_gnd = Input::get('dca_gnd');
-            $user->iad_gnd = Input::get('iad_gnd')
+            $user->iad_gnd = Input::get('iad_gnd');
             if ($user->twr == 99) {
                 if (Input::get('twr') != 0) {
                     $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
