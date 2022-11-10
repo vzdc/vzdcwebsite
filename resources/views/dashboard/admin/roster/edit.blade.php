@@ -60,6 +60,8 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-6">
+                    {!! Form::label('email', 'Email') !!}
+                    {!! Form::text('email', $user->email, ['class' => 'form-control', 'disabled']) !!}
                     {!! Form::label('lname', 'Last Name') !!}
                     {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
                 </div>
