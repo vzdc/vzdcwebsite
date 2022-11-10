@@ -399,6 +399,7 @@
                         </th>
                         <th scope="col">
                             <center>IAD TWR</center>
+                        </th>
                         <th scope="col">
                             <center>Minor APP</center>
                         </th>
