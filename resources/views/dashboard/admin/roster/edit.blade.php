@@ -60,40 +60,6 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-6">
-                    {!! Form::label('email', 'Email') !!}
-                    {!! Form::text('email', $user->email, ['class' => 'form-control', 'disabled']) !!}
-                    {!! Form::label('lname', 'Last Name') !!}
-                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
-                </div>
-                <div class="col-sm-6">
-                    {!! Form::label('bwi_gnd', 'BWI Ground Certification') !!}
-                    {!! Form::select('bwi_gnd', [
-                        0 => 'None',
-                        99 => 'Solo Certification',
-                        3 => 'Certified'
-                    ], $user->bwi_gnd, ['class' => 'form-control']) !!}
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-sm-6">
-                    {!! Form::label('lname', 'Last Name') !!}
-                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
-                </div>
-                <div class="col-sm-6">
-                    {!! Form::label('bwi_twr', 'BWI Tower Certification') !!}
-                    {!! Form::select('bwi_twr', [
-                        0 => 'None',
-                        99 => 'Solo Certification',
-                        3 => 'Certified'
-                    ], $user->twr, ['class' => 'form-control']) !!}
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="row">
-                <div class="col-sm-6">
                     {!! Form::label('lname', 'Last Name') !!}
                     {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
                 </div>
