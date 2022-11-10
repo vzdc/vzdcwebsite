@@ -60,10 +60,139 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-6">
-                    {!! Form::label('email', 'Email') !!}
-                    {!! Form::text('email', $user->email, ['class' => 'form-control', 'disabled']) !!}
+                    {!! Form::label('lname', 'Last Name') !!}
+                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
                 </div>
                 <div class="col-sm-6">
+                    {!! Form::label('bwi_gnd', 'BWI Ground Certification') !!}
+                    {!! Form::select('bwi_gnd', [
+                        0 => 'None',
+                        99 => 'Solo Certification',
+                        3 => 'Certified'
+                    ], $user->bwi_gnd, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    {!! Form::label('lname', 'Last Name') !!}
+                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
+                </div>
+                <div class="col-sm-6">
+                    {!! Form::label('bwi_twr', 'BWI Tower Certification') !!}
+                    {!! Form::select('bwi_twr', [
+                        0 => 'None',
+                        99 => 'Solo Certification',
+                        3 => 'Certified'
+                    ], $user->twr, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    {!! Form::label('lname', 'Last Name') !!}
+                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
+                </div>
+                <div class="col-sm-6">
+                    {!! Form::label('bwi_gnd', 'BWI Ground Certification') !!}
+                    {!! Form::select('bwi_gnd', [
+                        0 => 'None',
+                        99 => 'Solo Certification',
+                        3 => 'Certified'
+                    ], $user->bwi_gnd, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    {!! Form::label('lname', 'Last Name') !!}
+                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
+                </div>
+                <div class="col-sm-6">
+                    {!! Form::label('bwi_twr', 'BWI Tower Certification') !!}
+                    {!! Form::select('bwi_twr', [
+                        0 => 'None',
+                        99 => 'Solo Certification',
+                        3 => 'Certified'
+                    ], $user->bwi_twr, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    {!! Form::label('lname', 'Last Name') !!}
+                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
+                </div>
+                <div class="col-sm-6">
+                    {!! Form::label('dca_gnd', 'DCA Ground Certification') !!}
+                    {!! Form::select('dca_gnd', [
+                        0 => 'None',
+                        99 => 'Solo Certification',
+                        3 => 'Certified'
+                    ], $user->dca_gnd, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    {!! Form::label('lname', 'Last Name') !!}
+                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
+                </div>
+                <div class="col-sm-6">
+                    {!! Form::label('dca_twr', 'DCA Tower Certification') !!}
+                    {!! Form::select('dca_twr', [
+                        0 => 'None',
+                        99 => 'Solo Certification',
+                        3 => 'Certified'
+                    ], $user->dca_twr, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    {!! Form::label('lname', 'Last Name') !!}
+                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
+                </div>
+                <div class="col-sm-6">
+                    {!! Form::label('iad_gnd', 'IAD Ground Certification') !!}
+                    {!! Form::select('iad_gnd', [
+                        0 => 'None',
+                        99 => 'Solo Certification',
+                        3 => 'Certified'
+                    ], $user->iad_gnd, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-sm-6">
+                    {!! Form::label('lname', 'Last Name') !!}
+                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
+                </div>
+                <div class="col-sm-6">
+                    {!! Form::label('iad_twr', 'IAD Tower Certification') !!}
+                    {!! Form::select('iad_twr', [
+                        0 => 'None',
+                        99 => 'Solo Certification',
+                        3 => 'Certified'
+                    ], $user->iad_twr, ['class' => 'form-control']) !!}
+                </div>
+            </div>
+        </div>
+
+        @if(Auth::user()->can('roster'))
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-6">
+                        {!! Form::label('initials', 'Initials') !!}
+                        {!! Form::text('initials', $user->initials, ['class' => 'form-control']) !!}
+                    </div>
                     <div class="row">
                         <div class="col-sm-6">
                             {!! Form::label('app', 'Minor Approach Certification') !!}
@@ -81,16 +210,6 @@
                                 2 => 'Certified'
                             ], $user->chp, ['class' => 'form-control']) !!}
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @if(Auth::user()->can('roster'))
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-sm-6">
-                        {!! Form::label('initials', 'Initials') !!}
-                        {!! Form::text('initials', $user->initials, ['class' => 'form-control']) !!}
                     </div>
                     <div class="col-sm-6">
                         <div class="row">
@@ -120,6 +239,24 @@
                     <div class="col-sm-6">
                         {!! Form::label('initials', 'Initials') !!}
                         {!! Form::text('initials', $user->initials, ['class' => 'form-control', 'disabled']) !!}
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {!! Form::label('app', 'Minor Approach Certification') !!}
+                            {!! Form::select('app', [
+                                0 => 'None',
+                                99 => 'Solo Certification',
+                                2 => 'Certified'
+                            ], $user->app, ['class' => 'form-control']) !!}
+                        </div>
+                        <div class="col-sm-6">
+                            {!! Form::label('chp', 'CHP Approach Certification') !!}
+                            {!! Form::select('chp', [
+                                0 => 'None',
+                                99 => 'Solo Certification',
+                                2 => 'Certified'
+                            ], $user->chp, ['class' => 'form-control']) !!}
+                        </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="row">
