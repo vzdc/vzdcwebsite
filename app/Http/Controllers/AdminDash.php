@@ -263,6 +263,9 @@ class AdminDash extends Controller
         if (Auth::user()->can('roster')) {
 
             $user->delgnd = Input::get('delgnd');
+            $user->bwi_gnd = Input::get('bwi_gnd');
+            $user->dca_gnd = Input::get('dca_gnd');
+            $user->iad_gnd = Input::get('iad_gnd');
             if ($user->twr == 99) {
                 if (Input::get('twr') != 0) {
                     $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
@@ -285,6 +288,75 @@ class AdminDash extends Controller
                 $cert->save();
             } else {
                 $user->twr = Input::get('twr');
+            }
+            if ($user->bwi_twr == 99) {
+                if (Input::get('bwi_twr') != 0) {
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
+                    if ($solo) {
+                        $solo->status = 2;
+                        $solo->save();
+                    }
+                    $user->bwi_twr = Input::get('bwi_twr');
+                } else {
+                    $user->bwi_twr = 0;
+                }
+            } elseif (Input::get('bwi_twr') == 99) {
+                $expire = Carbon::now()->addMonth()->format('Y-m-d');
+                $user->bwi_twr = Input::get('bwi_twr');
+                $cert = new SoloCert;
+                $cert->cid = $id;
+                $cert->pos = 0;
+                $cert->expiration = $expire;
+                $cert->status = 1;
+                $cert->save();
+            } else {
+                $user->bwi_twr = Input::get('bwi_twr');
+            }
+            if ($user->iad_twr == 99) {
+                if (Input::get('iad_twr') != 0) {
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
+                    if ($solo) {
+                        $solo->status = 2;
+                        $solo->save();
+                    }
+                    $user->iad_twr = Input::get('iad_twr');
+                } else {
+                    $user->iad_twr = 0;
+                }
+            } elseif (Input::get('iad_twr') == 99) {
+                $expire = Carbon::now()->addMonth()->format('Y-m-d');
+                $user->iad_twr = Input::get('iad_twr');
+                $cert = new SoloCert;
+                $cert->cid = $id;
+                $cert->pos = 0;
+                $cert->expiration = $expire;
+                $cert->status = 1;
+                $cert->save();
+            } else {
+                $user->iad_twr = Input::get('iad_twr');
+            }
+            if ($user->dca_twr == 99) {
+                if (Input::get('dca_twr') != 0) {
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
+                    if ($solo) {
+                        $solo->status = 2;
+                        $solo->save();
+                    }
+                    $user->dca_twr = Input::get('dca_twr');
+                } else {
+                    $user->dca_twr = 0;
+                }
+            } elseif (Input::get('dca_twr') == 99) {
+                $expire = Carbon::now()->addMonth()->format('Y-m-d');
+                $user->dca_twr = Input::get('dca_twr');
+                $cert = new SoloCert;
+                $cert->cid = $id;
+                $cert->pos = 0;
+                $cert->expiration = $expire;
+                $cert->status = 1;
+                $cert->save();
+            } else {
+                $user->dca_twr = Input::get('dca_twr');
             }
             if ($user->shd == 99) {
                 if (Input::get('shd') != 0) {
