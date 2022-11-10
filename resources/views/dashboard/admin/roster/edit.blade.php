@@ -63,8 +63,7 @@
                     {!! Form::label('bwi_gnd', 'BWI Ground Certification') !!}
                     {!! Form::select('bwi_gnd', [
                         0 => 'None',
-                        99 => 'Solo Certification',
-                        3 => 'Certified'
+                        2 => 'Certified'
                     ], $user->bwi_gnd, ['class' => 'form-control']) !!}
                 </div>
             </div>
@@ -87,8 +86,7 @@
                     {!! Form::label('dca_gnd', 'DCA Ground Certification') !!}
                     {!! Form::select('dca_gnd', [
                         0 => 'None',
-                        99 => 'Solo Certification',
-                        3 => 'Certified'
+                        2 => 'Certified'
                     ], $user->dca_gnd, ['class' => 'form-control']) !!}
                 </div>
             </div>
@@ -111,8 +109,7 @@
                     {!! Form::label('iad_gnd', 'IAD Ground Certification') !!}
                     {!! Form::select('iad_gnd', [
                         0 => 'None',
-                        99 => 'Solo Certification',
-                        3 => 'Certified'
+                        2 => 'Certified'
                     ], $user->iad_gnd, ['class' => 'form-control']) !!}
                 </div>
             </div>
