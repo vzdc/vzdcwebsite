@@ -342,7 +342,7 @@ class AdminDash extends Controller
                         $solo->status = 2;
                         $solo->save();
                     }
-                    $user->dca_twr = Input::get('twr');
+                    $user->dca_twr = Input::get('dca_twr');
                 } else {
                     $user->dca_twr = 0;
                 }
