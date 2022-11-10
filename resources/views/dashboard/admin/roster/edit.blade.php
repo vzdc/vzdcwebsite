@@ -60,10 +60,6 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-6">
-                    {!! Form::label('lname', 'Last Name') !!}
-                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
-                </div>
-                <div class="col-sm-6">
                     {!! Form::label('bwi_gnd', 'BWI Ground Certification') !!}
                     {!! Form::select('bwi_gnd', [
                         0 => 'None',
@@ -75,10 +71,6 @@
         </div>
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-6">
-                    {!! Form::label('lname', 'Last Name') !!}
-                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
-                </div>
                 <div class="col-sm-6">
                     {!! Form::label('bwi_twr', 'BWI Tower Certification') !!}
                     {!! Form::select('bwi_twr', [
@@ -92,10 +84,6 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-6">
-                    {!! Form::label('lname', 'Last Name') !!}
-                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
-                </div>
-                <div class="col-sm-6">
                     {!! Form::label('dca_gnd', 'DCA Ground Certification') !!}
                     {!! Form::select('dca_gnd', [
                         0 => 'None',
@@ -107,10 +95,6 @@
         </div>
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-6">
-                    {!! Form::label('lname', 'Last Name') !!}
-                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
-                </div>
                 <div class="col-sm-6">
                     {!! Form::label('dca_twr', 'DCA Tower Certification') !!}
                     {!! Form::select('dca_twr', [
@@ -124,10 +108,6 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-6">
-                    {!! Form::label('lname', 'Last Name') !!}
-                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
-                </div>
-                <div class="col-sm-6">
                     {!! Form::label('iad_gnd', 'IAD Ground Certification') !!}
                     {!! Form::select('iad_gnd', [
                         0 => 'None',
@@ -139,10 +119,6 @@
         </div>
         <div class="form-group">
             <div class="row">
-                <div class="col-sm-6">
-                    {!! Form::label('lname', 'Last Name') !!}
-                    {!! Form::text('lname', $user->lname, ['class' => 'form-control', 'disabled']) !!}
-                </div>
                 <div class="col-sm-6">
                     {!! Form::label('iad_twr', 'IAD Tower Certification') !!}
                     {!! Form::select('iad_twr', [
