@@ -60,6 +60,8 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-sm-6">
+                    {!! Form::label('email', 'Email') !!}
+                    {!! Form::text('email', $user->email, ['class' => 'form-control', 'disabled']) !!}
                     {!! Form::label('bwi_gnd', 'BWI Ground Certification') !!}
                     {!! Form::select('bwi_gnd', [
                         0 => 'None',
