@@ -12,6 +12,7 @@
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.4.0",
+        "league/oauth2-client": "^2.4",
         "santigarcor/laratrust": "5.0.*",
         "unisharp/laravel-ckeditor": "^4.7"
     },
@@ -58,7 +59,10 @@
     "config": {
         "preferred-install": "dist",
         "sort-packages": true,
-        "optimize-autoloader": true
+        "optimize-autoloader": true,
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true

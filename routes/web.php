@@ -42,9 +42,9 @@ Route::get('/pilots/privacy_policy', 'FrontController@showPrivacyPolicy');
 */
 Route::get('/controllers/roster', 'RosterController@index');
 Route::get('/controllers/staff', 'RosterController@staffIndex');
-Route::get('/login', 'RosterController@login');
-Route::get('login', ['as' => 'login', 'uses' => 'RosterController@login']);
-Route::get('/logout', 'RosterController@logout');
+Route::get('/login', 'Auth\LoginController@login')->middleware('guest')->name('login');   // Login
+Route::get('/logout', 'Auth\LoginController@logout')->middleware('auth')->name('logout'); // Logout
+
 /*
 *   End Roster
 */
