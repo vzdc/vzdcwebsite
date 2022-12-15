@@ -23,7 +23,7 @@ class VatsimOAuthController extends GenericProvider
         parent::__construct([
             'clientId'                => config('vatsim_auth.id'),    // The client ID assigned to you by the provider
             'clientSecret'            => config('vatsim_auth.secret'),   // The client password assigned to you by the provider
-            'redirectUri'             => route('login'),
+            'redirectUri'             => "https://www.vzdc.org/login",
             'urlAuthorize'            => config('vatsim_auth.base').'/oauth/authorize',
             'urlAccessToken'          => config('vatsim_auth.base').'/oauth/token',
             'urlResourceOwnerDetails' => config('vatsim_auth.base').'/api/user',
