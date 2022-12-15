@@ -18,9 +18,13 @@ class User extends Authenticatable
     use LaratrustUserTrait;
 
     protected $table = 'roster';
-    protected $fillable = ['id', 'fname', 'lname', 'email', 'rating_id', 'canTrain', 'visitor', 'status', 'loa', 'delgnd', 'twr', 'chp', 'mtv', 'shd', 'app', 'ctr', 'train_pwr', 'monitor_pwr', 'opt', 'initials', 'added_to_facility'];
+    protected $fillable = ['access_token', 'refresh_token','token_expires', 'id', 'fname', 'lname', 'email', 'rating_id', 'canTrain', 'visitor', 'status', 'loa', 'delgnd', 'twr', 'chp', 'mtv', 'shd', 'app', 'ctr', 'train_pwr', 'monitor_pwr', 'opt', 'initials', 'added_to_facility'];
     protected $secret = ['remember_token', 'password', 'json_token'];
-
+    protected $hidden = [
+        'access_token',
+        'refresh_token',
+        'token_expires',
+    ];
     public function user()
     {
         return $this->belongsTo(User::class);
@@ -38,6 +42,32 @@ class User extends Authenticatable
     public function getFullNameAttribute()
     {
         return $this->fname . ' ' . $this->lname;
+    }
+
+    public function getTokenAttribute()
+    {
+        if ($this->access_token === null) return null;
+        else {
+            $token = new AccessToken([
+                'access_token' => $this->access_token,
+                'refresh_token' => $this->refresh_token,
+                'expires' => $this->token_expires,
+            ]);
+
+            if ($token->hasExpired()) {
+                $token = VatsimOAuthController::updateToken($token);
+            }
+
+            // Can't put it inside the "if token expired"; $this is null there
+            // but anyway Laravel will only update if any changes have been made.
+            $this->update([
+                'access_token' => ($token) ? $token->getToken() : null,
+                'refresh_token' => ($token) ? $token->getRefreshToken() : null,
+                'token_expires' => ($token) ? $token->getExpires() : null,
+            ]);
+
+            return $token;
+        }
     }
 
     public static $RatingShort = [
