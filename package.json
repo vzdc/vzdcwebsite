@@ -14,11 +14,11 @@
     "bootstrap": "^4.0.0",
     "cross-env": "^5.1",
     "jquery": "^3.2",
-    "laravel-mix": "^2.1.14",
+    "laravel-mix": "^6.0.49",
     "lodash": "^4.17.4",
     "popper.js": "^1.12",
     "vue": "^2.5.17",
-    "webpack-cli": "^3.2.1"
+    "webpack-cli": "^5.0.1"
   },
   "name": "ztl-v2",
   "description": "## Contributers: - Ian Cowan",
