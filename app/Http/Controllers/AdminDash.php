@@ -262,6 +262,104 @@ class AdminDash extends Controller
 
         if (Auth::user()->can('roster')) {
 
+            $user->initials = Input::get('initials');
+            $user->train_pwr = Input::get('train_pwr');
+            $user->monitor_pwr = Input::get('monitor_pwr');
+            if (Input::get('visitor') == null) {
+                $user->visitor = 0;
+            } elseif (Input::get('visitor') == 1) {
+                $user->visitor = 1;
+            }
+            if (Input::get('canTrain') == null) {
+                $user->canTrain = 0;
+            } elseif (Input::get('canTrain') == 1) {
+                $user->canTrain = 1;
+            }
+            if (Input::get('canEvents') == null) {
+                $user->canEvents = 0;
+            } elseif (Input::get('canEvents') == 1) {
+                $user->canEvents = 1;
+            }
+            if (Input::get('api_exempt') == null) {
+                $user->api_exempt = 0;
+            } elseif (Input::get('api_exempt') == 1) {
+                $user->api_exempt = 1;
+            }
+            $user->status = Input::get('status');
+            $user->visitor_from = Input::get('visitor_from');
+            $user->save();
+
+            if ($user->hasRole(['atm', 'datm', 'ta', 'ata', 'wm', 'awm', 'fe', 'afe', 'ec', 'aec']) == true) {
+                if ($user->hasRole('atm')) {
+                    $user->detachRole('atm');
+                } elseif ($user->hasRole('datm')) {
+                    $user->detachRole('datm');
+                } elseif ($user->hasRole('ta')) {
+                    $user->detachRole('ta');
+                } elseif ($user->hasRole('ata')) {
+                    $user->detachRole('ata');
+                } elseif ($user->hasRole('wm')) {
+                    $user->detachRole('wm');
+                } elseif ($user->hasRole('awm')) {
+                    $user->detachRole('awm');
+                } elseif ($user->hasRole('fe')) {
+                    $user->detachRole('fe');
+                } elseif ($user->hasRole('afe')) {
+                    $user->detachRole('afe');
+                } elseif ($user->hasRole('ec')) {
+                    $user->detachRole('ec');
+                } elseif ($user->hasRole('aec')) {
+                    $user->detachRole('aec');
+                }
+            }
+
+            if (Input::get('staff') == 1) {
+                $user->attachRole('atm');
+            } elseif (Input::get('staff') == 2) {
+                $user->attachRole('datm');
+            } elseif (Input::get('staff') == 3) {
+                $user->attachRole('ta');
+            } elseif (Input::get('staff') == 4) {
+                $user->attachRole('ata');
+            } elseif (Input::get('staff') == 5) {
+                $user->attachRole('wm');
+            } elseif (Input::get('staff') == 6) {
+                $user->attachRole('awm');
+            } elseif (Input::get('staff') == 7) {
+                $user->attachRole('fe');
+            } elseif (Input::get('staff') == 8) {
+                $user->attachRole('afe');
+            } elseif (Input::get('staff') == 9) {
+                $user->attachRole('ec');
+            } elseif (Input::get('staff') == 10) {
+                $user->attachRole('aec');
+            }
+
+            if ($user->hasRole(['mtr', 'ins']) == true) {
+                if ($user->hasRole('mtr')) {
+                    $user->detachRole('mtr');
+                    $user->save();
+                } elseif ($user->hasRole('ins')) {
+                    $user->detachRole('ins');
+                    $user->save();
+                }
+            }
+            if (Input::get('training') == 1) {
+                $user->attachRole('mtr');
+                if ($user->train_pwr == null) {
+                    $user->train_pwr = 1;
+                    $user->monitor_pwr = 1;
+                    $user->save();
+                }
+            } elseif (Input::get('training') == 2) {
+                $user->attachRole('ins');
+                if ($user->train_pwr == null) {
+                    $user->train_pwr = 6;
+                    $user->monitor_pwr = 6;
+                    $user->save();
+                }
+            }
+        } else {
             $user->delgnd = Input::get('delgnd');
             $user->bwi_gnd = Input::get('bwi_gnd');
             $user->dca_gnd = Input::get('dca_gnd');
@@ -473,111 +571,6 @@ class AdminDash extends Controller
             } else {
                 $user->ctr = Input::get('ctr');
             }
-            $user->initials = Input::get('initials');
-            $user->train_pwr = Input::get('train_pwr');
-            $user->monitor_pwr = Input::get('monitor_pwr');
-            if (Input::get('visitor') == null) {
-                $user->visitor = 0;
-            } elseif (Input::get('visitor') == 1) {
-                $user->visitor = 1;
-            }
-            if (Input::get('canTrain') == null) {
-                $user->canTrain = 0;
-            } elseif (Input::get('canTrain') == 1) {
-                $user->canTrain = 1;
-            }
-            if (Input::get('canEvents') == null) {
-                $user->canEvents = 0;
-            } elseif (Input::get('canEvents') == 1) {
-                $user->canEvents = 1;
-            }
-            if (Input::get('api_exempt') == null) {
-                $user->api_exempt = 0;
-            } elseif (Input::get('api_exempt') == 1) {
-                $user->api_exempt = 1;
-            }
-            $user->status = Input::get('status');
-            $user->visitor_from = Input::get('visitor_from');
-            $user->save();
-
-            if ($user->hasRole(['atm', 'datm', 'ta', 'ata', 'wm', 'awm', 'fe', 'afe', 'ec', 'aec']) == true) {
-                if ($user->hasRole('atm')) {
-                    $user->detachRole('atm');
-                } elseif ($user->hasRole('datm')) {
-                    $user->detachRole('datm');
-                } elseif ($user->hasRole('ta')) {
-                    $user->detachRole('ta');
-                } elseif ($user->hasRole('ata')) {
-                    $user->detachRole('ata');
-                } elseif ($user->hasRole('wm')) {
-                    $user->detachRole('wm');
-                } elseif ($user->hasRole('awm')) {
-                    $user->detachRole('awm');
-                } elseif ($user->hasRole('fe')) {
-                    $user->detachRole('fe');
-                } elseif ($user->hasRole('afe')) {
-                    $user->detachRole('afe');
-                } elseif ($user->hasRole('ec')) {
-                    $user->detachRole('ec');
-                } elseif ($user->hasRole('aec')) {
-                    $user->detachRole('aec');
-                }
-            }
-
-            if (Input::get('staff') == 1) {
-                $user->attachRole('atm');
-            } elseif (Input::get('staff') == 2) {
-                $user->attachRole('datm');
-            } elseif (Input::get('staff') == 3) {
-                $user->attachRole('ta');
-            } elseif (Input::get('staff') == 4) {
-                $user->attachRole('ata');
-            } elseif (Input::get('staff') == 5) {
-                $user->attachRole('wm');
-            } elseif (Input::get('staff') == 6) {
-                $user->attachRole('awm');
-            } elseif (Input::get('staff') == 7) {
-                $user->attachRole('fe');
-            } elseif (Input::get('staff') == 8) {
-                $user->attachRole('afe');
-            } elseif (Input::get('staff') == 9) {
-                $user->attachRole('ec');
-            } elseif (Input::get('staff') == 10) {
-                $user->attachRole('aec');
-            }
-
-            if ($user->hasRole(['mtr', 'ins']) == true) {
-                if ($user->hasRole('mtr')) {
-                    $user->detachRole('mtr');
-                    $user->save();
-                } elseif ($user->hasRole('ins')) {
-                    $user->detachRole('ins');
-                    $user->save();
-                }
-            }
-            if (Input::get('training') == 1) {
-                $user->attachRole('mtr');
-                if ($user->train_pwr == null) {
-                    $user->train_pwr = 1;
-                    $user->monitor_pwr = 1;
-                    $user->save();
-                }
-            } elseif (Input::get('training') == 2) {
-                $user->attachRole('ins');
-                if ($user->train_pwr == null) {
-                    $user->train_pwr = 6;
-                    $user->monitor_pwr = 6;
-                    $user->save();
-                }
-            }
-        } else {
-            $user->delgnd = Input::get('delgnd');
-            $user->twr = Input::get('twr');
-            $user->app = Input::get('app');
-            $user->chp = Input::get('chp');
-            $user->shd = Input::get('shd');
-            $user->mtv = Input::get('mtv');
-            $user->ctr = Input::get('ctr');
             $user->save();
         }
 
