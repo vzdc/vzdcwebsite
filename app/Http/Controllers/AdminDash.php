@@ -262,6 +262,30 @@ class AdminDash extends Controller
 
         if (Auth::user()->can('roster')) {
 
+            if ($user->ctr == 99) {
+                if (Input::get('ctr') != 0) {
+                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
+                    if ($solo) {
+                        $solo->status = 2;
+                        $solo->save();
+                    }
+                    $user->ctr = Input::get('ctr');
+                } else {
+                    $user->ctr = 0;
+                }
+            } elseif (Input::get('ctr') == 99) {
+                $expire = Carbon::now()->addMonth()->format('Y-m-d');
+                $user->ctr = Input::get('ctr');
+                $cert = new SoloCert;
+                $cert->cid = $id;
+                $cert->pos = 5;
+                $cert->expiration = $expire;
+                $cert->status = 1;
+                $cert->save();
+            } else {
+                $user->ctr = Input::get('ctr');
+            }
+
             $user->initials = Input::get('initials');
             $user->train_pwr = Input::get('train_pwr');
             $user->monitor_pwr = Input::get('monitor_pwr');
@@ -547,29 +571,6 @@ class AdminDash extends Controller
                 $cert->save();
             } else {
                 $user->app = Input::get('app');
-            }
-            if ($user->ctr == 99) {
-                if (Input::get('ctr') != 0) {
-                    $solo = SoloCert::where('cid', $user->id)->where('status', 1)->first();
-                    if ($solo) {
-                        $solo->status = 2;
-                        $solo->save();
-                    }
-                    $user->ctr = Input::get('ctr');
-                } else {
-                    $user->ctr = 0;
-                }
-            } elseif (Input::get('ctr') == 99) {
-                $expire = Carbon::now()->addMonth()->format('Y-m-d');
-                $user->ctr = Input::get('ctr');
-                $cert = new SoloCert;
-                $cert->cid = $id;
-                $cert->pos = 5;
-                $cert->expiration = $expire;
-                $cert->status = 1;
-                $cert->save();
-            } else {
-                $user->ctr = Input::get('ctr');
             }
             $user->save();
         }
