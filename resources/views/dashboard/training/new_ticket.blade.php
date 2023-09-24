@@ -53,7 +53,8 @@ New Training Ticket
                         1 => 'KBWI',
                         2 => 'KDCA',
                         3 => 'KORF',
-                        4 => 'DC'
+                        4 => 'DC',
+                        5 => 'RDU'
                     ], null, ['placeholder' => 'Select Facility', 'class' => 'form-control']) !!}
                 </div>
             </div>
