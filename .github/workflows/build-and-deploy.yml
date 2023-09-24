@@ -1,0 +1,104 @@
+name: build and deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        type: choice
+        description: environment to deploy to
+        required: true
+        options:
+          - qa-1
+          - qa-2
+          - stag
+          - prod
+
+  push:
+    branches:
+      - main
+
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  build:
+    uses: ZTL-ARTCC/Current_Website/.github/workflows/build.yml@main
+    with:
+      artifact-name: 'ztl-deploy-artifact-v1'
+
+  qa-1:
+    uses: ZTL-ARTCC/Current_Website/.github/workflows/deploy.yml@main
+    with:
+      environment: 'qa-1'
+      artifact-name: 'ztl-deploy-artifact-v1'
+    secrets:
+      dir: ${{ secrets.DIR }}
+      host: ${{ secrets.SSH_HOST }}
+      port: ${{ secrets.SSH_PORT }}
+      user: ${{ secrets.SSH_USER }}
+      key: ${{ secrets.SSH_KEY }}
+      php_path: ${{ secrets.PHP_PATH }}
+      cf_cache_purge_token: ${{ secrets.CF_CACHE_PURGE_TOKEN }}
+      cf_ztl_zone: ${{ secrets.CF_ZTL_ZONE }}
+      url: ${{ secrets.URL }}
+
+    needs: build
+    if: ${{ github.event.inputs.environment == 'qa-1' }}
+
+  qa-2:
+    uses: ZTL-ARTCC/Current_Website/.github/workflows/deploy.yml@main
+    with:
+      environment: 'qa-2'
+      artifact-name: 'ztl-deploy-artifact-v1'
+    secrets:
+      dir: ${{ secrets.DIR }}
+      host: ${{ secrets.SSH_HOST }}
+      port: ${{ secrets.SSH_PORT }}
+      user: ${{ secrets.SSH_USER }}
+      key: ${{ secrets.SSH_KEY }}
+      php_path: ${{ secrets.PHP_PATH }}
+      cf_cache_purge_token: ${{ secrets.CF_CACHE_PURGE_TOKEN }}
+      cf_ztl_zone: ${{ secrets.CF_ZTL_ZONE }}
+      url: ${{ secrets.URL }}
+
+    needs: build
+    if: ${{ github.event.inputs.environment == 'qa-2' }}
+
+  stag:
+    uses: ZTL-ARTCC/Current_Website/.github/workflows/deploy.yml@main
+    with:
+      environment: 'stag'
+      artifact-name: 'ztl-deploy-artifact-v1'
+    secrets:
+      dir: ${{ secrets.DIR }}
+      host: ${{ secrets.SSH_HOST }}
+      port: ${{ secrets.SSH_PORT }}
+      user: ${{ secrets.SSH_USER }}
+      key: ${{ secrets.SSH_KEY }}
+      php_path: ${{ secrets.PHP_PATH }}
+      cf_cache_purge_token: ${{ secrets.CF_CACHE_PURGE_TOKEN }}
+      cf_ztl_zone: ${{ secrets.CF_ZTL_ZONE }}
+      url: ${{ secrets.URL }}
+
+    needs: build
+    if: ${{ github.event.inputs.environment == 'stag' || (github.ref == 'refs/heads/main' && github.event_name != 'workflow_dispatch') }}
+
+  prod:
+    uses: ZTL-ARTCC/Current_Website/.github/workflows/deploy.yml@main
+    with:
+      environment: 'prod'
+      artifact-name: 'ztl-deploy-artifact-v1'
+    secrets:
+      dir: ${{ secrets.DIR }}
+      host: ${{ secrets.SSH_HOST }}
+      port: ${{ secrets.SSH_PORT }}
+      user: ${{ secrets.SSH_USER }}
+      key: ${{ secrets.SSH_KEY }}
+      php_path: ${{ secrets.PHP_PATH }}
+      cf_cache_purge_token: ${{ secrets.CF_CACHE_PURGE_TOKEN }}
+      cf_ztl_zone: ${{ secrets.CF_ZTL_ZONE }}
+      url: ${{ secrets.URL }}
+
+    needs: build
+    if: ${{ github.event.inputs.environment == 'prod' }}
+
