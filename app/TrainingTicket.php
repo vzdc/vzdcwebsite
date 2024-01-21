@@ -98,7 +98,7 @@ class TrainingTicket extends Model
         } elseif ($fac == 2) {
             $facility = 'DCA';
         } elseif ($fac == 3) {
-            $facility = 'ORF';
+            $facility = 'RDU';
         } elseif ($fac == 4) {
             $facility = 'DC';
         }

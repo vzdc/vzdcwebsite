@@ -79,7 +79,7 @@
                 <script id="setmore_script" type="text/javascript"
                         src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script>
                 <a id="Setmore_button_iframe" class="btn btn-secondary btn-block"
-                   href="https://my.setmore.com/bookingpage/acfb9e67-05a7-4f0e-aaee-feb54a13a41e">Schedule a Training
+                   href="https://training.vzdc.org">Schedule a Training
                     Session</a>
                 @if(Auth::user()->can('staff'))
                     <a class="btn btn-secondary btn-block" href="http://mail.vzdc.org" target="_blank">Email</a>
