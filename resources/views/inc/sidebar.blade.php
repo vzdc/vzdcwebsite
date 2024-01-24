@@ -27,8 +27,8 @@
                href="/dashboard/controllers/currency_hours">Currency Hours</a>
                <a class="nav-link {{ Nav::urlDoesContain('dashboard/controllers/loa/request') }}"
                href="/dashboard/controllers/loa/request">LOA Request</a>
-            <a class="nav-link" href="https://www.vzdc.org/ZDC_quickreference/" target="_top">
-               ZDC Quick Ref</a>
+            <a class="nav-link" href="https://ids.vzdc.org" target="_top">
+               ZDC IDS</a>
             <div class="dropdown-divider"></div>
             <a class="nav-link {{ Nav::urlDoesContain('/dashboard/controllers/profile') }} {{ Nav::urlDoesContain('/dashboard/controllers/ticket') }}"
                href="/dashboard/controllers/profile"><i class="fas fa-user"></i> My Profile</a>
