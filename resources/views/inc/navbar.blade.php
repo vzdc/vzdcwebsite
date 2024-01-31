@@ -27,7 +27,6 @@
                         <a class="dropdown-item" href="/pilots/privacy_policy">Privacy Policy</a>
                         <a class="dropdown-item" href="/pilots/request-staffing">Request Staffing</a>
                         <a class="dropdown-item" href="/pilots/scenery">Scenery</a>
-                        <a class="dropdown-item" href="http://www.vatstar.com/" target="_blank">VATSTAR Training</a>
                         <a class="dropdown-item" href="https://www.aviationweather.gov/" target="_blank">Weather</a>
                     </div>
                 </li>
