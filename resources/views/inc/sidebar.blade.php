@@ -44,7 +44,7 @@
             <div class="content">
                 <script id="setmore_script" type="text/javascript"
                         src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script>
-                <a id="Setmore_button_iframe" class="nav-link"
+                <a class="btn btn-secondary btn-block"
                    href="https://training.vzdc.org">Schedule a Training
                     Session</a>
                 <a class="nav-link {{ Nav::urlDoesContain('/dashboard/training/atcast') }}"
