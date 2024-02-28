@@ -76,11 +76,7 @@
                 @endif
             </div>
             <div class="col-sm-3">
-                <script id="setmore_script" type="text/javascript"
-                        src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script>
-                <a id="Setmore_button_iframe" class="btn btn-secondary btn-block"
-                   href="https://training.vzdc.org">Schedule a Training
-                    Session</a>
+                <a class="btn btn-secondary btn-block" href="https://training.vzdc.org">Schedule a Training Session</a>
                 @if(Auth::user()->can('staff'))
                     <a class="btn btn-secondary btn-block" href="http://mail.vzdc.org" target="_blank">Email</a>
                 @endif

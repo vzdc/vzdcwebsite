@@ -42,8 +42,6 @@
                 <b id="caret-train" class="float-right fas fa-caret-left"></b>
             </p>
             <div class="content">
-                <script id="setmore_script" type="text/javascript"
-                        src="https://my.setmore.com/webapp/js/src/others/setmore_iframe.js"></script>
                 <a class="btn btn-secondary btn-block"
                    href="https://training.vzdc.org">Schedule a Training
                     Session</a>
