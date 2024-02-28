@@ -52,7 +52,7 @@ New Training Ticket
                         0 => 'KIAD',
                         1 => 'KBWI',
                         2 => 'KDCA',
-                        3 => 'KORF',
+                        3 => 'KRDU',
                         4 => 'DC'
                     ], null, ['placeholder' => 'Select Facility', 'class' => 'form-control']) !!}
                 </div>
